@@ -1,48 +1,78 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-        <x-validation-errors class="mb-4" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Alamaya Project - Login Page</title>
+</head>
 
-        @if (session('status'))
-            <div class="mb-4 font-medium text-sm text-green-600">
-                {{ session('status') }}
+<body>
+    <section class="vh-100">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="row w-100">
+                <div class="col-sm-5 d-flex flex-column justify-content-center align-items-center">
+                    <div class="px-5 ms-xl-4">
+                        <span class="h1 fw-bold mb-0 d-flex justify-content-center">
+                            <img src="{{ asset('images/logo_alamaya.png') }}" alt="logo" height="40px">
+                        </span>
+                    </div>
+
+                    <div class="d-flex justify-content-center mt-4">
+                        <form method="POST" action="{{ route('login') }}" style="width: 21rem;">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="email" class="form-label"><strong>Email</strong></label>
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Enter email" value="{{ old('email') }}" required autofocus>
+                                @error('email')
+                                <div id="emailHelp" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 position-relative">
+                                <label for="password" class="form-label"><strong>Password</strong></label>
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" required>
+                                <i class="fas fa-eye position-absolute" id="togglePassword" style="top: 70%; right: 10px; cursor: pointer;"></i>
+                                @error('password')
+                                <div id="passwordHelp" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 d-flex justify-content-end">
+                                <a href="{{ route('password.request') }}" class="text-decoration-none"><strong>Forgot Password?</strong></a>
+                            </div>
+
+                            <button type="submit" class="btn btn-dark col-12" style="height: 50px;">Login</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-sm-7 px-0 d-none d-sm-block">
+                    <img src="{{ asset('images/login_image1.png') }}" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+                </div>
             </div>
-        @endif
+        </div>
+    </section>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
+    <script src="https://kit.fontawesome.com/19ad68a1da.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#togglePassword').click(function() {
+                const passwordField = $('#password');
+                if (passwordField.attr('type') === 'password') {
+                    passwordField.attr('type', 'text');
+                    $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    passwordField.attr('type', 'password');
+                    $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+        });
+    </script>
+</body>
 
-            <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="current-password" />
-            </div>
-
-            <div class="block mt-4">
-                <label for="remember_me" class="flex items-center">
-                    <x-checkbox id="remember_me" name="remember" />
-                    <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif
-
-                <x-button class="ms-4">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+</html>
