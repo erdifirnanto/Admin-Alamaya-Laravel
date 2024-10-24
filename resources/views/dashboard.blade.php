@@ -20,38 +20,147 @@
 </head>
 
 <body>
-  <section>
-    <div style="position: absolute; z-index: 1002">
-      <div
-        id="bg-white"
-        style="
-            width: 100vw; /* 100% dari lebar viewport */
-            height: 100vh; /* 100% dari tinggi viewport */
-            background-color: white;
-          "></div>
-      <div class="content">
-        <div id="title" class>
-          <!-- Logo 1 (hitam, awal) -->
-          <img
-            id="logo-black"
-            src="images/logo_alamaya.png"
-            height="40"
-            style="margin: 35px 0px" />
 
-          <!-- Logo 2 (putih, untuk setelah animasi) -->
-          <img
-            id="logo-white"
-            src="/images/logo_alamaya_putih.png"
-            height="40"
-            style="margin: 35px 0px; display: none" />
+  <section>
+    {{-- Section Animasi --}}
+      <div style="position: absolute; z-index: 1002">
+        <div
+          id="bg-white"
+          style="
+              width: 100vw; /* 100% dari lebar viewport */
+              height: 100vh; /* 100% dari tinggi viewport */
+              background-color: white;
+            "></div>
+        <div class="content">
+          <div id="title" class>
+            <!-- Logo 1 (hitam, awal) -->
+            <img
+              id="logo-black"
+              src="images/logo_alamaya.png"
+              height="40"
+              style="margin: 35px 0px" />
+
+            <!-- Logo 2 (putih, untuk setelah animasi) -->
+            <img
+              id="logo-white"
+              src="/images/logo_alamaya_putih.png"
+              height="40"
+              style="margin: 35px 0px; display: none" />
+          </div>
         </div>
+        <div class="circle-overlay"></div>
       </div>
-      <div class="circle-overlay"></div>
-    </div>
+        {{-- Animasi Style --}}
+    <style>
+      /* Atur konten untuk tetap di tengah */
+      .content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 20;
+        text-align: center;
+      }
+
+      #title {
+        font-size: 3em;
+        color: black;
+        transition: color 0.5s ease-in-out;
+      }
+
+      .circle-overlay {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background-color: #3498db;
+        border-radius: 50%;
+        top: -100px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        animation: dropBounce 2s ease-in-out forwards,
+          circleExpand 1s ease-in-out forwards 2s;
+        z-index: 10;
+      }
+
+      @keyframes dropBounce {
+        0% {
+          top: -100px;
+        }
+
+        50% {
+          top: calc(50% - 25px);
+        }
+
+        100% {
+          top: calc(50% + 50px);
+        }
+      }
+
+      @keyframes circleExpand {
+        0% {
+          transform: translate(-50%, -50%) scale(1);
+        }
+
+        100% {
+          transform: translate(-50%, -50%) scale(50);
+        }
+      }
+
+      .main-page {
+        display: none;
+        /* text-align: center; */
+      }
+
+      .main-page h1 {
+        font-size: 3em;
+        color: #333;
+      }
+
+      .main-page p {
+        font-size: 1.2em;
+        color: #666;
+      }
+    </style>
+    {{-- Animasi JS --}}
+    <script>
+      window.onload = function() {
+        const overlay = document.querySelector(".circle-overlay");
+        const mainPage = document.querySelectorAll(".main-page");
+        const title = document.getElementById("title");
+        const logoBlack = document.getElementById("logo-black"); // Logo hitam (awal)
+        const logoWhite = document.getElementById("logo-white"); // Logo putih (setelah animasi)
+        const bgWhite = document.getElementById("bg-white"); // Logo putih (setelah animasi)
+
+        // Fungsi untuk mengganti logo
+        const changeLogo = () => {
+          logoBlack.style.display = "none"; // Sembunyikan logo hitam
+          logoWhite.style.display = "block"; // Tampilkan logo putih
+        };
+
+        // Hentikan tampilan lingkaran dan halaman utama
+        overlay.addEventListener("animationend", (event) => {
+          if (event.animationName === "circleExpand") {
+            overlay.style.display = "none"; // Sembunyikan lingkaran
+            title.style.display = "none"; // Sembunyikan judul setelah lingkaran menutupi layar
+            bgWhite.style.display = "none"; // Tampilkan logo putih
+            // mainPage.style.display = "block"; // Tampilkan halaman utama
+            mainPage.forEach(page => {
+            page.style.display = "block"; // Tampilkan setiap elemen dengan class main-page
+          });
+          }
+        });
+
+        // Deteksi kapan animasi circleExpand dimulai
+        overlay.addEventListener("animationstart", (event) => {
+          if (event.animationName === "circleExpand") {
+            changeLogo(); // Ubah logo saat lingkaran mulai membesar
+          }
+        });
+      };
+    </script>
   </section>
 
-
-  <section class="section">
+  <section class="main-page" id="main-page" >
       <!-- Banner Start -->
       <div class="container-fluid banner-image1 position-relative" style="background-image: url('{{ asset('images/walpaper3.png') }}');">
         <!-- Navbar Start -->
@@ -170,6 +279,32 @@
                 margin-right: 10px;
               }
             </style>
+             <!-- Clock Start-->
+                <script>
+                  function updateClock() {
+                    var now = new Date();
+                    var hours = now.getHours();
+                    var minutes = now.getMinutes();
+                    var seconds = now.getSeconds();
+
+                    var period = hours < 12 ? 'AM' : 'PM';
+                    hours = hours % 12;
+                    hours = hours ? hours : 12; // Convert midnight (0 hours) to 12 AM
+
+                    hours = hours < 10 ? '0' + hours : hours;
+                    minutes = minutes < 10 ? '0' + minutes : minutes;
+                    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+                    var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + period;
+
+                    document.getElementById('clock').innerText = currentTime;
+
+                    setTimeout(updateClock, 1000);
+                  }
+
+                  updateClock();
+                </script>
+                <!-- End Of Clock -->
             </div>
           </div>
         </div>
@@ -211,7 +346,7 @@
         <!-- Navbar End -->
   </section>
 
-  <section class="section ">
+  <section class="main-page" id="main-page" >
     <!-- Cards Section Start -->
     <div class="container-fluid bg-white rounded-top-5" style="top:430px; position: absolute;">
       <div class="container mt-5" style>
@@ -389,7 +524,7 @@
     </div>
   </section>
 
-  <section class="section position-relative">
+  <section class="main-page" id="main-page" >
     <!-- Table Section Start -->
     <div class="container">
       <div class="row">
@@ -703,8 +838,17 @@
 
             </tbody>
           </table>
+           <script>
+                // JavaScript for "Select All" checkbox
+                document.getElementById('select-all').addEventListener('change', function() {
+                  var checkboxes = document.querySelectorAll('.client-checkbox');
+                  checkboxes.forEach(function(checkbox) {
+                    checkbox.checked = this.checked;
+                  }, this);
+                });
+              </script>
           <!-- End Of Table Section -->
-
+           
           <!-- Pagination -->
           <nav aria-label="Page navigation">
             <ul class="pagination justify-content-end" style="align-items: center;">
@@ -769,7 +913,7 @@
     </div>
   </section>
 
-  <section>
+  <section class="main-page" id="main-page" >
     <div>
       <!-- Footer Start -->
       <footer class="d-flex justify-content-center" style="background-color: #e0e0e6; height: 100px;">
@@ -787,154 +931,12 @@
 
   </section>
 
-  <script>
-    // JavaScript for "Select All" checkbox
-    document.getElementById('select-all').addEventListener('change', function() {
-      var checkboxes = document.querySelectorAll('.client-checkbox');
-      checkboxes.forEach(function(checkbox) {
-        checkbox.checked = this.checked;
-      }, this);
-    });
-  </script>
+  </div>
   <!-- JS -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/19ad68a1da.js" crossorigin="anonymous"></script>
-
-  <!-- Clock Start-->
-  <script>
-    function updateClock() {
-      var now = new Date();
-      var hours = now.getHours();
-      var minutes = now.getMinutes();
-      var seconds = now.getSeconds();
-
-      var period = hours < 12 ? 'AM' : 'PM';
-      hours = hours % 12;
-      hours = hours ? hours : 12; // Convert midnight (0 hours) to 12 AM
-
-      hours = hours < 10 ? '0' + hours : hours;
-      minutes = minutes < 10 ? '0' + minutes : minutes;
-      seconds = seconds < 10 ? '0' + seconds : seconds;
-
-      var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + period;
-
-      document.getElementById('clock').innerText = currentTime;
-
-      setTimeout(updateClock, 1000);
-    }
-
-    updateClock();
-  </script>
-  <!-- End Of Clock -->
-  </div>
-
-  {{-- Animasi Style --}}
-  <style>
-    /* Atur konten untuk tetap di tengah */
-    .content {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: 20;
-      text-align: center;
-    }
-
-    #title {
-      font-size: 3em;
-      color: black;
-      transition: color 0.5s ease-in-out;
-    }
-
-    .circle-overlay {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      background-color: #3498db;
-      border-radius: 50%;
-      top: -100px;
-      left: 50%;
-      transform: translate(-50%, 0);
-      animation: dropBounce 2s ease-in-out forwards,
-        circleExpand 1s ease-in-out forwards 2s;
-      z-index: 10;
-    }
-
-    @keyframes dropBounce {
-      0% {
-        top: -100px;
-      }
-
-      50% {
-        top: calc(50% - 25px);
-      }
-
-      100% {
-        top: calc(50% + 50px);
-      }
-    }
-
-    @keyframes circleExpand {
-      0% {
-        transform: translate(-50%, -50%) scale(1);
-      }
-
-      100% {
-        transform: translate(-50%, -50%) scale(50);
-      }
-    }
-
-    .main-page {
-      display: none;
-      /* text-align: center; */
-    }
-
-    .main-page h1 {
-      font-size: 3em;
-      color: #333;
-    }
-
-    .main-page p {
-      font-size: 1.2em;
-      color: #666;
-    }
-  </style>
-  {{-- Animasi JS --}}
-  <script>
-    window.onload = function() {
-      const overlay = document.querySelector(".circle-overlay");
-      const mainPage = document.getElementById("main-page");
-      const title = document.getElementById("title");
-      const logoBlack = document.getElementById("logo-black"); // Logo hitam (awal)
-      const logoWhite = document.getElementById("logo-white"); // Logo putih (setelah animasi)
-      const bgWhite = document.getElementById("bg-white"); // Logo putih (setelah animasi)
-
-      // Fungsi untuk mengganti logo
-      const changeLogo = () => {
-        logoBlack.style.display = "none"; // Sembunyikan logo hitam
-        logoWhite.style.display = "block"; // Tampilkan logo putih
-      };
-
-      // Hentikan tampilan lingkaran dan halaman utama
-      overlay.addEventListener("animationend", (event) => {
-        if (event.animationName === "circleExpand") {
-          overlay.style.display = "none"; // Sembunyikan lingkaran
-          title.style.display = "none"; // Sembunyikan judul setelah lingkaran menutupi layar
-          bgWhite.style.display = "none"; // Tampilkan logo putih
-          mainPage.style.display = "block"; // Tampilkan halaman utama
-        }
-      });
-
-      // Deteksi kapan animasi circleExpand dimulai
-      overlay.addEventListener("animationstart", (event) => {
-        if (event.animationName === "circleExpand") {
-          changeLogo(); // Ubah logo saat lingkaran mulai membesar
-        }
-      });
-    };
-  </script>
 
 </body>
 
