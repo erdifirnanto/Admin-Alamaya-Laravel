@@ -173,42 +173,28 @@
             </div>
           </div>
         </div>
-
-        <div class="container">
-          <div class="centered-title">
-            <div class="row">
-              <!-- Kolom untuk gambar -->
-              <div class="col-sm-2 col-lg-1 col-3"
-                style="margin-top: -250px; z-index: 1000;">
-                <div>
-                  <img src="images/handwave.png" width="80%" alt="Hand Wave">
-                </div>
-              </div>
-
-              <!-- Kolom untuk teks -->
-              <div class="col-8 text-light"
-                style="margin-top: -250px; z-index: 1000;">
-                <h3>Welcome Back, Hendri</h3>
-                <h6>This is an update from Alamaya Company</h6>
-              </div>
+  </section>
+        <section class="banner-section">
+    <!-- Banner -->
+    <div class="container-fluid banner-image1 position-relative text-center"
+      style="background-image: url('images/walpaper3.png'); background-size: cover; background-position: center;">
+      <div class="container">
+        <div class="centered-title">
+          <div class="row align-items-center" style="min-height: 300px;">
+            <!-- Kolom untuk gambar -->
+            <div class="col-sm-2 col-lg-1 col-3" style="margin-top: -20px; z-index: 1000;">
+              <img src="images/handwave.png" class="img-fluid" alt="Hand Wave">
+            </div>
+            <!-- Kolom untuk teks -->
+            <div class="col-9 col-sm-8 text-light text-start">
+              <h3>Welcome Back, Hendri</h3>
+              <h6>This is an update from Alamaya Company</h6>
             </div>
           </div>
         </div>
-
-        <div class="container-fluid">
-          <div class="container">
-            <div class="centered-title">
-              <div class="row">
-                <!-- Row tambahan dengan margin-top -->
-                <div class="row" style="margin-top: 150px;">
-                  <div class="col-sm-2 col-lg-1 col-3"></div>
-                  <div class="col-sm-10 col-lg-11 col-9 text-light"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- Navbar End -->
+      </div>
+    </div>
+    <!-- Banner End -->
   </section>
 
   <section class="section ">
@@ -297,9 +283,7 @@
                         <li><a class="dropdown-item" href="#">Something else
                             here</a></li>
                       </ul>
-
                     </div>
-
                   </div>
                 </div>
               </div>
