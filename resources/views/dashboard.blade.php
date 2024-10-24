@@ -317,11 +317,11 @@
         <div class="centered-title">
           <div class="row align-items-center" style="min-height: 300px;">
             <!-- Kolom untuk gambar -->
-            <div class="col-sm-2 col-lg-1 col-3" style="margin-top: -20px; z-index: 1000;">
+            <div class="col-sm-2 col-lg-1 col-3" style="margin-top: -750px; z-index: 500;">
               <img src="images/handwave.png" class="img-fluid" alt="Hand Wave">
             </div>
             <!-- Kolom untuk teks -->
-            <div class="col-9 col-sm-8 text-light text-start">
+            <div class="col-9 col-sm-8 text-light text-start" style="margin-top: -750px; z-index: 500;">
               <h3>Welcome Back, Hendri</h3>
               <h6>This is an update from Alamaya Company</h6>
             </div>
