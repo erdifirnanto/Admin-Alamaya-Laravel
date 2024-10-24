@@ -1,206 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="{{ asset('style/style.css') }}" />
-    <title>Admin Alamaya</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/boxicons@latest/css/boxicons.min.css"
-    />
-  </head>
 
-  <body>
-    <section>
-      <div style="position: absolute; z-index: 9">
-        <div
-          id="bg-white"
-          style="
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous" />
+  <link rel="stylesheet" href="{{ asset('style/style.css') }}" />
+  <title>Admin Alamaya</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
+    rel="stylesheet" />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
+</head>
+
+<body>
+  <section>
+    <div style="position: absolute; z-index: 9">
+      <div
+        id="bg-white"
+        style="
             width: 100vw; /* 100% dari lebar viewport */
             height: 100vh; /* 100% dari tinggi viewport */
             background-color: white;
-          "
-        ></div>
-        <div class="content">
-          <div id="title" class>
-            <!-- Logo 1 (hitam, awal) -->
-            <img
-              id="logo-black"
-              src="images/logo_alamaya.png"
-              height="40"
-              style="margin: 35px 0px"
-            />
+          "></div>
+      <div class="content">
+        <div id="title" class>
+          <!-- Logo 1 (hitam, awal) -->
+          <img
+            id="logo-black"
+            src="images/logo_alamaya.png"
+            height="40"
+            style="margin: 35px 0px" />
 
-            <!-- Logo 2 (putih, untuk setelah animasi) -->
-            <img
-              id="logo-white"
-              src="/images/logo_alamaya_putih.png"
-              height="40"
-              style="margin: 35px 0px; display: none"
-            />
-          </div>
+          <!-- Logo 2 (putih, untuk setelah animasi) -->
+          <img
+            id="logo-white"
+            src="/images/logo_alamaya_putih.png"
+            height="40"
+            style="margin: 35px 0px; display: none" />
         </div>
-        <div class="circle-overlay"></div>
       </div>
-    </section>
+      <div class="circle-overlay"></div>
+    </div>
+  </section>
 
   <div class="main-page" id="main-page">
-    
-  <section class="section">
-    <!-- Banner Start -->
-    <div class="container-fluid banner-image1 position-relative" style="background-image: url('{{ asset('images/walpaper3.png') }}');">
-      <!-- Navbar Start -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-transparent border-bottom p-0">
-        <div class="container">
-          <span class="navbar-brand p-0 m-0" href="#">
-            <img src="images/logo_alamaya.png" height="30" style="margin: 35px 0px;"></span>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <b><a class="nav-link" href="homepage.html">Client</a></b>
-              </li>
-              <li class="nav-item">
-                <b><a class="nav-link" href="alamayaprojectpage.html">Project</a></b>
-              </li>
-              <li class="nav-item">
-                <b><a class="nav-link" href="domainpage.html">Domain</a></b>
-              </li>
-              <li class="nav-item">
-                <b><a class="nav-link" href="alamayateamspage.html">Teams</a></b>
-              </li>
-            </ul>
-            <ul class="navbar-nav align-items-center" style="margin-left: -8%;">
-              <li class="nav-item bullet-none mx-2">
-                <i class="clock text-light" id="clock"></i>
-              </li>
-              <li class="nav-item bullet-none mx-3">
-                <div style="position: relative; display: inline-block;">
-                  <a class="fa-regular fa-bell text-light" style="font-size: 24px;"></a>
-                  <span
-                    style="position: absolute; top: -5px; right: -20px; background-color: red; color: white; border: 1px solid white; border-radius: 60%; padding: 2px 4px; font-size: 10px;">18</span>
-                </div>
-              </li>
-              <li class="nav-item bullet-none mx-3">
-                <a class="fa-solid fa-gear text-light"></a>
-              </li>
-            </ul>
 
-            <!-- User Dropdown Option -->
-            <div class="dropdown">
-              <button class="user-icon" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <li class="d-flex justify-content-center align-items-center user-icon"
-                  style="width: 40px; height: 40px; border: solid 1px; color: white;">
-                  <label for="user-modal1" style="cursor: pointer;">
-                    <img src="images/foto_Rena.jpg" alt="User Image" class="user-photo img-fluid">
-                  </label>
+    <section class="section">
+      <!-- Banner Start -->
+      <div class="container-fluid banner-image1 position-relative" style="background-image: url('{{ asset('images/walpaper3.png') }}');">
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-transparent border-bottom p-0">
+          <div class="container">
+            <span class="navbar-brand p-0 m-0" href="#">
+              <img src="images/logo_alamaya.png" height="30" style="margin: 35px 0px;"></span>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+              aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <b><a class="nav-link" href="homepage.html">Client</a></b>
                 </li>
-              </button>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                <li class="user-info text-center">
-                  <img src="images/foto_Rena.jpg" alt="Profile Picture" class="profile-picture">
-                  <h6>Hendri Kalijaga</h6>
-                  <p class="email">hendrii.37@gmail.com</p>
-                  <span class="badge bg-secondary">Admin</span>
+                <li class="nav-item">
+                  <b><a class="nav-link" href="alamayaprojectpage.html">Project</a></b>
                 </li>
-                <li>
-                  <hr class="dropdown-divider">
+                <li class="nav-item">
+                  <b><a class="nav-link" href="domainpage.html">Domain</a></b>
                 </li>
-                <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Account</a></li>
-                <li><a class="dropdown-item" href="#"><i class="bi bi-person-plus"></i> Add Account</a></li>
-                <li>
-                  <hr class="dropdown-divider">
+                <li class="nav-item">
+                  <b><a class="nav-link" href="alamayateamspage.html">Teams</a></b>
                 </li>
-                <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right"></i> Log out</a></li>
               </ul>
+              <ul class="navbar-nav align-items-center" style="margin-left: -8%;">
+                <li class="nav-item bullet-none mx-2">
+                  <i class="clock text-light" id="clock"></i>
+                </li>
+                <li class="nav-item bullet-none mx-3">
+                  <div style="position: relative; display: inline-block;">
+                    <a class="fa-regular fa-bell text-light" style="font-size: 24px;"></a>
+                    <span
+                      style="position: absolute; top: -5px; right: -20px; background-color: red; color: white; border: 1px solid white; border-radius: 60%; padding: 2px 4px; font-size: 10px;">18</span>
+                  </div>
+                </li>
+                <li class="nav-item bullet-none mx-3">
+                  <a class="fa-solid fa-gear text-light"></a>
+                </li>
+              </ul>
+
+              <!-- User Dropdown Option -->
+              <div class="dropdown">
+                  <button class="user-icon" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      <li class="d-flex justify-content-center align-items-center user-icon"
+                          style="width: 40px; height: 40px; border: solid 1px; color: white;">
+                          <label for="user-modal1" style="cursor: pointer;">
+                              <img src="{{ asset('images/foto_Rena.jpg') }}" alt="User Image" class="user-photo img-fluid">
+                          </label>
+                      </li>
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                      <li class="user-info text-center">
+                          <img src="{{ asset('images/foto_Rena.jpg') }}" alt="Profile Picture" class="profile-picture">
+                          <h6>{{ Auth::user()->name }}</h6> <!-- Display user name -->
+                          <p class="email">{{ Auth::user()->email }}</p> <!-- Display user email -->
+                          <span class="badge bg-secondary">{{ Auth::user()->role }}</span> <!-- Display user role if available -->
+                      </li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Account</a></li>
+                      <li><a class="dropdown-item" href="#"><i class="bi bi-person-plus"></i> Add Account</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li>
+                          <a class="dropdown-item text-danger" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            <i class="bi bi-box-arrow-right"></i> Log out
+                          </a>
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                              @csrf
+                          </form>
+                      </li>
+                  </ul>
+              </div>
+
+
+              <style>
+                .user-icon {
+                  border: none;
+                  background: none;
+                }
+
+                .user-info {
+                  padding: 10px;
+                }
+
+                .user-info .email {
+                  color: gray;
+                  font-size: 0.9em;
+                }
+
+                .dropdown-menu {
+                  width: 250px;
+                }
+
+                .dropdown-item {
+                  display: flex;
+                  align-items: center;
+                }
+
+                .dropdown-item i {
+                  margin-right: 10px;
+                }
+              </style>
             </div>
-
-            <style>
-              .user-icon {
-                border: none;
-                background: none;
-              }
-
-              .user-info {
-                padding: 10px;
-              }
-
-              .user-info .email {
-                color: gray;
-                font-size: 0.9em;
-              }
-
-              .dropdown-menu {
-                width: 250px;
-              }
-
-              .dropdown-item {
-                display: flex;
-                align-items: center;
-              }
-
-              .dropdown-item i {
-                margin-right: 10px;
-              }
-            </style>
           </div>
-        </div>
-    </div>
-    </nav>
+      </div>
+      </nav>
 
-    <!-- Banner Content -->
-    <div class="container-fluid">
-      <div class="container">
-        <div class="centered-title">
-          <div class="row">
-            <div class="col-sm-2 col-lg-1 col-3" style="margin-top: -250px;z-index: 1001;">
-              <div>
-                <img src="images/handwave.png" width="80%">
+      <!-- Banner Content -->
+      <div class="container-fluid">
+        <div class="container">
+          <div class="centered-title">
+            <div class="row">
+              <div class="col-sm-2 col-lg-1 col-3" style="margin-top: -250px;z-index: 1001;">
+                <div>
+                  <img src="images/handwave.png" width="80%">
+                </div>
+              </div>
+              <div class="col-sm-10 col-lg-11 col-9 text-light" style="margin-top: -250px; z-index: 1001;">
+                <div>
+
+                </div>
+                <h3>Welcome Back, Hendri</h3>
+                <h6>This is an update from Alamaya Company</h6>
               </div>
             </div>
-            <div class="col-sm-10 col-lg-11 col-9 text-light" style="margin-top: -250px; z-index: 1001;">
-              <div>
-
+            <div class="row" style="margin-top: 150px;">
+              <div class="col-sm-2 col-lg-1 col-3">
+                <div>
+                </div>
               </div>
-              <h3>Welcome Back, Hendri</h3>
-              <h6>This is an update from Alamaya Company</h6>
+              <div class="col-sm-10 col-lg-11 col-9 text-light">
+                <div>
+
+                </div>
+              </div>
             </div>
+
           </div>
-          <div class="row" style="margin-top: 150px;">
-            <div class="col-sm-2 col-lg-1 col-3">
-              <div>
-              </div>
-            </div>
-            <div class="col-sm-10 col-lg-11 col-9 text-light">
-              <div>
-
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
-    </div>
-    <!-- End Of Content Banner -->
+      <!-- End Of Content Banner -->
 
-    </div>
-    <!-- Navbar End -->
-    </section>
+  </div>
+  <!-- Navbar End -->
+  </section>
 
   <section class="section ">
     <!-- Cards Section Start -->
@@ -360,7 +360,7 @@
             let hoverTimeouts = []; // Array untuk menyimpan timeout untuk setiap kartu
 
             cards.forEach((card, index) => {
-              card.addEventListener('mouseover', function () {
+              card.addEventListener('mouseover', function() {
                 // Tambahkan kelas hover ketika mouse masuk
                 card.classList.add('hovered');
 
@@ -652,8 +652,8 @@
                 <!-- End Row With Expand/Collapse -->
 
                 <script>
-                  document.querySelectorAll('.toggle-chevron').forEach(function (chevron, index) {
-                    chevron.addEventListener('click', function () {
+                  document.querySelectorAll('.toggle-chevron').forEach(function(chevron, index) {
+                    chevron.addEventListener('click', function() {
                       const collapseRow = document.querySelectorAll('.collapse-row')[index];
                       const collapseContent = collapseRow.querySelector('.collapse-content');
                       const collapseContent1 = collapseRow.querySelector('.collapse-content1');
@@ -759,30 +759,30 @@
       </div>
     </div>
   </section>
-  
-<section>
-  <div>
-    <!-- Footer Start -->
-    <footer class="d-flex justify-content-center" style="background-color: #e0e0e6; height: 100px;">
-      <div style="font-size: 15px; text-align: center; align-content: center;">
-        <a style="color: #8F939A; text-decoration: none; text-align: center; justify-content: center;"
-          href="alamaya.com">Login as - Admin Hendri Kalijaga</a> <br>
-        <a style="color: #8F939A; text-decoration: none; text-align: center; justify-content: center;"
-          href="alamaya.com">Copyright © PT Indonesia Online Alamaya.
-          All
-          rights reserved.</a>
-      </div>
-    </footer>
-    <!-- End Of Footer -->
-  </div>
+
+  <section>
+    <div>
+      <!-- Footer Start -->
+      <footer class="d-flex justify-content-center" style="background-color: #e0e0e6; height: 100px;">
+        <div style="font-size: 15px; text-align: center; align-content: center;">
+          <a style="color: #8F939A; text-decoration: none; text-align: center; justify-content: center;"
+            href="alamaya.com">Login as - Admin Hendri Kalijaga</a> <br>
+          <a style="color: #8F939A; text-decoration: none; text-align: center; justify-content: center;"
+            href="alamaya.com">Copyright © PT Indonesia Online Alamaya.
+            All
+            rights reserved.</a>
+        </div>
+      </footer>
+      <!-- End Of Footer -->
+    </div>
 
   </section>
 
   <script>
     // JavaScript for "Select All" checkbox
-    document.getElementById('select-all').addEventListener('change', function () {
+    document.getElementById('select-all').addEventListener('change', function() {
       var checkboxes = document.querySelectorAll('.client-checkbox');
-      checkboxes.forEach(function (checkbox) {
+      checkboxes.forEach(function(checkbox) {
         checkbox.checked = this.checked;
       }, this);
     });
@@ -893,7 +893,7 @@
   </style>
 
   <script>
-    window.onload = function () {
+    window.onload = function() {
       const overlay = document.querySelector(".circle-overlay");
       const mainPage = document.getElementById("main-page");
       const title = document.getElementById("title");
@@ -925,7 +925,7 @@
       });
     };
   </script>
-  
+
 </body>
 
 </html>
