@@ -50,119 +50,11 @@
         </div>
         <div class="circle-overlay"></div>
       </div>
-        {{-- Animasi Style --}}
-    <style>
-      /* Atur konten untuk tetap di tengah */
-      .content {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        z-index: 20;
-        text-align: center;
-      }
-
-      #title {
-        font-size: 3em;
-        color: black;
-        transition: color 0.5s ease-in-out;
-      }
-
-      .circle-overlay {
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        background-color: #3498db;
-        border-radius: 50%;
-        top: -100px;
-        left: 50%;
-        transform: translate(-50%, 0);
-        animation: dropBounce 2s ease-in-out forwards,
-          circleExpand 1s ease-in-out forwards 2s;
-        z-index: 10;
-      }
-
-      @keyframes dropBounce {
-        0% {
-          top: -100px;
-        }
-
-        50% {
-          top: calc(50% - 25px);
-        }
-
-        100% {
-          top: calc(50% + 50px);
-        }
-      }
-
-      @keyframes circleExpand {
-        0% {
-          transform: translate(-50%, -50%) scale(1);
-        }
-
-        100% {
-          transform: translate(-50%, -50%) scale(50);
-        }
-      }
-
-      .main-page {
-        display: none;
-        /* text-align: center; */
-      }
-
-      .main-page h1 {
-        font-size: 3em;
-        color: #333;
-      }
-
-      .main-page p {
-        font-size: 1.2em;
-        color: #666;
-      }
-    </style>
-    {{-- Animasi JS --}}
-    <script>
-      window.onload = function() {
-        const overlay = document.querySelector(".circle-overlay");
-        const mainPage = document.querySelectorAll(".main-page");
-        const title = document.getElementById("title");
-        const logoBlack = document.getElementById("logo-black"); // Logo hitam (awal)
-        const logoWhite = document.getElementById("logo-white"); // Logo putih (setelah animasi)
-        const bgWhite = document.getElementById("bg-white"); // Logo putih (setelah animasi)
-
-        // Fungsi untuk mengganti logo
-        const changeLogo = () => {
-          logoBlack.style.display = "none"; // Sembunyikan logo hitam
-          logoWhite.style.display = "block"; // Tampilkan logo putih
-        };
-
-        // Hentikan tampilan lingkaran dan halaman utama
-        overlay.addEventListener("animationend", (event) => {
-          if (event.animationName === "circleExpand") {
-            overlay.style.display = "none"; // Sembunyikan lingkaran
-            title.style.display = "none"; // Sembunyikan judul setelah lingkaran menutupi layar
-            bgWhite.style.display = "none"; // Tampilkan logo putih
-            // mainPage.style.display = "block"; // Tampilkan halaman utama
-            mainPage.forEach(page => {
-            page.style.display = "block"; // Tampilkan setiap elemen dengan class main-page
-          });
-          }
-        });
-
-        // Deteksi kapan animasi circleExpand dimulai
-        overlay.addEventListener("animationstart", (event) => {
-          if (event.animationName === "circleExpand") {
-            changeLogo(); // Ubah logo saat lingkaran mulai membesar
-          }
-        });
-      };
-    </script>
   </section>
 
   <section class="main-page" id="main-page" >
       <!-- Banner Start -->
-      <div class="container-fluid position-relative" style="z-index: 1;">
+      <div class="container-fluid banner-image1 position-relative" style="background-image: url('{{ asset('images/walpaper3.png') }}');">
         <!-- Navbar Start -->
         <nav
           class="navbar navbar-expand-lg navbar-dark bg-transparent border-bottom p-0">
@@ -250,90 +142,48 @@
                         class="bi bi-box-arrow-right"></i> Log out</a></li>
                 </ul>
               </div>
-
-              <style>
-              .user-icon {
-                border: none;
-                background: none;
-              }
-
-              .user-info {
-                padding: 10px;
-              }
-
-              .user-info .email {
-                color: gray;
-                font-size: 0.9em;
-              }
-
-              .dropdown-menu {
-                width: 250px;
-              }
-
-              .dropdown-item {
-                display: flex;
-                align-items: center;
-              }
-
-              .dropdown-item i {
-                margin-right: 10px;
-              }
-            </style>
-             <!-- Clock Start-->
-                <script>
-                  function updateClock() {
-                    var now = new Date();
-                    var hours = now.getHours();
-                    var minutes = now.getMinutes();
-                    var seconds = now.getSeconds();
-
-                    var period = hours < 12 ? 'AM' : 'PM';
-                    hours = hours % 12;
-                    hours = hours ? hours : 12; // Convert midnight (0 hours) to 12 AM
-
-                    hours = hours < 10 ? '0' + hours : hours;
-                    minutes = minutes < 10 ? '0' + minutes : minutes;
-                    seconds = seconds < 10 ? '0' + seconds : seconds;
-
-                    var currentTime = hours + ':' + minutes + ':' + seconds + ' ' + period;
-
-                    document.getElementById('clock').innerText = currentTime;
-
-                    setTimeout(updateClock, 1000);
-                  }
-
-                  updateClock();
-                </script>
-                <!-- End Of Clock -->
             </div>
           </div>
         </div>
-  </section>
-        <section class="banner-section" style="margin-top: -100px">
-    <!-- Banner -->
-    <div class="container-fluid banner-image1 position-relative text-center"
-      style="background-image: url('images/walpaper3.png'); background-size: cover; background-position: center;">
-      <div class="container">
-        <div class="centered-title">
-          <div class="row align-items-center" style="min-height: 300px;">
-            <!-- Kolom untuk gambar -->
-            <div class="col-sm-2 col-lg-1 col-3" style="margin-top: 150px; z-index: 500;">
-              <img src="images/handwave.png" class="img-fluid" alt="Hand Wave">
-            </div>
-            <!-- Kolom untuk teks -->
-            <div class="col-9 col-sm-8 text-light text-start" style="margin-top: 150px; z-index: 500;">
-              <h3>Welcome Back, Hendri</h3>
-              <h6>This is an update from Alamaya Company</h6>
+
+        <div class="container">
+          <div class="centered-title">
+            <div class="row">
+              <!-- Kolom untuk gambar -->
+              <div class="col-sm-2 col-lg-1 col-3"
+                style="margin-top: -250px; z-index: 1000;">
+                <div>
+                  <img src="images/handwave.png" width="80%" alt="Hand Wave">
+                </div>
+              </div>
+
+              <!-- Kolom untuk teks -->
+              <div class="col-8 text-light"
+                style="margin-top: -250px; z-index: 1000;">
+                <h3>Welcome Back, Hendri</h3>
+                <h6>This is an update from Alamaya Company</h6>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <!-- Banner End -->
+
+        <div class="container-fluid">
+          <div class="container">
+            <div class="centered-title">
+              <div class="row">
+                <!-- Row tambahan dengan margin-top -->
+                <div class="row" style="margin-top: 150px;">
+                  <div class="col-sm-2 col-lg-1 col-3"></div>
+                  <div class="col-sm-10 col-lg-11 col-9 text-light"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Navbar End -->
   </section>
 
   <section class="main-page" id="main-page" >
-    <section style="margin-bottom: 150px">
     <!-- Cards Section Start -->
     <div class="container-fluid bg-white rounded-top-5" style="top:430px; position: absolute;">
       <div class="container mt-5" style>
@@ -419,7 +269,9 @@
                         <li><a class="dropdown-item" href="#">Something else
                             here</a></li>
                       </ul>
+
                     </div>
+
                   </div>
                 </div>
               </div>
@@ -484,34 +336,12 @@
               </h6>
             </a>
           </div>
-          <script>
-            const cards = document.querySelectorAll('.card-home'); // Menargetkan semua kartu
-            let hoverTimeouts = []; // Array untuk menyimpan timeout untuk setiap kartu
-
-            cards.forEach((card, index) => {
-              card.addEventListener('mouseover', function() {
-                // Tambahkan kelas hover ketika mouse masuk
-                card.classList.add('hovered');
-
-                // Hapus timeout sebelumnya jika ada
-                if (hoverTimeouts[index]) clearTimeout(hoverTimeouts[index]);
-
-                // Set timeout untuk menghapus kelas setelah 1 menit (60000 ms)
-                hoverTimeouts[index] = setTimeout(() => {
-                  card.classList.remove('hovered');
-                }, 1500);
-              });
-            });
-          </script>
-
         </div>
       </div>
     </div>
-    </section>
   </section>
 
   <section class="main-page" id="main-page" >
-    <section>
     <!-- Table Section Start -->
     <div class="container">
       <div class="row">
@@ -522,7 +352,6 @@
         </div>
       </div>
     </div>
-    </section>
 
     <div class="container">
       <div class="row">
@@ -649,12 +478,7 @@
                   data-bs-toggle="dropdown" aria-expanded="false">
                   Sort by
                 </button>
-                <style>
-                  .srtby:hover {
-                    background-color: rgb(114, 114, 113);
-                    color: white;
-                  }
-                </style>
+                
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                   <li><a class="dropdown-item" href="#">Edit</a></li>
                   <li><a class="dropdown-item" href="#">See Detail</a></li>
@@ -782,59 +606,10 @@
                   </td>
                 </tr>
                 <!-- End Row With Expand/Collapse -->
-
-                <script>
-                  document.querySelectorAll('.toggle-chevron').forEach(function(chevron, index) {
-                    chevron.addEventListener('click', function() {
-                      const collapseRow = document.querySelectorAll('.collapse-row')[index];
-                      const collapseContent = collapseRow.querySelector('.collapse-content');
-                      const collapseContent1 = collapseRow.querySelector('.collapse-content1');
-
-                      if (collapseRow.style.display === 'none') {
-                        collapseRow.style.display = 'table-row'; // Tampilkan baris terlebih dahulu
-                        const height = collapseContent.scrollHeight + 'px'; // Ambil tinggi asli konten
-                        collapseContent.style.height = height; // Terapkan tinggi asli untuk animasi expand
-                        collapseContent1.style.height = height; // Terapkan tinggi asli untuk animasi expand
-                        this.querySelector('.fas').classList.remove('fa-chevron-down');
-                        this.querySelector('.fas').classList.add('fa-chevron-up'); // Ubah ikon jadi chevron-up
-                      } else {
-                        collapseContent.style.height = '0'; // Set tinggi ke 0 untuk collapse
-                        collapseContent1.style.height = '0'; // Set tinggi ke 0 untuk collapse
-                        setTimeout(() => {
-                          collapseRow.style.display = 'none'; // Sembunyikan baris setelah animasi collapse selesai
-                        }, 500); // Sama dengan durasi animasi CSS
-                        this.querySelector('.fas').classList.remove('fa-chevron-up');
-                        this.querySelector('.fas').classList.add('fa-chevron-down'); // Ubah ikon jadi chevron-down
-                      }
-                    });
-                  });
-
-                  function copyText(text) {
-                    // Membuat elemen input sementara untuk menyalin teks
-                    var tempInput = document.createElement('input');
-                    tempInput.value = text;
-                    document.body.appendChild(tempInput);
-                    tempInput.select();
-                    document.execCommand('copy');
-                    document.body.removeChild(tempInput);
-
-                    // Menampilkan notifikasi atau perubahan ikon jika diperlukan
-                    alert('Teks disalin: ' + text);
-                  }
-                </script>
               </div>
 
             </tbody>
           </table>
-           <script>
-                // JavaScript for "Select All" checkbox
-                document.getElementById('select-all').addEventListener('change', function() {
-                  var checkboxes = document.querySelectorAll('.client-checkbox');
-                  checkboxes.forEach(function(checkbox) {
-                    checkbox.checked = this.checked;
-                  }, this);
-                });
-              </script>
           <!-- End Of Table Section -->
            
           <!-- Pagination -->
@@ -872,30 +647,6 @@
             </ul>
           </nav>
 
-          <style>
-            .page-link1 {
-              text-decoration: none;
-              color: black;
-              margin: 0px 5px;
-              padding: 5px;
-              width: 40px;
-            }
-
-            .page-link1:hover {
-              background-color: #8F939A;
-              text-decoration: none;
-              color: black;
-              margin: 0px 5px;
-              padding: 5px;
-              width: 40px;
-              border-radius: 5px;
-            }
-
-            .btn1hvr:hover {
-              background-color: #175f28;
-              color: white;
-            }
-          </style>
         </div>
       </div>
     </div>
@@ -925,6 +676,8 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
     crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/19ad68a1da.js" crossorigin="anonymous"></script>
+  <script src="{{ asset('script/script.js') }}"></script>
+
 
 </body>
 

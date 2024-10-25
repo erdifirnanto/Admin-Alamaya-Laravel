@@ -1,3 +1,74 @@
+/* Animasi */
+/* Atur konten untuk tetap di tengah */
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    text-align: center;
+}
+
+#title {
+    font-size: 3em;
+    color: black;
+    transition: color 0.5s ease-in-out;
+}
+
+.circle-overlay {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color: #3498db;
+    border-radius: 50%;
+    top: -100px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    animation: dropBounce 2s ease-in-out forwards,
+        circleExpand 1s ease-in-out forwards 2s;
+    z-index: 10;
+}
+
+@keyframes dropBounce {
+    0% {
+        top: -100px;
+    }
+
+    50% {
+        top: calc(50% - 25px);
+    }
+
+    100% {
+        top: calc(50% + 50px);
+    }
+}
+
+@keyframes circleExpand {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(50);
+    }
+}
+
+.main-page {
+    display: none;
+    /* text-align: center; */
+}
+
+.main-page h1 {
+    font-size: 3em;
+    color: #333;
+}
+
+.main-page p {
+    font-size: 1.2em;
+    color: #666;
+}
+/*End Animasi  */
+
 .banner-image1 {
     height: 458px;
     /* background-image: url("{{ asset('images/walpaper3.png') }}"); */
@@ -5,26 +76,6 @@
     background-size: cover;
     background-position: center;
 }
-
-/*
-.white {
-  color: rgb(255, 255, 255);
-}
-
-.bullet-none {
-  list-style-type: none;
-  display: inline-block;
-}
-
-.bg-opacity {
-  background-color: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(10px);
-}
-
-.borderc {
-  height: 20%;
-  border: solid;
-} */
 
 .header {
     padding: 10px;
@@ -297,3 +348,63 @@ p {
     cursor: pointer;
     font-size: 20px;
 }
+
+/* User Icon */
+.user-icon {
+    border: none;
+    background: none;
+}
+
+.user-info {
+    padding: 10px;
+}
+
+.user-info .email {
+    color: gray;
+    font-size: 0.9em;
+}
+
+.dropdown-menu {
+    width: 250px;
+}
+
+.dropdown-item {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-item i {
+    margin-right: 10px;
+}
+
+.srtby:hover {
+    background-color: rgb(114, 114, 113);
+    color: white;
+}
+
+/* pagination */
+
+.page-link1 {
+    text-decoration: none;
+    color: black;
+    margin: 0px 5px;
+    padding: 5px;
+    width: 40px;
+}
+
+.page-link1:hover {
+    background-color: #8f939a;
+    text-decoration: none;
+    color: black;
+    margin: 0px 5px;
+    padding: 5px;
+    width: 40px;
+    border-radius: 5px;
+}
+
+.btn1hvr:hover {
+    background-color: #175f28;
+    color: white;
+}
+
+/* end pagination */
