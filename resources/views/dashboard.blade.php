@@ -22,6 +22,7 @@
 <body>
 
   <section>
+    {{-- Section Animasi --}}
       <div style="position: absolute; z-index: 1002">
         <div
           id="bg-white"
