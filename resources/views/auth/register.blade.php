@@ -1,60 +1,102 @@
-<x-guest-layout>
-    <x-authentication-card>
-        <x-slot name="logo">
-            <x-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
 
-        <x-validation-errors class="mb-4" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Alamaya Project - Register Page</title>
+</head>
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+<body>
+    <section class="vh-100">
+        <div class="h-100 d-flex align-items-center justify-content-center">
+            <div class="row w-100">
+                <div class="col-sm-5 d-flex flex-column justify-content-center align-items-center">
+                    <div class="px-5 ms-xl-4">
+                        <span class="h1 fw-bold mb-0 d-flex justify-content-center">
+                            <img src="{{ asset('images/logo_alamaya.png') }}" alt="logo" height="40px">
+                        </span>
+                    </div>
 
-            <div>
-                <x-label for="name" value="{{ __('Name') }}" />
-                <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password" value="{{ __('Password') }}" />
-                <x-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
-
-            <div class="mt-4">
-                <x-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
-
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-label for="terms">
-                        <div class="flex items-center">
-                            <x-checkbox name="terms" id="terms" required />
-
-                            <div class="ms-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">'.__('Privacy Policy').'</a>',
-                                ]) !!}
+                    <div class="d-flex justify-content-center mt-4">
+                        <form method="POST" action="{{ route('register') }}" style="width: 21rem;">
+                            @csrf
+                            <div class="mb-3">
+                                <label for="name" class="form-label"><strong>Name</strong></label>
+                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="name" placeholder="Enter name" value="{{ old('name') }}" required autofocus>
+                                @error('name')
+                                <div id="nameHelp" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
-                        </div>
-                    </x-label>
+                            <div class="mb-3">
+                                <label for="email" class="form-label"><strong>Email</strong></label>
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="email" placeholder="Enter email" value="{{ old('email') }}" required>
+                                @error('email')
+                                <div id="emailHelp" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 position-relative">
+                                <label for="password" class="form-label"><strong>Password</strong></label>
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" required>
+                                <i class="fas fa-eye position-absolute" id="togglePassword" style="top: 70%; right: 10px; cursor: pointer;"></i>
+                                @error('password')
+                                <div id="passwordHelp" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-3 position-relative">
+                                <label for="password_confirmation" class="form-label"><strong>Confirm Password</strong></label>
+                                <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
+                                <i class="fas fa-eye position-absolute" id="toggleConfirmPassword" style="top: 70%; right: 10px; cursor: pointer;"></i>
+                            </div>
+
+                            <div class="mb-3 d-flex justify-content-end">
+                                <a href="{{ route('login') }}" class="text-decoration-none"><strong>Already Registered?</strong></a>
+                            </div>
+
+                            <button type="submit" class="btn btn-dark col-12" style="height: 50px;">Register</button>
+                        </form>
+                    </div>
                 </div>
-            @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ms-4">
-                    {{ __('Register') }}
-                </x-button>
+                <div class="col-sm-7 px-0 d-none d-sm-block">
+                    <img src="{{ asset('images/login_image1.png') }}" alt="Login image" class="w-100 vh-100" style="object-fit: cover; object-position: left;">
+                </div>
             </div>
-        </form>
-    </x-authentication-card>
-</x-guest-layout>
+        </div>
+    </section>
+
+    <script src="https://kit.fontawesome.com/19ad68a1da.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#togglePassword').click(function() {
+                const passwordField = $('#password');
+                if (passwordField.attr('type') === 'password') {
+                    passwordField.attr('type', 'text');
+                    $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    passwordField.attr('type', 'password');
+                    $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+
+            $('#toggleConfirmPassword').click(function() {
+                const confirmPasswordField = $('#password_confirmation');
+                if (confirmPasswordField.attr('type') === 'password') {
+                    confirmPasswordField.attr('type', 'text');
+                    $(this).removeClass('fa-eye').addClass('fa-eye-slash');
+                } else {
+                    confirmPasswordField.attr('type', 'password');
+                    $(this).removeClass('fa-eye-slash').addClass('fa-eye');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
