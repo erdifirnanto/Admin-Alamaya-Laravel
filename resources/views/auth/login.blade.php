@@ -35,7 +35,7 @@
                             <div class="mb-3 position-relative">
                                 <label for="password" class="form-label"><strong>Password</strong></label>
                                 <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" required>
-                                <i class="fas fa-eye position-absolute" id="togglePassword" style="top: 70%; right: 10px; cursor: pointer;"></i>
+                                <i class="fas fa-eye position-absolute" id="togglePassword" style="top:60%; right: 10px; cursor: pointer;"></i>
                                 @error('password')
                                 <div id="passwordHelp" class="form-text text-danger">{{ $message }}</div>
                                 @enderror
