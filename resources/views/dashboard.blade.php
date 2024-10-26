@@ -213,10 +213,46 @@
 
                                <!-- Sort by Dropdown -->
                                <div class="dropdown">
-                                   <button class="btn btn-dropdown srtby" type="button" aria-expanded="false">
+                                   <button class="btn btn-dropdown srtby delete-btn" type="button" aria-expanded="false"
+                                       data-id="{{-- $client->id --}}">
                                        <a style="color: red;" href="#"><i class="fa fa-trash"
                                                aria-hidden="true"></i></a>
                                    </button>
+
+                                   <script>
+                                       document.querySelectorAll('.delete-btn').forEach(button => {
+                                           button.addEventListener('click', function(event) {
+                                               event.preventDefault();
+
+                                               const clientId = this.getAttribute('data-id');
+
+                                               // Tampilkan konfirmasi sebelum menghapus
+                                               if (confirm("Are you sure you want to delete this client?")) {
+                                                   fetch(`/clients/${clientId}`, {
+                                                           method: 'DELETE',
+                                                           headers: {
+                                                               'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                                                   .getAttribute('content')
+                                                           }
+                                                       })
+                                                       .then(response => response.json())
+                                                       .then(data => {
+                                                           if (data.success) {
+                                                               alert("Client deleted successfully!");
+                                                               location.reload(); // Refresh halaman atau update DOM
+                                                           } else {
+                                                               alert("Failed to delete client.");
+                                                           }
+                                                       })
+                                                       .catch(error => {
+                                                           console.error("Error deleting client:", error);
+                                                           alert("An error occurred. Please try again.");
+                                                       });
+                                               }
+                                           });
+                                       });
+                                   </script>
+
                                    <!-- Add Client Button -->
                                    <button class="btn btn-add-client btn1hvr" data-bs-toggle="modal"
                                        data-bs-target="#addClientModal">Add
@@ -366,6 +402,53 @@
                                            <input type="checkbox" id="select-all">
                                            <label style="margin-left: 10px; margin-right: 0px;"
                                                for="select-all">All</label>
+
+                                           <script>
+                                               // Pilih semua checkbox saat 'select-all' dicentang
+                                               document.getElementById('select-all').addEventListener('change', function() {
+                                                   const checkboxes = document.querySelectorAll('.client-checkbox');
+                                                   checkboxes.forEach(checkbox => {
+                                                       checkbox.checked = this.checked;
+                                                   });
+                                               });
+
+                                               // Menghapus semua klien yang terpilih
+                                               document.querySelector('.delete-selected').addEventListener('click', function() {
+                                                   const selectedClients = [];
+                                                   document.querySelectorAll('.client-checkbox:checked').forEach(checkbox => {
+                                                       selectedClients.push(checkbox.value);
+                                                   });
+
+                                                   if (selectedClients.length === 0) {
+                                                       alert("No clients selected.");
+                                                       return;
+                                                   }
+
+                                                   if (confirm("Are you sure you want to delete the selected clients?")) {
+                                                       fetch('/clients/delete-multiple', {
+                                                               method: 'POST',
+                                                               headers: {
+                                                                   'Content-Type': 'application/json',
+                                                                   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                                                       'content')
+                                                               },
+                                                               body: JSON.stringify({
+                                                                   ids: selectedClients
+                                                               })
+                                                           })
+                                                           .then(response => response.json())
+                                                           .then(data => {
+                                                               if (data.success) {
+                                                                   alert("Selected clients deleted successfully!");
+                                                                   location.reload(); // Refresh halaman atau update DOM
+                                                               } else {
+                                                                   alert("Failed to delete clients.");
+                                                               }
+                                                           })
+                                                           .catch(error => console.error("Error deleting clients:", error));
+                                                   }
+                                               });
+                                           </script>
                                        </div>
                                    </th>
                                    <th>
@@ -416,7 +499,8 @@
                            <tbody>
                                @foreach ($clients as $client)
                                    <tr style="height: 80px;">
-                                       <td><input type="checkbox" class="client-checkbox"></td>
+                                       <td><input type="checkbox" class="client-checkbox" value="{{ $client->id }}">
+                                       </td>
                                        <td>{{ $client->id }}</td>
                                        <td>{{ $client->client_name }}</td>
                                        <td>
