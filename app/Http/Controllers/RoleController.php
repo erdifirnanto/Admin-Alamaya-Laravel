@@ -9,13 +9,14 @@ use App\Models\Client;
 class RoleController extends Controller
 {
     // Fungsi untuk halaman khusus Admin
-    public function adminDashboard()
+    public function Dashboard()
     {
         // Cek apakah pengguna adalah Admin
         if (Auth::user()->role === 'admin') {
             // Ambil data klien untuk admin
             $clients = Client::paginate(10);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
+            // dd($clients);
             return view('dashboard', compact('clients')); // Tampilkan halaman admin dengan data klien
         }
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
@@ -28,6 +29,7 @@ class RoleController extends Controller
         if (Auth::user()->role === 'staff') {
             // Ambil data klien untuk user
             $clients = Client::paginate(10);
+            dd($clients);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             return view('dashboard', compact('clients')); // Tampilkan halaman user dengan data klien
         }
