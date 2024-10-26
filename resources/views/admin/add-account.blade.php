@@ -1,4 +1,3 @@
-<!-- resources/views/admin/add-account.blade.php -->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,19 +47,22 @@
                                 <input type="password" name="password"
                                     class="form-control @error('password') is-invalid @enderror" id="password"
                                     required>
-                                <i class="fas fa-eye position-absolute" id="togglePassword"
+                                <i class="fas fa-eye-slash position-absolute" id="togglePassword"
                                     style="top: 60%; right: 10px; cursor: pointer;"></i>
                                 @error('password')
                                     <div id="passwordHelp" class="form-text text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="mb-3 position-relative">
-                                <label for="password_confirmation" class="form-label"><strong>Confirm
-                                        Password</strong></label>
-                                <input type="password" name="password_confirmation" class="form-control"
-                                    id="password_confirmation" required>
-                                <i class="fas fa-eye position-absolute" id="toggleConfirmPassword"
+                                <label for="password_confirmation" class="form-label"><strong>Confirm Password</strong></label>
+                                <input type="password" name="password_confirmation"
+                                    class="form-control @error('password') is-invalid @enderror" id="password_confirmation"
+                                    required>
+                                <i class="fas fa-eye-slash position-absolute" id="toggleConfirmPassword"
                                     style="top: 60%; right: 10px; cursor: pointer;"></i>
+                                @error('password')
+                                    <div id="passwordHelp" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-dark col-12" style="height: 50px;">Tambahkan
                                 Staff</button>
@@ -80,14 +82,30 @@
         $(document).ready(function() {
             $('#togglePassword').click(function() {
                 const passwordField = $('#password');
-                passwordField.attr('type', passwordField.attr('type') === 'password' ? 'text' : 'password');
-                $(this).toggleClass('fa-eye fa-eye-slash');
+                const toggleIcon = $(this);
+
+                // Toggle password visibility and icon class
+                if (passwordField.attr('type') === 'password') {
+                    passwordField.attr('type', 'text');
+                    toggleIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+                } else {
+                    passwordField.attr('type', 'password');
+                    toggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+                }
             });
+
             $('#toggleConfirmPassword').click(function() {
-                const confirmPasswordField = $('#password_confirmation');
-                confirmPasswordField.attr('type', confirmPasswordField.attr('type') === 'password' ?
-                    'text' : 'password');
-                $(this).toggleClass('fa-eye fa-eye-slash');
+                const passwordField = $('#password_confirmation');
+                const toggleIcon = $(this);
+
+                // Toggle password visibility and icon class
+                if (passwordField.attr('type') === 'password') {
+                    passwordField.attr('type', 'text');
+                    toggleIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+                } else {
+                    passwordField.attr('type', 'password');
+                    toggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+                }
             });
         });
     </script>
