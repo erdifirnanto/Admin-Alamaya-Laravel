@@ -13,7 +13,7 @@
                            </div>
                            <!-- Kolom untuk teks -->
                            <div class="col-9 col-sm-8 text-light text-start" style="margin-top: 150px; z-index: 500;">
-                               <h3>Welcome Back, Hendri</h3>
+                               <h3>Welcome Back, {{ Auth::user()->name }}</h3>
                                <h6>This is an update from Alamaya Company</h6>
                            </div>
                        </div>
@@ -238,39 +238,40 @@
                                                </div>
 
                                                <div class="modal-body">
-                                                   <form>
+                                                   <form method="POST" action="{{ route('clients.store') }}">
+                                                       @csrf
                                                        <!-- Client Name & Company Name -->
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="clientName" class="form-label"
+                                                               <label for="client_name" class="form-label"
                                                                    style="font-size: 0.7em;">CLIENT NAME</label>
-                                                               <input type="text" class="form-control" id="clientName"
-                                                                   placeholder="Enter the client name">
+                                                               <input type="text" class="form-control"
+                                                                   id="client_name" placeholder="Enter the client name">
                                                            </div>
                                                            <div class="col">
-                                                               <label for="companyName" class="form-label"
+                                                               <label for="company_name" class="form-label"
                                                                    style="font-size: 0.7em;">COMPANY NAME</label>
                                                                <input type="text" class="form-control"
-                                                                   id="companyName" placeholder="Enter the company name">
+                                                                   id="company_name" placeholder="Enter the company name">
                                                            </div>
                                                        </div>
 
                                                        <!-- PIC and Product Category -->
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="picName" class="form-label"
+                                                               <label for="pic_name" class="form-label"
                                                                    style="font-size: 0.7em;">PIC</label>
-                                                               <select class="form-select" id="picName">
+                                                               <select class="form-select" id="pic_name">
                                                                    <option selected>Select the PIC name</option>
                                                                    <option value="1">PIC 1</option>
                                                                    <option value="2">PIC 2</option>
                                                                </select>
                                                            </div>
                                                            <div class="col">
-                                                               <label for="productCategory" class="form-label"
+                                                               <label for="product_category" class="form-label"
                                                                    style="font-size: 0.7em;">CATEGORY
                                                                    PRODUCT</label>
-                                                               <select class="form-select" id="productCategory">
+                                                               <select class="form-select" id="product_category">
                                                                    <option selected>Select a Product
                                                                        category</option>
                                                                    <option value="1">Category 1</option>
@@ -316,202 +317,225 @@
                                                        </div>
 
                                                        <!-- Submit Button -->
-                                                       <button type="submit" class="btn btn-dark w-100"
-                                                           onclick="showAlert()">Add
-                                                           Client</button>
-                                                   </form>
+                                                       <button type="submit" class="btn btn-dark w-100" ">Add
+                                                                  Client</button>
+                                                           </form>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </div>
+
+                                             @if (session('success'))
+                                                           <div class="alert alert-success">
+                                                               {{ session('success') }}
+                                                           </div>
+                                                           @endif
+
+                                                           <script>
+                                                               function showAlert() {
+                                                                   alert('Data berhasil ditambahkan!');
+                                                               }
+                                                           </script>
+
+                                                           <!-- Dropdown Button -->
+                                                           <button class="btn btn-dropdown dropdown-toggle srtby"
+                                                               type="button" id="dropdownMenuButton"
+                                                               data-bs-toggle="dropdown" aria-expanded="false">
+                                                               Sort by
+                                                           </button>
+                                                           <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                               <li><a class="dropdown-item" href="#">Edit</a></li>
+                                                               <li><a class="dropdown-item" href="#">See Detail</a>
+                                                               </li>
+                                                               <li><a class="dropdown-item" href="#">Non Actived</a>
+                                                               </li>
+                                                           </ul>
+                                                           <!-- Add dropdown options here if needed -->
                                                </div>
                                            </div>
                                        </div>
+
+                                       <table class="table table-hover mt-5 table-sm">
+                                           <thead>
+                                               <tr style="height: 70px;">
+                                                   <th scope="col">
+                                                       <!-- Checkbox Select All -->
+                                                       <div>
+                                                           <input type="checkbox" id="select-all">
+                                                           <label style="margin-left: 10px; margin-right: 0px;"
+                                                               for="select-all">All</label>
+                                                       </div>
+                                                   </th> <!-- Checkbox Column -->
+                                                   <th>
+                                                       <span style="display: inline-flex; align-items: center;">
+                                                           No. Id
+                                                           <span class="sort-icons"
+                                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
+                                                               <span class="fas fa-chevron-up"
+                                                                   style="font-size: 5px;"></span>
+                                                               <span class="fas fa-chevron-down"
+                                                                   style="font-size: 5px;"></span>
+                                                           </span>
+                                                       </span>
+                                                   </th>
+                                                   <th>
+                                                       <span style="display: inline-flex; align-items: center;">
+                                                           Client Name
+                                                           <span class="sort-icons"
+                                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
+                                                               <span class="fas fa-chevron-up"
+                                                                   style="font-size: 5px;"></span>
+                                                               <span class="fas fa-chevron-down"
+                                                                   style="font-size: 5px;"></span>
+                                                           </span>
+                                                       </span>
+                                                   </th>
+                                                   <th>
+                                                       Email
+                                                   </th>
+                                                   <th>
+                                                       Phone
+                                                   </th>
+                                                   <th>
+                                                       <span style="display: inline-flex; align-items: center;">
+                                                           PIC
+                                                           <span class="sort-icons"
+                                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
+                                                               <span class="fas fa-chevron-up"
+                                                                   style="font-size: 5px;"></span>
+                                                               <span class="fas fa-chevron-down"
+                                                                   style="font-size: 5px;"></span>
+                                                           </span>
+                                                       </span>
+                                                   </th>
+                                                   <th>
+                                                       <span style="display: inline-flex; align-items: center;">
+                                                           Category
+                                                           <span class="sort-icons"
+                                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
+                                                               <span class="fas fa-chevron-up"
+                                                                   style="font-size: 5px;"></span>
+                                                               <span class="fas fa-chevron-down"
+                                                                   style="font-size: 5px;"></span>
+                                                           </span>
+                                                       </span>
+                                                   </th>
+                                                   <th>Action</th>
+                                               </tr>
+                                           </thead>
+                                           <style>
+                                               thead th {
+                                                   align-content: center;
+                                               }
+
+                                               tbody tr td {
+                                                   align-content: center;
+                                               }
+                                           </style>
+                                           <!-- Data Table -->
+                                           <tbody>
+                                               <div class="bg-primary">
+                                                   <!-- Row with Expand/Collapse -->
+                                                   <tr style="height: 80px;">
+                                                       <td><input type="checkbox" class="client-checkbox"></td>
+                                                       <td>000121</td>
+                                                       <td>Alexandra Mezila Azza</td>
+                                                       <td>
+                                                           dhitanatasha990@gmail.com
+                                                           <span class="sort-icons toggle-chevron" aria-expanded="false"
+                                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
+                                                               <span class="fas fa-chevron-down"
+                                                                   style="font-size: 10px;"></span>
+                                                           </span>
+                                                       </td>
+                                                       <td>08807564735</td>
+                                                       <td>Widia</td>
+                                                       <td>asdapro.com</td>
+                                                       <td>
+                                                           <div class="dropdown text-center">
+                                                               <i class="bi bi-three-dots" data-bs-toggle="dropdown"
+                                                                   aria-expanded="false" style="cursor: pointer;"></i>
+                                                               <ul class="dropdown-menu">
+                                                                   <li><a class="dropdown-item" href="#">Edit</a>
+                                                                   </li>
+                                                                   <li><a class="dropdown-item" href="#">See
+                                                                           Detail</a></li>
+                                                                   <li><a class="dropdown-item" href="#">Non
+                                                                           Actived</a></li>
+                                                               </ul>
+                                                           </div>
+                                                       </td>
+                                                   </tr>
+                                                   <tr class="collapse-row" style="display: none;">
+                                                       <td></td>
+                                                       <td colspan="2">
+                                                           <div class="collapse-content"
+                                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
+                                                               <span>PT. RIS Tirta Indah</span>
+                                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                                                                   onclick="copyText('PT. RIS Tirta Indah')"></i>
+                                                           </div>
+                                                       </td>
+                                                       <td colspan="6">
+                                                           <div class="collapse-content1"
+                                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
+                                                               <span>Jl. Prof. Dr. Ida Bagus Mantra Batubulan, Kec.
+                                                                   Sukawati, Kabupaten
+                                                                   Gianyar, Bali
+                                                                   80582</span>
+                                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                                                                   onclick="copyText('Jl. Prof. Dr. Ida Bagus Mantra Batubulan, Kec. Sukawati, Kabupaten Gianyar, Bali 80582')"></i>
+                                                           </div>
+                                                       </td>
+                                                   </tr>
+                                                   <!-- End Row With Expand/Collapse -->
+
+                                               </div>
+
+                                           </tbody>
+                                       </table>
+                                       <!-- End Of Table Section -->
+
+                                       <!-- Pagination -->
+                                       <nav aria-label="Page navigation">
+                                           <ul class="pagination justify-content-end" style="align-items: center;">
+                                               <li class="page-item">
+                                                   <span class="page-link"
+                                                       style="background-color: #082F1B; border-radius: 5px;"><i
+                                                           style="color: white;"
+                                                           class="fa-solid fa-chevron-left"></i></span>
+                                               </li>
+                                               <li class="page-item" aria-current="page">
+                                                   <span class="page-link1">1</span>
+                                               </li>
+                                               <li class="page-item">
+                                                   <a class="page-link1">...</a>
+                                               </li>
+                                               <li class="page-item">
+                                                   <a class="page-link1" href="#">2</a>
+                                               </li>
+                                               <li class="page-item">
+                                                   <a class="page-link1" href="#">3</a>
+                                               </li>
+                                               <li class="page-item">
+                                                   <a class="page-link1" href="#">4</a>
+                                               </li>
+                                               <li class="page-item">
+                                                   <a class="page-link1">...</a>
+                                               </li>
+                                               <li class="page-item">
+                                                   <a class="page-link1" href="#">999</a>
+                                               </li>
+                                               <li class="page-item">
+                                                   <a class="page-link"
+                                                       style="background-color: #082F1B; border-radius: 5px;"
+                                                       href="#"><i style="color: white;"
+                                                           class="fa-solid fa-chevron-right white"></i></a>
+                                               </li>
+                                           </ul>
+                                       </nav>
                                    </div>
-
-                                   <script>
-                                       function showAlert() {
-                                           // Menampilkan notifikasi bahwa data berhasil ditambahkan
-                                           alert('Data berhasil ditambahkan!');
-                                       }
-                                   </script>
-
-                                   <!-- Dropdown Button -->
-                                   <button class="btn btn-dropdown dropdown-toggle srtby" type="button"
-                                       id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                                       Sort by
-                                   </button>
-                                   <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                       <li><a class="dropdown-item" href="#">Edit</a></li>
-                                       <li><a class="dropdown-item" href="#">See Detail</a></li>
-                                       <li><a class="dropdown-item" href="#">Non Actived</a></li>
-                                   </ul>
-                                   <!-- Add dropdown options here if needed -->
                                </div>
                            </div>
-                       </div>
-
-                       <table class="table table-hover mt-5 table-sm">
-                           <thead>
-                               <tr style="height: 70px;">
-                                   <th scope="col">
-                                       <!-- Checkbox Select All -->
-                                       <div>
-                                           <input type="checkbox" id="select-all">
-                                           <label style="margin-left: 10px; margin-right: 0px;"
-                                               for="select-all">All</label>
-                                       </div>
-                                   </th> <!-- Checkbox Column -->
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           No. Id
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           Client Name
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   <th>
-                                       Email
-                                   </th>
-                                   <th>
-                                       Phone
-                                   </th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           PIC
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           Category
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   <th>Action</th>
-                               </tr>
-                           </thead>
-                           <style>
-                               thead th {
-                                   align-content: center;
-                               }
-
-                               tbody tr td {
-                                   align-content: center;
-                               }
-                           </style>
-                           <!-- Data Table -->
-                           <tbody>
-                               <div class="bg-primary">
-                                   <!-- Row with Expand/Collapse -->
-                                   <tr style="height: 80px;">
-                                       <td><input type="checkbox" class="client-checkbox"></td>
-                                       <td>000121</td>
-                                       <td>Alexandra Mezila Azza</td>
-                                       <td>
-                                           dhitanatasha990@gmail.com
-                                           <span class="sort-icons toggle-chevron" aria-expanded="false"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span>
-                                       </td>
-                                       <td>08807564735</td>
-                                       <td>Widia</td>
-                                       <td>asdapro.com</td>
-                                       <td>
-                                           <div class="dropdown text-center">
-                                               <i class="bi bi-three-dots" data-bs-toggle="dropdown"
-                                                   aria-expanded="false" style="cursor: pointer;"></i>
-                                               <ul class="dropdown-menu">
-                                                   <li><a class="dropdown-item" href="#">Edit</a></li>
-                                                   <li><a class="dropdown-item" href="#">See Detail</a></li>
-                                                   <li><a class="dropdown-item" href="#">Non Actived</a></li>
-                                               </ul>
-                                           </div>
-                                       </td>
-                                   </tr>
-                                   <tr class="collapse-row" style="display: none;">
-                                       <td></td>
-                                       <td colspan="2">
-                                           <div class="collapse-content"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>PT. RIS Tirta Indah</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('PT. RIS Tirta Indah')"></i>
-                                           </div>
-                                       </td>
-                                       <td colspan="6">
-                                           <div class="collapse-content1"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>Jl. Prof. Dr. Ida Bagus Mantra Batubulan, Kec. Sukawati, Kabupaten
-                                                   Gianyar, Bali
-                                                   80582</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('Jl. Prof. Dr. Ida Bagus Mantra Batubulan, Kec. Sukawati, Kabupaten Gianyar, Bali 80582')"></i>
-                                           </div>
-                                       </td>
-                                   </tr>
-                                   <!-- End Row With Expand/Collapse -->
-
-                               </div>
-
-                           </tbody>
-                       </table>
-                       <!-- End Of Table Section -->
-
-                       <!-- Pagination -->
-                       <nav aria-label="Page navigation">
-                           <ul class="pagination justify-content-end" style="align-items: center;">
-                               <li class="page-item">
-                                   <span class="page-link" style="background-color: #082F1B; border-radius: 5px;"><i
-                                           style="color: white;" class="fa-solid fa-chevron-left"></i></span>
-                               </li>
-                               <li class="page-item" aria-current="page">
-                                   <span class="page-link1">1</span>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1">...</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1" href="#">2</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1" href="#">3</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1" href="#">4</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1">...</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1" href="#">999</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link" style="background-color: #082F1B; border-radius: 5px;"
-                                       href="#"><i style="color: white;"
-                                           class="fa-solid fa-chevron-right white"></i></a>
-                               </li>
-                           </ul>
-                       </nav>
-                   </div>
-               </div>
-           </div>
        </section>
    @endsection

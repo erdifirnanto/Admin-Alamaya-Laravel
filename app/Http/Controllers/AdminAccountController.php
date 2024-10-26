@@ -39,4 +39,19 @@ class AdminAccountController extends Controller
 
         return redirect()->route('dashboard')->with('success', 'Akun staff berhasil ditambahkan.');
     }
+
+    public function index()
+    {
+        // Ambil semua pengguna
+        $users = User::all();
+
+        return view('admin.management-account', compact('users'));
+    }
+
+    public function destroy(User $user)
+    {
+        $user->delete();
+
+        return redirect()->route('account.management')->with('status', 'User deleted successfully');
+    }
 }

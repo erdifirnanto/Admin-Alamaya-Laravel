@@ -37,8 +37,11 @@
                               </div>
                           </li>
                           <li class="nav-item bullet-none mx-3">
-                              <a class="fa-solid fa-gear text-light"></a>
+                              <a href="{{ route('profile.show') }}" class="text-light">
+                                  <i class="fa-solid fa-gear"></i>
+                              </a>
                           </li>
+
                       </ul>
 
                       <!-- User Dropdown Option -->
@@ -51,7 +54,8 @@
                                       style="cursor: pointer;">
                               </li>
                           </button>
-                          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
+                              style="top: 150%;">
                               <li class="user-info text-center">
                                   <img src="{{ asset('images/foto_Rena.jpg') }}" alt="Profile Picture"
                                       class="profile-picture">
@@ -64,11 +68,9 @@
                                   <hr class="dropdown-divider">
                               </li>
 
-                              <li><a class="dropdown-item" href="{{ route('profile.show') }}"><i
-                                          class="bi bi-person"></i> Manage Account</a></li>
-
-
                               @if (Auth::user()->role === 'admin')
+                                  <li><a class="dropdown-item" href="{{ route('account.management') }}"><i
+                                              class="bi bi-person"></i>Account</a></li>
                                   <li><a class="dropdown-item" href="{{ route('admin.add-account-form') }}"><i
                                               class="bi bi-person-plus"></i> Add Account</a></li>
                               @endif
