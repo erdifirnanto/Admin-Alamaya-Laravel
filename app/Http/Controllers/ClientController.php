@@ -34,4 +34,22 @@ class ClientController extends Controller
         return redirect()->route('dashboard')->with('success', 'Akun staff berhasil ditambahkan.');
         // return redirect()->back()->with('success', 'Client has been added successfully');
     }
+
+    public function destroy($id)
+    {
+        $client = Client::findOrFail($id);
+        $client->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function deleteMultiple(Request $request)
+    {
+        $ids = $request->input('ids', []);
+        if (!empty($ids)) {
+            Client::whereIn('id', $ids)->delete();
+            return response()->json(['success' => true]);
+        }
+        return response()->json(['success' => false, 'message' => 'No clients selected']);
+    }
 }

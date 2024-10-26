@@ -56,4 +56,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::delete('/account-management/{user}', [AdminAccountController::class, 'destroy'])->name('account.destroy');
     });
 
+// fungsi data clients
 Route::post('/clients/store', [ClientController::class, 'Cstore'])->name('clients.store');
+Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
+Route::post('/clients/delete-multiple', [ClientController::class, 'deleteMultiple'])->name('clients.deleteMultiple');
