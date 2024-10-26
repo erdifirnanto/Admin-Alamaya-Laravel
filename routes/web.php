@@ -27,8 +27,8 @@ Route::middleware([
     // Route::get('/dashboard', function () {
     //     return view('dashboard');
     // })->name('dashboard');
-    Route::get('/dashboard', [RoleController::class, 'adminDashboard'])->name('dashboard');
-    Route::get('/dashboard', [RoleController::class, 'userDashboard'])->name('dashboard');
+    Route::get('/dashboard', [RoleController::class, 'Dashboard'])->name('dashboard');
+    // Route::get('/dashboard', [RoleController::class, 'userDashboard'])->name('dashboard');
 
 
     // route khusus admin
