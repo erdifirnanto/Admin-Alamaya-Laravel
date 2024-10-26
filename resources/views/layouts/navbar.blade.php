@@ -41,7 +41,6 @@
                                   <i class="fa-solid fa-gear"></i>
                               </a>
                           </li>
-
                       </ul>
 
                       <!-- User Dropdown Option -->
@@ -92,5 +91,31 @@
                       </div>
                   </div>
               </div>
+          </nav>
       </div>
   </section>
+
+  <script>
+    function tampil_button_notif() {
+        $.ajax({
+            url:"<?php echo base_url() ?>index.php/alamaya_client/untuk_buttonnya",
+            method:'post',
+            dataType: 'json',
+            success: function(data)
+            {
+                $("#button_notif").val(data.jumlah_total);
+                console.log(data.jumlah_total)
+            }
+        });
+    }
+    function tampil_isi_notif() {
+        $.ajax({
+            url:"<?php echo base_url() ?>index.php/alamaya_client/untuk_isinya",
+            success: function(html)
+            {
+                $('#button_isi').(html);
+            }
+        });
+    }
+</script>
+
