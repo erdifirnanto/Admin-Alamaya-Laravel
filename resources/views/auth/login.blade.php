@@ -33,13 +33,13 @@
                             </div>
 
                             <div class="mb-3 position-relative">
-                                <label for="password" class="form-label"><strong>Password</strong></label>
-                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" required>
-                                <i class="fas fa-eye position-absolute" id="togglePassword" style="top:60%; right: 10px; cursor: pointer;"></i>
-                                @error('password')
-                                <div id="passwordHelp" class="form-text text-danger">{{ $message }}</div>
-                                @enderror
-                            </div>
+    <label for="password" class="form-label"><strong>Password</strong></label>
+    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" required>
+    <i class="position-absolute" id="togglePassword" style="top: 60%; right: 10px; cursor: pointer;"></i>
+    @error('password')
+    <div id="passwordHelp" class="form-text text-danger">{{ $message }}</div>
+    @enderror
+</div>
 
                             <div class="mb-3 d-flex justify-content-end">
                                 <a href="{{ route('password.request') }}" class="text-decoration-none"><strong>Forgot Password?</strong></a>
@@ -60,19 +60,21 @@
     <script src="https://kit.fontawesome.com/19ad68a1da.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            $('#togglePassword').click(function() {
-                const passwordField = $('#password');
-                if (passwordField.attr('type') === 'password') {
-                    passwordField.attr('type', 'text');
-                    $(this).removeClass('fa-eye').addClass('fa-eye-slash');
-                } else {
-                    passwordField.attr('type', 'password');
-                    $(this).removeClass('fa-eye-slash').addClass('fa-eye');
-                }
-            });
+    $(document).ready(function() {
+        $('#togglePassword').click(function() {
+            const passwordField = $('#password');
+            const toggleIcon = $(this);
+
+            if (passwordField.attr('type') === 'password') {
+                passwordField.attr('type', 'text');
+                toggleIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+            } else {
+                passwordField.attr('type', 'password');
+                toggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+            }
         });
-    </script>
+    });
+</script>
 </body>
 
 </html>
