@@ -7,10 +7,10 @@ use App\Models\Client;
 
 class ClientController extends Controller
 {
-    public function store(Request $request)
+    public function Cstore(Request $request)
     {
-        // Validasi data yang masuk
-        $validatedData = $request->validate([
+
+        $request->validate([
             'client_name' => 'required|string|max:255',
             'company_name' => 'required|string|max:255',
             'pic_name' => 'required|string|max:255',
@@ -22,16 +22,16 @@ class ClientController extends Controller
 
         // Simpan data ke database
         Client::create([
-            'client_name' => $validatedData['client_name'],
-            'company_name' => $validatedData['company_name'],
-            'pic_name' => $validatedData['pic_name'],
-            'product_category' => $validatedData['product_category'],
-            'email' => $validatedData['email'],
-            'phone' => $validatedData['phone'],
-            'address' => $validatedData['address'],
+            'client_name' => $request['client_name'],
+            'company_name' => $request['company_name'],
+            'pic_name' => $request['pic_name'],
+            'product_category' => $request['product_category'],
+            'email' => $request['email'],
+            'phone' => $request['phone'],
+            'address' => $request['address'],
         ]);
 
-        // Redirect kembali dengan pesan sukses
-        return redirect()->back()->with('success', 'Client has been added successfully');
+        return redirect()->route('dashboard')->with('success', 'Akun staff berhasil ditambahkan.');
+        // return redirect()->back()->with('success', 'Client has been added successfully');
     }
 }

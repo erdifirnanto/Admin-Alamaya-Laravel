@@ -246,13 +246,15 @@
                                                                <label for="client_name" class="form-label"
                                                                    style="font-size: 0.7em;">CLIENT NAME</label>
                                                                <input type="text" class="form-control"
-                                                                   id="client_name" placeholder="Enter the client name">
+                                                                   id="client_name" name="client_name"
+                                                                   placeholder="Enter the client name">
                                                            </div>
                                                            <div class="col">
                                                                <label for="company_name" class="form-label"
                                                                    style="font-size: 0.7em;">COMPANY NAME</label>
                                                                <input type="text" class="form-control"
-                                                                   id="company_name" placeholder="Enter the company name">
+                                                                   id="company_name" name="company_name"
+                                                                   placeholder="Enter the company name">
                                                            </div>
                                                        </div>
 
@@ -261,7 +263,8 @@
                                                            <div class="col">
                                                                <label for="pic_name" class="form-label"
                                                                    style="font-size: 0.7em;">PIC</label>
-                                                               <select class="form-select" id="pic_name">
+                                                               <select class="form-select" id="pic_name"
+                                                                   name="pic_name">
                                                                    <option selected>Select the PIC name</option>
                                                                    <option value="1">PIC 1</option>
                                                                    <option value="2">PIC 2</option>
@@ -269,11 +272,10 @@
                                                            </div>
                                                            <div class="col">
                                                                <label for="product_category" class="form-label"
-                                                                   style="font-size: 0.7em;">CATEGORY
-                                                                   PRODUCT</label>
-                                                               <select class="form-select" id="product_category">
-                                                                   <option selected>Select a Product
-                                                                       category</option>
+                                                                   style="font-size: 0.7em;">CATEGORY PRODUCT</label>
+                                                               <select class="form-select" id="product_category"
+                                                                   name="product_category">
+                                                                   <option selected>Select a Product category</option>
                                                                    <option value="1">Category 1</option>
                                                                    <option value="2">Category 2</option>
                                                                </select>
@@ -284,15 +286,15 @@
                                                        <div class="row mb-3">
                                                            <div class="col">
                                                                <label for="email" class="form-label"
-                                                                   style="font-size: 0.7em;" style="font-size: 0.7em;">
-                                                                   EMAIL</label>
+                                                                   style="font-size: 0.7em;">EMAIL</label>
                                                                <input type="text" class="form-control" id="email"
-                                                                   placeholder="Enter email client">
+                                                                   name="email" placeholder="Enter email client">
                                                            </div>
                                                            <div class="col">
                                                                <label for="phone" class="form-label"
                                                                    style="font-size: 0.7em;">PHONE</label>
                                                                <input type="text" class="form-control" id="phone"
+                                                                   name="phone"
                                                                    placeholder="Enter the client's phone number">
                                                            </div>
                                                        </div>
@@ -302,6 +304,7 @@
                                                            <label for="address" class="form-label"
                                                                style="font-size: 0.7em;">ADDRESS</label>
                                                            <input type="text" class="form-control" id="address"
+                                                               name="address"
                                                                placeholder="Enter the client's company address">
                                                        </div>
 
@@ -310,9 +313,9 @@
                                                            <input type="checkbox" class="form-check-input"
                                                                id="termsCheck">
                                                            <label class="form-check-label" for="termsCheck">
-                                                               By registering, you agree to the terms and
-                                                               conditions that apply. Check again and make
-                                                               sure the form is completely filled out.
+                                                               By registering, you agree to the terms and conditions that
+                                                               apply. Check again and make sure the form is completely
+                                                               filled out.
                                                            </label>
                                                        </div>
 
@@ -321,6 +324,7 @@
                                                            onclick="showAlert()">Add
                                                            Client</button>
                                                    </form>
+
                                                </div>
                                            </div>
                                        </div>
@@ -363,7 +367,7 @@
                                            <label style="margin-left: 10px; margin-right: 0px;"
                                                for="select-all">All</label>
                                        </div>
-                                   </th> <!-- Checkbox Column -->
+                                   </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            No. Id
@@ -384,12 +388,8 @@
                                            </span>
                                        </span>
                                    </th>
-                                   <th>
-                                       Email
-                                   </th>
-                                   <th>
-                                       Phone
-                                   </th>
+                                   <th>Email</th>
+                                   <th>Phone</th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            PIC
@@ -413,33 +413,22 @@
                                    <th>Action</th>
                                </tr>
                            </thead>
-                           <style>
-                               thead th {
-                                   align-content: center;
-                               }
-
-                               tbody tr td {
-                                   align-content: center;
-                               }
-                           </style>
-                           <!-- Data Table -->
                            <tbody>
-                               <div class="bg-primary">
-                                   <!-- Row with Expand/Collapse -->
+                               @foreach ($clients as $client)
                                    <tr style="height: 80px;">
                                        <td><input type="checkbox" class="client-checkbox"></td>
-                                       <td>000121</td>
-                                       <td>Alexandra Mezila Azza</td>
+                                       <td>{{ $client->id }}</td>
+                                       <td>{{ $client->client_name }}</td>
                                        <td>
-                                           dhitanatasha990@gmail.com
+                                           {{ $client->email }}
                                            <span class="sort-icons toggle-chevron" aria-expanded="false"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </td>
-                                       <td>08807564735</td>
-                                       <td>Widia</td>
-                                       <td>asdapro.com</td>
+                                       <td>{{ $client->phone }}</td>
+                                       <td>{{ $client->pic_name }}</td>
+                                       <td>{{ $client->product_category }}</td>
                                        <td>
                                            <div class="dropdown text-center">
                                                <i class="bi bi-three-dots" data-bs-toggle="dropdown"
@@ -457,63 +446,66 @@
                                        <td colspan="2">
                                            <div class="collapse-content"
                                                style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>PT. RIS Tirta Indah</span>
+                                               <span>{{ $client->company_name }}</span>
                                                <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('PT. RIS Tirta Indah')"></i>
+                                                   onclick="copyText('{{ $client->company_name }}')"></i>
                                            </div>
                                        </td>
                                        <td colspan="6">
                                            <div class="collapse-content1"
                                                style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>Jl. Prof. Dr. Ida Bagus Mantra Batubulan, Kec. Sukawati, Kabupaten
-                                                   Gianyar, Bali
-                                                   80582</span>
+                                               <span>{{ $client->address }}</span>
                                                <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('Jl. Prof. Dr. Ida Bagus Mantra Batubulan, Kec. Sukawati, Kabupaten Gianyar, Bali 80582')"></i>
+                                                   onclick="copyText('{{ $client->address }}')"></i>
                                            </div>
                                        </td>
                                    </tr>
-                                   <!-- End Row With Expand/Collapse -->
-
-                               </div>
-
+                               @endforeach
                            </tbody>
                        </table>
-                       <!-- End Of Table Section -->
 
-                       <!-- Pagination -->
+
+                       <!-- Custom Pagination -->
                        <nav aria-label="Page navigation">
                            <ul class="pagination justify-content-end" style="align-items: center;">
-                               <li class="page-item">
-                                   <span class="page-link" style="background-color: #082F1B; border-radius: 5px;"><i
-                                           style="color: white;" class="fa-solid fa-chevron-left"></i></span>
-                               </li>
-                               <li class="page-item" aria-current="page">
-                                   <span class="page-link1">1</span>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1">...</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1" href="#">2</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1" href="#">3</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1" href="#">4</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1">...</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link1" href="#">999</a>
-                               </li>
-                               <li class="page-item">
-                                   <a class="page-link" style="background-color: #082F1B; border-radius: 5px;"
-                                       href="#"><i style="color: white;"
-                                           class="fa-solid fa-chevron-right white"></i></a>
-                               </li>
+                               <!-- Tombol Previous -->
+                               @if ($clients->onFirstPage())
+                                   <li class="page-item disabled">
+                                       <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-left"></i>
+                                       </span>
+                                   </li>
+                               @else
+                                   <li class="page-item">
+                                       <a class="page-link" href="{{ $clients->previousPageUrl() }}"
+                                           style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-left"></i>
+                                       </a>
+                                   </li>
+                               @endif
+
+                               <!-- Tombol Angka Halaman -->
+                               @for ($i = 1; $i <= $clients->lastPage(); $i++)
+                                   <li class="page-item {{ $clients->currentPage() == $i ? 'active' : '' }}">
+                                       <a class="page-link1" href="{{ $clients->url($i) }}">{{ $i }}</a>
+                                   </li>
+                               @endfor
+
+                               <!-- Tombol Next -->
+                               @if ($clients->hasMorePages())
+                                   <li class="page-item">
+                                       <a class="page-link" href="{{ $clients->nextPageUrl() }}"
+                                           style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-right"></i>
+                                       </a>
+                                   </li>
+                               @else
+                                   <li class="page-item disabled">
+                                       <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-right"></i>
+                                       </span>
+                                   </li>
+                               @endif
                            </ul>
                        </nav>
                    </div>
