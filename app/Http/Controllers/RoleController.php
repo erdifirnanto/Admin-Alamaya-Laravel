@@ -17,6 +17,7 @@ class RoleController extends Controller
             $clients = Client::paginate(10);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             // dd($clients);
+            // dd(csrf_token());
             return view('dashboard', compact('clients')); // Tampilkan halaman admin dengan data klien
         }
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
@@ -29,7 +30,7 @@ class RoleController extends Controller
         if (Auth::user()->role === 'staff') {
             // Ambil data klien untuk user
             $clients = Client::paginate(10);
-            dd($clients);
+            // dd($clients);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             return view('dashboard', compact('clients')); // Tampilkan halaman user dengan data klien
         }
