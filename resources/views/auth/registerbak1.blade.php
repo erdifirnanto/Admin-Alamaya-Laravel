@@ -42,16 +42,16 @@
                             <div class="mb-3 position-relative">
                                 <label for="password" class="form-label"><strong>Password</strong></label>
                                 <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" required>
-                                <i class="fas fa-eye position-absolute" id="togglePassword" style="top: 70%; right: 10px; cursor: pointer;"></i>
+                                <i class="fas fa-eye-slash position-absolute" id="togglePassword" style="top: 60%; right: 10px; cursor: pointer;"></i>
                                 @error('password')
-                                <div id="passwordHelp" class="form-text text-danger">{{ $message }}</div>
+                                <div class="form-text text-danger" aria-live="polite">{{ $message }}</div>
                                 @enderror
                             </div>
 
                             <div class="mb-3 position-relative">
                                 <label for="password_confirmation" class="form-label"><strong>Confirm Password</strong></label>
                                 <input type="password" name="password_confirmation" class="form-control" id="password_confirmation" required>
-                                <i class="fas fa-eye position-absolute" id="toggleConfirmPassword" style="top: 70%; right: 10px; cursor: pointer;"></i>
+                                <i class="fas fa-eye-slash position-absolute" id="toggleConfirmPassword" style="top: 60%; right: 10px; cursor: pointer;"></i>
                             </div>
 
                             <div class="mb-3 d-flex justify-content-end">
@@ -76,27 +76,24 @@
         $(document).ready(function() {
             $('#togglePassword').click(function() {
                 const passwordField = $('#password');
-                if (passwordField.attr('type') === 'password') {
-                    passwordField.attr('type', 'text');
-                    $(this).removeClass('fa-eye').addClass('fa-eye-slash');
-                } else {
-                    passwordField.attr('type', 'password');
-                    $(this).removeClass('fa-eye-slash').addClass('fa-eye');
-                }
+                const toggleIcon = $(this);
+                const isPasswordVisible = passwordField.attr('type') === 'text';
+
+                passwordField.attr('type', isPasswordVisible ? 'password' : 'text');
+                toggleIcon.toggleClass('fa-eye fa-eye-slash');
             });
 
             $('#toggleConfirmPassword').click(function() {
-                const confirmPasswordField = $('#password_confirmation');
-                if (confirmPasswordField.attr('type') === 'password') {
-                    confirmPasswordField.attr('type', 'text');
-                    $(this).removeClass('fa-eye').addClass('fa-eye-slash');
-                } else {
-                    confirmPasswordField.attr('type', 'password');
-                    $(this).removeClass('fa-eye-slash').addClass('fa-eye');
-                }
+                const confirmpasswordField = $('#password_confirmation');
+                const toggleIcon = $(this);
+                const isPasswordVisible = confirmpasswordField.attr('type') === 'text';
+
+                confirmpasswordField.attr('type', isPasswordVisible ? 'password' : 'text');
+                toggleIcon.toggleClass('fa-eye fa-eye-slash');
             });
         });
     </script>
+        
 </body>
 
 </html>
