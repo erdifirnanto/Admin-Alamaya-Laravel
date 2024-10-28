@@ -103,7 +103,7 @@
             dataType: 'json',
             success: function(data)
             {
-                $("#button_notif").val(data.jumlah_total);
+                $("#button_notif").val(da                                                           ta.jumlah_total);
                 console.log(data.jumlah_total)
             }
         });
