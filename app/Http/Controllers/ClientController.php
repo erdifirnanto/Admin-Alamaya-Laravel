@@ -46,10 +46,12 @@ class ClientController extends Controller
     public function deleteMultiple(Request $request)
     {
         $ids = $request->input('ids', []);
-        if (!empty($ids)) {
-            Client::whereIn('id', $ids)->delete();
-            return response()->json(['success' => true]);
+        if (empty($ids)) {
+            return response()->json(['success' => false, 'message' => 'No IDs provided.']);
         }
-        return response()->json(['success' => false, 'message' => 'No clients selected']);
+
+        Client::whereIn('id', $ids)->delete();
+
+        return response()->json(['success' => true]);
     }
 }

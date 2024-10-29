@@ -1,3 +1,4 @@
+   @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
        <section class="main-page" id="main-page" style="margin-top: -100px">
@@ -213,8 +214,8 @@
 
                                <!-- Sort by Dropdown -->
                                <div class="dropdown">
-                                   <button class="btn btn-dropdown srtby delete-btn" type="button" aria-expanded="false"
-                                       data-id="{{-- $client->id --}}">
+                                   <button class="btn btn-dropdown srtby delete-btn delete-selected" type="button"
+                                       aria-expanded="false">
                                        <a style="color: red;" href="#"><i class="fa fa-trash"
                                                aria-hidden="true"></i></a>
                                    </button>
@@ -227,7 +228,7 @@
                                                const clientId = this.getAttribute('data-id');
 
                                                // Tampilkan konfirmasi sebelum menghapus
-                                               if (confirm("Are you sure you want to delete this client?")) {
+                                               if {
                                                    fetch(`/clients/${clientId}`, {
                                                            method: 'DELETE',
                                                            headers: {
@@ -244,10 +245,10 @@
                                                                alert("Failed to delete client.");
                                                            }
                                                        })
-                                                       .catch(error => {
-                                                           console.error("Error deleting client:", error);
-                                                           alert("An error occurred. Please try again.");
-                                                       });
+                                                   //    .catch(error => {
+                                                   //        console.error("Error deleting client:", error);
+                                                   //        alert("An error occurred. Please try again.");
+                                                   //    });
                                                }
                                            });
                                        });
@@ -384,10 +385,13 @@
                                        Sort by
                                    </button>
                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                       <li><a class="dropdown-item" href="#">Edit</a></li>
-                                       <li><a class="dropdown-item" href="#">See Detail</a></li>
-                                       <li><a class="dropdown-item" href="#">Non Actived</a></li>
+                                       <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc">By
+                                               ID</button></li>
+                                       <li><button class="dropdown-item sort-button" data-sort="client_name"
+                                               data-order="asc">By Name</button></li>
                                    </ul>
+
+
                                    <!-- Add dropdown options here if needed -->
                                </div>
                            </div>
@@ -419,6 +423,8 @@
                                                        selectedClients.push(checkbox.value);
                                                    });
 
+                                                   console.log("Selected Client IDs:", selectedClients); // Debugging
+
                                                    if (selectedClients.length === 0) {
                                                        alert("No clients selected.");
                                                        return;
@@ -447,6 +453,7 @@
                                                            })
                                                            .catch(error => console.error("Error deleting clients:", error));
                                                    }
+
                                                });
                                            </script>
                                        </div>
@@ -454,20 +461,23 @@
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            No. Id
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
+                                           <span class="sort-icons sort-button" data-sort="id" data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </span>
+
+
+
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Client Name
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
+                                           <span class="sort-icons sort-button" data-sort="client-name" data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </span>
                                    </th>
@@ -476,33 +486,65 @@
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            PIC
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
+                                           <span class="sort-icons sort-button" data-sort="pic-name" data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </span>
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Category
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
+                                           <span class="sort-icons sort-button" data-sort="product-category"
+                                               data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </span>
                                    </th>
                                    <th>Action</th>
                                </tr>
+
+                               <script>
+                                   document.querySelectorAll('.sort-button').forEach(button => {
+                                       button.addEventListener('click', function() {
+                                           const sortKey = this.getAttribute('data-sort');
+                                           const order = this.getAttribute('data-order');
+
+                                           // Toggle sort order
+                                           const newOrder = order === 'asc' ? 'desc' : 'asc';
+                                           this.setAttribute('data-order', newOrder);
+
+                                           const table = document.querySelector('.table tbody');
+                                           const rows = Array.from(table.rows);
+
+                                           // Sort rows
+                                           rows.sort((a, b) => {
+                                               const aValue = a.querySelector(`td:nth-child(${sortKey === 'id' ? 2 : 3})`)
+                                                   .textContent; // Ganti 2/3 dengan nomor kolom yang sesuai
+                                               const bValue = b.querySelector(`td:nth-child(${sortKey === 'id' ? 2 : 3})`)
+                                                   .textContent;
+
+                                               return (order === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(
+                                                   aValue));
+                                           });
+
+                                           // Clear and append sorted rows
+                                           table.innerHTML = '';
+                                           rows.forEach(row => table.appendChild(row));
+                                       });
+                                   });
+                               </script>
                            </thead>
                            <tbody>
                                @foreach ($clients as $client)
                                    <tr style="height: 80px;">
                                        <td><input type="checkbox" class="client-checkbox" value="{{ $client->id }}">
                                        </td>
-                                       <td>{{ $client->id }}</td>
-                                       <td>{{ $client->client_name }}</td>
+                                       <td data-key="id">{{ $client->id }}</td>
+                                       <td data-key="client-name">{{ $client->client_name }}</td>
                                        <td>
                                            {{ $client->email }}
                                            <span class="sort-icons toggle-chevron" aria-expanded="false"
@@ -511,8 +553,8 @@
                                            </span>
                                        </td>
                                        <td>{{ $client->phone }}</td>
-                                       <td>{{ $client->pic_name }}</td>
-                                       <td>{{ $client->product_category }}</td>
+                                       <td data-key="pic-name">{{ $client->pic_name }}</td>
+                                       <td data-key="product-category">{{ $client->product_category }}</td>
                                        <td>
                                            <div class="dropdown text-center">
                                                <i class="bi bi-three-dots" data-bs-toggle="dropdown"

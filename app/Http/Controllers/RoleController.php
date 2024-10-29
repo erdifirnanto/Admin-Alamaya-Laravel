@@ -14,9 +14,12 @@ class RoleController extends Controller
         // Cek apakah pengguna adalah Admin
         if (Auth::user()->role === 'admin') {
             // Ambil data klien untuk admin
-            $clients = Client::paginate(10);
+            $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
+            $clients = Client::orderBy('id', $sort)->paginate(10);
+            // $clients = Client::paginate(10);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             // dd($clients);
+            // dd(csrf_token());
             return view('dashboard', compact('clients')); // Tampilkan halaman admin dengan data klien
         }
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
@@ -29,7 +32,7 @@ class RoleController extends Controller
         if (Auth::user()->role === 'staff') {
             // Ambil data klien untuk user
             $clients = Client::paginate(10);
-            dd($clients);
+            // dd($clients);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             return view('dashboard', compact('clients')); // Tampilkan halaman user dengan data klien
         }
