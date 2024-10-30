@@ -54,4 +54,35 @@ class ClientController extends Controller
 
         return response()->json(['success' => true]);
     }
+
+    public function edit($id)
+    {
+        // Ambil data klien berdasarkan ID
+        $client = Client::findOrFail($id);
+        $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
+        $clients = Client::orderBy('id', $sort)->paginate(10);
+        // Kembalikan view dengan data klien
+        return view('dashboard', compact('client', 'clients'));
+    }
+
+    public function update(Request $request, Client $client)
+    {
+        // Validasi data permintaan
+        $validatedData = $request->validate([
+            'client_name' => 'required|string|max:255',
+            'company_name' => 'required|string|max:255',
+            'pic_name' => 'required|string|max:255',
+            'product_category' => 'required|string|max:255',
+            'email' => 'required|email|unique:clients,email,' . $client->id,
+            'phone' => 'required|string|max:15',
+            'address' => 'nullable|string|max:255',
+        ]);
+
+        // Perbarui klien dengan data yang sudah divalidasi
+        $client->update($validatedData);
+
+        // Kembalikan respons (bisa berupa redirect, respons JSON, dll.)
+        // return response()->json(['success' => true]);
+        return redirect()->route('dashboard')->with('success', 'Data berhasil diupdate.');
+    }
 }

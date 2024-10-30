@@ -205,13 +205,11 @@
                        <div class="search-add-sort-container">
                            <!-- Search Input -->
                            <div class="search-box">
-                               <input style="width: 400px;" type="text" placeholder="Search">
+                               <input id="searchInput" style="width: 400px;" type="text" placeholder="Search">
                                <span class="icon-search"><i class="fas fa-search"></i></span>
                            </div>
                            <!-- Buttons Section -->
                            <div class="button-container">
-
-
                                <!-- Sort by Dropdown -->
                                <div class="dropdown">
                                    <button class="btn btn-dropdown srtby delete-btn delete-selected" type="button"
@@ -227,32 +225,27 @@
 
                                                const clientId = this.getAttribute('data-id');
 
-                                               // Tampilkan konfirmasi sebelum menghapus
-                                               if {
-                                                   fetch(`/clients/${clientId}`, {
-                                                           method: 'DELETE',
-                                                           headers: {
-                                                               'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
-                                                                   .getAttribute('content')
-                                                           }
-                                                       })
-                                                       .then(response => response.json())
-                                                       .then(data => {
-                                                           if (data.success) {
-                                                               alert("Client deleted successfully!");
-                                                               location.reload(); // Refresh halaman atau update DOM
-                                                           } else {
-                                                               alert("Failed to delete client.");
-                                                           }
-                                                       })
-                                                   //    .catch(error => {
-                                                   //        console.error("Error deleting client:", error);
-                                                   //        alert("An error occurred. Please try again.");
-                                                   //    });
-                                               }
+                                               // Langsung lakukan penghapusan tanpa konfirmasi
+                                               fetch(`/clients/${clientId}`, {
+                                                       method: 'DELETE',
+                                                       headers: {
+                                                           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                                               .getAttribute('content')
+                                                       }
+                                                   })
+                                                   .then(response => response.json())
+                                                   .then(data => {
+                                                       if (data.success) {
+                                                           alert("Client deleted successfully!");
+                                                           location.reload(); // Refresh halaman atau update DOM
+                                                       } else {
+                                                           alert("Failed to delete client.");
+                                                       }
+                                                   })
                                            });
                                        });
                                    </script>
+
 
                                    <!-- Add Client Button -->
                                    <button class="btn btn-add-client btn1hvr" data-bs-toggle="modal"
@@ -367,6 +360,11 @@
                                        </div>
                                    </div>
 
+
+
+                                   <!-- Edit Client Modal -->
+
+
                                    {{-- @if (session('success'))
                                        <div class="alert alert-success">
                                            {{ session('success') }}
@@ -467,9 +465,6 @@
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </span>
-
-
-
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
@@ -560,10 +555,157 @@
                                                <i class="bi bi-three-dots" data-bs-toggle="dropdown"
                                                    aria-expanded="false" style="cursor: pointer;"></i>
                                                <ul class="dropdown-menu">
-                                                   <li><a class="dropdown-item" href="#">Edit</a></li>
-                                                   <li><a class="dropdown-item" href="#">See Detail</a></li>
-                                                   <li><a class="dropdown-item" href="#">Non Actived</a></li>
+                                                   <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                           data-bs-target="#editClientModal-{{ $client->id }}">Edit</a>
+                                                   </li>
                                                </ul>
+                                               {{-- Edit Data Client --}}
+                                               <div class="modal fade" id="editClientModal-{{ $client->id }}"
+                                                   tabindex="-1" aria-labelledby="editClientModalLabel"
+                                                   aria-hidden="true">
+                                                   <div class="modal-dialog modal-lg">
+                                                       <div class="modal-content">
+                                                           <div class="modal-header" style="display: block;">
+                                                               <h5 class="modal-title" id="editClientModalLabel">Edit Data
+                                                                   Client</h5>
+                                                               <p style="margin-top: 2px;"></p>
+                                                               <button type="button" class="btn-close"
+                                                                   data-bs-dismiss="modal" aria-label="Close"
+                                                                   style="position: absolute; right: 10px; top: 10px;"></button>
+                                                           </div>
+
+                                                           <div class="modal-body">
+                                                               <form method="POST"
+                                                                   action="{{ route('clients.update', $client->id) }}">
+                                                                   @csrf
+                                                                   @method('PUT')
+                                                                   <!-- Client Name & Company Name -->
+                                                                   <div class="row mb-3">
+                                                                       <div class="col">
+                                                                           <label for="client_name" class="form-label"
+                                                                               style="font-size: 0.7em;">CLIENT
+                                                                               NAME</label>
+                                                                           <input type="text" class="form-control"
+                                                                               id="client_name" name="client_name"
+                                                                               value="{{ $client->client_name }}"
+                                                                               placeholder="Enter the client name">
+                                                                       </div>
+                                                                       <div class="col">
+                                                                           <label for="company_name" class="form-label"
+                                                                               style="font-size: 0.7em;">COMPANY
+                                                                               NAME</label>
+                                                                           <input type="text" class="form-control"
+                                                                               id="company_name" name="company_name"
+                                                                               value="{{ $client->company_name }}"
+                                                                               placeholder="Enter the company name">
+                                                                       </div>
+                                                                   </div>
+
+                                                                   <!-- PIC and Product Category -->
+                                                                   <div class="row mb-3">
+                                                                       <div class="col">
+                                                                           <label for="pic_name" class="form-label"
+                                                                               style="font-size: 0.7em;">PIC</label>
+                                                                           <select class="form-select" id="pic_name"
+                                                                               name="pic_name">
+                                                                               <option value="{{ $client->pic_name }}"
+                                                                                   selected>{{ $client->pic_name }}
+                                                                               </option>
+                                                                               <option value="1">PIC 1</option>
+                                                                               <option value="2">PIC 2</option>
+                                                                           </select>
+                                                                       </div>
+                                                                       <div class="col">
+                                                                           <label for="product_category"
+                                                                               class="form-label"
+                                                                               style="font-size: 0.7em;">CATEGORY
+                                                                               PRODUCT</label>
+                                                                           <select class="form-select"
+                                                                               id="product_category"
+                                                                               name="product_category">
+                                                                               <option
+                                                                                   value="{{ $client->product_category }}"
+                                                                                   selected>{{ $client->product_category }}
+                                                                               </option>
+                                                                               <option value="1">Category 1</option>
+                                                                               <option value="2">Category 2</option>
+                                                                           </select>
+                                                                       </div>
+                                                                   </div>
+
+                                                                   <!-- Email & Phone -->
+                                                                   <div class="row mb-3">
+                                                                       <div class="col">
+                                                                           <label for="email" class="form-label"
+                                                                               style="font-size: 0.7em;">EMAIL</label>
+                                                                           <input type="text" class="form-control"
+                                                                               id="email" name="email"
+                                                                               value="{{ $client->email }}"
+                                                                               placeholder="Enter email client">
+                                                                       </div>
+                                                                       <div class="col">
+                                                                           <label for="phone" class="form-label"
+                                                                               style="font-size: 0.7em;">PHONE</label>
+                                                                           <input type="text" class="form-control"
+                                                                               id="phone" name="phone"
+                                                                               value="{{ $client->phone }}"
+                                                                               placeholder="Enter the client's phone number">
+                                                                       </div>
+                                                                   </div>
+
+                                                                   <!-- Address -->
+                                                                   <div class="mb-3">
+                                                                       <label for="address" class="form-label"
+                                                                           style="font-size: 0.7em;">ADDRESS</label>
+                                                                       <input type="text" class="form-control"
+                                                                           id="address" name="address"
+                                                                           value="{{ $client->address }}"
+                                                                           placeholder="Enter the client's company address">
+                                                                   </div>
+
+                                                                   <!-- Submit Button -->
+                                                                   <button type="submit"
+                                                                       class="btn btn-dark w-100">Update Client</button>
+                                                               </form>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+
+                                               {{-- <script>
+                                                   // Assuming you have edit buttons with class "edit-btn" and data attributes for the client
+                                                   document.querySelectorAll('.edit-btn').forEach(button => {
+                                                       button.addEventListener('click', function() {
+                                                           const clientId = this.getAttribute('data-id');
+                                                           const clientName = this.getAttribute('data-client-name');
+                                                           const companyName = this.getAttribute('data-company-name');
+                                                           const picName = this.getAttribute('data-pic-name');
+                                                           const productCategory = this.getAttribute('data-product-category');
+                                                           const email = this.getAttribute('data-email');
+                                                           const phone = this.getAttribute('data-phone');
+                                                           const address = this.getAttribute('data-address');
+
+                                                           // Populate the modal fields
+                                                           document.getElementById('edit_client_id').value = clientId;
+                                                           document.getElementById('edit_client_name').value = clientName;
+                                                           document.getElementById('edit_company_name').value = companyName;
+                                                           document.getElementById('edit_pic_name').value = picName;
+                                                           document.getElementById('edit_product_category').value = productCategory;
+                                                           document.getElementById('edit_email').value = email;
+                                                           document.getElementById('edit_phone').value = phone;
+                                                           document.getElementById('edit_address').value = address;
+
+                                                           // Update the form action to point to the correct client update route
+                                                           const formAction = document.getElementById('editClientForm').action.replace(':id',
+                                                               clientId);
+                                                           document.getElementById('editClientForm').action = formAction;
+
+                                                           // Show the modal
+                                                           $('#editClientModal').modal('show');
+                                                       });
+                                                   });
+                                               </script> --}}
+
                                            </div>
                                        </td>
                                    </tr>
