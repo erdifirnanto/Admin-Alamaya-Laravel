@@ -41,6 +41,33 @@
                 <header>
                     <div style="margin: 20px 5px;">
                         <h4>Profile</h4>
+                        <div class="mb-4">
+                            <form>
+                                <div class="col-md-12 mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" value="ini isi nama admin">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" value="admin@alamaya.com">
+                                </div>
+                                <div class="col-md-12 mb-3">
+                                    <label for="profilePicture" class="form-label">File Upload <span
+                                            class="text-danger">*</span></label>
+                                    <div class="d-flex align-items-center">
+                                        <input type="file" class="form-control" id="profilePicture"
+                                            accept="image/jpeg, image/png">
+                                        <div class="form-check ms-2">
+                                            <input class="form-check-input" type="checkbox" id="addAnother">
+                                            <label class="form-check-label" for="addAnother">Add another?</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-end">
+                                    <button type="submit" class="btn btn-dark">SAVE</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </header>
             </div>
@@ -66,6 +93,18 @@
                             <div class="col-md-12 mb-3">
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" value="admin@alamaya.com">
+                            </div>
+                            <div class="col-md-12 mb-3">
+                                <label for="profilePicture" class="form-label">File Upload <span
+                                        class="text-danger">*</span></label>
+                                <div class="d-flex align-items-center">
+                                    <input type="file" class="form-control" id="profilePicture"
+                                        accept="image/jpeg, image/png">
+                                    <div class="form-check ms-2">
+                                        <input class="form-check-input" type="checkbox" id="addAnother">
+                                        <label class="form-check-label" for="addAnother">Add another?</label>
+                                    </div>
+                                </div>
                             </div>
                             <div class="text-end">
                                 <button type="submit" class="btn btn-dark">SAVE</button>
