@@ -393,160 +393,230 @@
                            </div>
                        </div>
 
-                       <table class="table table-hover mt-5 table-sm">
-                           <thead>
-                               <tr style="height: 70px;">
-                                   <th scope="col">
-                                       <!-- Checkbox Select All -->
-                                       <div>
-                                           <input type="checkbox" id="select-all">
-                                           <label style="margin-left: 10px; margin-right: 0px;"
-                                               for="select-all">All</label>
+                   <style>
+            /* Style umum */
+            body {
+              font-family: Arial, sans-serif;
+            }
 
-                                           <script>
-                                               // Pilih semua checkbox saat 'select-all' dicentang
-                                               document.getElementById('select-all').addEventListener('change', function() {
-                                                   const checkboxes = document.querySelectorAll('.client-checkbox');
-                                                   checkboxes.forEach(checkbox => {
-                                                       checkbox.checked = this.checked;
-                                                   });
-                                               });
+            .table-container {
+              width: 100%;
+              margin-top: 20px;
+              border-collapse: collapse;
+            }
 
-                                               // Menghapus semua klien yang terpilih
-                                               document.querySelector('.delete-selected').addEventListener('click', function() {
-                                                   const selectedClients = [];
-                                                   document.querySelectorAll('.client-checkbox:checked').forEach(checkbox => {
-                                                       selectedClients.push(checkbox.value);
-                                                   });
+            .table-container th,
+            .table-container td {
+              padding: 10px;
+              border: 1px solid #ddd;
+              text-align: center;
+              vertical-align: middle;
+            }
 
-                                                   if (selectedClients.length === 0) {
-                                                       alert("No clients selected.");
-                                                       return;
-                                                   }
+            /* Style header */
+            thead tr {
+              background-color: #f1f1f1;
+              height: 70px;
+            }
 
-                                                   if (confirm("Are you sure you want to delete the selected clients?")) {
-                                                       fetch('/clients/delete-multiple', {
-                                                               method: 'POST',
-                                                               headers: {
-                                                                   'Content-Type': 'application/json',
-                                                                   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                                                                       'content')
-                                                               },
-                                                               body: JSON.stringify({
-                                                                   ids: selectedClients
-                                                               })
-                                                           })
-                                                           .then(response => response.json())
-                                                           .then(data => {
-                                                               if (data.success) {
-                                                                   alert("Selected clients deleted successfully!");
-                                                                   location.reload(); // Refresh halaman atau update DOM
-                                                               } else {
-                                                                   alert("Failed to delete clients.");
-                                                               }
-                                                           })
-                                                           .catch(error => console.error("Error deleting clients:", error));
-                                                   }
-                                               });
-                                           </script>
-                                       </div>
-                                   </th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           No. Id
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           Client Name
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   <th>Email</th>
-                                   <th>Phone</th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           PIC
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           Category
-                                           <span class="sort-icons"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   <th>Action</th>
-                               </tr>
-                           </thead>
-                           <tbody>
-                               @foreach ($clients as $client)
-                                   <tr style="height: 80px;">
-                                       <td><input type="checkbox" class="client-checkbox" value="{{ $client->id }}">
-                                       </td>
-                                       <td>{{ $client->id }}</td>
-                                       <td>{{ $client->client_name }}</td>
-                                       <td>
-                                           {{ $client->email }}
-                                           <span class="sort-icons toggle-chevron" aria-expanded="false"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span>
-                                       </td>
-                                       <td>{{ $client->phone }}</td>
-                                       <td>{{ $client->pic_name }}</td>
-                                       <td>{{ $client->product_category }}</td>
-                                       <td>
-                                           <div class="dropdown text-center">
-                                               <i class="bi bi-three-dots" data-bs-toggle="dropdown"
-                                                   aria-expanded="false" style="cursor: pointer;"></i>
-                                               <ul class="dropdown-menu">
-                                                   <li><a class="dropdown-item" href="#">Edit</a></li>
-                                                   <li><a class="dropdown-item" href="#">See Detail</a></li>
-                                                   <li><a class="dropdown-item" href="#">Non Actived</a></li>
-                                               </ul>
-                                           </div>
-                                       </td>
-                                   </tr>
-                                   <tr class="collapse-row" style="display: none;">
-                                       <td></td>
-                                       <td colspan="2">
-                                           <div class="collapse-content"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $client->company_name }}</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $client->company_name }}')"></i>
-                                           </div>
-                                       </td>
-                                       <td colspan="6">
-                                           <div class="collapse-content1"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $client->address }}</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $client->address }}')"></i>
-                                           </div>
-                                       </td>
-                                   </tr>
-                               @endforeach
-                           </tbody>
-                       </table>
+            /* Style utama row */
+            tbody tr.main-row {
+              background-color: #f1f1f1;
+              height: 80px;
+            }
+
+            /* Style untuk row collapse */
+            tbody tr.collapse-row {
+              display: none;
+              background-color: #fff;
+            }
+
+            /* Tombol chevron */
+            .toggle-chevron {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              cursor: pointer;
+              font-size: 10px;
+            }
+
+            /* Tombol copy */
+            .fa-copy {
+              margin-left: 10px;
+              cursor: pointer;
+            }
+
+            /* Collapse content */
+            .collapse-content,
+            .collapse-content1 {
+              overflow: hidden;
+              height: 0;
+              transition: height 0.5s ease;
+              display: flex;
+              align-items: center;
+              padding: 10px;
+              background-color: #f9f9f9;
+              border: 1px solid #ddd;
+            }
+
+            /* Kotak data tambahan */
+            .collapse-data-container {
+              display: flex;
+              justify-content: space-between;
+              padding: 5px;
+              background-color: #f9f9f9;
+              border: 1px solid #ddd;
+              border-radius: 5px;
+            }
+          </style>
+
+          <!-- Tabel -->
+          <table class="table table-hover mt-5 table-sm">
+            <thead>
+              <tr style="height: 70px;">
+                <th scope="col">
+                  <!-- Checkbox Select All -->
+                  <div>
+                    <input type="checkbox" id="select-all">
+                    <label style="margin-left: 10px; margin-right: 0px;" for="select-all">All</label>
+                  </div>
+                </th> <!-- Checkbox Column -->
+                <th>
+                  <span style="display: inline-flex; align-items: center;">
+                    No. Id
+                    <span class="sort-icons"
+                      style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
+                      <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
+                      <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
+                    </span>
+                  </span>
+                </th>
+                <th>
+                  <span style="display: inline-flex; align-items: center;">
+                    Client Name
+                    <span class="sort-icons"
+                      style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
+                      <span class="fas fa-chevron-up" style="font-size: 5px; cursor: pointer;" id="sortAsc"></span>
+                      <span class="fas fa-chevron-down" style="font-size: 5px; cursor: pointer;" id="sortDesc"></span>
+                    </span>
+                  </span>
+                </th>
+                <th>
+                  Email
+                </th>
+                <th>
+                  Phone
+                </th>
+                <th>
+                  <span style="display: inline-flex; align-items: center;">
+                    PIC
+                    <span class="sort-icons"
+                      style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
+                      <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
+                      <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
+                    </span>
+                  </span>
+                </th>
+                <th>
+                  <span style="display: inline-flex; align-items: center;">
+                    Category
+                    <span class="sort-icons"
+                      style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
+                      <span class="fas fa-chevron-up" style="font-size: 5px;"></span>
+                      <span class="fas fa-chevron-down" style="font-size: 5px;"></span>
+                    </span>
+                  </span>
+                </th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <style>
+              thead th {
+                align-content: center;
+              }
+
+              tbody tr td {
+                align-content: center;
+              }
+            </style>
+
+            <tbody>
+              <tr class="main-row">
+                <td><input type="checkbox" class="client-checkbox"></td>
+                <td>000121</td>
+                <td>Alexandra Mezila Azza</td>
+                <td>
+                  dhitanatasha990@gmail.com
+                  <span class="toggle-chevron" aria-expanded="false">
+                    <span class="fas fa-chevron-down"></span>
+                  </span>
+                </td>
+                <td>08807564735</td>
+                <td>Widia</td>
+                <td>asdapro.com</td>
+                <td>
+                  <i class="fas fa-ellipsis"></i>
+                </td>
+              </tr>
+
+              <!-- Row tambahan untuk konten collapse -->
+              <tr class="collapse-row">
+                <td colspan="8">
+                  <div class="collapse-data-container">
+                    <div class="collapse-content">
+                      <span>PT. RIS Tirta Indah</span>
+                      <i class="fa-regular fa-copy" onclick="copyText('PT. RIS Tirta Indah')"></i>
+                    </div>
+                    <div class="collapse-content1">
+                      <span>Jl. Prof. Dr. Ida Bagus Mantra Batubulan, Kec. Sukawati, Kabupaten Gianyar, Bali
+                        80582</span>
+                      <i class="fa-regular fa-copy"
+                        onclick="copyText('Jl. Prof. Dr. Ida Bagus Mantra Batubulan, Kec. Sukawati, Kabupaten Gianyar, Bali 80582')"></i>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+
+          <!-- JavaScript -->
+          <script>
+            document.querySelectorAll('.toggle-chevron').forEach(function (chevron, index) {
+              chevron.addEventListener('click', function () {
+                const collapseRow = document.querySelectorAll('.collapse-row')[index];
+                const collapseContent = collapseRow.querySelector('.collapse-content');
+                const collapseContent1 = collapseRow.querySelector('.collapse-content1');
+
+                if (collapseRow.style.display === 'none' || collapseRow.style.display === '') {
+                  collapseRow.style.display = 'table-row';
+                  const height = collapseContent.scrollHeight + 'px';
+                  collapseContent.style.height = height;
+                  collapseContent1.style.height = height;
+                  this.querySelector('.fas').classList.remove('fa-chevron-down');
+                  this.querySelector('.fas').classList.add('fa-chevron-up');
+                } else {
+                  collapseContent.style.height = '0';
+                  collapseContent1.style.height = '0';
+                  setTimeout(() => {
+                    collapseRow.style.display = 'none';
+                  }, 500);
+                  this.querySelector('.fas').classList.remove('fa-chevron-up');
+                  this.querySelector('.fas').classList.add('fa-chevron-down');
+                }
+              });
+            });
+
+            function copyText(text) {
+              const tempInput = document.createElement('input');
+              tempInput.value = text;
+              document.body.appendChild(tempInput);
+              tempInput.select();
+              document.execCommand('copy');
+              document.body.removeChild(tempInput);
+              alert('Teks disalin: ' + text);
+            }
+          </script>
+
 
 
                        <!-- Custom Pagination -->
