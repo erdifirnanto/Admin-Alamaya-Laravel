@@ -14,7 +14,9 @@ class RoleController extends Controller
         // Cek apakah pengguna adalah Admin
         if (Auth::user()->role === 'admin') {
             // Ambil data klien untuk admin
-            $clients = Client::paginate(10);
+            $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
+            $clients = Client::orderBy('id', $sort)->paginate(10);
+            // $clients = Client::paginate(10);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             // dd($clients);
             // dd(csrf_token());

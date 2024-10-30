@@ -57,6 +57,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     });
 
 // fungsi data clients
+Route::resource('clients', ClientController::class);
 Route::post('/clients/store', [ClientController::class, 'Cstore'])->name('clients.store');
 Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
 Route::post('/clients/delete-multiple', [ClientController::class, 'deleteMultiple'])->name('clients.deleteMultiple');
+Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update');
+Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');

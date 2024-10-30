@@ -42,16 +42,17 @@
                                     18
                                 </span>
                                 <!-- Dropdown Menu untuk Notifikasi -->
-                                <ul id="notifDropdown" class="dropdown-menu dropdown-menu-end" style="display: none; position: absolute; background: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; z-index: 1000;     top: 70px;
+                                <ul id="notifDropdown" class="dropdown-menu dropdown-menu-end"
+                                    style="display: none; position: absolute; background: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; z-index: 1000;     top: 70px;
     right: 0px;">
                                     <li>
                                         <p class="text-muted" style="margin-left: 15px; font-size: small;">Notifikasi
                                         </p>
                                     </li>
                                     @foreach ($clients as $client)
-                                    <li id="">
-                                        {{ $client->client_name }}
-                                    </li> <!-- Tempat untuk menampilkan isi notifikasi -->
+                                        <li id="">
+                                            {{ $client->client_name }}
+                                        </li> <!-- Tempat untuk menampilkan isi notifikasi -->
                                     @endforeach
                                 </ul>
                             </div>
@@ -79,7 +80,7 @@
 
                                 // Mengisi isi notifikasi ke dalam dropdown
                                 let html = '';
-                                notifikasi.forEach(function (notif) {
+                                notifikasi.forEach(function(notif) {
                                     html += `<li>${notif}</li>`;
                                 });
 
@@ -90,11 +91,11 @@
                                 $('#notifDropdown').toggle(); // Menampilkan atau menyembunyikan dropdown
                             }
 
-                            $(document).ready(function () {
+                            $(document).ready(function() {
                                 tampil_button_notif();
 
                                 // Menyembunyikan dropdown ketika mengklik di luar
-                                $(document).click(function (e) {
+                                $(document).click(function(e) {
                                     const target = $(e.target);
                                     if (!target.closest('#button_notif').length && !target.closest('#notifDropdown').length) {
                                         $('#notifDropdown').hide(); // Sembunyikan dropdown jika klik di luar
@@ -130,7 +131,8 @@
                                     class="profile-picture">
                                 <h6>{{ Auth::user()->name }}</h6> {{-- Nama user --}}
                                 <p class="email">{{ Auth::user()->email }}</p> {{-- Email user --}}
-                                <span class="badge bg-secondary">{{ Auth::user()->role ?? 'User' }}</span> {{-- Role
+                                <span class="badge bg-secondary">{{ Auth::user()->role ?? 'User' }}</span>
+                                {{-- Role
                                 user --}}
                             </li>
                             <li>
@@ -138,10 +140,10 @@
                             </li>
 
                             @if (Auth::user()->role === 'admin')
-                            <li><a class="dropdown-item" href="{{ route('account.management') }}"><i
-                                        class="bi bi-person"></i>Account</a></li>
-                            <li><a class="dropdown-item" href="{{ route('admin.add-account-form') }}"><i
-                                        class="bi bi-person-plus"></i> Add Account</a></li>
+                                <li><a class="dropdown-item" href="{{ route('account.management') }}"><i
+                                            class="bi bi-person"></i>Account</a></li>
+                                <li><a class="dropdown-item" href="{{ route('admin.add-account-form') }}"><i
+                                            class="bi bi-person-plus"></i> Add Account</a></li>
                             @endif
 
                             <li>
@@ -152,7 +154,9 @@
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <button type="submit" class="dropdown-item text-danger">
-                                        <i class="bi bi-box-arrow-right"></i> Log out
+                                        <i class="bi bi-box-arrow-right" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); sessionStorage.removeItem('hasAnimated'); document.getElementById('logout-form').submit();"></i>
+                                        Log out
                                     </button>
                                 </form>
                             </li>

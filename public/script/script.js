@@ -5,34 +5,51 @@ window.onload = function () {
     const title = document.getElementById("title");
     const logoBlack = document.getElementById("logo-black"); // Logo hitam (awal)
     const logoWhite = document.getElementById("logo-white"); // Logo putih (setelah animasi)
-    const bgWhite = document.getElementById("bg-white"); // Logo putih (setelah animasi)
+    const bgWhite = document.getElementById("bg-white"); // Background putih (setelah animasi)
 
-    // Fungsi untuk mengganti logo
-    const changeLogo = () => {
-        logoBlack.style.display = "none"; // Sembunyikan logo hitam
-        logoWhite.style.display = "block"; // Tampilkan logo putih
-    };
+    // Periksa apakah animasi sudah pernah ditampilkan
+    const hasAnimated = sessionStorage.getItem("hasAnimated");
 
-    // Hentikan tampilan lingkaran dan halaman utama
-    overlay.addEventListener("animationend", (event) => {
-        if (event.animationName === "circleExpand") {
-            overlay.style.display = "none"; // Sembunyikan lingkaran
-            title.style.display = "none"; // Sembunyikan judul setelah lingkaran menutupi layar
-            bgWhite.style.display = "none"; // Tampilkan logo putih
-            // mainPage.style.display = "block"; // Tampilkan halaman utama
-            mainPage.forEach((page) => {
-                page.style.display = "block"; // Tampilkan setiap elemen dengan class main-page
-            });
-        }
-    });
+    // Jika animasi belum pernah ditampilkan, jalankan animasi
+    if (!hasAnimated) {
+        // Fungsi untuk mengganti logo
+        const changeLogo = () => {
+            logoBlack.style.display = "none"; // Sembunyikan logo hitam
+            logoWhite.style.display = "block"; // Tampilkan logo putih
+        };
 
-    // Deteksi kapan animasi circleExpand dimulai
-    overlay.addEventListener("animationstart", (event) => {
-        if (event.animationName === "circleExpand") {
-            changeLogo(); // Ubah logo saat lingkaran mulai membesar
-        }
-    });
+        // Hentikan tampilan lingkaran dan halaman utama
+        overlay.addEventListener("animationend", (event) => {
+            if (event.animationName === "circleExpand") {
+                overlay.style.display = "none"; // Sembunyikan lingkaran
+                title.style.display = "none"; // Sembunyikan judul setelah lingkaran menutupi layar
+                bgWhite.style.display = "none"; // Sembunyikan background putih
+                mainPage.forEach((page) => {
+                    page.style.display = "block"; // Tampilkan setiap elemen dengan class main-page
+                });
+                sessionStorage.setItem("hasAnimated", "true"); // Tandai bahwa animasi sudah selesai
+            }
+        });
+
+        // Deteksi kapan animasi circleExpand dimulai
+        overlay.addEventListener("animationstart", (event) => {
+            if (event.animationName === "circleExpand") {
+                changeLogo(); // Ubah logo saat lingkaran mulai membesar
+            }
+        });
+    } else {
+        // Jika animasi sudah pernah ditampilkan, tampilkan langsung halaman utama tanpa animasi
+        overlay.style.display = "none";
+        title.style.display = "none";
+        bgWhite.style.display = "none";
+        logoBlack.style.display = "none";
+        logoWhite.style.display = "block";
+        mainPage.forEach((page) => {
+            page.style.display = "block";
+        });
+    }
 };
+
 // End Animasi
 
 // <!-- Clock Start-->
@@ -122,9 +139,9 @@ function copyText(text) {
 // End Collapse
 
 // JavaScript for "Select All" checkbox
-document.getElementById("select-all").addEventListener("change", function () {
-    var checkboxes = document.querySelectorAll(".client-checkbox");
-    checkboxes.forEach(function (checkbox) {
-        checkbox.checked = this.checked;
-    }, this);
-});
+// document.getElementById("select-all").addEventListener("change", function () {
+//     var checkboxes = document.querySelectorAll(".client-checkbox");
+//     checkboxes.forEach(function (checkbox) {
+//         checkbox.checked = this.checked;
+//     }, this);
+// });

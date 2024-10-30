@@ -1,3 +1,4 @@
+   @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
        <section class="main-page" id="main-page" style="margin-top: -100px">
@@ -204,17 +205,15 @@
                        <div class="search-add-sort-container">
                            <!-- Search Input -->
                            <div class="search-box">
-                               <input style="width: 400px;" type="text" placeholder="Search">
+                               <input id="searchInput" style="width: 400px;" type="text" placeholder="Search">
                                <span class="icon-search"><i class="fas fa-search"></i></span>
                            </div>
                            <!-- Buttons Section -->
                            <div class="button-container">
-
-
                                <!-- Sort by Dropdown -->
                                <div class="dropdown">
-                                   <button class="btn btn-dropdown srtby delete-btn" type="button" aria-expanded="false"
-                                       data-id="{{-- $client->id --}}">
+                                   <button class="btn btn-dropdown srtby delete-btn delete-selected" type="button"
+                                       aria-expanded="false">
                                        <a style="color: red;" href="#"><i class="fa fa-trash"
                                                aria-hidden="true"></i></a>
                                    </button>
@@ -226,32 +225,27 @@
 
                                                const clientId = this.getAttribute('data-id');
 
-                                               // Tampilkan konfirmasi sebelum menghapus
-                                               if (confirm("Are you sure you want to delete this client?")) {
-                                                   fetch(`/clients/${clientId}`, {
-                                                           method: 'DELETE',
-                                                           headers: {
-                                                               'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
-                                                                   .getAttribute('content')
-                                                           }
-                                                       })
-                                                       .then(response => response.json())
-                                                       .then(data => {
-                                                           if (data.success) {
-                                                               alert("Client deleted successfully!");
-                                                               location.reload(); // Refresh halaman atau update DOM
-                                                           } else {
-                                                               alert("Failed to delete client.");
-                                                           }
-                                                       })
-                                                       .catch(error => {
-                                                           console.error("Error deleting client:", error);
-                                                           alert("An error occurred. Please try again.");
-                                                       });
-                                               }
+                                               // Langsung lakukan penghapusan tanpa konfirmasi
+                                               fetch(`/clients/${clientId}`, {
+                                                       method: 'DELETE',
+                                                       headers: {
+                                                           'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                                               .getAttribute('content')
+                                                       }
+                                                   })
+                                                   .then(response => response.json())
+                                                   .then(data => {
+                                                       if (data.success) {
+                                                           alert("Client deleted successfully!");
+                                                           location.reload(); // Refresh halaman atau update DOM
+                                                       } else {
+                                                           alert("Failed to delete client.");
+                                                       }
+                                                   })
                                            });
                                        });
                                    </script>
+
 
                                    <!-- Add Client Button -->
                                    <button class="btn btn-add-client btn1hvr" data-bs-toggle="modal"
@@ -366,6 +360,11 @@
                                        </div>
                                    </div>
 
+
+
+                                   <!-- Edit Client Modal -->
+
+
                                    {{-- @if (session('success'))
                                        <div class="alert alert-success">
                                            {{ session('success') }}
@@ -384,16 +383,358 @@
                                        Sort by
                                    </button>
                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                       <li><a class="dropdown-item" href="#">Edit</a></li>
-                                       <li><a class="dropdown-item" href="#">See Detail</a></li>
-                                       <li><a class="dropdown-item" href="#">Non Actived</a></li>
+                                       <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc">By
+                                               ID</button></li>
+                                       <li><button class="dropdown-item sort-button" data-sort="client_name"
+                                               data-order="asc">By Name</button></li>
                                    </ul>
+
+
                                    <!-- Add dropdown options here if needed -->
                                </div>
                            </div>
                        </div>
 
+                       <table class="table table-hover mt-5 table-sm">
+                           <thead>
+                               <tr style="height: 70px;">
+                                   <th scope="col">
+                                       <!-- Checkbox Select All -->
+                                       <div>
+                                           <input type="checkbox" id="select-all">
+                                           <label style="margin-left: 10px; margin-right: 0px;"
+                                               for="select-all">All</label>
+
+                                           <script>
+                                               // Pilih semua checkbox saat 'select-all' dicentang
+                                               document.getElementById('select-all').addEventListener('change', function() {
+                                                   const checkboxes = document.querySelectorAll('.client-checkbox');
+                                                   checkboxes.forEach(checkbox => {
+                                                       checkbox.checked = this.checked;
+                                                   });
+                                               });
+
+                                               // Menghapus semua klien yang terpilih
+                                               document.querySelector('.delete-selected').addEventListener('click', function() {
+                                                   const selectedClients = [];
+                                                   document.querySelectorAll('.client-checkbox:checked').forEach(checkbox => {
+                                                       selectedClients.push(checkbox.value);
+                                                   });
+
+                                                   console.log("Selected Client IDs:", selectedClients); // Debugging
+
+                                                   if (selectedClients.length === 0) {
+                                                       alert("No clients selected.");
+                                                       return;
+                                                   }
+
+                                                   if (confirm("Are you sure you want to delete the selected clients?")) {
+                                                       fetch('/clients/delete-multiple', {
+                                                               method: 'POST',
+                                                               headers: {
+                                                                   'Content-Type': 'application/json',
+                                                                   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                                                       'content')
+                                                               },
+                                                               body: JSON.stringify({
+                                                                   ids: selectedClients
+                                                               })
+                                                           })
+                                                           .then(response => response.json())
+                                                           .then(data => {
+                                                               if (data.success) {
+                                                                   alert("Selected clients deleted successfully!");
+                                                                   location.reload(); // Refresh halaman atau update DOM
+                                                               } else {
+                                                                   alert("Failed to delete clients.");
+                                                               }
+                                                           })
+                                                           .catch(error => console.error("Error deleting clients:", error));
+                                                   }
+
+                                               });
+                                           </script>
+                                       </div>
+                                   </th>
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
+                                           No. Id
+                                           <span class="sort-icons sort-button" data-sort="id" data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                           </span>
+                                       </span>
+                                   </th>
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
+                                           Client Name
+                                           <span class="sort-icons sort-button" data-sort="client-name" data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                           </span>
+                                       </span>
+                                   </th>
+                                   <th>Email</th>
+                                   <th>Phone</th>
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
+                                           PIC
+                                           <span class="sort-icons sort-button" data-sort="pic-name" data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                           </span>
+                                       </span>
+                                   </th>
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
+                                           Category
+                                           <span class="sort-icons sort-button" data-sort="product-category"
+                                               data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                           </span>
+                                       </span>
+                                   </th>
+                                   <th>Action</th>
+                               </tr>
+
+                               <script>
+                                   document.querySelectorAll('.sort-button').forEach(button => {
+                                       button.addEventListener('click', function() {
+                                           const sortKey = this.getAttribute('data-sort');
+                                           const order = this.getAttribute('data-order');
+
+                                           // Toggle sort order
+                                           const newOrder = order === 'asc' ? 'desc' : 'asc';
+                                           this.setAttribute('data-order', newOrder);
+
+                                           const table = document.querySelector('.table tbody');
+                                           const rows = Array.from(table.rows);
+
+                                           // Sort rows
+                                           rows.sort((a, b) => {
+                                               const aValue = a.querySelector(`td:nth-child(${sortKey === 'id' ? 2 : 3})`)
+                                                   .textContent; // Ganti 2/3 dengan nomor kolom yang sesuai
+                                               const bValue = b.querySelector(`td:nth-child(${sortKey === 'id' ? 2 : 3})`)
+                                                   .textContent;
+
+                                               return (order === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(
+                                                   aValue));
+                                           });
+
+                                           // Clear and append sorted rows
+                                           table.innerHTML = '';
+                                           rows.forEach(row => table.appendChild(row));
+                                       });
+                                   });
+                               </script>
+                           </thead>
+                           <tbody>
+                               @foreach ($clients as $client)
+                                   <tr style="height: 80px;">
+                                       <td><input type="checkbox" class="client-checkbox" value="{{ $client->id }}">
+                                       </td>
+                                       <td data-key="id">{{ $client->id }}</td>
+                                       <td data-key="client-name">{{ $client->client_name }}</td>
+                                       <td>
+                                           {{ $client->email }}
+                                           <span class="sort-icons toggle-chevron" aria-expanded="false"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                           </span>
+                                       </td>
+                                       <td>{{ $client->phone }}</td>
+                                       <td data-key="pic-name">{{ $client->pic_name }}</td>
+                                       <td data-key="product-category">{{ $client->product_category }}</td>
+                                       <td>
+                                           <div class="dropdown text-center">
+                                               <i class="bi bi-three-dots" data-bs-toggle="dropdown"
+                                                   aria-expanded="false" style="cursor: pointer;"></i>
+                                               <ul class="dropdown-menu">
+                                                   <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                           data-bs-target="#editClientModal-{{ $client->id }}">Edit</a>
+                                                   </li>
+                                               </ul>
+                                               {{-- Edit Data Client --}}
+                                               <div class="modal fade" id="editClientModal-{{ $client->id }}"
+                                                   tabindex="-1" aria-labelledby="editClientModalLabel"
+                                                   aria-hidden="true">
+                                                   <div class="modal-dialog modal-lg">
+                                                       <div class="modal-content">
+                                                           <div class="modal-header" style="display: block;">
+                                                               <h5 class="modal-title" id="editClientModalLabel">Edit Data
+                                                                   Client</h5>
+                                                               <p style="margin-top: 2px;"></p>
+                                                               <button type="button" class="btn-close"
+                                                                   data-bs-dismiss="modal" aria-label="Close"
+                                                                   style="position: absolute; right: 10px; top: 10px;"></button>
+                                                           </div>
+
+                                                           <div class="modal-body">
+                                                               <form method="POST"
+                                                                   action="{{ route('clients.update', $client->id) }}">
+                                                                   @csrf
+                                                                   @method('PUT')
+                                                                   <!-- Client Name & Company Name -->
+                                                                   <div class="row mb-3">
+                                                                       <div class="col">
+                                                                           <label for="client_name" class="form-label"
+                                                                               style="font-size: 0.7em;">CLIENT
+                                                                               NAME</label>
+                                                                           <input type="text" class="form-control"
+                                                                               id="client_name" name="client_name"
+                                                                               value="{{ $client->client_name }}"
+                                                                               placeholder="Enter the client name">
+                                                                       </div>
+                                                                       <div class="col">
+                                                                           <label for="company_name" class="form-label"
+                                                                               style="font-size: 0.7em;">COMPANY
+                                                                               NAME</label>
+                                                                           <input type="text" class="form-control"
+                                                                               id="company_name" name="company_name"
+                                                                               value="{{ $client->company_name }}"
+                                                                               placeholder="Enter the company name">
+                                                                       </div>
+                                                                   </div>
+
+                                                                   <!-- PIC and Product Category -->
+                                                                   <div class="row mb-3">
+                                                                       <div class="col">
+                                                                           <label for="pic_name" class="form-label"
+                                                                               style="font-size: 0.7em;">PIC</label>
+                                                                           <select class="form-select" id="pic_name"
+                                                                               name="pic_name">
+                                                                               <option value="{{ $client->pic_name }}"
+                                                                                   selected>{{ $client->pic_name }}
+                                                                               </option>
+                                                                               <option value="1">PIC 1</option>
+                                                                               <option value="2">PIC 2</option>
+                                                                           </select>
+                                                                       </div>
+                                                                       <div class="col">
+                                                                           <label for="product_category"
+                                                                               class="form-label"
+                                                                               style="font-size: 0.7em;">CATEGORY
+                                                                               PRODUCT</label>
+                                                                           <select class="form-select"
+                                                                               id="product_category"
+                                                                               name="product_category">
+                                                                               <option
+                                                                                   value="{{ $client->product_category }}"
+                                                                                   selected>{{ $client->product_category }}
+                                                                               </option>
+                                                                               <option value="1">Category 1</option>
+                                                                               <option value="2">Category 2</option>
+                                                                           </select>
+                                                                       </div>
+                                                                   </div>
+
+                                                                   <!-- Email & Phone -->
+                                                                   <div class="row mb-3">
+                                                                       <div class="col">
+                                                                           <label for="email" class="form-label"
+                                                                               style="font-size: 0.7em;">EMAIL</label>
+                                                                           <input type="text" class="form-control"
+                                                                               id="email" name="email"
+                                                                               value="{{ $client->email }}"
+                                                                               placeholder="Enter email client">
+                                                                       </div>
+                                                                       <div class="col">
+                                                                           <label for="phone" class="form-label"
+                                                                               style="font-size: 0.7em;">PHONE</label>
+                                                                           <input type="text" class="form-control"
+                                                                               id="phone" name="phone"
+                                                                               value="{{ $client->phone }}"
+                                                                               placeholder="Enter the client's phone number">
+                                                                       </div>
+                                                                   </div>
+
+                                                                   <!-- Address -->
+                                                                   <div class="mb-3">
+                                                                       <label for="address" class="form-label"
+                                                                           style="font-size: 0.7em;">ADDRESS</label>
+                                                                       <input type="text" class="form-control"
+                                                                           id="address" name="address"
+                                                                           value="{{ $client->address }}"
+                                                                           placeholder="Enter the client's company address">
+                                                                   </div>
+
+                                                                   <!-- Submit Button -->
+                                                                   <button type="submit"
+                                                                       class="btn btn-dark w-100">Update Client</button>
+                                                               </form>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+
+                                               {{-- <script>
+                                                   // Assuming you have edit buttons with class "edit-btn" and data attributes for the client
+                                                   document.querySelectorAll('.edit-btn').forEach(button => {
+                                                       button.addEventListener('click', function() {
+                                                           const clientId = this.getAttribute('data-id');
+                                                           const clientName = this.getAttribute('data-client-name');
+                                                           const companyName = this.getAttribute('data-company-name');
+                                                           const picName = this.getAttribute('data-pic-name');
+                                                           const productCategory = this.getAttribute('data-product-category');
+                                                           const email = this.getAttribute('data-email');
+                                                           const phone = this.getAttribute('data-phone');
+                                                           const address = this.getAttribute('data-address');
+
+                                                           // Populate the modal fields
+                                                           document.getElementById('edit_client_id').value = clientId;
+                                                           document.getElementById('edit_client_name').value = clientName;
+                                                           document.getElementById('edit_company_name').value = companyName;
+                                                           document.getElementById('edit_pic_name').value = picName;
+                                                           document.getElementById('edit_product_category').value = productCategory;
+                                                           document.getElementById('edit_email').value = email;
+                                                           document.getElementById('edit_phone').value = phone;
+                                                           document.getElementById('edit_address').value = address;
+
+                                                           // Update the form action to point to the correct client update route
+                                                           const formAction = document.getElementById('editClientForm').action.replace(':id',
+                                                               clientId);
+                                                           document.getElementById('editClientForm').action = formAction;
+
+                                                           // Show the modal
+                                                           $('#editClientModal').modal('show');
+                                                       });
+                                                   });
+                                               </script> --}}
+
+                                           </div>
+                                       </td>
+                                   </tr>
+                                   <tr class="collapse-row" style="display: none;">
+                                       <td></td>
+                                       <td colspan="2">
+                                           <div class="collapse-content"
+                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
+                                               <span>{{ $client->company_name }}</span>
+                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                                                   onclick="copyText('{{ $client->company_name }}')"></i>
+                                           </div>
+                                       </td>
+                                       <td colspan="6">
+                                           <div class="collapse-content1"
+                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
+                                               <span>{{ $client->address }}</span>
+                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                                                   onclick="copyText('{{ $client->address }}')"></i>
+                                           </div>
+                                       </td>
+                                   </tr>
+                               @endforeach
+                           </tbody>
+                       </table>
                    <style>
+
+                    /*Start yang aku buat*/
+<style>
             /* Style umum */
             body {
               font-family: Arial, sans-serif;
@@ -617,7 +958,7 @@
             }
           </script>
 
-
+ <!-- Finish yang aku buat -->
 
                        <!-- Custom Pagination -->
                        <nav aria-label="Page navigation">
