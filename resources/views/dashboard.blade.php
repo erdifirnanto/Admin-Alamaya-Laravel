@@ -892,6 +892,18 @@
                     <span class="fas fa-chevron-down"></span>
                   </span>
                 </td>
+                <div class="collapse-data-container">
+                    <div class="collapse-content">
+                      <span>PT. RIS Tirta Indah</span>
+                      <i class="fa-regular fa-copy" onclick="copyText('PT. RIS Tirta Indah')"></i>
+                    </div>
+                    <div class="collapse-content1">
+                      <span>Jl. Prof. Dr. Ida Bagus Mantra Batubulan, Kec. Sukawati, Kabupaten Gianyar, Bali
+                        80582</span>
+                      <i class="fa-regular fa-copy"
+                        onclick="copyText('Jl. Prof. Dr. Ida Bagus Mantra Batubulan, Kec. Sukawati, Kabupaten Gianyar, Bali 80582')"></i>
+                    </div>
+                  </div>
                 <td>08807564735</td>
                 <td>Widia</td>
                 <td>asdapro.com</td>
@@ -918,7 +930,7 @@
                 </td>
               </tr>
             </tbody>
-          </table>
+          </table> 
 
           <!-- JavaScript -->
           <script>
