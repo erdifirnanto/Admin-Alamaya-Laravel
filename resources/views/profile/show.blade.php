@@ -1,4 +1,4 @@
-<x-app-layout>
+{{-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
@@ -42,7 +42,11 @@
             @endif
         </div>
     </div>
+<<<<<<< HEAD
+</x-app-layout> --}}
+=======
 </x-app-layout>
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
 
 <!DOCTYPE html>
 <html lang="en">
@@ -63,8 +67,13 @@
             <div class="row">
                 <nav class="navbar navbar-light p-3">
                     <a class="navbar-brand d-flex align-items-center" href="#">
+<<<<<<< HEAD
+                        <img src="https://s3-alpha-sig.figma.com/img/5e68/1f1d/3001f3c480838270b88f22a21401fff8?Expires=1731283200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=MXoc48ZvM0HwG8Dm0tvrWqZ5hfgPTbna2rDT9RD1Js5Efvk7eBsQ~1h7CeVlwfCA9wnreVaSi-uG2cBxMTmomJUj6jZgjuT0pa5fOtysDdCnJRmINwKxouvUGuTwB8uIHLw~wp~YhdTEckXQoegjBsh~2wax2At2EmwifCbTUe9stLVnl3WhS7q6lrK~nyQv23VvU09N4f6apOq7WHED~xuE8nyjqIZu8WSYVq3B7GMvHv2eTG55gDrxKUeprdvs0CrE1ZaJiuVbjeSw4TJccvo5XjqXWVRltr63W5UCUo49k2bm4GnaEKKl9d66C7ITEI~Xp-ab4tn4kQavHEgLNQ__" alt="Logo"
+                            style="width: 100px; height: 40px; margin-right: 10px;">
+=======
                         <img src="images/logo_alamaya.png" alt="Logo"
                             style="width: 90px; height: 30px; margin-right: 10px;">
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
                         <span style="margin-left: 35px; font-size: 15px;">Dashboard</span>
                     </a>
                     <span class="navbar-text dropdown-toggle" id="profileDropdown" role="button"
@@ -96,12 +105,21 @@
     <!-- Profile Section -->
     <div class="container mt-5">
         <div class="row">
+<<<<<<< HEAD
+            <div class="col-md-6">
+                <h5 class="fw-bold">Profile Information</h5>
+                <p class="text-muted">Update your account's profile information and email address.</p>
+            </div>
+            <div class="col-md-6">
+                <div class="card mt-3 p-4">
+=======
             <div class="col-md-4">
                 <h5 class="fw-bold">Profile Information</h5>
                 <p class="text-muted">Update your account's profile information and email address.</p>
             </div>
             <div class="col-md-8">
                 <div class="card shadow-sm mt-3 p-4">
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
                     <!-- Profile Information -->
                     <div class="mb-4">
                         <form>
@@ -113,6 +131,17 @@
                                 <label for="email" class="form-label">Email</label>
                                 <input type="email" class="form-control" id="email" value="admin@alamaya.com">
                             </div>
+<<<<<<< HEAD
+                            <div class="col-md-12 mb-3">
+                                <label for="profilePicture" class="form-label">Photos Upload <span
+                                        class="text-danger">*</span></label>
+                                <div class="d-flex align-items-center">
+                                    <input type="file" class="form-control" id="profilePicture"
+                                        accept="image/jpeg, image/png">
+                                </div>
+                            </div>
+=======
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
                             <div class="text-end">
                                 <button type="submit" class="btn btn-dark">SAVE</button>
                             </div>
@@ -129,14 +158,23 @@
     <!-- Update Password -->
     <div class="container mt-5">
         <div class="row">
+<<<<<<< HEAD
+            <div class="col-md-6">
+=======
             <div class="col-md-4">
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
                 <h5 class="fw-bold">Update Password</h5>
                 <p class="text-muted">Ensure your account is using a long, random password to stay
                     secure.
                 </p>
             </div>
+<<<<<<< HEAD
+            <div class="col-md-6">
+                <div class="card mt-3 p-4">
+=======
             <div class="col-md-8">
                 <div class="card shadow-sm mt-3 p-4">
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
                     <div class="mb-4">
                         <form>
                             <div class="col-md-12 mb-3">
@@ -167,13 +205,22 @@
     <!-- Two Factor Authentication -->
     <div class="container mt-5">
         <div class="row">
+<<<<<<< HEAD
+            <div class="col-md-6">
+=======
             <div class="col-md-4">
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
                 <h5 class="fw-bold">Two Factor Authentication</h5>
                 <p class="text-muted">Add additional security to your account using two factor authentication.
                 </p>
             </div>
+<<<<<<< HEAD
+            <div class="col-md-6">
+                <div class="card mt-3 p-4">
+=======
             <div class="col-md-8">
                 <div class="card shadow-sm mt-3 p-4">
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
                     <div class="mb-4">
                         <form>
                             <h5 class="fw-bold">You have not enabled two factor authentication.</h5>
@@ -197,13 +244,22 @@
     <!-- Browser Sessions -->
     <div class="container mt-5">
         <div class="row">
+<<<<<<< HEAD
+            <div class="col-md-6">
+=======
             <div class="col-md-4">
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
                 <h5 class="fw-bold">Browser Sessions</h5>
                 <p class="text-muted">Manage and log out your active sessions on other browsers and devices.
                 </p>
             </div>
+<<<<<<< HEAD
+            <div class="col-md-6">
+                <div class="card mt-3 p-4">
+=======
             <div class="col-md-8">
                 <div class="card shadow-sm mt-3 p-4">
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
                     <div class="mb-4">
                         <form>
                             <p class="text-muted" style="text-align: justify;">
@@ -244,17 +300,29 @@
     <!-- Delete Account -->
     <div class="container mt-5 mb-5">
         <div class="row">
+<<<<<<< HEAD
+            <div class="col-md-6">
+=======
             <div class="col-md-4">
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
                 <h5 class="fw-bold">Delete Account</h5>
                 <p class="text-muted">Permanently delete your account.
                 </p>
             </div>
+<<<<<<< HEAD
+            <div class="col-md-6">
+                <div class="card mt-3 p-4">
+                    <div class="mb-4">
+                        <form>
+                            <p class="text-muted" style="text-align: justify;">Once your account is deleted, all of its
+=======
             <div class="col-md-8">
                 <div class="card shadow-sm mt-3 p-4">
                     <div class="mb-4">
                         <form>
                             <p class="text-muted" style="text-align: justify;">Once your account is deleted, all of
                                 its
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
                                 resources and data will be permanently deleted. Before deleting your account, please
                                 download any data or information that you wish to retain.
                             <div class="text-start mt-4">
@@ -271,4 +339,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> c596006583e8c89b68660a8128c60cb61a9a4221
