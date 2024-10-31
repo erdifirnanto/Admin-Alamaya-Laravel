@@ -359,9 +359,6 @@
                                            </div>
                                        </div>
                                    </div>
-
-
-
                                    <!-- Edit Client Modal -->
 
 
@@ -388,8 +385,6 @@
                                        <li><button class="dropdown-item sort-button" data-sort="client_name"
                                                data-order="asc">By Name</button></li>
                                    </ul>
-
-
                                    <!-- Add dropdown options here if needed -->
                                </div>
                            </div>
