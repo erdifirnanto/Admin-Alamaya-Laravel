@@ -389,7 +389,7 @@
                                                data-order="asc">By Name</button></li>
                                    </ul>
 
-                                   
+
                                    <!-- Add dropdown options here if needed -->
                                </div>
                            </div>
@@ -535,144 +535,152 @@
                            </thead>
                            <tbody>
                                @foreach ($clients as $client)
-                                   <tr style="height: 80px;">
-                                       <td><input type="checkbox" class="client-checkbox" value="{{ $client->id }}">
-                                       </td>
-                                       <td data-key="id">{{ $client->id }}</td>
-                                       <td data-key="client-name">{{ $client->client_name }}</td>
-                                       <td>
-                                           {{ $client->email }}
-                                           <span class="sort-icons toggle-chevron" aria-expanded="false"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px;">
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span>
-                                       </td>
-                                       <td>{{ $client->phone }}</td>
-                                       <td data-key="pic-name">{{ $client->pic_name }}</td>
-                                       <td data-key="product-category">{{ $client->product_category }}</td>
-                                       <td>
-                                           <div class="dropdown text-center">
-                                               <i class="bi bi-three-dots" data-bs-toggle="dropdown"
-                                                   aria-expanded="false" style="cursor: pointer;"></i>
-                                               <ul class="dropdown-menu">
-                                                   <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                           data-bs-target="#editClientModal-{{ $client->id }}">Edit</a>
-                                                   </li>
-                                               </ul>
-                                               {{-- Edit Data Client --}}
-                                               <div class="modal fade" id="editClientModal-{{ $client->id }}"
-                                                   tabindex="-1" aria-labelledby="editClientModalLabel"
-                                                   aria-hidden="true">
-                                                   <div class="modal-dialog modal-lg">
-                                                       <div class="modal-content">
-                                                           <div class="modal-header" style="display: block;">
-                                                               <h5 class="modal-title" id="editClientModalLabel">Edit Data
-                                                                   Client</h5>
-                                                               <p style="margin-top: 2px;"></p>
-                                                               <button type="button" class="btn-close"
-                                                                   data-bs-dismiss="modal" aria-label="Close"
-                                                                   style="position: absolute; right: 10px; top: 10px;"></button>
-                                                           </div>
+                                   <div data-key="id">
+                                       <tr style="height: 80px;">
+                                           <td style="align-content: center"><input type="checkbox" class="client-checkbox"
+                                                   value="{{ $client->id }}">
+                                           </td>
+                                           <td  style="align-content: center">{{ $client->id }}</td>
+                                           <td style="align-content: center" data-key="client-name">{{ $client->client_name }}</td>
+                                           <td style="align-content: center">
+                                               {{ $client->email }}
+                                               <span class="sort-icons toggle-chevron" aria-expanded="false"
+                                                   style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                                   <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               </span>
+                                           </td>
+                                           <td style="align-content: center">{{ $client->phone }}</td>
+                                           <td style="align-content: center" data-key="pic-name">{{ $client->pic_name }}</td>
+                                           <td style="align-content: center" data-key="product-category">{{ $client->product_category }}</td>
+                                           <td style="align-content: center" >
+                                               <div  class="dropdown text-center">
+                                                   <i class="bi bi-three-dots" data-bs-toggle="dropdown"
+                                                       aria-expanded="false" style="cursor: pointer;"></i>
+                                                   <ul class="dropdown-menu">
+                                                       <li><a class="dropdown-item" data-bs-toggle="modal"
+                                                               data-bs-target="#editClientModal-{{ $client->id }}">Edit</a>
+                                                       </li>
+                                                   </ul>
+                                                   {{-- Edit Data Client --}}
+                                                   <div class="modal fade" id="editClientModal-{{ $client->id }}"
+                                                       tabindex="-1" aria-labelledby="editClientModalLabel"
+                                                       aria-hidden="true">
+                                                       <div class="modal-dialog modal-lg">
+                                                           <div class="modal-content">
+                                                               <div class="modal-header" style="display: block;">
+                                                                   <h5 class="modal-title" id="editClientModalLabel">Edit
+                                                                       Data
+                                                                       Client</h5>
+                                                                   <p style="margin-top: 2px;"></p>
+                                                                   <button type="button" class="btn-close"
+                                                                       data-bs-dismiss="modal" aria-label="Close"
+                                                                       style="position: absolute; right: 10px; top: 10px;"></button>
+                                                               </div>
 
-                                                           <div class="modal-body">
-                                                               <form method="POST"
-                                                                   action="{{ route('clients.update', $client->id) }}">
-                                                                   @csrf
-                                                                   @method('PUT')
-                                                                   <!-- Client Name & Company Name -->
-                                                                   <div class="row mb-3">
-                                                                       <div class="col">
-                                                                           <label for="client_name" class="form-label"
-                                                                               style="font-size: 0.7em;">CLIENT
-                                                                               NAME</label>
+                                                               <div class="modal-body">
+                                                                   <form method="POST"
+                                                                       action="{{ route('clients.update', $client->id) }}">
+                                                                       @csrf
+                                                                       @method('PUT')
+                                                                       <!-- Client Name & Company Name -->
+                                                                       <div class="row mb-3">
+                                                                           <div class="col">
+                                                                               <label for="client_name" class="form-label"
+                                                                                   style="font-size: 0.7em;">CLIENT
+                                                                                   NAME</label>
+                                                                               <input type="text" class="form-control"
+                                                                                   id="client_name" name="client_name"
+                                                                                   value="{{ $client->client_name }}"
+                                                                                   placeholder="Enter the client name">
+                                                                           </div>
+                                                                           <div class="col">
+                                                                               <label for="company_name"
+                                                                                   class="form-label"
+                                                                                   style="font-size: 0.7em;">COMPANY
+                                                                                   NAME</label>
+                                                                               <input type="text" class="form-control"
+                                                                                   id="company_name" name="company_name"
+                                                                                   value="{{ $client->company_name }}"
+                                                                                   placeholder="Enter the company name">
+                                                                           </div>
+                                                                       </div>
+
+                                                                       <!-- PIC and Product Category -->
+                                                                       <div class="row mb-3">
+                                                                           <div class="col">
+                                                                               <label for="pic_name" class="form-label"
+                                                                                   style="font-size: 0.7em;">PIC</label>
+                                                                               <select class="form-select" id="pic_name"
+                                                                                   name="pic_name">
+                                                                                   <option value="{{ $client->pic_name }}"
+                                                                                       selected>{{ $client->pic_name }}
+                                                                                   </option>
+                                                                                   <option value="1">PIC 1</option>
+                                                                                   <option value="2">PIC 2</option>
+                                                                               </select>
+                                                                           </div>
+                                                                           <div class="col">
+                                                                               <label for="product_category"
+                                                                                   class="form-label"
+                                                                                   style="font-size: 0.7em;">CATEGORY
+                                                                                   PRODUCT</label>
+                                                                               <select class="form-select"
+                                                                                   id="product_category"
+                                                                                   name="product_category">
+                                                                                   <option
+                                                                                       value="{{ $client->product_category }}"
+                                                                                       selected>
+                                                                                       {{ $client->product_category }}
+                                                                                   </option>
+                                                                                   <option value="1">Category 1
+                                                                                   </option>
+                                                                                   <option value="2">Category 2
+                                                                                   </option>
+                                                                               </select>
+                                                                           </div>
+                                                                       </div>
+
+                                                                       <!-- Email & Phone -->
+                                                                       <div class="row mb-3">
+                                                                           <div class="col">
+                                                                               <label for="email" class="form-label"
+                                                                                   style="font-size: 0.7em;">EMAIL</label>
+                                                                               <input type="text" class="form-control"
+                                                                                   id="email" name="email"
+                                                                                   value="{{ $client->email }}"
+                                                                                   placeholder="Enter email client">
+                                                                           </div>
+                                                                           <div class="col">
+                                                                               <label for="phone" class="form-label"
+                                                                                   style="font-size: 0.7em;">PHONE</label>
+                                                                               <input type="text" class="form-control"
+                                                                                   id="phone" name="phone"
+                                                                                   value="{{ $client->phone }}"
+                                                                                   placeholder="Enter the client's phone number">
+                                                                           </div>
+                                                                       </div>
+
+                                                                       <!-- Address -->
+                                                                       <div class="mb-3">
+                                                                           <label for="address" class="form-label"
+                                                                               style="font-size: 0.7em;">ADDRESS</label>
                                                                            <input type="text" class="form-control"
-                                                                               id="client_name" name="client_name"
-                                                                               value="{{ $client->client_name }}"
-                                                                               placeholder="Enter the client name">
+                                                                               id="address" name="address"
+                                                                               value="{{ $client->address }}"
+                                                                               placeholder="Enter the client's company address">
                                                                        </div>
-                                                                       <div class="col">
-                                                                           <label for="company_name" class="form-label"
-                                                                               style="font-size: 0.7em;">COMPANY
-                                                                               NAME</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="company_name" name="company_name"
-                                                                               value="{{ $client->company_name }}"
-                                                                               placeholder="Enter the company name">
-                                                                       </div>
-                                                                   </div>
 
-                                                                   <!-- PIC and Product Category -->
-                                                                   <div class="row mb-3">
-                                                                       <div class="col">
-                                                                           <label for="pic_name" class="form-label"
-                                                                               style="font-size: 0.7em;">PIC</label>
-                                                                           <select class="form-select" id="pic_name"
-                                                                               name="pic_name">
-                                                                               <option value="{{ $client->pic_name }}"
-                                                                                   selected>{{ $client->pic_name }}
-                                                                               </option>
-                                                                               <option value="1">PIC 1</option>
-                                                                               <option value="2">PIC 2</option>
-                                                                           </select>
-                                                                       </div>
-                                                                       <div class="col">
-                                                                           <label for="product_category"
-                                                                               class="form-label"
-                                                                               style="font-size: 0.7em;">CATEGORY
-                                                                               PRODUCT</label>
-                                                                           <select class="form-select"
-                                                                               id="product_category"
-                                                                               name="product_category">
-                                                                               <option
-                                                                                   value="{{ $client->product_category }}"
-                                                                                   selected>{{ $client->product_category }}
-                                                                               </option>
-                                                                               <option value="1">Category 1</option>
-                                                                               <option value="2">Category 2</option>
-                                                                           </select>
-                                                                       </div>
-                                                                   </div>
-
-                                                                   <!-- Email & Phone -->
-                                                                   <div class="row mb-3">
-                                                                       <div class="col">
-                                                                           <label for="email" class="form-label"
-                                                                               style="font-size: 0.7em;">EMAIL</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="email" name="email"
-                                                                               value="{{ $client->email }}"
-                                                                               placeholder="Enter email client">
-                                                                       </div>
-                                                                       <div class="col">
-                                                                           <label for="phone" class="form-label"
-                                                                               style="font-size: 0.7em;">PHONE</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="phone" name="phone"
-                                                                               value="{{ $client->phone }}"
-                                                                               placeholder="Enter the client's phone number">
-                                                                       </div>
-                                                                   </div>
-
-                                                                   <!-- Address -->
-                                                                   <div class="mb-3">
-                                                                       <label for="address" class="form-label"
-                                                                           style="font-size: 0.7em;">ADDRESS</label>
-                                                                       <input type="text" class="form-control"
-                                                                           id="address" name="address"
-                                                                           value="{{ $client->address }}"
-                                                                           placeholder="Enter the client's company address">
-                                                                   </div>
-
-                                                                   <!-- Submit Button -->
-                                                                   <button type="submit"
-                                                                       class="btn btn-dark w-100">Update Client</button>
-                                                               </form>
+                                                                       <!-- Submit Button -->
+                                                                       <button type="submit"
+                                                                           class="btn btn-dark w-100">Update
+                                                                           Client</button>
+                                                                   </form>
+                                                               </div>
                                                            </div>
                                                        </div>
                                                    </div>
-                                               </div>
 
-                                               {{-- <script>
+                                                   {{-- <script>
                                                    // Assuming you have edit buttons with class "edit-btn" and data attributes for the client
                                                    document.querySelectorAll('.edit-btn').forEach(button => {
                                                        button.addEventListener('click', function() {
@@ -706,28 +714,29 @@
                                                    });
                                                </script> --}}
 
-                                           </div>
-                                       </td>
-                                   </tr>
-                                   <tr class="collapse-row" style="display: none;">
-                                       <td></td>
-                                       <td colspan="2">
-                                           <div class="collapse-content"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $client->company_name }}</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $client->company_name }}')"></i>
-                                           </div>
-                                       </td>
-                                       <td colspan="6">
-                                           <div class="collapse-content1"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $client->address }}</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $client->address }}')"></i>
-                                           </div>
-                                       </td>
-                                   </tr>
+                                               </div>
+                                           </td>
+                                       </tr>
+                                       <tr class="collapse-row" style="display: none;">
+                                           <td></td>
+                                           <td colspan="2">
+                                               <div class="collapse-content"
+                                                   style="overflow: hidden; height: 0; transition: height 0.5s ease;">
+                                                   <span>{{ $client->company_name }}</span>
+                                                   <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                                                       onclick="copyText('{{ $client->company_name }}')"></i>
+                                               </div>
+                                           </td>
+                                           <td colspan="6">
+                                               <div class="collapse-content1"
+                                                   style="overflow: hidden; height: 0; transition: height 0.5s ease;">
+                                                   <span>{{ $client->address }}</span>
+                                                   <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                                                       onclick="copyText('{{ $client->address }}')"></i>
+                                               </div>
+                                           </td>
+                                       </tr>
+                                   </div>
                                @endforeach
                            </tbody>
                        </table>

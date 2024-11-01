@@ -43,8 +43,7 @@
                                 </span>
                                 <!-- Dropdown Menu untuk Notifikasi -->
                                 <ul id="notifDropdown" class="dropdown-menu dropdown-menu-end"
-                                    style="display: none; position: absolute; background: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; z-index: 1000;     top: 70px;
-    right: 0px;">
+                                    style="display: none; position: absolute; background: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; z-index: 1000; top: 70px; right: 0px;">
                                     <li>
                                         <p class="text-muted" style="margin-left: 15px; font-size: small;">Notifikasi
                                         </p>
@@ -59,7 +58,7 @@
                         </li>
 
 
-                        {{-- <script>
+                        <script>
                             function tampil_button_notif() {
                                 // Data dummy untuk jumlah notifikasi
                                 const data = {
@@ -102,7 +101,7 @@
                                     }
                                 });
                             });
-                        </script> --}}
+                        </script>
 
 
 
@@ -120,15 +119,16 @@
                             aria-expanded="false" style="border: none; background: none; padding: 0;">
                             <li class="d-flex justify-content-center align-items-center user-icon"
                                 style="width: 40px; height: 40px; border: solid 1px; color: white; list-style: none;">
-                                <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"
-                                    class="user-photo img-fluid" style="cursor: pointer;">
+                                <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
+                                    alt="{{ Auth::user()->name }}" class="user-photo img-fluid"
+                                    style="cursor: pointer;">
                             </li>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
                             style="top: 150%;">
                             <li class="user-info text-center">
-                                <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"
-                                    class="profile-picture">
+                                <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
+                                    alt="{{ Auth::user()->name }}" class="profile-picture">
                                 <h6>{{ Auth::user()->name }}</h6> {{-- Nama user --}}
                                 <p class="email">{{ Auth::user()->email }}</p> {{-- Email user --}}
                                 <span class="badge bg-secondary">{{ Auth::user()->role ?? 'User' }}</span>
