@@ -22,7 +22,7 @@
                     </div>
 
                     <div class="d-flex justify-content-center mt-4">
-                        <form method="POST" action="{{ route('login') }}" style="width: 21rem;">
+                        <form method="POST" action="{{ route('admin.add-account') }}" style="width: 21rem;">
                             @csrf
                             <div class="mb-3">
                                 <label for="name" class="form-label"><strong>Name</strong></label>
@@ -43,31 +43,34 @@
                                 @enderror
                             </div>
                             <div class="mb-3 position-relative">
-    <label for="password" class="form-label"><strong>Password</strong></label>
-    <input type="password" name="password"
-           class="form-control @error('password') is-invalid @enderror" id="password"
-           required>
-    <!-- Set initial class for icon -->
-    <i class="fas fa-eye-slash position-absolute" id="togglePassword"
-       style="top: 60%; right: 10px; cursor: pointer;"></i>
-    @error('password')
-        <div id="passwordHelp" class="form-text text-danger">{{ $message }}</div>
-    @enderror
-</div>
+                                <label for="password" class="form-label"><strong>Password</strong></label>
+                                <input type="password" name="password"
+                                    class="form-control @error('password') is-invalid @enderror" id="password"
+                                    required>
+                                <!-- Set initial class for icon -->
+                                <i class="fas fa-eye-slash position-absolute" id="togglePassword"
+                                    style="top: 60%; right: 10px; cursor: pointer;"></i>
+                                @error('password')
+                                    <div id="passwordHelp" class="form-text text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
                             <div class="mb-3 position-relative">
-    <label for="password_confirmation" class="form-label"><strong>Confirm Password</strong></label>
-    <input type="password" name="password_confirmation"
-           class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation"
-           required>
-    <!-- Set initial class for icon -->
-    <i class="fas fa-eye-slash position-absolute" id="toggleConfirmPassword"
-       style="top: 60%; right: 10px; cursor: pointer;"></i>
-    @error('password_confirmation')
-        <div id="passwordConfirmationHelp" class="form-text text-danger">{{ $message }}</div>
-    @enderror
-</div>
+                                <label for="password_confirmation" class="form-label"><strong>Confirm
+                                        Password</strong></label>
+                                <input type="password" name="password_confirmation"
+                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                    id="password_confirmation" required>
+                                <!-- Set initial class for icon -->
+                                <i class="fas fa-eye-slash position-absolute" id="toggleConfirmPassword"
+                                    style="top: 60%; right: 10px; cursor: pointer;"></i>
+                                @error('password_confirmation')
+                                    <div id="passwordConfirmationHelp" class="form-text text-danger">{{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
 
-                            <button type="submit" class="btn btn-dark col-12" style="height: 50px;">Tambah Akun</button>
+                            <button type="submit" class="btn btn-dark col-12" style="height: 50px;">Tambah
+                                Akun</button>
                         </form>
                     </div>
                 </div>
@@ -97,21 +100,21 @@
                 }
             })
 
-        // Toggle password visibility for the confirmation password field
-        $('#toggleConfirmPassword').click(function() {
-            const confirmPasswordField = $('#password_confirmation');
-            const toggleIcon = $(this);
+            // Toggle password visibility for the confirmation password field
+            $('#toggleConfirmPassword').click(function() {
+                const confirmPasswordField = $('#password_confirmation');
+                const toggleIcon = $(this);
 
-            // Toggle password visibility and icon class
-            if (confirmPasswordField.attr('type') === 'password') {
-                confirmPasswordField.attr('type', 'text');
-                toggleIcon.removeClass('fa-eye-slash').addClass('fa-eye');
-            } else {
-                confirmPasswordField.attr('type', 'password');
-                toggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
-            }
+                // Toggle password visibility and icon class
+                if (confirmPasswordField.attr('type') === 'password') {
+                    confirmPasswordField.attr('type', 'text');
+                    toggleIcon.removeClass('fa-eye-slash').addClass('fa-eye');
+                } else {
+                    confirmPasswordField.attr('type', 'password');
+                    toggleIcon.removeClass('fa-eye').addClass('fa-eye-slash');
+                }
+            });
         });
-    });
     </script>
 
 </body>

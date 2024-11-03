@@ -4,7 +4,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-transparent border-bottom p-0">
             <div class="container">
                 <span class="navbar-brand p-0 m-0">
-                    <img src="{{ asset('images/logo_alamaya.png') }}" height="30" style="margin: 35px 0px;">
+                    <a href="/"><img src="{{ asset('images/logo_alamaya.png') }}" height="30"
+                            style="margin: 35px 0px;"></a>
                 </span>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -14,13 +15,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <b><a class="nav-link" href="{{ url('homepage') }}">Client</a></b>
+                            <b><a class="nav-link" href="/">Client</a></b>
                         </li>
                         <li class="nav-item">
-                            <b><a class="nav-link" href="{{ url('alamayaprojectpage') }}">Project</a></b>
+                            <b><a class="nav-link" href="{{ route('project.view') }}">Project</a></b>
                         </li>
                         <li class="nav-item">
-                            <b><a class="nav-link" href="{{ url('domainpage') }}">Domain</a></b>
+                            <b><a class="nav-link" href="{{ route('domain.view') }}">Domain</a></b>
                         </li>
                         <li class="nav-item">
                             <b><a class="nav-link" href="{{ url('alamayateamspage') }}">Teams</a></b>
@@ -48,11 +49,12 @@
                                         <p class="text-muted" style="margin-left: 15px; font-size: small;">Notifikasi
                                         </p>
                                     </li>
-                                    @foreach ($clients as $client)
+                                    {{-- nanti diisi ya --}}
+                                    {{-- @foreach ($clients as $client)
                                         <li id="">
                                             {{ $client->client_name }}
                                         </li> <!-- Tempat untuk menampilkan isi notifikasi -->
-                                    @endforeach
+                                    @endforeach --}}
                                 </ul>
                             </div>
                         </li>

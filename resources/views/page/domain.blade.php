@@ -192,7 +192,7 @@
                    <div class="row">
                        <div class="col-12 col-md-12">
                            <div class="d-flex justify-content-center" style="margin-bottom: 50px;">
-                               <h1>Alamaya Client</h1>
+                               <h1>Domain</h1>
                            </div>
                        </div>
                    </div>
@@ -468,20 +468,19 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Client Name
-                                           <span class="sort-icons sort-button" data-sort="client-name" data-order="asc"
+                                           Project Name
+                                           <span class="sort-icons sort-button" data-sort="project-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </span>
                                    </th>
-                                   <th>Email</th>
-                                   <th>Phone</th>
+
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           PIC
-                                           <span class="sort-icons sort-button" data-sort="pic-name" data-order="asc"
+                                           Domain
+                                           <span class="sort-icons sort-button" data-sort="domain" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
@@ -490,9 +489,8 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Category
-                                           <span class="sort-icons sort-button" data-sort="product-category"
-                                               data-order="asc"
+                                           Expired
+                                           <span class="sort-icons sort-button" data-sort="expired" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
@@ -501,7 +499,6 @@
                                    </th>
                                    <th>Action</th>
                                </tr>
-
                                <script>
                                    document.querySelectorAll('.sort-button').forEach(button => {
                                        button.addEventListener('click', function() {
@@ -534,54 +531,51 @@
                                </script>
                            </thead>
                            <tbody>
-                               @foreach ($clients as $client)
+                               @foreach ($domains as $domain)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
-                                               value="{{ $client->id }}">
+                                               value="{{ $domain->id }}">
                                        </td>
-                                       <td style="align-content: center">{{ $client->id }}</td>
+                                       <td style="align-content: center">{{ $domain->id }}</td>
                                        <td style="align-content: center" data-key="client-name">
-                                           {{ $client->client_name }}</td>
-                                       <td style="align-content: center">
-                                           {{ $client->email }}
-                                           <span class="sort-icons toggle-chevron" aria-expanded="false"
+                                           {{ $domain->project_name }}</td>
+                                       <td style="align-content: center" data-key="product-category">
+                                           {{ $domain->domain }}
+                                           {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span>
+                                           </span> --}}
                                        </td>
-                                       <td style="align-content: center">{{ $client->phone }}</td>
-                                       <td style="align-content: center" data-key="pic-name">{{ $client->pic_name }}
+                                       <td style="align-content: center" data-key="pic-name">{{ $domain->expired }}
                                        </td>
-                                       <td style="align-content: center" data-key="product-category">
-                                           {{ $client->product_category }}</td>
                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
                                                <i class="bi bi-three-dots" data-bs-toggle="dropdown"
                                                    aria-expanded="false" style="cursor: pointer;"></i>
                                                <ul class="dropdown-menu">
                                                    <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                           data-bs-target="#editClientModal-{{ $client->id }}">Edit</a>
+                                                           data-bs-target="#editDomainModal-{{ $domain->id }}">Edit</a>
                                                    </li>
                                                </ul>
-                                               {{-- Edit Data Client --}}
-                                               <div class="modal fade" id="editClientModal-{{ $client->id }}"
-                                                   tabindex="-1" aria-labelledby="editClientModalLabel"
+                                               {{-- Edit Data Domain --}}
+                                               <div class="modal fade" id="editDomainModal-{{ $domains->id }}"
+                                                   tabindex="-1" aria-labelledby="editDomainModalLabel"
                                                    aria-hidden="true">
                                                    <div class="modal-dialog modal-lg">
                                                        <div class="modal-content">
                                                            <div class="modal-header" style="display: block;">
-                                                               <h5 class="modal-title" id="editClientModalLabel">Edit
+                                                               <h5 class="modal-title" id="editDomainModalLabel">Edit
                                                                    Data
-                                                                   Client</h5>
+                                                                   Project</h5>
                                                                <p style="margin-top: 2px;"></p>
                                                                <button type="button" class="btn-close"
                                                                    data-bs-dismiss="modal" aria-label="Close"
                                                                    style="position: absolute; right: 10px; top: 10px;"></button>
                                                            </div>
 
-                                                           <div class="modal-body">
+                                                           {{-- <div class="modal-body">
                                                                <form method="POST"
-                                                                   action="{{ route('clients.update', $client->id) }}">
+                                                                   action="{{ route('clients.update', $project->id) }}">
                                                                    @csrf
                                                                    @method('PUT')
                                                                    <!-- Client Name & Company Name -->
@@ -674,9 +668,9 @@
                                                                    <!-- Submit Button -->
                                                                    <button type="submit"
                                                                        class="btn btn-dark w-100">Update
-                                                                       Client</button>
+                                                                       Project</button>
                                                                </form>
-                                                           </div>
+                                                           </div> --}}
                                                        </div>
                                                    </div>
                                                </div>
@@ -710,7 +704,7 @@
                                                            document.getElementById('editClientForm').action = formAction;
 
                                                            // Show the modal
-                                                           $('#editClientModal').modal('show');
+                                                           $('#editProjectModal').modal('show');
                                                        });
                                                    });
                                                </script> --}}
@@ -718,7 +712,7 @@
                                            </div>
                                        </td>
                                    </tr>
-                                   <tr class="collapse-row" style="display: none;">
+                                   {{-- <tr class="collapse-row" style="display: none;">
                                        <td></td>
                                        <td colspan="2">
                                            <div class="collapse-content"
@@ -736,7 +730,7 @@
                                                    onclick="copyText('{{ $client->address }}')"></i>
                                            </div>
                                        </td>
-                                   </tr>
+                                   </tr> --}}
                                @endforeach
                            </tbody>
                        </table>
@@ -746,7 +740,7 @@
                        <nav aria-label="Page navigation">
                            <ul class="pagination justify-content-end" style="align-items: center;">
                                <!-- Tombol Previous -->
-                               @if ($clients->onFirstPage())
+                               @if ($domains->onFirstPage())
                                    <li class="page-item disabled">
                                        <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
@@ -754,7 +748,7 @@
                                    </li>
                                @else
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $clients->previousPageUrl() }}"
+                                       <a class="page-link" href="{{ $domains->previousPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
                                        </a>
@@ -762,16 +756,16 @@
                                @endif
 
                                <!-- Tombol Angka Halaman -->
-                               @for ($i = 1; $i <= $clients->lastPage(); $i++)
-                                   <li class="page-item {{ $clients->currentPage() == $i ? 'active' : '' }}">
-                                       <a class="page-link1" href="{{ $clients->url($i) }}">{{ $i }}</a>
+                               @for ($i = 1; $i <= $domains->lastPage(); $i++)
+                                   <li class="page-item {{ $domains->currentPage() == $i ? 'active' : '' }}">
+                                       <a class="page-link1" href="{{ $domains->url($i) }}">{{ $i }}</a>
                                    </li>
                                @endfor
 
                                <!-- Tombol Next -->
-                               @if ($clients->hasMorePages())
+                               @if ($domains->hasMorePages())
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $clients->nextPageUrl() }}"
+                                       <a class="page-link" href="{{ $domains->nextPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-right"></i>
                                        </a>

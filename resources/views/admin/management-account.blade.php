@@ -9,36 +9,43 @@
 </head>
 
 <body>
-    <div class="container mt-5">
-        <h2>Account Management</h2>
-        <table class="table table-striped mt-3">
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($users as $user)
+    <x-app-layout>
+        <x-slot name="header">
+
+        </x-slot>
+        <div class="container mt-5">
+            <h1> <strong> <b>Account Management </b></strong> </h1>
+            <table class="table table-striped mt-3 shadow-sm">
+                <thead>
                     <tr>
-                        <td>{{ $user->name }}</td>
-                        <td>{{ $user->email }}</td>
-                        <td>
-                            <form action="{{ route('account.destroy', $user->id) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm"
-                                    onclick="return confirm('Are you sure you want to delete this account?');">
-                                    Delete
-                                </button>
-                            </form>
-                        </td>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Actions</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
+                </thead>
+                <tbody>
+                    @foreach ($users as $user)
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td>
+                                <form action="{{ route('account.destroy', $user->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm"
+                                        onclick="return confirm('Are you sure you want to delete this account?');">
+                                        Delete
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        @include('layouts.footer')
+    </x-app-layout>
 </body>
+
 
 </html>
