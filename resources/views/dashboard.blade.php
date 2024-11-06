@@ -761,12 +761,44 @@
                                    </li>
                                @endif
 
-                               <!-- Tombol Angka Halaman -->
-                               @for ($i = 1; $i <= $clients->lastPage(); $i++)
-                                   <li class="page-item {{ $clients->currentPage() == $i ? 'active' : '' }}">
-                                       <a class="page-link1" href="{{ $clients->url($i) }}">{{ $i }}</a>
+                               <!-- Tombol Angka Halaman dengan Batas 10 -->
+                               @if ($clients->lastPage() > 10)
+                                   <!-- Tampilkan halaman pertama -->
+                                   <li class="page-item {{ $clients->currentPage() == 1 ? 'active' : '' }}">
+                                       <a class="page-link1" href="{{ $clients->url(1) }}">1</a>
                                    </li>
-                               @endfor
+
+                                   @if ($clients->currentPage() > 5)
+                                       <!-- Tambahkan titik tiga jika halaman saat ini lebih dari 5 -->
+                                       <li class="page-item disabled"><span class="page-link1">...</span></li>
+                                   @endif
+
+                                   <!-- Loop untuk menampilkan 5 halaman di sekitar halaman saat ini -->
+                                   @for ($i = max(2, $clients->currentPage() - 2); $i <= min($clients->lastPage() - 1, $clients->currentPage() + 2); $i++)
+                                       <li class="page-item {{ $clients->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $clients->url($i) }}">{{ $i }}</a>
+                                       </li>
+                                   @endfor
+
+                                   @if ($clients->currentPage() < $clients->lastPage() - 4)
+                                       <!-- Tambahkan titik tiga jika halaman saat ini kurang dari halaman terakhir - 4 -->
+                                       <li class="page-item disabled"><span class="page-link1">...</span></li>
+                                   @endif
+
+                                   <!-- Tampilkan halaman terakhir -->
+                                   <li
+                                       class="page-item {{ $clients->currentPage() == $clients->lastPage() ? 'active' : '' }}">
+                                       <a class="page-link1"
+                                           href="{{ $clients->url($clients->lastPage()) }}">{{ $clients->lastPage() }}</a>
+                                   </li>
+                               @else
+                                   <!-- Jika halaman kurang dari atau sama dengan 10, tampilkan semua halaman -->
+                                   @for ($i = 1; $i <= $clients->lastPage(); $i++)
+                                       <li class="page-item {{ $clients->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $clients->url($i) }}">{{ $i }}</a>
+                                       </li>
+                                   @endfor
+                               @endif
 
                                <!-- Tombol Next -->
                                @if ($clients->hasMorePages())
@@ -785,6 +817,7 @@
                                @endif
                            </ul>
                        </nav>
+
                    </div>
                </div>
            </div>

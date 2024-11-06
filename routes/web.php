@@ -74,6 +74,7 @@ Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clie
 // route data project
 Route::resource('project', ProjectController::class);
 Route::get('/project', [ProjectController::class, 'View'])->name('project.view');
+Route::post('/project/store', [ProjectController::class, 'Pstore'])->name('projects.store');
 
 // 
 Route::resource('domain', DomainController::class);

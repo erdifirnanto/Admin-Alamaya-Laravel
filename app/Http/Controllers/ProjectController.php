@@ -30,4 +30,28 @@ class ProjectController extends Controller
         }
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
     }
+
+    public function Pstore(Request $request)
+    {
+
+        $request->validate([
+            'project_name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'pic_name' => 'required|string|max:255',
+            'tanggal_masuk_project' => 'required|date',
+            'deadline' => 'required|date',
+        ]);
+        // dd($request);
+        // Simpan data ke database
+        Project::create([
+            'project_name' => $request['project_name'],
+            'category' => $request['category'],
+            'pic_name' => $request['pic_name'],
+            'tanggal_masuk_project' => $request['tanggal_masuk_project'],
+            'deadline' => $request['deadline'],
+        ]);
+
+        return redirect()->route('project.view')->with('success', 'Project berhasil ditambahkan.');
+        // return redirect()->back()->with('success', 'Client has been added successfu/lly');
+    }
 }

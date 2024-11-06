@@ -43,7 +43,9 @@
                 </tbody>
             </table>
         </div>
-        @include('layouts.footer')
+        <section class="fixed-bottom">
+            @include('layouts.footer')
+        </section>
     </x-app-layout>
 </body>
 
