@@ -4,8 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\DomainController;
+use App\Models\Domain;
+use App\Models\Project;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Route as RoutingRoute;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +61,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::delete('/account-management/{user}', [AdminAccountController::class, 'destroy'])->name('account.destroy');
     });
 
-// fungsi data clients
+// route data clients
 Route::resource('clients', ClientController::class);
 Route::post('/clients/store', [ClientController::class, 'Cstore'])->name('clients.store');
 Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
@@ -64,3 +69,13 @@ Route::post('/clients/delete-multiple', [ClientController::class, 'deleteMultipl
 Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
 Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update');
 Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
+
+
+// route data project
+Route::resource('project', ProjectController::class);
+Route::get('/project', [ProjectController::class, 'View'])->name('project.view');
+Route::post('/project/store', [ProjectController::class, 'Pstore'])->name('projects.store');
+
+// 
+Route::resource('domain', DomainController::class);
+Route::get('/domain', [DomainController::class, 'View'])->name('domain.view');

@@ -13,8 +13,9 @@ class AdminSeeder extends Seeder
         User::create([
             'name' => 'ini isi nama admin',
             'email' => 'admin@alamaya.com',
-            'password' => Hash::make('password'), // Pastikan ganti password ini
+            'password' => Hash::make('password'),
             'role' => 'admin',
+            'profile_photo_path' => null, // Tambahkan ini
         ]);
     }
 }

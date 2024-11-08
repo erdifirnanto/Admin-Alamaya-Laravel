@@ -192,7 +192,7 @@
                    <div class="row">
                        <div class="col-12 col-md-12">
                            <div class="d-flex justify-content-center" style="margin-bottom: 50px;">
-                               <h1>Alamaya Client</h1>
+                               <h1>Alamaya Projects</h1>
                            </div>
                        </div>
                    </div>
@@ -247,95 +247,86 @@
                                    </script>
 
 
-                                   <!-- Add Client Button -->
-                                   <button class="btn btn-add-client btn1hvr" data-bs-toggle="modal"
-                                       data-bs-target="#addClientModal">Add
-                                       Client <i class="fa fa-plus"></i>
+                                   <!-- Add Project Button -->
+                                   <button class="btn btn-add-project btn1hvr" data-bs-toggle="modal"
+                                       data-bs-target="#addProjectModal">Add
+                                       Project <i class="fa fa-plus"></i>
                                    </button>
 
-                                   <!-- Add Client Modal -->
-                                   <div class="modal fade" id="addClientModal" tabindex="-1"
-                                       aria-labelledby="addClientModalLabel" aria-hidden="true">
-                                       <div class="modal-dialog modal-lg">
+                                   <!-- Add Project Modal -->
+                                   <div class="modal fade" id="addProjectModal" tabindex="-1"
+                                       aria-labelledby="addProjectModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
                                            <div class="modal-content">
-                                               <div class="modal-header" style="display: block;">
-                                                   <h5 class="modal-title" id="addClientModalLabel">Add Client</h5>
-                                                   <p style="margin-top: 2px;">Fill in some details to start adding
-                                                       clients</p>
+                                               <div class="modal-header">
+                                                   <h5 class="modal-title" id="addProjectModalLabel">Add
+                                                       Project</h5>
                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                       aria-label="Close"
-                                                       style="position: absolute; right: 10px; top: 10px;"></button>
+                                                       aria-label="Close"></button>
                                                </div>
-
                                                <div class="modal-body">
-                                                   <form method="POST" action="{{ route('clients.store') }}">
+                                                   <form method="POST" action="{{ route('projects.store') }}">
                                                        @csrf
-                                                       <!-- Client Name & Company Name -->
+                                                       <!-- Project Name -->
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="client_name" class="form-label"
-                                                                   style="font-size: 0.7em;">CLIENT NAME</label>
+                                                               <label name="project_name" for="project_name"
+                                                                   id="project_name" class="form-label">Project
+                                                                   Name</label>
                                                                <input type="text" class="form-control"
-                                                                   id="client_name" name="client_name"
-                                                                   placeholder="Enter the client name">
-                                                           </div>
-                                                           <div class="col">
-                                                               <label for="company_name" class="form-label"
-                                                                   style="font-size: 0.7em;">COMPANY NAME</label>
-                                                               <input type="text" class="form-control"
-                                                                   id="company_name" name="company_name"
-                                                                   placeholder="Enter the company name">
+                                                                   name="project_name" for="project_name"
+                                                                   id="project_name" placeholder="Enter the Project Name">
                                                            </div>
                                                        </div>
 
                                                        <!-- PIC and Product Category -->
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="pic_name" class="form-label"
-                                                                   style="font-size: 0.7em;">PIC</label>
-                                                               <select class="form-select" id="pic_name"
-                                                                   name="pic_name">
+                                                               <label name="category" for="category" id="category"
+                                                                   class="form-label">Category
+                                                                   Product</label>
+                                                               <select class="form-select" name="category" for="category"
+                                                                   id="category">
+                                                                   <option selected>Select a Product
+                                                                       category</option>
+                                                                   <option value="1">Category 1</option>
+                                                                   <option value="2">Category 2</option>
+                                                               </select>
+                                                           </div>
+                                                           <div class="col">
+                                                               <label name="pic_name" for="pic_name" id="pic_name"
+                                                                   class="form-label">PIC</label>
+                                                               <select class="form-select" name="pic_name" for="pic_name"
+                                                                   id="pic_name">
                                                                    <option selected>Select the PIC name</option>
                                                                    <option value="1">PIC 1</option>
                                                                    <option value="2">PIC 2</option>
                                                                </select>
                                                            </div>
-                                                           <div class="col">
-                                                               <label for="product_category" class="form-label"
-                                                                   style="font-size: 0.7em;">CATEGORY PRODUCT</label>
-                                                               <select class="form-select" id="product_category"
-                                                                   name="product_category">
-                                                                   <option selected>Select a Product category</option>
-                                                                   <option value="1">Category 1</option>
-                                                                   <option value="2">Category 2</option>
-                                                               </select>
-                                                           </div>
                                                        </div>
 
-                                                       <!-- Email & Phone -->
+                                                       <!-- Tanggal Project Masuk -->
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="email" class="form-label"
-                                                                   style="font-size: 0.7em;">EMAIL</label>
-                                                               <input type="text" class="form-control" id="email"
-                                                                   name="email" placeholder="Enter email client">
-                                                           </div>
-                                                           <div class="col">
-                                                               <label for="phone" class="form-label"
-                                                                   style="font-size: 0.7em;">PHONE</label>
-                                                               <input type="text" class="form-control" id="phone"
-                                                                   name="phone"
-                                                                   placeholder="Enter the client's phone number">
+                                                               <label id="tanggal_masuk_project"
+                                                                   name="tanggal_masuk_project"
+                                                                   for="tanggal_masuk_project" class="form-label">Tanggal
+                                                                   Project
+                                                                   Masuk</label>
+                                                               <input name="tanggal_masuk_project"
+                                                                   for="tanggal_masuk_project" type="date"
+                                                                   class="form-control" id="tanggal_masuk_project"
+                                                                   placeholder="Tanggal project masuk">
                                                            </div>
                                                        </div>
 
-                                                       <!-- Address -->
+                                                       <!-- Deadline -->
                                                        <div class="mb-3">
-                                                           <label for="address" class="form-label"
-                                                               style="font-size: 0.7em;">ADDRESS</label>
-                                                           <input type="text" class="form-control" id="address"
-                                                               name="address"
-                                                               placeholder="Enter the client's company address">
+                                                           <label name="deadline" for="deadline" id="deadline"
+                                                               class="form-label">Deadline</label>
+                                                           <input name="deadline" for="deadline" type="date"
+                                                               class="form-control" id="deadline"
+                                                               placeholder="Enter the project Deadline">
                                                        </div>
 
                                                        <!-- Disclaimer -->
@@ -343,27 +334,25 @@
                                                            <input type="checkbox" class="form-check-input"
                                                                id="termsCheck">
                                                            <label class="form-check-label" for="termsCheck">
-                                                               By registering, you agree to the terms and conditions that
-                                                               apply. Check again and make sure the form is completely
-                                                               filled out.
+                                                               By registering, you agree to the terms and
+                                                               conditions that apply.
                                                            </label>
                                                        </div>
+
+                                                       <div class="form-text mb-3">Check again and make
+                                                           sure the form is completely filled out</div>
 
                                                        <!-- Submit Button -->
                                                        <button type="submit" class="btn btn-dark w-100"
                                                            onclick="showAlert()">Add
-                                                           Client</button>
+                                                           Project</button>
                                                    </form>
-
                                                </div>
                                            </div>
                                        </div>
                                    </div>
 
-
-
-                                   <!-- Edit Client Modal -->
-
+                                   {{-- End Add Project Modal --}}
 
                                    {{-- @if (session('success'))
                                        <div class="alert alert-success">
@@ -385,7 +374,7 @@
                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                        <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc">By
                                                ID</button></li>
-                                       <li><button class="dropdown-item sort-button" data-sort="client_name"
+                                       <li><button class="dropdown-item sort-button" data-sort="project_name"
                                                data-order="asc">By Name</button></li>
                                    </ul>
 
@@ -458,7 +447,7 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           No. Id
+                                           Project Id
                                            <span class="sort-icons sort-button" data-sort="id" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
@@ -468,7 +457,7 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Client Name
+                                           Project Name
                                            <span class="sort-icons sort-button" data-sort="client-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
@@ -476,8 +465,18 @@
                                            </span>
                                        </span>
                                    </th>
-                                   <th>Email</th>
-                                   <th>Phone</th>
+
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
+                                           Category
+                                           <span class="sort-icons sort-button" data-sort="product-category"
+                                               data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                           </span>
+                                       </span>
+                                   </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            PIC
@@ -490,9 +489,19 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Category
-                                           <span class="sort-icons sort-button" data-sort="product-category"
+                                           Tanggal Masuk Project
+                                           <span class="sort-icons sort-button" data-sort="tanggal-masuk-project"
                                                data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                           </span>
+                                       </span>
+                                   </th>
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
+                                           Deadline
+                                           <span class="sort-icons sort-button" data-sort="deadline" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
@@ -534,65 +543,66 @@
                                </script>
                            </thead>
                            <tbody>
-                               @foreach ($clients as $client)
+                               @foreach ($projects as $project)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
-                                               value="{{ $client->id }}">
+                                               value="{{ $project->id }}">
                                        </td>
-                                       <td style="align-content: center">{{ $client->id }}</td>
+                                       <td style="align-content: center">{{ $project->id }}</td>
                                        <td style="align-content: center" data-key="client-name">
-                                           {{ $client->client_name }}</td>
-                                       <td style="align-content: center">
-                                           {{ $client->email }}
-                                           <span class="sort-icons toggle-chevron" aria-expanded="false"
+                                           {{ $project->project_name }}</td>
+                                       <td style="align-content: center" data-key="product-category">
+                                           {{ $project->category }}
+                                           {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span>
+                                           </span> --}}
                                        </td>
-                                       <td style="align-content: center">{{ $client->phone }}</td>
-                                       <td style="align-content: center" data-key="pic-name">{{ $client->pic_name }}
+                                       <td style="align-content: center" data-key="pic-name">{{ $project->pic_name }}
                                        </td>
-                                       <td style="align-content: center" data-key="product-category">
-                                           {{ $client->product_category }}</td>
+                                       <td style="align-content: center">
+                                           {{ $project->tanggal_masuk_project }}</td>
+                                       <td style="align-content: center">
+                                           {{ $project->deadline }}</td>
                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
                                                <i class="bi bi-three-dots" data-bs-toggle="dropdown"
                                                    aria-expanded="false" style="cursor: pointer;"></i>
                                                <ul class="dropdown-menu">
                                                    <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                           data-bs-target="#editClientModal-{{ $client->id }}">Edit</a>
+                                                           data-bs-target="#editProjectModal-{{ $project->id }}">Edit</a>
                                                    </li>
                                                </ul>
-                                               {{-- Edit Data Client --}}
-                                               <div class="modal fade" id="editClientModal-{{ $client->id }}"
-                                                   tabindex="-1" aria-labelledby="editClientModalLabel"
+                                               {{-- Edit Data Project --}}
+                                               <div class="modal fade" id="editProjectModal-{{ $project->id }}"
+                                                   tabindex="-1" aria-labelledby="editProjectModalLabel"
                                                    aria-hidden="true">
                                                    <div class="modal-dialog modal-lg">
                                                        <div class="modal-content">
                                                            <div class="modal-header" style="display: block;">
-                                                               <h5 class="modal-title" id="editClientModalLabel">Edit
+                                                               <h5 class="modal-title" id="editProjectModalLabel">Edit
                                                                    Data
-                                                                   Client</h5>
+                                                                   Project</h5>
                                                                <p style="margin-top: 2px;"></p>
                                                                <button type="button" class="btn-close"
                                                                    data-bs-dismiss="modal" aria-label="Close"
                                                                    style="position: absolute; right: 10px; top: 10px;"></button>
                                                            </div>
 
-                                                           <div class="modal-body">
+                                                           {{-- <div class="modal-body">
                                                                <form method="POST"
-                                                                   action="{{ route('clients.update', $client->id) }}">
+                                                                   action="{{ route('clients.update', $project->id) }}">
                                                                    @csrf
                                                                    @method('PUT')
                                                                    <!-- Client Name & Company Name -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="client_name" class="form-label"
+                                                                           <label for="project_name" class="form-label"
                                                                                style="font-size: 0.7em;">CLIENT
                                                                                NAME</label>
                                                                            <input type="text" class="form-control"
-                                                                               id="client_name" name="client_name"
-                                                                               value="{{ $client->client_name }}"
+                                                                               id="project_name" name="project_name"
+                                                                               value="{{ $client->project_name }}"
                                                                                placeholder="Enter the client name">
                                                                        </div>
                                                                        <div class="col">
@@ -674,9 +684,9 @@
                                                                    <!-- Submit Button -->
                                                                    <button type="submit"
                                                                        class="btn btn-dark w-100">Update
-                                                                       Client</button>
+                                                                       Project</button>
                                                                </form>
-                                                           </div>
+                                                           </div> --}}
                                                        </div>
                                                    </div>
                                                </div>
@@ -688,18 +698,18 @@
                                                            const clientId = this.getAttribute('data-id');
                                                            const clientName = this.getAttribute('data-client-name');
                                                            const companyName = this.getAttribute('data-company-name');
-                                                           const picName = this.getAttribute('data-pic-name');
-                                                           const productCategory = this.getAttribute('data-product-category');
+                                                           const pic_name = this.getAttribute('data-pic-name');
+                                                           const category = this.getAttribute('data-product-category');
                                                            const email = this.getAttribute('data-email');
                                                            const phone = this.getAttribute('data-phone');
                                                            const address = this.getAttribute('data-address');
 
                                                            // Populate the modal fields
                                                            document.getElementById('edit_client_id').value = clientId;
-                                                           document.getElementById('edit_client_name').value = clientName;
+                                                           document.getElementById('edit_project_name').value = clientName;
                                                            document.getElementById('edit_company_name').value = companyName;
-                                                           document.getElementById('edit_pic_name').value = picName;
-                                                           document.getElementById('edit_product_category').value = productCategory;
+                                                           document.getElementById('edit_pic_name').value = pic_name;
+                                                           document.getElementById('edit_product_category').value = category;
                                                            document.getElementById('edit_email').value = email;
                                                            document.getElementById('edit_phone').value = phone;
                                                            document.getElementById('edit_address').value = address;
@@ -710,7 +720,7 @@
                                                            document.getElementById('editClientForm').action = formAction;
 
                                                            // Show the modal
-                                                           $('#editClientModal').modal('show');
+                                                           $('#editProjectModal').modal('show');
                                                        });
                                                    });
                                                </script> --}}
@@ -718,7 +728,7 @@
                                            </div>
                                        </td>
                                    </tr>
-                                   <tr class="collapse-row" style="display: none;">
+                                   {{-- <tr class="collapse-row" style="display: none;">
                                        <td></td>
                                        <td colspan="2">
                                            <div class="collapse-content"
@@ -736,7 +746,7 @@
                                                    onclick="copyText('{{ $client->address }}')"></i>
                                            </div>
                                        </td>
-                                   </tr>
+                                   </tr> --}}
                                @endforeach
                            </tbody>
                        </table>
@@ -746,7 +756,7 @@
                        <nav aria-label="Page navigation">
                            <ul class="pagination justify-content-end" style="align-items: center;">
                                <!-- Tombol Previous -->
-                               @if ($clients->onFirstPage())
+                               @if ($projects->onFirstPage())
                                    <li class="page-item disabled">
                                        <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
@@ -754,7 +764,7 @@
                                    </li>
                                @else
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $clients->previousPageUrl() }}"
+                                       <a class="page-link" href="{{ $projects->previousPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
                                        </a>
@@ -762,48 +772,48 @@
                                @endif
 
                                <!-- Tombol Angka Halaman dengan Batas 10 -->
-                               @if ($clients->lastPage() > 10)
+                               @if ($projects->lastPage() > 10)
                                    <!-- Tampilkan halaman pertama -->
-                                   <li class="page-item {{ $clients->currentPage() == 1 ? 'active' : '' }}">
-                                       <a class="page-link1" href="{{ $clients->url(1) }}">1</a>
+                                   <li class="page-item {{ $projects->currentPage() == 1 ? 'active' : '' }}">
+                                       <a class="page-link1" href="{{ $projects->url(1) }}">1</a>
                                    </li>
 
-                                   @if ($clients->currentPage() > 5)
+                                   @if ($projects->currentPage() > 5)
                                        <!-- Tambahkan titik tiga jika halaman saat ini lebih dari 5 -->
                                        <li class="page-item disabled"><span class="page-link1">...</span></li>
                                    @endif
 
                                    <!-- Loop untuk menampilkan 5 halaman di sekitar halaman saat ini -->
-                                   @for ($i = max(2, $clients->currentPage() - 2); $i <= min($clients->lastPage() - 1, $clients->currentPage() + 2); $i++)
-                                       <li class="page-item {{ $clients->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $clients->url($i) }}">{{ $i }}</a>
+                                   @for ($i = max(2, $projects->currentPage() - 2); $i <= min($projects->lastPage() - 1, $projects->currentPage() + 2); $i++)
+                                       <li class="page-item {{ $projects->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $projects->url($i) }}">{{ $i }}</a>
                                        </li>
                                    @endfor
 
-                                   @if ($clients->currentPage() < $clients->lastPage() - 4)
+                                   @if ($projects->currentPage() < $projects->lastPage() - 4)
                                        <!-- Tambahkan titik tiga jika halaman saat ini kurang dari halaman terakhir - 4 -->
                                        <li class="page-item disabled"><span class="page-link1">...</span></li>
                                    @endif
 
                                    <!-- Tampilkan halaman terakhir -->
                                    <li
-                                       class="page-item {{ $clients->currentPage() == $clients->lastPage() ? 'active' : '' }}">
+                                       class="page-item {{ $projects->currentPage() == $projects->lastPage() ? 'active' : '' }}">
                                        <a class="page-link1"
-                                           href="{{ $clients->url($clients->lastPage()) }}">{{ $clients->lastPage() }}</a>
+                                           href="{{ $projects->url($projects->lastPage()) }}">{{ $projects->lastPage() }}</a>
                                    </li>
                                @else
                                    <!-- Jika halaman kurang dari atau sama dengan 10, tampilkan semua halaman -->
-                                   @for ($i = 1; $i <= $clients->lastPage(); $i++)
-                                       <li class="page-item {{ $clients->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $clients->url($i) }}">{{ $i }}</a>
+                                   @for ($i = 1; $i <= $projects->lastPage(); $i++)
+                                       <li class="page-item {{ $projects->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $projects->url($i) }}">{{ $i }}</a>
                                        </li>
                                    @endfor
                                @endif
 
                                <!-- Tombol Next -->
-                               @if ($clients->hasMorePages())
+                               @if ($projects->hasMorePages())
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $clients->nextPageUrl() }}"
+                                       <a class="page-link" href="{{ $projects->nextPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-right"></i>
                                        </a>

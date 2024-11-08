@@ -4,7 +4,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-transparent border-bottom p-0">
             <div class="container">
                 <span class="navbar-brand p-0 m-0">
-                    <img src="{{ asset('images/logo_alamaya.png') }}" height="30" style="margin: 35px 0px;">
+                    <a href="/"><img src="{{ asset('images/logo_alamaya.png') }}" height="30"
+                            style="margin: 35px 0px;"></a>
                 </span>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -14,13 +15,13 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <b><a class="nav-link" href="{{ url('homepage') }}">Client</a></b>
+                            <b><a class="nav-link" href="/">Client</a></b>
                         </li>
                         <li class="nav-item">
-                            <b><a class="nav-link" href="{{ url('alamayaprojectpage') }}">Project</a></b>
+                            <b><a class="nav-link" href="{{ route('project.view') }}">Project</a></b>
                         </li>
                         <li class="nav-item">
-                            <b><a class="nav-link" href="{{ url('domainpage') }}">Domain</a></b>
+                            <b><a class="nav-link" href="{{ route('domain.view') }}">Domain</a></b>
                         </li>
                         <li class="nav-item">
                             <b><a class="nav-link" href="{{ url('alamayateamspage') }}">Teams</a></b>
@@ -43,23 +44,23 @@
                                 </span>
                                 <!-- Dropdown Menu untuk Notifikasi -->
                                 <ul id="notifDropdown" class="dropdown-menu dropdown-menu-end"
-                                    style="display: none; position: absolute; background: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; z-index: 1000;     top: 70px;
-    right: 0px;">
+                                    style="display: none; position: absolute; background: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; z-index: 1000; top: 70px; right: 0px;">
                                     <li>
                                         <p class="text-muted" style="margin-left: 15px; font-size: small;">Notifikasi
                                         </p>
                                     </li>
-                                    @foreach ($clients as $client)
+                                    {{-- nanti diisi ya --}}
+                                    {{-- @foreach ($clients as $client)
                                         <li id="">
                                             {{ $client->client_name }}
                                         </li> <!-- Tempat untuk menampilkan isi notifikasi -->
-                                    @endforeach
+                                    @endforeach --}}
                                 </ul>
                             </div>
                         </li>
 
 
-                        {{-- <script>
+                        <script>
                             function tampil_button_notif() {
                                 // Data dummy untuk jumlah notifikasi
                                 const data = {
@@ -102,7 +103,7 @@
                                     }
                                 });
                             });
-                        </script> --}}
+                        </script>
 
 
 
@@ -120,15 +121,16 @@
                             aria-expanded="false" style="border: none; background: none; padding: 0;">
                             <li class="d-flex justify-content-center align-items-center user-icon"
                                 style="width: 40px; height: 40px; border: solid 1px; color: white; list-style: none;">
-                                <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"
-                                    class="user-photo img-fluid" style="cursor: pointer;">
+                                <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
+                                    alt="{{ Auth::user()->name }}" class="user-photo img-fluid"
+                                    style="cursor: pointer;">
                             </li>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
                             style="top: 150%;">
                             <li class="user-info text-center">
-                                <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"
-                                    class="profile-picture">
+                                <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
+                                    alt="{{ Auth::user()->name }}" class="profile-picture">
                                 <h6>{{ Auth::user()->name }}</h6> {{-- Nama user --}}
                                 <p class="email">{{ Auth::user()->email }}</p> {{-- Email user --}}
                                 <span class="badge bg-secondary">{{ Auth::user()->role ?? 'User' }}</span>

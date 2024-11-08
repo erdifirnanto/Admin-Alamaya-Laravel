@@ -28,6 +28,7 @@ class AdminAccountController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'profile_photo_path' => 'nullable|string', // Aturan validasi untuk kolom profile_photo_path
         ]);
 
         User::create([
@@ -35,7 +36,9 @@ class AdminAccountController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'role' => 'user', // Semua akun yang dibuat akan menjadi staff/user
+            'profile_photo_path' => null,
         ]);
+
 
         return redirect()->route('dashboard')->with('success', 'Akun staff berhasil ditambahkan.');
     }
