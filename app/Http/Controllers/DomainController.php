@@ -26,7 +26,7 @@ class DomainController extends Controller
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             // dd($clients);
             // dd(csrf_token());
-            return view('page.project', compact('domains'));
+            return view('page.domain', compact('domains'));
         }
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
     }

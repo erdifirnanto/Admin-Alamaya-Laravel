@@ -38,7 +38,7 @@ Route::middleware([
 
     // route khusus admin
     Route::middleware('role:admin')->group(function () {
-        Route::get('/admin/dashboard', [RoleController::class, 'adminDashboard'])->name('admin.dashboard');
+        Route::get('/admin/dashboard', [RoleController::class, 'Dashboard'])->name('admin.dashboard');
         Route::get('/admin/add-account', [AdminAccountController::class, 'showAddAccountForm'])->name('admin.add-account-form');
         Route::post('/admin/add-account', [AdminAccountController::class, 'addAccount'])->name('admin.add-account');
 
@@ -47,8 +47,8 @@ Route::middleware([
     });
 
     // route khusus staff
-    Route::middleware('role:user')->group(function () {
-        Route::get('/user/dashboard', [RoleController::class, 'userDashboard'])->name('user.dashboard');
+    Route::middleware('role:staff')->group(function () {
+        Route::get('/user/dashboard', [RoleController::class, 'Dashboard'])->name('user.dashboard');
 
         // Route untuk melihat klien (hanya staff)
         Route::get('/user/clients', [ClientController::class, 'index'])->name('user.clients'); // Pastikan method 'index' di ClientController ada
@@ -74,8 +74,12 @@ Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clie
 // route data project
 Route::resource('project', ProjectController::class);
 Route::get('/project', [ProjectController::class, 'View'])->name('project.view');
-Route::post('/project/store', [ProjectController::class, 'Pstore'])->name('projects.store');
-
+Route::post('/project/store', [ProjectController::class, 'Pstore'])->name('project.store');
+Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
+Route::post('/project/delete-multiple', [ProjectController::class, 'deleteMultiple'])->name('project.deleteMultiple');
+Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit');
+Route::put('/project/{id}', [ProjectController::class, 'update'])->name('project.update');
+Route::put('/project/{project}', [ProjectController::class, 'update'])->name('project.update');
 // 
 Route::resource('domain', DomainController::class);
 Route::get('/domain', [DomainController::class, 'View'])->name('domain.view');

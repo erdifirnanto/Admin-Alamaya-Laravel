@@ -1,189 +1,6 @@
    @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
-       <section class="main-page" id="main-page" style="margin-top: -100px">
-           <!-- Banner -->
-           <div class="container-fluid banner-image1 position-relative text-center"
-               style="background-image: url('images/walpaper3.png'); background-size: cover; background-position: center;">
-               <div class="container">
-                   <div class="centered-title">
-                       <div class="row align-items-center" style="min-height: 300px;">
-                           <!-- Kolom untuk gambar -->
-                           <div class="col-sm-2 col-lg-1 col-3" style="margin-top: 150px; z-index: 500;">
-                               <img src="images/handwave.png" class="img-fluid" alt="Hand Wave">
-                           </div>
-                           <!-- Kolom untuk teks -->
-                           <div class="col-9 col-sm-8 text-light text-start" style="margin-top: 150px; z-index: 500;">
-                               <h3>Welcome Back, {{ Auth::user()->name }}</h3>
-                               <h6>This is an update from Alamaya Company</h6>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </div>
-           <!-- Banner End -->
-       </section>
-
-       <section class="main-page" id="main-page">
-           <section style="margin-bottom: 150px">
-               <!-- Cards Section Start -->
-               <div class="container-fluid bg-white rounded-top-5" style="top:430px; position: absolute;">
-                   <div class="container mt-5" style>
-                       <div class="row" style="margin-top: -120px;">
-                           <!-- Card 1 -->
-                           <div class="col-md-4 col-4">
-                               <div>
-                                   <div class="card-home bg-transparent shadow-lg">
-                                       <div class="container">
-                                           <div class="row">
-                                               <div class="col-md-6 col-6 mt-2">
-                                                   <div class="d-flex justify-content-center align-items-center user-icon1">
-                                                       <div class="fa fa-user text-light" aria-hidden="true"></div>
-                                                   </div>
-                                               </div>
-                                               <div class="col-md-6 col-6 d-flex justify-content-end align-items-center">
-                                                   <div class="btn-group dropup">
-                                                       <button type="button"
-                                                           class="border-white text-light btn rounded-5 align-top d-flex justify-content-center align-items-center mt-2"
-                                                           style="height: 4vh; width: 60px; display: flex; align-items: center; justify-content: center;"
-                                                           data-bs-toggle="dropdown">
-
-                                                           <span class="fas fa-chevron-up text-light"
-                                                               style="font-size: 13px; margin-right: 5px;"></span>
-                                                           <p class="text-light" style="margin: 0;">+3</p>
-                                                       </button>
-                                                       <ul class="dropdown-menu">
-                                                           <li><a class="dropdown-item" href="#">Action</a></li>
-                                                           <li><a class="dropdown-item" href="#">Another
-                                                                   action</a></li>
-                                                           <li><a class="dropdown-item" href="#">Something else
-                                                                   here</a></li>
-                                                       </ul>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </div>
-                                       <div class="container">
-                                           <div class="row">
-                                               <div class="col-md-12">
-                                                   <div class="-home-body text-dark mt-2">
-                                                       <div class="card-text text-dark mt-4  ">Total
-                                                           Client<br>
-                                                           <h2><strong>1.162</strong></h2>
-                                                       </div>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                                   <a href="homepage.html" class="text-dark" style="text-decoration: none;">
-                                       <h6 class="d-flex justify-content-center" style="margin-top: -20px;">Detail
-                                           stats <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i>
-                                       </h6>
-                                   </a>
-                               </div>
-                           </div>
-
-                           <!-- Card 2 -->
-                           <div class="col-md-4 mb-5 col-4">
-                               <div class="card-home bg-transparent shadow-lg">
-                                   <div class="container">
-                                       <div class="row">
-                                           <div class="col-md-6 col-6 mt-2">
-                                               <div class="d-flex justify-content-center align-items-center user-icon1">
-                                                   <div class="fa-solid fa-layer-group text-light" aria-hidden="true">
-                                                   </div>
-                                               </div>
-                                           </div>
-                                           <div class="col-md-6 col-6 d-flex justify-content-end align-items-center">
-
-                                               <div class="btn-group dropup">
-                                                   <button type="button"
-                                                       class="border-white text-light btn rounded-5 align-top d-flex justify-content-center align-items-center mt-2"
-                                                       style="height: 4vh; width: 60px; display: flex; align-items: center; justify-content: center;"
-                                                       data-bs-toggle="dropdown">
-
-                                                       <span class="fas fa-chevron-up text-light"
-                                                           style="font-size: 13px; margin-right: 5px;"></span>
-                                                       <p class="text-light" style="margin: 0;">+2</p>
-                                                   </button>
-                                                   <ul class="dropdown-menu">
-                                                       <li><a class="dropdown-item" href="#">Action</a></li>
-                                                       <li><a class="dropdown-item" href="#">Another
-                                                               action</a></li>
-                                                       <li><a class="dropdown-item" href="#">Something else
-                                                               here</a></li>
-                                                   </ul>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                                   <div class="container">
-                                       <div class="row">
-                                           <div class="col-md-12">
-                                               <div class="card-body text-dark mt-2">
-                                                   <div class="card-text text-dark mt-4">Maintenance<br>
-                                                       <h2><strong>20</strong></h2>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
-                               <a href="#" class="text-dark" style="text-decoration: none;">
-                                   <h6 class="d-flex justify-content-center" style=" margin-top: -20px;">Detail
-                                       stats <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i>
-                                   </h6>
-                               </a>
-                           </div>
-
-                           <!-- Card 3 -->
-                           <div class="col-md-4 mb-5 col-4">
-                               <div class="card-home bg-transparent shadow-lg">
-                                   <div class="container">
-                                       <div class="row">
-                                           <div class="col-md-6 col-6 mt-2">
-                                               <div class="d-flex justify-content-center align-items-center user-icon1">
-                                                   <div class="bx bxs-traffic-cone text-light" aria-hidden="true"></div>
-                                               </div>
-                                           </div>
-                                           <div class="col-md-6 col-6 d-flex justify-content-end align-items-center">
-                                               <div class="btn-group dropup">
-                                                   <ul class="dropdown-menu">
-                                                       <li><a class="dropdown-item" href="#">Action</a></li>
-                                                       <li><a class="dropdown-item" href="#">Another
-                                                               action</a></li>
-                                                       <li><a class="dropdown-item" href="#">Something else
-                                                               here</a></li>
-                                                   </ul>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                                   <div class="container">
-                                       <div class="row">
-                                           <div class="col-md-12">
-                                               <div class="card-body text-dark mt-2">
-                                                   <div class="card-text text-dark mt-4  ">Project on
-                                                       Progress<br>
-                                                       <h2><strong>3</strong></h2>
-                                                   </div>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-                               </div>
-                               <a href="projectpage.html" class="text-dark" style="text-decoration: none;">
-                                   <h6 class="d-flex justify-content-center" style=" margin-top: -20px;">Detail
-                                       stats <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i>
-                                   </h6>
-                               </a>
-                           </div>
-                       </div>
-                   </div>
-               </div>
-           </section>
-       </section>
 
        <section class="main-page" id="main-page">
            <section>
@@ -265,7 +82,7 @@
                                                        aria-label="Close"></button>
                                                </div>
                                                <div class="modal-body">
-                                                   <form method="POST" action="{{ route('projects.store') }}">
+                                                   <form method="POST" action="{{ route('project.store') }}">
                                                        @csrf
                                                        <!-- Project Name -->
                                                        <div class="row mb-3">
@@ -274,8 +91,8 @@
                                                                    id="project_name" class="form-label">Project
                                                                    Name</label>
                                                                <input type="text" class="form-control"
-                                                                   name="project_name" for="project_name"
-                                                                   id="project_name" placeholder="Enter the Project Name">
+                                                                   name="project_name" for="project_name" id="project_name"
+                                                                   placeholder="Enter the Project Name">
                                                            </div>
                                                        </div>
 
@@ -309,8 +126,8 @@
                                                        <div class="row mb-3">
                                                            <div class="col">
                                                                <label id="tanggal_masuk_project"
-                                                                   name="tanggal_masuk_project"
-                                                                   for="tanggal_masuk_project" class="form-label">Tanggal
+                                                                   name="tanggal_masuk_project" for="tanggal_masuk_project"
+                                                                   class="form-label">Tanggal
                                                                    Project
                                                                    Masuk</label>
                                                                <input name="tanggal_masuk_project"
@@ -364,6 +181,10 @@
                                        function showAlert() {
                                            alert('Data berhasil ditambahkan!');
                                        }
+
+                                       function showAlertUpdate() {
+                                           alert('Data berhasil diupdate!');
+                                       }
                                    </script>
 
                                    <!-- Dropdown Button -->
@@ -410,15 +231,15 @@
                                                        selectedClients.push(checkbox.value);
                                                    });
 
-                                                   console.log("Selected Client IDs:", selectedClients); // Debugging
+                                                   console.log("Selected Projects IDs:", selectedClients); // Debugging
 
                                                    if (selectedClients.length === 0) {
-                                                       alert("No clients selected.");
+                                                       alert("No project selected.");
                                                        return;
                                                    }
 
-                                                   if (confirm("Are you sure you want to delete the selected clients?")) {
-                                                       fetch('/clients/delete-multiple', {
+                                                   if (confirm("Are you sure you want to delete the selected project?")) {
+                                                       fetch('/project/delete-multiple', {
                                                                method: 'POST',
                                                                headers: {
                                                                    'Content-Type': 'application/json',
@@ -432,13 +253,13 @@
                                                            .then(response => response.json())
                                                            .then(data => {
                                                                if (data.success) {
-                                                                   alert("Selected clients deleted successfully!");
+                                                                   alert("Selected projects deleted successfully!");
                                                                    location.reload(); // Refresh halaman atau update DOM
                                                                } else {
-                                                                   alert("Failed to delete clients.");
+                                                                   alert("Failed to delete projects.");
                                                                }
                                                            })
-                                                           .catch(error => console.error("Error deleting clients:", error));
+                                                           .catch(error => console.error("Error deleting projects:", error));
                                                    }
 
                                                });
@@ -573,10 +394,11 @@
                                                            data-bs-target="#editProjectModal-{{ $project->id }}">Edit</a>
                                                    </li>
                                                </ul>
+
                                                {{-- Edit Data Project --}}
-                                               <div class="modal fade" id="editProjectModal-{{ $project->id }}"
-                                                   tabindex="-1" aria-labelledby="editProjectModalLabel"
-                                                   aria-hidden="true">
+                                               <div style="text-align: left" class="modal fade"
+                                                   id="editProjectModal-{{ $project->id }}" tabindex="-1"
+                                                   aria-labelledby="editProjectModalLabel" aria-hidden="true">
                                                    <div class="modal-dialog modal-lg">
                                                        <div class="modal-content">
                                                            <div class="modal-header" style="display: block;">
@@ -589,104 +411,103 @@
                                                                    style="position: absolute; right: 10px; top: 10px;"></button>
                                                            </div>
 
-                                                           {{-- <div class="modal-body">
+                                                           <div class="modal-body">
                                                                <form method="POST"
-                                                                   action="{{ route('clients.update', $project->id) }}">
+                                                                   action="{{ route('project.update', $project->id) }}">
                                                                    @csrf
                                                                    @method('PUT')
-                                                                   <!-- Client Name & Company Name -->
+                                                                   <!-- Project Name -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="project_name" class="form-label"
-                                                                               style="font-size: 0.7em;">CLIENT
-                                                                               NAME</label>
+                                                                           <label name="project_name" for="project_name"
+                                                                               id="project_name"
+                                                                               class="form-label">Project
+                                                                               Name</label>
                                                                            <input type="text" class="form-control"
-                                                                               id="project_name" name="project_name"
-                                                                               value="{{ $client->project_name }}"
-                                                                               placeholder="Enter the client name">
-                                                                       </div>
-                                                                       <div class="col">
-                                                                           <label for="company_name" class="form-label"
-                                                                               style="font-size: 0.7em;">COMPANY
-                                                                               NAME</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="company_name" name="company_name"
-                                                                               value="{{ $client->company_name }}"
-                                                                               placeholder="Enter the company name">
+                                                                               name="project_name" for="project_name"
+                                                                               id="project_name"
+                                                                               value="{{ $project->project_name }}"
+                                                                               placeholder="Enter the Project Name">
                                                                        </div>
                                                                    </div>
 
                                                                    <!-- PIC and Product Category -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="pic_name" class="form-label"
-                                                                               style="font-size: 0.7em;">PIC</label>
-                                                                           <select class="form-select" id="pic_name"
-                                                                               name="pic_name">
-                                                                               <option value="{{ $client->pic_name }}"
-                                                                                   selected>{{ $client->pic_name }}
+                                                                           <label name="category" for="category"
+                                                                               id="category" class="form-label">Category
+                                                                               Product</label>
+                                                                           <select class="form-select" name="category"
+                                                                               for="category" id="category">
+                                                                               <option value="{{ $project->category }}"
+                                                                                   selected>{{ $project->category }}
+                                                                               </option>
+                                                                               <option value="1">Category 1</option>
+                                                                               <option value="2">Category 2</option>
+                                                                           </select>
+                                                                       </div>
+                                                                       <div class="col">
+                                                                           <label name="pic_name" for="pic_name"
+                                                                               id="pic_name"
+                                                                               class="form-label">PIC</label>
+                                                                           <select class="form-select" name="pic_name"
+                                                                               for="pic_name" id="pic_name">
+                                                                               <option value="{{ $project->pic_name }}"
+                                                                                   selected>{{ $project->pic_name }}
                                                                                </option>
                                                                                <option value="1">PIC 1</option>
                                                                                <option value="2">PIC 2</option>
                                                                            </select>
                                                                        </div>
-                                                                       <div class="col">
-                                                                           <label for="product_category"
-                                                                               class="form-label"
-                                                                               style="font-size: 0.7em;">CATEGORY
-                                                                               PRODUCT</label>
-                                                                           <select class="form-select"
-                                                                               id="product_category"
-                                                                               name="product_category">
-                                                                               <option
-                                                                                   value="{{ $client->product_category }}"
-                                                                                   selected>
-                                                                                   {{ $client->product_category }}
-                                                                               </option>
-                                                                               <option value="1">Category 1
-                                                                               </option>
-                                                                               <option value="2">Category 2
-                                                                               </option>
-                                                                           </select>
-                                                                       </div>
                                                                    </div>
 
-                                                                   <!-- Email & Phone -->
+                                                                   <!-- Tanggal Project Masuk -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="email" class="form-label"
-                                                                               style="font-size: 0.7em;">EMAIL</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="email" name="email"
-                                                                               value="{{ $client->email }}"
-                                                                               placeholder="Enter email client">
-                                                                       </div>
-                                                                       <div class="col">
-                                                                           <label for="phone" class="form-label"
-                                                                               style="font-size: 0.7em;">PHONE</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="phone" name="phone"
-                                                                               value="{{ $client->phone }}"
-                                                                               placeholder="Enter the client's phone number">
+                                                                           <label id="tanggal_masuk_project"
+                                                                               name="tanggal_masuk_project"
+                                                                               for="tanggal_masuk_project"
+                                                                               class="form-label">Tanggal Project
+                                                                               Masuk</label>
+                                                                           <input name="tanggal_masuk_project"
+                                                                               for="tanggal_masuk_project" type="date"
+                                                                               class="form-control"
+                                                                               id="tanggal_masuk_project"
+                                                                               value="{{ $project->tanggal_masuk_project }}"
+                                                                               placeholder="Tanggal project masuk">
                                                                        </div>
                                                                    </div>
 
-                                                                   <!-- Address -->
+                                                                   <!-- Deadline -->
                                                                    <div class="mb-3">
-                                                                       <label for="address" class="form-label"
-                                                                           style="font-size: 0.7em;">ADDRESS</label>
-                                                                       <input type="text" class="form-control"
-                                                                           id="address" name="address"
-                                                                           value="{{ $client->address }}"
-                                                                           placeholder="Enter the client's company address">
+                                                                       <label name="deadline" for="deadline"
+                                                                           id="deadline"
+                                                                           class="form-label">Deadline</label>
+                                                                       <input name="deadline" for="deadline"
+                                                                           type="date" class="form-control"
+                                                                           id="deadline"
+                                                                           value="{{ $project->deadline }}"
+                                                                           placeholder="Enter the project Deadline">
                                                                    </div>
+
+                                                                   {{-- <!-- Disclaimer -->
+                                                                   <div class="form-check mb-3">
+                                                                       <input type="checkbox" class="form-check-input"
+                                                                           id="termsCheck">
+                                                                       <label class="form-check-label" for="termsCheck">
+                                                                           By registering, you agree to the terms and
+                                                                           conditions that apply.
+                                                                       </label>
+                                                                   </div>
+
+                                                                   <div class="form-text mb-3">Check again and make
+                                                                       sure the form is completely filled out</div> --}}
 
                                                                    <!-- Submit Button -->
-                                                                   <button type="submit"
-                                                                       class="btn btn-dark w-100">Update
-                                                                       Project</button>
+                                                                   <button type="submit" class="btn btn-dark w-100"
+                                                                       onclick="showAlertUpdate()">Update</button>
                                                                </form>
-                                                           </div> --}}
+                                                           </div>
                                                        </div>
                                                    </div>
                                                </div>

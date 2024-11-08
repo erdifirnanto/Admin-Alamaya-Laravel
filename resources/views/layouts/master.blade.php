@@ -17,6 +17,8 @@
 
 <body>
     @include('layouts.navbar')
+    @include('layouts.banner')
+    @include('layouts.card')
     @yield('content')
     @include('layouts.footer')
     </div>

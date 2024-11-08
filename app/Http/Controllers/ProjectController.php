@@ -54,4 +54,53 @@ class ProjectController extends Controller
         return redirect()->route('project.view')->with('success', 'Project berhasil ditambahkan.');
         // return redirect()->back()->with('success', 'Client has been added successfu/lly');
     }
+
+    public function destroy($id)
+    {
+        $project = Project::findOrFail($id);
+        $project->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function deleteMultiple(Request $request)
+    {
+        $ids = $request->input('ids', []);
+        if (empty($ids)) {
+            return response()->json(['success' => false, 'message' => 'No IDs provided.']);
+        }
+
+        Project::whereIn('id', $ids)->delete();
+
+        return response()->json(['success' => true]);
+    }
+
+    public function edit($id)
+    {
+        // Ambil data klien berdasarkan ID
+        $project = Project::findOrFail($id);
+        $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
+        $projects = Project::orderBy('id', $sort)->paginate(10);
+        // Kembalikan view dengan data klien
+        return view('dashboard', compact('project', 'projects'));
+    }
+
+    public function update(Request $request, Project $project)
+    {
+        // Validasi data permintaan
+        $validatedData = $request->validate([
+            'project_name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'pic_name' => 'required|string|max:255',
+            'tanggal_masuk_project' => 'required|date',
+            'deadline' => 'required|date',
+        ]);
+
+        // Perbarui klien dengan data yang sudah divalidasi
+        $project->update($validatedData);
+
+        // Kembalikan respons (bisa berupa redirect, respons JSON, dll.)
+        // return response()->json(['success' => true]);
+        return redirect()->route('project.view')->with('success', 'Data berhasil diupdate.');
+    }
 }
