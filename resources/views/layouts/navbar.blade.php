@@ -59,7 +59,7 @@
                         </li>
 
 
-                        <script>
+                        {{-- <script>
                             function tampil_button_notif() {
                                 // Data dummy untuk jumlah notifikasi
                                 const data = {
@@ -102,7 +102,7 @@
                                     }
                                 });
                             });
-                        </script>
+                        </script> --}}
 
 
 
@@ -120,14 +120,14 @@
                             aria-expanded="false" style="border: none; background: none; padding: 0;">
                             <li class="d-flex justify-content-center align-items-center user-icon"
                                 style="width: 40px; height: 40px; border: solid 1px; color: white; list-style: none;">
-                                <img src="{{ asset('images/foto_Rena.jpg') }}" alt="User Image"
+                                <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"
                                     class="user-photo img-fluid" style="cursor: pointer;">
                             </li>
                         </button>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
                             style="top: 150%;">
                             <li class="user-info text-center">
-                                <img src="{{ asset('images/foto_Rena.jpg') }}" alt="Profile Picture"
+                                <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}"
                                     class="profile-picture">
                                 <h6>{{ Auth::user()->name }}</h6> {{-- Nama user --}}
                                 <p class="email">{{ Auth::user()->email }}</p> {{-- Email user --}}
