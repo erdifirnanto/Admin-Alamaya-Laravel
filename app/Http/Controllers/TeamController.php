@@ -4,29 +4,29 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Domain;
+use App\Models\Team;
 
-class DomainController extends Controller
+class TeamController extends Controller
 {
     public function View()
     {
         if (Auth::user()->role === 'admin') {
-            // Ambil data domain untuk admin
+            // Ambil data team untuk admin
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $domains = Domain::orderBy('id', $sort)->paginate(10);
+            $teams = Team::orderBy('id', $sort)->paginate(10);
             // $clients = Client::paginate(10);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             // dd($clients);
             // dd(csrf_token());
-            return view('page.domain', compact('domains'));
+            return view('page.team', compact('teams'));
         } else if (Auth::user()->role === 'staff') {
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $domains = Domain::orderBy('id', $sort)->paginate(10);
+            $teams = Team::orderBy('id', $sort)->paginate(10);
             // $clients = Client::paginate(10);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             // dd($clients);
             // dd(csrf_token());
-            return view('page.domain', compact('domains'));
+            return view('page.team', compact('teams'));
         }
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
     }
@@ -34,25 +34,24 @@ class DomainController extends Controller
     public function Dstore(Request $request)
     {
         // dd($request);
-
         $request->validate([
-            'project_name' => 'required|string|max:255',
-            'domain' => 'required|string|max:255',
-            'expired' => 'required|date',
+            'personil_name' => 'required|string|max:255',
+            'division' => 'required|string|max:255',
+            'project_handle' => 'required|string|max:255',
         ]);
         // Simpan data ke database
-        Domain::create([
-            'project_name' => $request['project_name'],
-            'domain' => $request['domain'],
-            'expired' => $request['expired'],
+        Team::create([
+            'personil_name' => $request['personil_name'],
+            'division' => $request['division'],
+            'project_handle' => $request['project_handle'],
         ]);
-        return redirect()->route('domain.view')->with('success', 'Project berhasil ditambahkan.');
+        return redirect()->route('team.view')->with('success', 'Project berhasil ditambahkan.');
         // return redirect()->back()->with('success', 'Client has been added successfu/lly');
     }
 
     public function destroy($id)
     {
-        $project = Domain::findOrFail($id);
+        $project = Team::findOrFail($id);
         $project->delete();
         return response()->json(['success' => true]);
     }
@@ -63,34 +62,33 @@ class DomainController extends Controller
         if (empty($ids)) {
             return response()->json(['success' => false, 'message' => 'No IDs provided.']);
         }
-        Domain::whereIn('id', $ids)->delete();
+        Team::whereIn('id', $ids)->delete();
         return response()->json(['success' => true]);
     }
 
     public function edit($id)
     {
-        // Ambil data domain berdasarkan ID
-        $domain = Domain::findOrFail($id);
+        // Ambil data team berdasarkan ID
+        $team = Team::findOrFail($id);
         $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-        $domains = Domain::orderBy('id', $sort)->paginate(10);
-        // Kembalikan view dengan data domain
-        return view('domain.view', compact('domain', 'domains'));
+        $teams = Team::orderBy('id', $sort)->paginate(10);
+        // Kembalikan view dengan data team
+        return view('team.view', compact('team', 'teams'));
     }
 
-    public function update(Request $request, Domain $domain)
+    public function update(Request $request, Team $team)
     {
         // Validasi data permintaan
         $validatedData = $request->validate([
-            'project_name' => 'required|string|max:255',
-            'domain' => 'required|string|max:255',
-            'expired' => 'required|date',
+            'personil_name' => 'required|string|max:255',
+            'division' => 'required|string|max:255',
+            'project_handle' => 'required|string|max:255',
         ]);
 
-        // Perbarui domain dengan data yang sudah divalidasi
-        $domain->update($validatedData);
-
+        // Perbarui team dengan data yang sudah divalidasi
+        $team->update($validatedData);
         // Kembalikan respons (bisa berupa redirect, respons JSON, dll.)
         // return response()->json(['success' => true]);
-        return redirect()->route('domain.view')->with('success', 'Data berhasil diupdate.');
+        return redirect()->route('team.view')->with('success', 'Data berhasil diupdate.');
     }
 }

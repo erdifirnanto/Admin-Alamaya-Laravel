@@ -24,7 +24,7 @@
                             <b><a class="nav-link" href="{{ route('domain.view') }}">Domain</a></b>
                         </li>
                         <li class="nav-item">
-                            <b><a class="nav-link" href="{{ url('alamayateamspage') }}">Teams</a></b>
+                            <b><a class="nav-link" href="{{ route('team.view') }}">Teams</a></b>
                         </li>
                     </ul>
                     <ul class="navbar-nav align-items-center" style="margin-left: -8%;">
