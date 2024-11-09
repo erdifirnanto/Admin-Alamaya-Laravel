@@ -83,3 +83,9 @@ Route::put('/project/{project}', [ProjectController::class, 'update'])->name('pr
 // 
 Route::resource('domain', DomainController::class);
 Route::get('/domain', [DomainController::class, 'View'])->name('domain.view');
+Route::post('/domain/store', [DomainController::class, 'Dstore'])->name('domain.store');
+Route::delete('/domain/{id}', [DomainController::class, 'destroy'])->name('domain.destroy');
+Route::post('/domain/delete-multiple', [DomainController::class, 'deleteMultiple'])->name('domain.deleteMultiple');
+Route::get('/domain/{id}/edit', [DomainController::class, 'edit'])->name('domain.edit');
+Route::put('/domain/{id}', [DomainController::class, 'update'])->name('domain.update');
+Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('domain.update');

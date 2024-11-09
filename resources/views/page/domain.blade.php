@@ -63,120 +63,68 @@
                                    </script>
 
 
-                                   <!-- Add Client Button -->
-                                   <button class="btn btn-add-client btn1hvr" data-bs-toggle="modal"
-                                       data-bs-target="#addClientModal">Add
-                                       Client <i class="fa fa-plus"></i>
+                                   <!-- Add Domain Button -->
+                                   <button class="btn btn-add-project btn1hvr" data-bs-toggle="modal"
+                                       data-bs-target="#addDomainModal">Add
+                                       Domain <i class="fa fa-plus"></i>
                                    </button>
 
-                                   <!-- Add Client Modal -->
-                                   <div class="modal fade" id="addClientModal" tabindex="-1"
-                                       aria-labelledby="addClientModalLabel" aria-hidden="true">
-                                       <div class="modal-dialog modal-lg">
+                                   <!-- Add Domain Modal -->
+                                   <div class="modal fade" id="addDomainModal" tabindex="-1"
+                                       aria-labelledby="addDomainModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
                                            <div class="modal-content">
-                                               <div class="modal-header" style="display: block;">
-                                                   <h5 class="modal-title" id="addClientModalLabel">Add Client</h5>
-                                                   <p style="margin-top: 2px;">Fill in some details to start adding
-                                                       clients</p>
+                                               <div class="modal-header">
+                                                   <h5 class="modal-title" id="addDomainModalLabel">Add
+                                                       Domain</h5>
                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                       aria-label="Close"
-                                                       style="position: absolute; right: 10px; top: 10px;"></button>
+                                                       aria-label="Close"></button>
                                                </div>
-
                                                <div class="modal-body">
-                                                   <form method="POST" action="{{ route('clients.store') }}">
+                                                   <form method="POST" action="{{ route('domain.store') }}">
                                                        @csrf
-                                                       <!-- Client Name & Company Name -->
+
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="client_name" class="form-label"
-                                                                   style="font-size: 0.7em;">CLIENT NAME</label>
-                                                               <input type="text" class="form-control" id="client_name"
-                                                                   name="client_name" placeholder="Enter the client name">
-                                                           </div>
-                                                           <div class="col">
-                                                               <label for="company_name" class="form-label"
-                                                                   style="font-size: 0.7em;">COMPANY NAME</label>
-                                                               <input type="text" class="form-control" id="company_name"
-                                                                   name="company_name" placeholder="Enter the company name">
+                                                               <label name="project_name" for="project_name"
+                                                                   id="project_name" class="form-label">Project
+                                                                   Name</label>
+                                                               <input type="text" class="form-control"
+                                                                   name="project_name" for="project_name" id="project_name"
+                                                                   placeholder="Enter the Project Name">
                                                            </div>
                                                        </div>
 
-                                                       <!-- PIC and Product Category -->
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="pic_name" class="form-label"
-                                                                   style="font-size: 0.7em;">PIC</label>
-                                                               <select class="form-select" id="pic_name" name="pic_name">
-                                                                   <option selected>Select the PIC name</option>
-                                                                   <option value="1">PIC 1</option>
-                                                                   <option value="2">PIC 2</option>
-                                                               </select>
-                                                           </div>
-                                                           <div class="col">
-                                                               <label for="product_category" class="form-label"
-                                                                   style="font-size: 0.7em;">CATEGORY PRODUCT</label>
-                                                               <select class="form-select" id="product_category"
-                                                                   name="product_category">
-                                                                   <option selected>Select a Product category</option>
-                                                                   <option value="1">Category 1</option>
-                                                                   <option value="2">Category 2</option>
-                                                               </select>
+                                                               <label name="domain" for="domain" id="domain"
+                                                                   class="form-label">Domain</label>
+                                                               <input type="text" class="form-control" name="domain"
+                                                                   for="domain" id="domain"
+                                                                   placeholder="Enter the Domain">
                                                            </div>
                                                        </div>
-
-                                                       <!-- Email & Phone -->
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="email" class="form-label"
-                                                                   style="font-size: 0.7em;">EMAIL</label>
-                                                               <input type="text" class="form-control" id="email"
-                                                                   name="email" placeholder="Enter email client">
+                                                               <label name="expired" for="expired" id="expired"
+                                                                   class="form-label">Expired</label>
+                                                               <input type="date" class="form-control" name="expired"
+                                                                   for="expired" id="expired"
+                                                                   placeholder="Enter the Expired">
                                                            </div>
-                                                           <div class="col">
-                                                               <label for="phone" class="form-label"
-                                                                   style="font-size: 0.7em;">PHONE</label>
-                                                               <input type="text" class="form-control" id="phone"
-                                                                   name="phone"
-                                                                   placeholder="Enter the client's phone number">
-                                                           </div>
-                                                       </div>
-
-                                                       <!-- Address -->
-                                                       <div class="mb-3">
-                                                           <label for="address" class="form-label"
-                                                               style="font-size: 0.7em;">ADDRESS</label>
-                                                           <input type="text" class="form-control" id="address"
-                                                               name="address"
-                                                               placeholder="Enter the client's company address">
-                                                       </div>
-
-                                                       <!-- Disclaimer -->
-                                                       <div class="form-check mb-3">
-                                                           <input type="checkbox" class="form-check-input"
-                                                               id="termsCheck">
-                                                           <label class="form-check-label" for="termsCheck">
-                                                               By registering, you agree to the terms and conditions that
-                                                               apply. Check again and make sure the form is completely
-                                                               filled out.
-                                                           </label>
                                                        </div>
 
                                                        <!-- Submit Button -->
                                                        <button type="submit" class="btn btn-dark w-100"
                                                            onclick="showAlert()">Add
-                                                           Client</button>
+                                                           Domain</button>
                                                    </form>
-
                                                </div>
                                            </div>
                                        </div>
                                    </div>
 
-
-
-                                   <!-- Edit Client Modal -->
-
+                                   {{-- End Add Domain Modal --}}
 
                                    {{-- @if (session('success'))
                                        <div class="alert alert-success">
@@ -198,7 +146,7 @@
                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                        <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc">By
                                                ID</button></li>
-                                       <li><button class="dropdown-item sort-button" data-sort="client_name"
+                                       <li><button class="dropdown-item sort-button" data-sort="project_name"
                                                data-order="asc">By Name</button></li>
                                    </ul>
 
@@ -234,15 +182,15 @@
                                                        selectedClients.push(checkbox.value);
                                                    });
 
-                                                   console.log("Selected Client IDs:", selectedClients); // Debugging
+                                                   console.log("Selected Domains IDs:", selectedClients); // Debugging
 
                                                    if (selectedClients.length === 0) {
-                                                       alert("No clients selected.");
+                                                       alert("No domain selected.");
                                                        return;
                                                    }
 
-                                                   if (confirm("Are you sure you want to delete the selected clients?")) {
-                                                       fetch('/clients/delete-multiple', {
+                                                   if (confirm("Are you sure you want to delete the selected domains?")) {
+                                                       fetch('/domain/delete-multiple', {
                                                                method: 'POST',
                                                                headers: {
                                                                    'Content-Type': 'application/json',
@@ -256,13 +204,13 @@
                                                            .then(response => response.json())
                                                            .then(data => {
                                                                if (data.success) {
-                                                                   alert("Selected clients deleted successfully!");
+                                                                   alert("Selected Domains deleted successfully!");
                                                                    location.reload(); // Refresh halaman atau update DOM
                                                                } else {
-                                                                   alert("Failed to delete clients.");
+                                                                   alert("Failed to delete Domains.");
                                                                }
                                                            })
-                                                           .catch(error => console.error("Error deleting clients:", error));
+                                                           .catch(error => console.error("Error deleting Domains:", error));
                                                    }
 
                                                });
@@ -352,7 +300,7 @@
                                        <td style="align-content: center">{{ $domain->id }}</td>
                                        <td style="align-content: center" data-key="client-name">
                                            {{ $domain->project_name }}</td>
-                                       <td style="align-content: center" data-key="product-category">
+                                       <td style="align-content: center" data-key="product-domain">
                                            {{ $domain->domain }}
                                            {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
@@ -394,55 +342,55 @@
                                                                    <!-- Client Name & Company Name -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="client_name" class="form-label"
+                                                                           <label for="project_name" class="form-label"
                                                                                style="font-size: 0.7em;">CLIENT
                                                                                NAME</label>
                                                                            <input type="text" class="form-control"
-                                                                               id="client_name" name="client_name"
-                                                                               value="{{ $client->client_name }}"
+                                                                               id="project_name" name="project_name"
+                                                                               value="{{ $client->project_name }}"
                                                                                placeholder="Enter the client name">
                                                                        </div>
                                                                        <div class="col">
-                                                                           <label for="company_name" class="form-label"
+                                                                           <label for="domain" class="form-label"
                                                                                style="font-size: 0.7em;">COMPANY
                                                                                NAME</label>
                                                                            <input type="text" class="form-control"
-                                                                               id="company_name" name="company_name"
-                                                                               value="{{ $client->company_name }}"
+                                                                               id="domain" name="domain"
+                                                                               value="{{ $client->domain }}"
                                                                                placeholder="Enter the company name">
                                                                        </div>
                                                                    </div>
 
-                                                                   <!-- PIC and Product Category -->
+                                                                   <!-- PIC and Product domain -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="pic_name" class="form-label"
+                                                                           <label for="expired" class="form-label"
                                                                                style="font-size: 0.7em;">PIC</label>
-                                                                           <select class="form-select" id="pic_name"
-                                                                               name="pic_name">
-                                                                               <option value="{{ $client->pic_name }}"
-                                                                                   selected>{{ $client->pic_name }}
+                                                                           <select class="form-select" id="expired"
+                                                                               name="expired">
+                                                                               <option value="{{ $client->expired }}"
+                                                                                   selected>{{ $client->expired }}
                                                                                </option>
                                                                                <option value="1">PIC 1</option>
                                                                                <option value="2">PIC 2</option>
                                                                            </select>
                                                                        </div>
                                                                        <div class="col">
-                                                                           <label for="product_category"
+                                                                           <label for="product_domain"
                                                                                class="form-label"
-                                                                               style="font-size: 0.7em;">CATEGORY
+                                                                               style="font-size: 0.7em;">domain
                                                                                PRODUCT</label>
                                                                            <select class="form-select"
-                                                                               id="product_category"
-                                                                               name="product_category">
+                                                                               id="product_domain"
+                                                                               name="product_domain">
                                                                                <option
-                                                                                   value="{{ $client->product_category }}"
+                                                                                   value="{{ $client->product_domain }}"
                                                                                    selected>
-                                                                                   {{ $client->product_category }}
+                                                                                   {{ $client->product_domain }}
                                                                                </option>
-                                                                               <option value="1">Category 1
+                                                                               <option value="1">domain 1
                                                                                </option>
-                                                                               <option value="2">Category 2
+                                                                               <option value="2">domain 2
                                                                                </option>
                                                                            </select>
                                                                        </div>
@@ -496,17 +444,17 @@
                                                            const clientName = this.getAttribute('data-client-name');
                                                            const companyName = this.getAttribute('data-company-name');
                                                            const picName = this.getAttribute('data-pic-name');
-                                                           const productCategory = this.getAttribute('data-product-category');
+                                                           const productdomain = this.getAttribute('data-product-domain');
                                                            const email = this.getAttribute('data-email');
                                                            const phone = this.getAttribute('data-phone');
                                                            const address = this.getAttribute('data-address');
 
                                                            // Populate the modal fields
                                                            document.getElementById('edit_client_id').value = clientId;
-                                                           document.getElementById('edit_client_name').value = clientName;
-                                                           document.getElementById('edit_company_name').value = companyName;
-                                                           document.getElementById('edit_pic_name').value = picName;
-                                                           document.getElementById('edit_product_category').value = productCategory;
+                                                           document.getElementById('edit_project_name').value = clientName;
+                                                           document.getElementById('edit_domain').value = companyName;
+                                                           document.getElementById('edit_expired').value = picName;
+                                                           document.getElementById('edit_product_domain').value = productdomain;
                                                            document.getElementById('edit_email').value = email;
                                                            document.getElementById('edit_phone').value = phone;
                                                            document.getElementById('edit_address').value = address;
@@ -530,9 +478,9 @@
                                        <td colspan="2">
                                            <div class="collapse-content"
                                                style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $client->company_name }}</span>
+                                               <span>{{ $client->domain }}</span>
                                                <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $client->company_name }}')"></i>
+                                                   onclick="copyText('{{ $client->domain }}')"></i>
                                            </div>
                                        </td>
                                        <td colspan="6">
