@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\DomainController;
+use App\Http\Controllers\TeamController;
 use App\Models\Domain;
 use App\Models\Project;
 use App\Models\User;
@@ -41,7 +42,6 @@ Route::middleware([
         Route::get('/admin/dashboard', [RoleController::class, 'Dashboard'])->name('admin.dashboard');
         Route::get('/admin/add-account', [AdminAccountController::class, 'showAddAccountForm'])->name('admin.add-account-form');
         Route::post('/admin/add-account', [AdminAccountController::class, 'addAccount'])->name('admin.add-account');
-
         // Route untuk melihat klien (hanya admin)
         Route::get('/admin/clients', [ClientController::class, 'index'])->name('admin.clients'); // Pastikan method 'index' di ClientController ada
     });
@@ -49,7 +49,6 @@ Route::middleware([
     // route khusus staff
     Route::middleware('role:staff')->group(function () {
         Route::get('/user/dashboard', [RoleController::class, 'Dashboard'])->name('user.dashboard');
-
         // Route untuk melihat klien (hanya staff)
         Route::get('/user/clients', [ClientController::class, 'index'])->name('user.clients'); // Pastikan method 'index' di ClientController ada
     });
@@ -69,8 +68,6 @@ Route::post('/clients/delete-multiple', [ClientController::class, 'deleteMultipl
 Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
 Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update');
 Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
-
-
 // route data project
 Route::resource('project', ProjectController::class);
 Route::get('/project', [ProjectController::class, 'View'])->name('project.view');
@@ -80,7 +77,7 @@ Route::post('/project/delete-multiple', [ProjectController::class, 'deleteMultip
 Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit');
 Route::put('/project/{id}', [ProjectController::class, 'update'])->name('project.update');
 Route::put('/project/{project}', [ProjectController::class, 'update'])->name('project.update');
-// 
+// route data domain
 Route::resource('domain', DomainController::class);
 Route::get('/domain', [DomainController::class, 'View'])->name('domain.view');
 Route::post('/domain/store', [DomainController::class, 'Dstore'])->name('domain.store');
@@ -89,3 +86,12 @@ Route::post('/domain/delete-multiple', [DomainController::class, 'deleteMultiple
 Route::get('/domain/{id}/edit', [DomainController::class, 'edit'])->name('domain.edit');
 Route::put('/domain/{id}', [DomainController::class, 'update'])->name('domain.update');
 Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('domain.update');
+// route data team
+Route::resource('team', TeamController::class);
+Route::get('/team', [TeamController::class, 'View'])->name('team.view');
+Route::post('/team/store', [TeamController::class, 'Dstore'])->name('team.store');
+Route::delete('/team/{id}', [TeamController::class, 'destroy'])->name('team.destroy');
+Route::post('/team/delete-multiple', [TeamController::class, 'deleteMultiple'])->name('team.deleteMultiple');
+Route::get('/team/{id}/edit', [TeamController::class, 'edit'])->name('team.edit');
+Route::put('/team/{id}', [TeamController::class, 'update'])->name('team.update');
+Route::put('/team/{team}', [TeamController::class, 'update'])->name('team.update');

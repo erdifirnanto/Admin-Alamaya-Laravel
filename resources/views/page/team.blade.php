@@ -8,7 +8,7 @@
                    <div class="row">
                        <div class="col-12 col-md-12">
                            <div class="d-flex justify-content-center" style="margin-bottom: 50px;">
-                               <h1>Domain</h1>
+                               <h1>Alamaya Teams</h1>
                            </div>
                        </div>
                    </div>
@@ -64,18 +64,18 @@
 
 
                                    <!-- Add Domain Button -->
-                                   <button class="btn btn-add-personil btn1hvr" data-bs-toggle="modal"
-                                       data-bs-target="#addTeamModal">Add
+                                   <button class="btn btn-add-project btn1hvr" data-bs-toggle="modal"
+                                       data-bs-target="#addDomainModal">Add
                                        Team <i class="fa fa-plus"></i>
                                    </button>
 
-                                   <!-- Add Team Modal -->
-                                   <div class="modal fade" id="addTeamModal" tabindex="-1"
-                                       aria-labelledby="addTeamModalLabel" aria-hidden="true">
+                                   <!-- Add Domain Modal -->
+                                   <div class="modal fade" id="addDomainModal" tabindex="-1"
+                                       aria-labelledby="addDomainModalLabel" aria-hidden="true">
                                        <div class="modal-dialog">
                                            <div class="modal-content">
                                                <div class="modal-header">
-                                                   <h5 class="modal-title" id="addTeamModalLabel">Add
+                                                   <h5 class="modal-title" id="addDomainModalLabel">Add
                                                        Team</h5>
                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                        aria-label="Close"></button>
@@ -91,7 +91,7 @@
                                                                    Name</label>
                                                                <input type="text" class="form-control"
                                                                    name="personil_name" for="personil_name"
-                                                                   id="personil_name" placeholder="Enter the personil Name">
+                                                                   id="personil_name" placeholder="Enter the Personil Name">
                                                            </div>
                                                        </div>
 
@@ -101,18 +101,18 @@
                                                                    class="form-label">Division</label>
                                                                <input type="text" class="form-control" name="division"
                                                                    for="division" id="division"
-                                                                   placeholder="Enter the division">
+                                                                   placeholder="Enter the Division">
                                                            </div>
                                                        </div>
                                                        <div class="row mb-3">
                                                            <div class="col">
                                                                <label name="project_handle" for="project_handle"
-                                                                   id="project_handle"
-                                                                   class="form-label">project_handle</label>
-                                                               <input type="date" class="form-control"
+                                                                   id="project_handle" class="form-label">Project
+                                                                   Handle</label>
+                                                               <input type="text" class="form-control"
                                                                    name="project_handle" for="project_handle"
                                                                    id="project_handle"
-                                                                   placeholder="Enter the project_handle">
+                                                                   placeholder="Enter the Project Handle">
                                                            </div>
                                                        </div>
 
@@ -184,15 +184,15 @@
                                                        selectedClients.push(checkbox.value);
                                                    });
 
-                                                   console.log("Selected Domains IDs:", selectedClients); // Debugging
+                                                   console.log("Selected Teams IDs:", selectedClients); // Debugging
 
                                                    if (selectedClients.length === 0) {
-                                                       alert("No domain selected.");
+                                                       alert("No team selected.");
                                                        return;
                                                    }
 
-                                                   if (confirm("Are you sure you want to delete the selected domains?")) {
-                                                       fetch('/domain/delete-multiple', {
+                                                   if (confirm("Are you sure you want to delete the selected teams?")) {
+                                                       fetch('/team/delete-multiple', {
                                                                method: 'POST',
                                                                headers: {
                                                                    'Content-Type': 'application/json',
@@ -206,15 +206,14 @@
                                                            .then(response => response.json())
                                                            .then(data => {
                                                                if (data.success) {
-                                                                   alert("Selected Domains deleted successfully!");
+                                                                   alert("Selected Teams deleted successfully!");
                                                                    location.reload(); // Refresh halaman atau update DOM
                                                                } else {
-                                                                   alert("Failed to delete Domains.");
+                                                                   alert("Failed to delete Teams.");
                                                                }
                                                            })
-                                                           .catch(error => console.error("Error deleting Domains:", error));
+                                                           .catch(error => console.error("Error deleting Teams:", error));
                                                    }
-
                                                });
                                            </script>
                                        </div>
@@ -231,9 +230,8 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           personil Name
-                                           <span class="sort-icons sort-button" data-sort="personil-name"
-                                               data-order="asc"
+                                           Personil Name
+                                           <span class="sort-icons sort-button" data-sort="project-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
@@ -243,7 +241,7 @@
 
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Domain
+                                           Division
                                            <span class="sort-icons sort-button" data-sort="domain" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
@@ -253,7 +251,7 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Expired
+                                           Project Handle
                                            <span class="sort-icons sort-button" data-sort="expired" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
@@ -295,22 +293,22 @@
                                </script>
                            </thead>
                            <tbody>
-                               @foreach ($domains as $domain)
+                               @foreach ($teams as $team)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
-                                               value="{{ $domain->id }}">
+                                               value="{{ $team->id }}">
                                        </td>
-                                       <td style="align-content: center">{{ $domain->id }}</td>
+                                       <td style="align-content: center">{{ $team->id }}</td>
                                        <td style="align-content: center" data-key="client-name">
-                                           {{ $domain->personil_name }}</td>
-                                       <td style="align-content: center" data-key="product-domain">
-                                           {{ $domain->domain }}
+                                           {{ $team->personil_name }}</td>
+                                       <td style="align-content: center" data-key="product-team">
+                                           {{ $team->division }}
                                            {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span> --}}
                                        </td>
-                                       <td style="align-content: center" data-key="pic-name">{{ $domain->expired }}
+                                       <td style="align-content: center" data-key="pic-name">{{ $team->project_handle }}
                                        </td>
                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
@@ -318,19 +316,19 @@
                                                    aria-expanded="false" style="cursor: pointer;"></i>
                                                <ul class="dropdown-menu">
                                                    <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                           data-bs-target="#editDomainModal-{{ $domain->id }}">Edit</a>
+                                                           data-bs-target="#editTeamModal-{{ $team->id }}">Edit</a>
                                                    </li>
                                                </ul>
                                                {{-- Edit Data Domain --}}
-                                               <div class="modal fade" id="editDomainModal-{{ $domain->id }}"
-                                                   tabindex="-1" aria-labelledby="editDomainModalLabel"
+                                               {{-- <div class="modal fade" id="editTeamModal-{{ $team->id }}"
+                                                   tabindex="-1" aria-labelledby="editTeamModalLabel"
                                                    aria-hidden="true">
                                                    <div class="modal-dialog modal-lg">
                                                        <div class="modal-content">
                                                            <div class="modal-header" style="display: block;">
-                                                               <h5 class="modal-title" id="editDomainModalLabel">Edit
+                                                               <h5 class="modal-title" id="editTeamModalLabel">Edit
                                                                    Data
-                                                                   personil</h5>
+                                                                   Project</h5>
                                                                <p style="margin-top: 2px;"></p>
                                                                <button type="button" class="btn-close"
                                                                    data-bs-dismiss="modal" aria-label="Close"
@@ -339,22 +337,22 @@
 
                                                            <div class="modal-body">
                                                                <form method="POST"
-                                                                   action="{{ route('domain.update', $domain->id) }}">
+                                                                   action="{{ route('team.update', $team->id) }}">
                                                                    @csrf
                                                                    @method('PUT')
                                                                    <!-- Domain Name & Company Name -->
 
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label name="personil_name" for="personil_name"
-                                                                               id="personil_name"
-                                                                               class="form-label">personil
+                                                                           <label name="project_name" for="project_name"
+                                                                               id="project_name"
+                                                                               class="form-label">Project
                                                                                Name</label>
                                                                            <input type="text" class="form-control"
-                                                                               name="personil_name" for="personil_name"
-                                                                               id="personil_name"
-                                                                               value="{{ $domain->personil_name }}"
-                                                                               placeholder="Enter the personil Name">
+                                                                               name="project_name" for="project_name"
+                                                                               id="project_name"
+                                                                               value="{{ $domain->project_name }}"
+                                                                               placeholder="Enter the Project Name">
                                                                        </div>
                                                                    </div>
 
@@ -390,7 +388,7 @@
                                                            </div>
                                                        </div>
                                                    </div>
-                                               </div>
+                                               </div> --}}
 
                                                {{-- <script>
                                                    // Assuming you have edit buttons with class "edit-btn" and data attributes for the client
@@ -407,7 +405,7 @@
 
                                                            // Populate the modal fields
                                                            document.getElementById('edit_client_id').value = clientId;
-                                                           document.getElementById('edit_personil_name').value = clientName;
+                                                           document.getElementById('edit_project_name').value = clientName;
                                                            document.getElementById('edit_domain').value = companyName;
                                                            document.getElementById('edit_expired').value = picName;
                                                            document.getElementById('edit_product_domain').value = productdomain;
@@ -421,7 +419,7 @@
                                                            document.getElementById('editClientForm').action = formAction;
 
                                                            // Show the modal
-                                                           $('#editpersonilModal').modal('show');
+                                                           $('#editProjectModal').modal('show');
                                                        });
                                                    });
                                                </script> --}}
@@ -457,7 +455,7 @@
                        <nav aria-label="Page navigation">
                            <ul class="pagination justify-content-end" style="align-items: center;">
                                <!-- Tombol Previous -->
-                               @if ($domains->onFirstPage())
+                               @if ($teams->onFirstPage())
                                    <li class="page-item disabled">
                                        <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
@@ -465,7 +463,7 @@
                                    </li>
                                @else
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $domains->previousPageUrl() }}"
+                                       <a class="page-link" href="{{ $teams->previousPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
                                        </a>
@@ -473,48 +471,48 @@
                                @endif
 
                                <!-- Tombol Angka Halaman dengan Batas 10 -->
-                               @if ($domains->lastPage() > 10)
+                               @if ($teams->lastPage() > 10)
                                    <!-- Tampilkan halaman pertama -->
-                                   <li class="page-item {{ $domains->currentPage() == 1 ? 'active' : '' }}">
-                                       <a class="page-link1" href="{{ $domains->url(1) }}">1</a>
+                                   <li class="page-item {{ $teams->currentPage() == 1 ? 'active' : '' }}">
+                                       <a class="page-link1" href="{{ $teams->url(1) }}">1</a>
                                    </li>
 
-                                   @if ($domains->currentPage() > 5)
+                                   @if ($teams->currentPage() > 5)
                                        <!-- Tambahkan titik tiga jika halaman saat ini lebih dari 5 -->
                                        <li class="page-item disabled"><span class="page-link1">...</span></li>
                                    @endif
 
                                    <!-- Loop untuk menampilkan 5 halaman di sekitar halaman saat ini -->
-                                   @for ($i = max(2, $domains->currentPage() - 2); $i <= min($domains->lastPage() - 1, $domains->currentPage() + 2); $i++)
-                                       <li class="page-item {{ $domains->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $domains->url($i) }}">{{ $i }}</a>
+                                   @for ($i = max(2, $teams->currentPage() - 2); $i <= min($teams->lastPage() - 1, $teams->currentPage() + 2); $i++)
+                                       <li class="page-item {{ $teams->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $teams->url($i) }}">{{ $i }}</a>
                                        </li>
                                    @endfor
 
-                                   @if ($domains->currentPage() < $domains->lastPage() - 4)
+                                   @if ($teams->currentPage() < $teams->lastPage() - 4)
                                        <!-- Tambahkan titik tiga jika halaman saat ini kurang dari halaman terakhir - 4 -->
                                        <li class="page-item disabled"><span class="page-link1">...</span></li>
                                    @endif
 
                                    <!-- Tampilkan halaman terakhir -->
                                    <li
-                                       class="page-item {{ $domains->currentPage() == $domains->lastPage() ? 'active' : '' }}">
+                                       class="page-item {{ $teams->currentPage() == $teams->lastPage() ? 'active' : '' }}">
                                        <a class="page-link1"
-                                           href="{{ $domains->url($domains->lastPage()) }}">{{ $domains->lastPage() }}</a>
+                                           href="{{ $teams->url($teams->lastPage()) }}">{{ $teams->lastPage() }}</a>
                                    </li>
                                @else
                                    <!-- Jika halaman kurang dari atau sama dengan 10, tampilkan semua halaman -->
-                                   @for ($i = 1; $i <= $domains->lastPage(); $i++)
-                                       <li class="page-item {{ $domains->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $domains->url($i) }}">{{ $i }}</a>
+                                   @for ($i = 1; $i <= $teams->lastPage(); $i++)
+                                       <li class="page-item {{ $teams->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $teams->url($i) }}">{{ $i }}</a>
                                        </li>
                                    @endfor
                                @endif
 
                                <!-- Tombol Next -->
-                               @if ($domains->hasMorePages())
+                               @if ($teams->hasMorePages())
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $domains->nextPageUrl() }}"
+                                       <a class="page-link" href="{{ $teams->nextPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-right"></i>
                                        </a>
