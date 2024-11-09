@@ -319,7 +319,7 @@
                                                    </li>
                                                </ul>
                                                {{-- Edit Data Domain --}}
-                                               {{-- <div class="modal fade" id="editDomainModal-{{ $domains->id }}"
+                                               <div class="modal fade" id="editDomainModal-{{ $domain->id }}"
                                                    tabindex="-1" aria-labelledby="editDomainModalLabel"
                                                    aria-hidden="true">
                                                    <div class="modal-dialog modal-lg">
@@ -332,111 +332,64 @@
                                                                <button type="button" class="btn-close"
                                                                    data-bs-dismiss="modal" aria-label="Close"
                                                                    style="position: absolute; right: 10px; top: 10px;"></button>
-                                                           </div> --}}
+                                                           </div>
 
-                                               {{-- <div class="modal-body">
+                                                           <div class="modal-body">
                                                                <form method="POST"
-                                                                   action="{{ route('clients.update', $project->id) }}">
+                                                                   action="{{ route('domain.update', $domain->id) }}">
                                                                    @csrf
                                                                    @method('PUT')
-                                                                   <!-- Client Name & Company Name -->
+                                                                   <!-- Domain Name & Company Name -->
+
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="project_name" class="form-label"
-                                                                               style="font-size: 0.7em;">CLIENT
-                                                                               NAME</label>
+                                                                           <label name="project_name" for="project_name"
+                                                                               id="project_name"
+                                                                               class="form-label">Project
+                                                                               Name</label>
                                                                            <input type="text" class="form-control"
-                                                                               id="project_name" name="project_name"
-                                                                               value="{{ $client->project_name }}"
-                                                                               placeholder="Enter the client name">
-                                                                       </div>
-                                                                       <div class="col">
-                                                                           <label for="domain" class="form-label"
-                                                                               style="font-size: 0.7em;">COMPANY
-                                                                               NAME</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="domain" name="domain"
-                                                                               value="{{ $client->domain }}"
-                                                                               placeholder="Enter the company name">
+                                                                               name="project_name" for="project_name"
+                                                                               id="project_name"
+                                                                               value="{{ $domain->project_name }}"
+                                                                               placeholder="Enter the Project Name">
                                                                        </div>
                                                                    </div>
 
-                                                                   <!-- PIC and Product domain -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="expired" class="form-label"
-                                                                               style="font-size: 0.7em;">PIC</label>
-                                                                           <select class="form-select" id="expired"
-                                                                               name="expired">
-                                                                               <option value="{{ $client->expired }}"
-                                                                                   selected>{{ $client->expired }}
-                                                                               </option>
-                                                                               <option value="1">PIC 1</option>
-                                                                               <option value="2">PIC 2</option>
-                                                                           </select>
-                                                                       </div>
-                                                                       <div class="col">
-                                                                           <label for="product_domain"
-                                                                               class="form-label"
-                                                                               style="font-size: 0.7em;">domain
-                                                                               PRODUCT</label>
-                                                                           <select class="form-select"
-                                                                               id="product_domain"
-                                                                               name="product_domain">
-                                                                               <option
-                                                                                   value="{{ $client->product_domain }}"
-                                                                                   selected>
-                                                                                   {{ $client->product_domain }}
-                                                                               </option>
-                                                                               <option value="1">domain 1
-                                                                               </option>
-                                                                               <option value="2">domain 2
-                                                                               </option>
-                                                                           </select>
+                                                                           <label name="domain" for="domain"
+                                                                               id="domain"
+                                                                               class="form-label">Domain</label>
+                                                                           <input type="text" class="form-control"
+                                                                               name="domain" for="domain"
+                                                                               id="domain"
+                                                                               value="{{ $domain->domain }}"
+                                                                               placeholder="Enter the Domain">
                                                                        </div>
                                                                    </div>
-
-                                                                   <!-- Email & Phone -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="email" class="form-label"
-                                                                               style="font-size: 0.7em;">EMAIL</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="email" name="email"
-                                                                               value="{{ $client->email }}"
-                                                                               placeholder="Enter email client">
-                                                                       </div>
-                                                                       <div class="col">
-                                                                           <label for="phone" class="form-label"
-                                                                               style="font-size: 0.7em;">PHONE</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="phone" name="phone"
-                                                                               value="{{ $client->phone }}"
-                                                                               placeholder="Enter the client's phone number">
+                                                                           <label name="expired" for="expired"
+                                                                               id="expired"
+                                                                               class="form-label">Expired</label>
+                                                                           <input type="date" class="form-control"
+                                                                               name="expired" for="expired"
+                                                                               id="expired"
+                                                                               value="{{ $domain->expired }}"
+                                                                               placeholder="Enter the Expired">
                                                                        </div>
                                                                    </div>
-
-                                                                   <!-- Address -->
-                                                                   <div class="mb-3">
-                                                                       <label for="address" class="form-label"
-                                                                           style="font-size: 0.7em;">ADDRESS</label>
-                                                                       <input type="text" class="form-control"
-                                                                           id="address" name="address"
-                                                                           value="{{ $client->address }}"
-                                                                           placeholder="Enter the client's company address">
-                                                                   </div>
-
                                                                    <!-- Submit Button -->
                                                                    <button type="submit"
                                                                        class="btn btn-dark w-100">Update
-                                                                       Project</button>
+                                                                       Domain</button>
                                                                </form>
-                                                           </div> --}}
-                                           </div>
-                   </div>
-               </div>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
 
-               {{-- <script>
+                                               {{-- <script>
                                                    // Assuming you have edit buttons with class "edit-btn" and data attributes for the client
                                                    document.querySelectorAll('.edit-btn').forEach(button => {
                                                        button.addEventListener('click', function() {
@@ -470,10 +423,10 @@
                                                    });
                                                </script> --}}
 
-           </div>
-           </td>
-           </tr>
-           {{-- <tr class="collapse-row" style="display: none;">
+                                           </div>
+                                       </td>
+                                   </tr>
+                                   {{-- <tr class="collapse-row" style="display: none;">
                                        <td></td>
                                        <td colspan="2">
                                            <div class="collapse-content"
@@ -492,88 +445,89 @@
                                            </div>
                                        </td>
                                    </tr> --}}
-           @endforeach
-           </tbody>
-           </table>
+                               @endforeach
+                           </tbody>
+                       </table>
 
 
-           <!-- Custom Pagination -->
-           <nav aria-label="Page navigation">
-               <ul class="pagination justify-content-end" style="align-items: center;">
-                   <!-- Tombol Previous -->
-                   @if ($domains->onFirstPage())
-                       <li class="page-item disabled">
-                           <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
-                               <i style="color: white;" class="fa-solid fa-chevron-left"></i>
-                           </span>
-                       </li>
-                   @else
-                       <li class="page-item">
-                           <a class="page-link" href="{{ $domains->previousPageUrl() }}"
-                               style="background-color: #082F1B; border-radius: 5px;">
-                               <i style="color: white;" class="fa-solid fa-chevron-left"></i>
-                           </a>
-                       </li>
-                   @endif
+                       <!-- Custom Pagination -->
+                       <nav aria-label="Page navigation">
+                           <ul class="pagination justify-content-end" style="align-items: center;">
+                               <!-- Tombol Previous -->
+                               @if ($domains->onFirstPage())
+                                   <li class="page-item disabled">
+                                       <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-left"></i>
+                                       </span>
+                                   </li>
+                               @else
+                                   <li class="page-item">
+                                       <a class="page-link" href="{{ $domains->previousPageUrl() }}"
+                                           style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-left"></i>
+                                       </a>
+                                   </li>
+                               @endif
 
-                   <!-- Tombol Angka Halaman dengan Batas 10 -->
-                   @if ($domains->lastPage() > 10)
-                       <!-- Tampilkan halaman pertama -->
-                       <li class="page-item {{ $domains->currentPage() == 1 ? 'active' : '' }}">
-                           <a class="page-link1" href="{{ $domains->url(1) }}">1</a>
-                       </li>
+                               <!-- Tombol Angka Halaman dengan Batas 10 -->
+                               @if ($domains->lastPage() > 10)
+                                   <!-- Tampilkan halaman pertama -->
+                                   <li class="page-item {{ $domains->currentPage() == 1 ? 'active' : '' }}">
+                                       <a class="page-link1" href="{{ $domains->url(1) }}">1</a>
+                                   </li>
 
-                       @if ($domains->currentPage() > 5)
-                           <!-- Tambahkan titik tiga jika halaman saat ini lebih dari 5 -->
-                           <li class="page-item disabled"><span class="page-link1">...</span></li>
-                       @endif
+                                   @if ($domains->currentPage() > 5)
+                                       <!-- Tambahkan titik tiga jika halaman saat ini lebih dari 5 -->
+                                       <li class="page-item disabled"><span class="page-link1">...</span></li>
+                                   @endif
 
-                       <!-- Loop untuk menampilkan 5 halaman di sekitar halaman saat ini -->
-                       @for ($i = max(2, $domains->currentPage() - 2); $i <= min($domains->lastPage() - 1, $domains->currentPage() + 2); $i++)
-                           <li class="page-item {{ $domains->currentPage() == $i ? 'active' : '' }}">
-                               <a class="page-link1" href="{{ $domains->url($i) }}">{{ $i }}</a>
-                           </li>
-                       @endfor
+                                   <!-- Loop untuk menampilkan 5 halaman di sekitar halaman saat ini -->
+                                   @for ($i = max(2, $domains->currentPage() - 2); $i <= min($domains->lastPage() - 1, $domains->currentPage() + 2); $i++)
+                                       <li class="page-item {{ $domains->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $domains->url($i) }}">{{ $i }}</a>
+                                       </li>
+                                   @endfor
 
-                       @if ($domains->currentPage() < $domains->lastPage() - 4)
-                           <!-- Tambahkan titik tiga jika halaman saat ini kurang dari halaman terakhir - 4 -->
-                           <li class="page-item disabled"><span class="page-link1">...</span></li>
-                       @endif
+                                   @if ($domains->currentPage() < $domains->lastPage() - 4)
+                                       <!-- Tambahkan titik tiga jika halaman saat ini kurang dari halaman terakhir - 4 -->
+                                       <li class="page-item disabled"><span class="page-link1">...</span></li>
+                                   @endif
 
-                       <!-- Tampilkan halaman terakhir -->
-                       <li class="page-item {{ $domains->currentPage() == $domains->lastPage() ? 'active' : '' }}">
-                           <a class="page-link1"
-                               href="{{ $domains->url($domains->lastPage()) }}">{{ $domains->lastPage() }}</a>
-                       </li>
-                   @else
-                       <!-- Jika halaman kurang dari atau sama dengan 10, tampilkan semua halaman -->
-                       @for ($i = 1; $i <= $domains->lastPage(); $i++)
-                           <li class="page-item {{ $domains->currentPage() == $i ? 'active' : '' }}">
-                               <a class="page-link1" href="{{ $domains->url($i) }}">{{ $i }}</a>
-                           </li>
-                       @endfor
-                   @endif
+                                   <!-- Tampilkan halaman terakhir -->
+                                   <li
+                                       class="page-item {{ $domains->currentPage() == $domains->lastPage() ? 'active' : '' }}">
+                                       <a class="page-link1"
+                                           href="{{ $domains->url($domains->lastPage()) }}">{{ $domains->lastPage() }}</a>
+                                   </li>
+                               @else
+                                   <!-- Jika halaman kurang dari atau sama dengan 10, tampilkan semua halaman -->
+                                   @for ($i = 1; $i <= $domains->lastPage(); $i++)
+                                       <li class="page-item {{ $domains->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $domains->url($i) }}">{{ $i }}</a>
+                                       </li>
+                                   @endfor
+                               @endif
 
-                   <!-- Tombol Next -->
-                   @if ($domains->hasMorePages())
-                       <li class="page-item">
-                           <a class="page-link" href="{{ $domains->nextPageUrl() }}"
-                               style="background-color: #082F1B; border-radius: 5px;">
-                               <i style="color: white;" class="fa-solid fa-chevron-right"></i>
-                           </a>
-                       </li>
-                   @else
-                       <li class="page-item disabled">
-                           <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
-                               <i style="color: white;" class="fa-solid fa-chevron-right"></i>
-                           </span>
-                       </li>
-                   @endif
-               </ul>
-           </nav>
+                               <!-- Tombol Next -->
+                               @if ($domains->hasMorePages())
+                                   <li class="page-item">
+                                       <a class="page-link" href="{{ $domains->nextPageUrl() }}"
+                                           style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-right"></i>
+                                       </a>
+                                   </li>
+                               @else
+                                   <li class="page-item disabled">
+                                       <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-right"></i>
+                                       </span>
+                                   </li>
+                               @endif
+                           </ul>
+                       </nav>
 
-           </div>
-           </div>
+                   </div>
+               </div>
            </div>
        </section>
    @endsection
