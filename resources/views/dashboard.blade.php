@@ -545,7 +545,7 @@
                                                                                class="form-control @error('email') is-invalid @enderror"
                                                                                id="email" name="email"
                                                                                placeholder="Enter email"
-                                                                               value="{{ old('email') }}" required
+                                                                               value="{{ $client->email }}" required
                                                                                autofocus>
                                                                            @error('email')
                                                                                <div id="emailHelp"
