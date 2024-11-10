@@ -63,68 +63,84 @@
                                    </script>
 
 
-                                   <!-- Add Domain Button -->
+                                   <!-- Add Team Button -->
                                    <button class="btn btn-add-project btn1hvr" data-bs-toggle="modal"
-                                       data-bs-target="#addDomainModal">Add
+                                       data-bs-target="#addTeamModal">Add
                                        Team <i class="fa fa-plus"></i>
                                    </button>
 
-                                   <!-- Add Domain Modal -->
-                                   <div class="modal fade" id="addDomainModal" tabindex="-1"
-                                       aria-labelledby="addDomainModalLabel" aria-hidden="true">
+                                   <!-- Add Team Modal -->
+                                   <div class="modal fade" id="addTeamModal" tabindex="-1"
+                                       aria-labelledby="addTeamModalLabel" aria-hidden="true">
                                        <div class="modal-dialog">
                                            <div class="modal-content">
                                                <div class="modal-header">
-                                                   <h5 class="modal-title" id="addDomainModalLabel">Add
+                                                   <h5 class="modal-title" id="addTeamModalLabel">Add
                                                        Team</h5>
                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                        aria-label="Close"></button>
                                                </div>
                                                <div class="modal-body">
-                                                   <form method="POST" action="{{ route('team.store') }}">
+                                                   <form method="POST" action="{{ route('team.store') }}" id="addTeamForm">
                                                        @csrf
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label name="personil_name" for="personil_name"
-                                                                   id="personil_name" class="form-label">Personil
+                                                               <label for="personil_name" class="form-label">Personil
                                                                    Name</label>
                                                                <input type="text" class="form-control"
-                                                                   name="personil_name" for="personil_name"
-                                                                   id="personil_name" placeholder="Enter the Personil Name">
+                                                                   name="personil_name" id="personil_name"
+                                                                   placeholder="Enter the Personil Name" required
+                                                                   pattern="^[a-zA-Z\s]+$">
+                                                               <div class="invalid-feedback">Please enter a valid name (only
+                                                                   letters allowed).</div>
                                                            </div>
                                                        </div>
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label name="division" for="division" id="division"
-                                                                   class="form-label">Division</label>
+                                                               <label for="division" class="form-label">Division</label>
                                                                <input type="text" class="form-control" name="division"
-                                                                   for="division" id="division"
-                                                                   placeholder="Enter the Division">
+                                                                   id="division" placeholder="Enter the Division" required
+                                                                   pattern="^[a-zA-Z\s]+$">
+                                                               <div class="invalid-feedback">Please enter a valid division
+                                                                   (only letters allowed).</div>
                                                            </div>
                                                        </div>
+
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label name="project_handle" for="project_handle"
-                                                                   id="project_handle" class="form-label">Project
+                                                               <label for="project_handle" class="form-label">Project
                                                                    Handle</label>
                                                                <input type="text" class="form-control"
-                                                                   name="project_handle" for="project_handle"
-                                                                   id="project_handle"
-                                                                   placeholder="Enter the Project Handle">
+                                                                   name="project_handle" id="project_handle"
+                                                                   placeholder="Enter the Project Handle" required>
                                                            </div>
                                                        </div>
 
                                                        <!-- Submit Button -->
                                                        <button type="submit" class="btn btn-dark w-100"
-                                                           onclick="showAlert()">Add
-                                                           Team</button>
+                                                           onclick="return validateForm()">Add Team</button>
                                                    </form>
                                                </div>
                                            </div>
                                        </div>
                                    </div>
+
+                                   <script>
+                                       function validateForm() {
+                                           // Trigger built-in HTML validation before allowing form submission
+                                           const form = document.getElementById('addTeamForm');
+
+                                           // Check if the form is valid
+                                           if (form.checkValidity()) {
+                                               return true; // Proceed to submit if valid
+                                           } else {
+                                               form.reportValidity(); // Show validation messages if invalid
+                                               return false; // Prevent form submission
+                                           }
+                                       }
+                                   </script>
 
                                    {{-- End Add Domain Modal --}}
 
