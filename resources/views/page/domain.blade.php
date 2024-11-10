@@ -64,62 +64,60 @@
 
 
                                    <!-- Add Domain Button -->
-                                   <button class="btn btn-add-personil btn1hvr" data-bs-toggle="modal"
-                                       data-bs-target="#addTeamModal">Add
-                                       Team <i class="fa fa-plus"></i>
+                                   <button class="btn btn-add-project btn1hvr" data-bs-toggle="modal"
+                                       data-bs-target="#addDomainModal">Add
+                                       Domain <i class="fa fa-plus"></i>
                                    </button>
 
-                                   <!-- Add Team Modal -->
-                                   <div class="modal fade" id="addTeamModal" tabindex="-1"
-                                       aria-labelledby="addTeamModalLabel" aria-hidden="true">
+                                   <!-- Add Domain Modal -->
+                                   <div class="modal fade" id="addDomainModal" tabindex="-1"
+                                       aria-labelledby="addDomainModalLabel" aria-hidden="true">
                                        <div class="modal-dialog">
                                            <div class="modal-content">
                                                <div class="modal-header">
-                                                   <h5 class="modal-title" id="addTeamModalLabel">Add
-                                                       Team</h5>
+                                                   <h5 class="modal-title" id="addDomainModalLabel">Add
+                                                       Domain</h5>
                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                        aria-label="Close"></button>
                                                </div>
                                                <div class="modal-body">
-                                                   <form method="POST" action="{{ route('team.store') }}">
+                                                   <form method="POST" action="{{ route('domain.store') }}">
                                                        @csrf
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label name="personil_name" for="personil_name"
-                                                                   id="personil_name" class="form-label">Personil
+                                                               <label name="project_name" for="project_name"
+                                                                   id="project_name" class="form-label">Project
                                                                    Name</label>
                                                                <input type="text" class="form-control"
-                                                                   name="personil_name" for="personil_name"
-                                                                   id="personil_name" placeholder="Enter the personil Name">
+                                                                   name="project_name" for="project_name" id="project_name"
+                                                                   placeholder="Enter the Project Name">
                                                            </div>
                                                        </div>
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label name="division" for="division" id="division"
-                                                                   class="form-label">Division</label>
-                                                               <input type="text" class="form-control" name="division"
-                                                                   for="division" id="division"
-                                                                   placeholder="Enter the division">
+                                                               <label name="domain" for="domain" id="domain"
+                                                                   class="form-label">Domain</label>
+                                                               <input type="text" class="form-control" name="domain"
+                                                                   for="domain" id="domain"
+                                                                   placeholder="Enter the Domain">
                                                            </div>
                                                        </div>
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label name="project_handle" for="project_handle"
-                                                                   id="project_handle"
-                                                                   class="form-label">project_handle</label>
-                                                               <input type="date" class="form-control"
-                                                                   name="project_handle" for="project_handle"
-                                                                   id="project_handle"
-                                                                   placeholder="Enter the project_handle">
+                                                               <label name="expired" for="expired" id="expired"
+                                                                   class="form-label">Expired</label>
+                                                               <input type="date" class="form-control" name="expired"
+                                                                   for="expired" id="expired"
+                                                                   placeholder="Enter the Expired">
                                                            </div>
                                                        </div>
 
                                                        <!-- Submit Button -->
                                                        <button type="submit" class="btn btn-dark w-100"
                                                            onclick="showAlert()">Add
-                                                           Team</button>
+                                                           Domain</button>
                                                    </form>
                                                </div>
                                            </div>
@@ -148,7 +146,7 @@
                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                        <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc">By
                                                ID</button></li>
-                                       <li><button class="dropdown-item sort-button" data-sort="personil_name"
+                                       <li><button class="dropdown-item sort-button" data-sort="project_name"
                                                data-order="asc">By Name</button></li>
                                    </ul>
 
@@ -231,9 +229,8 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           personil Name
-                                           <span class="sort-icons sort-button" data-sort="personil-name"
-                                               data-order="asc"
+                                           Project Name
+                                           <span class="sort-icons sort-button" data-sort="Domain-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
@@ -302,7 +299,7 @@
                                        </td>
                                        <td style="align-content: center">{{ $domain->id }}</td>
                                        <td style="align-content: center" data-key="client-name">
-                                           {{ $domain->personil_name }}</td>
+                                           {{ $domain->project_name }}</td>
                                        <td style="align-content: center" data-key="product-domain">
                                            {{ $domain->domain }}
                                            {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
@@ -330,7 +327,7 @@
                                                            <div class="modal-header" style="display: block;">
                                                                <h5 class="modal-title" id="editDomainModalLabel">Edit
                                                                    Data
-                                                                   personil</h5>
+                                                                   Domain</h5>
                                                                <p style="margin-top: 2px;"></p>
                                                                <button type="button" class="btn-close"
                                                                    data-bs-dismiss="modal" aria-label="Close"
@@ -346,15 +343,15 @@
 
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label name="personil_name" for="personil_name"
-                                                                               id="personil_name"
-                                                                               class="form-label">personil
+                                                                           <label name="project_name" for="project_name"
+                                                                               id="project_name"
+                                                                               class="form-label">Project
                                                                                Name</label>
                                                                            <input type="text" class="form-control"
-                                                                               name="personil_name" for="personil_name"
-                                                                               id="personil_name"
-                                                                               value="{{ $domain->personil_name }}"
-                                                                               placeholder="Enter the personil Name">
+                                                                               name="project_name" for="project_name"
+                                                                               id="project_name"
+                                                                               value="{{ $domain->project_name }}"
+                                                                               placeholder="Enter the Project Name">
                                                                        </div>
                                                                    </div>
 
@@ -407,7 +404,7 @@
 
                                                            // Populate the modal fields
                                                            document.getElementById('edit_client_id').value = clientId;
-                                                           document.getElementById('edit_personil_name').value = clientName;
+                                                           document.getElementById('edit_project_name').value = clientName;
                                                            document.getElementById('edit_domain').value = companyName;
                                                            document.getElementById('edit_expired').value = picName;
                                                            document.getElementById('edit_product_domain').value = productdomain;
@@ -421,7 +418,7 @@
                                                            document.getElementById('editClientForm').action = formAction;
 
                                                            // Show the modal
-                                                           $('#editpersonilModal').modal('show');
+                                                           $('#editDomainModal').modal('show');
                                                        });
                                                    });
                                                </script> --}}

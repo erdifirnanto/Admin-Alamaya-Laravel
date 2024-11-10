@@ -69,30 +69,28 @@
                                        data-bs-target="#addProjectModal">Add
                                        Project <i class="fa fa-plus"></i>
                                    </button>
-
                                    <!-- Add Project Modal -->
                                    <div class="modal fade" id="addProjectModal" tabindex="-1"
                                        aria-labelledby="addProjectModalLabel" aria-hidden="true">
                                        <div class="modal-dialog">
                                            <div class="modal-content">
                                                <div class="modal-header">
-                                                   <h5 class="modal-title" id="addProjectModalLabel">Add
-                                                       Project</h5>
+                                                   <h5 class="modal-title" id="addProjectModalLabel">Add Project</h5>
                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                        aria-label="Close"></button>
                                                </div>
                                                <div class="modal-body">
-                                                   <form method="POST" action="{{ route('project.store') }}">
+                                                   <form method="POST" action="{{ route('project.store') }}"
+                                                       id="addProjectForm">
                                                        @csrf
                                                        <!-- Project Name -->
                                                        <div class="row mb-3">
                                                            <div class="col">
                                                                <label name="project_name" for="project_name"
-                                                                   id="project_name" class="form-label">Project
-                                                                   Name</label>
+                                                                   id="project_name" class="form-label">Project Name</label>
                                                                <input type="text" class="form-control"
-                                                                   name="project_name" for="project_name" id="project_name"
-                                                                   placeholder="Enter the Project Name">
+                                                                   name="project_name" id="project_name"
+                                                                   placeholder="Enter the Project Name" required>
                                                            </div>
                                                        </div>
 
@@ -100,12 +98,11 @@
                                                        <div class="row mb-3">
                                                            <div class="col">
                                                                <label name="category" for="category" id="category"
-                                                                   class="form-label">Category
-                                                                   Product</label>
-                                                               <select class="form-select" name="category" for="category"
-                                                                   id="category">
-                                                                   <option selected>Select a Product
-                                                                       category</option>
+                                                                   class="form-label">Category Product</label>
+                                                               <select class="form-select" name="category" id="category"
+                                                                   required>
+                                                                   <option value="" selected>Select a Product category
+                                                                   </option>
                                                                    <option value="1">Category 1</option>
                                                                    <option value="2">Category 2</option>
                                                                </select>
@@ -113,9 +110,10 @@
                                                            <div class="col">
                                                                <label name="pic_name" for="pic_name" id="pic_name"
                                                                    class="form-label">PIC</label>
-                                                               <select class="form-select" name="pic_name" for="pic_name"
-                                                                   id="pic_name">
-                                                                   <option selected>Select the PIC name</option>
+                                                               <select class="form-select" name="pic_name" id="pic_name"
+                                                                   required>
+                                                                   <option value="" selected>Select the PIC name
+                                                                   </option>
                                                                    <option value="1">PIC 1</option>
                                                                    <option value="2">PIC 2</option>
                                                                </select>
@@ -127,13 +125,9 @@
                                                            <div class="col">
                                                                <label id="tanggal_masuk_project"
                                                                    name="tanggal_masuk_project" for="tanggal_masuk_project"
-                                                                   class="form-label">Tanggal
-                                                                   Project
-                                                                   Masuk</label>
-                                                               <input name="tanggal_masuk_project"
-                                                                   for="tanggal_masuk_project" type="date"
-                                                                   class="form-control" id="tanggal_masuk_project"
-                                                                   placeholder="Tanggal project masuk">
+                                                                   class="form-label">Tanggal Project Masuk</label>
+                                                               <input name="tanggal_masuk_project" type="date"
+                                                                   class="form-control" id="tanggal_masuk_project" required>
                                                            </div>
                                                        </div>
 
@@ -141,33 +135,97 @@
                                                        <div class="mb-3">
                                                            <label name="deadline" for="deadline" id="deadline"
                                                                class="form-label">Deadline</label>
-                                                           <input name="deadline" for="deadline" type="date"
-                                                               class="form-control" id="deadline"
-                                                               placeholder="Enter the project Deadline">
+                                                           <input name="deadline" type="date" class="form-control"
+                                                               id="deadline" required>
                                                        </div>
 
                                                        <!-- Disclaimer -->
                                                        <div class="form-check mb-3">
                                                            <input type="checkbox" class="form-check-input"
-                                                               id="termsCheck">
+                                                               id="termsCheck" required>
                                                            <label class="form-check-label" for="termsCheck">
-                                                               By registering, you agree to the terms and
-                                                               conditions that apply.
+                                                               By registering, you agree to the terms and conditions that
+                                                               apply.
                                                            </label>
                                                        </div>
 
-                                                       <div class="form-text mb-3">Check again and make
-                                                           sure the form is completely filled out</div>
+                                                       <div class="form-text mb-3">Check again and make sure the form is
+                                                           completely filled out</div>
 
                                                        <!-- Submit Button -->
                                                        <button type="submit" class="btn btn-dark w-100"
-                                                           onclick="showAlert()">Add
-                                                           Project</button>
+                                                           onclick="return validateForm()">Add Project</button>
                                                    </form>
                                                </div>
                                            </div>
                                        </div>
                                    </div>
+
+                                   <script>
+                                       // Menambahkan validasi JavaScript tambahan untuk validasi form sebelum submit
+                                       function validateForm() {
+                                           // Mendapatkan referensi form
+                                           const form = document.getElementById('addProjectForm');
+                                           let isValid = true;
+
+                                           // Memeriksa apakah project_name diisi
+                                           const projectName = document.getElementById('project_name');
+                                           if (projectName.value.trim() === '') {
+                                               projectName.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               projectName.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah category dipilih
+                                           const category = document.getElementById('category');
+                                           if (category.value === '') {
+                                               category.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               category.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah PIC dipilih
+                                           const picName = document.getElementById('pic_name');
+                                           if (picName.value === '') {
+                                               picName.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               picName.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah tanggal project masuk diisi
+                                           const tanggalMasukProject = document.getElementById('tanggal_masuk_project');
+                                           if (tanggalMasukProject.value === '') {
+                                               tanggalMasukProject.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               tanggalMasukProject.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah deadline diisi
+                                           const deadline = document.getElementById('deadline');
+                                           if (deadline.value === '') {
+                                               deadline.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               deadline.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah checkbox termsCheck dipilih
+                                           const termsCheck = document.getElementById('termsCheck');
+                                           if (!termsCheck.checked) {
+                                               termsCheck.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               termsCheck.classList.remove('is-invalid');
+                                           }
+
+                                           return isValid;
+                                       }
+                                   </script>
+
 
                                    {{-- End Add Project Modal --}}
 
