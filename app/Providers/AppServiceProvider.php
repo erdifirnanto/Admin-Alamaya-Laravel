@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Client;
+use App\Models\Project;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,5 +23,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::share('totalClients', Client::count());
+        View::share('totalProjects', Project::count());
+        $maintenanceProjectsCount = Project::where('status', 'Maintenance')->count();
+        View::share('totalMaintenanceProjects', $maintenanceProjectsCount);
     }
 }

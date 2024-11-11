@@ -517,6 +517,20 @@
                                                                                <option value="2">PIC 2</option>
                                                                            </select>
                                                                        </div>
+                                                                       <div class="col" hidden>
+                                                                           <label name="status" for="status"
+                                                                               id="status"
+                                                                               class="form-label">Status</label>
+                                                                           <select class="form-select" name="status"
+                                                                               for="status" id="status">
+                                                                               <option value="{{ $project->status }}"
+                                                                                   selected>{{ $project->status }}
+                                                                               </option>
+                                                                               <option value="Mindmap">Mindmap</option>
+                                                                               <option value="Design">Design</option>
+                                                                               <option value="Slicing">Slicing</option>
+                                                                           </select>
+                                                                       </div>
                                                                    </div>
 
                                                                    <!-- Tanggal Project Masuk -->

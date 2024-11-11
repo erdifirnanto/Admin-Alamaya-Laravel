@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('project_name');
             $table->string('category')->nullable();
             $table->string('pic_name')->nullable();
+            $table->string('status')->default('Mindmap');
             $table->date('tanggal_masuk_project')->now;
             $table->date('deadline')->nullable();
             $table->timestamps();
