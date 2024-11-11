@@ -71,12 +71,17 @@ Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clie
 // route data project
 Route::resource('project', ProjectController::class);
 Route::get('/project', [ProjectController::class, 'View'])->name('project.view');
+Route::get('/projectonprogress', [ProjectController::class, 'ViewOnprogress'])->name('project.onprogress');
+Route::get('/projectmaintenance', [ProjectController::class, 'ViewMaintenance'])->name('project.Maintenance');
 Route::post('/project/store', [ProjectController::class, 'Pstore'])->name('project.store');
 Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
 Route::post('/project/delete-multiple', [ProjectController::class, 'deleteMultiple'])->name('project.deleteMultiple');
 Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit');
 Route::put('/project/{id}', [ProjectController::class, 'update'])->name('project.update');
 Route::put('/project/{project}', [ProjectController::class, 'update'])->name('project.update');
+Route::get('/project/{id}/edit', [ProjectController::class, 'Pedit'])->name('project.Pedit');
+Route::put('/projectonprogress/{id}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
+Route::put('/projectonprogress/{project}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
 // route data domain
 Route::resource('domain', DomainController::class);
 Route::get('/domain', [DomainController::class, 'View'])->name('domain.view');

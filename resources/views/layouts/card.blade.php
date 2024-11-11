@@ -97,14 +97,14 @@
                                     <div class="col-md-12">
                                         <div class="card-body text-dark mt-2">
                                             <div class="card-text text-dark mt-4">Maintenance<br>
-                                                <h2><strong>20</strong></h2>
+                                                <h2><strong>{{ number_format($totalMaintenanceProjects) }}</strong></h2>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a href="#" class="text-dark" style="text-decoration: none;">
+                        <a href="{{ route('project.Maintenance') }}" class="text-dark" style="text-decoration: none;">
                             <h6 class="d-flex justify-content-center" style=" margin-top: -20px;">Detail
                                 stats <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i>
                             </h6>
@@ -140,14 +140,14 @@
                                         <div class="card-body text-dark mt-2">
                                             <div class="card-text text-dark mt-4  ">Project on
                                                 Progress<br>
-                                                <h2><strong>3</strong></h2>
+                                                <h2><strong>{{ number_format($totalProjects) }}</strong></h2>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <a href="projectpage.html" class="text-dark" style="text-decoration: none;">
+                        <a href="{{ route('project.onprogress') }}" class="text-dark" style="text-decoration: none;">
                             <h6 class="d-flex justify-content-center" style=" margin-top: -20px;">Detail
                                 stats <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i>
                             </h6>

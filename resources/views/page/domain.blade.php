@@ -103,7 +103,7 @@
                                                                    placeholder="Enter the Domain (e.g., example.com)"
                                                                    required pattern="^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
                                                                <div class="invalid-feedback">Please enter a valid domain
-                                                                   (e.g., example.com).</div>
+                                                                   (e.g., www.example.com).</div>
                                                            </div>
                                                        </div>
 

@@ -13,6 +13,7 @@ class Project extends Model
         'project_name',
         'category',
         'pic_name',
+        'status',
         'tanggal_masuk_project',
         'deadline',
     ];

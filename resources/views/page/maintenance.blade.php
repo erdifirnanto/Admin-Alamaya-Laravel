@@ -1,6 +1,7 @@
    @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
+
        <section class="main-page" id="main-page">
            <section>
                <!-- Table Section Start -->
@@ -8,7 +9,7 @@
                    <div class="row">
                        <div class="col-12 col-md-12">
                            <div class="d-flex justify-content-center" style="margin-bottom: 50px;">
-                               <h1>Alamaya Teams</h1>
+                               <h1>Maintenance</h1>
                            </div>
                        </div>
                    </div>
@@ -62,97 +63,21 @@
                                        });
                                    </script>
 
-
-                                   <!-- Add Team Button -->
-                                   <button class="btn btn-add-project btn1hvr" data-bs-toggle="modal"
-                                       data-bs-target="#addTeamModal">Add
-                                       Team <i class="fa fa-plus"></i>
-                                   </button>
-
-                                   <!-- Add Team Modal -->
-                                   <div class="modal fade" id="addTeamModal" tabindex="-1"
-                                       aria-labelledby="addTeamModalLabel" aria-hidden="true">
-                                       <div class="modal-dialog">
-                                           <div class="modal-content">
-                                               <div class="modal-header">
-                                                   <h5 class="modal-title" id="addTeamModalLabel">Add
-                                                       Team</h5>
-                                                   <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                       aria-label="Close"></button>
-                                               </div>
-                                               <div class="modal-body">
-                                                   <form method="POST" action="{{ route('team.store') }}" id="addTeamForm">
-                                                       @csrf
-
-                                                       <div class="row mb-3">
-                                                           <div class="col">
-                                                               <label for="personil_name" class="form-label">Personil
-                                                                   Name</label>
-                                                               <input type="text" class="form-control"
-                                                                   name="personil_name" id="personil_name"
-                                                                   placeholder="Enter the Personil Name" required
-                                                                   pattern="^[a-zA-Z\s]+$">
-                                                               <div class="invalid-feedback">Please enter a valid name (only
-                                                                   letters allowed).</div>
-                                                           </div>
-                                                       </div>
-
-                                                       <div class="row mb-3">
-                                                           <div class="col">
-                                                               <label for="division" class="form-label">Division</label>
-                                                               <input type="text" class="form-control" name="division"
-                                                                   id="division" placeholder="Enter the Division" required
-                                                                   pattern="^[a-zA-Z\s]+$">
-                                                               <div class="invalid-feedback">Please enter a valid division
-                                                                   (only letters allowed).</div>
-                                                           </div>
-                                                       </div>
-
-                                                       <div class="row mb-3">
-                                                           <div class="col">
-                                                               <label for="project_handle" class="form-label">Project
-                                                                   Handle</label>
-                                                               <input type="text" class="form-control"
-                                                                   name="project_handle" id="project_handle"
-                                                                   placeholder="Enter the Project Handle" required>
-                                                           </div>
-                                                       </div>
-
-                                                       <!-- Submit Button -->
-                                                       <button type="submit" class="btn btn-dark w-100"
-                                                           onclick="return validateForm()">Add Team</button>
-                                                   </form>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-
-                                   <script>
-                                       function validateForm() {
-                                           // Trigger built-in HTML validation before allowing form submission
-                                           const form = document.getElementById('addTeamForm');
-
-                                           // Check if the form is valid
-                                           if (form.checkValidity()) {
-                                               return true; // Proceed to submit if valid
-                                           } else {
-                                               form.reportValidity(); // Show validation messages if invalid
-                                               return false; // Prevent form submission
-                                           }
-                                       }
-                                   </script>
-
-                                   {{-- End Add Team Modal --}}
+                                   {{-- End Add Project Modal --}}
 
                                    {{-- @if (session('success'))
                                        <div class="alert alert-success">
                                            {{ session('success') }}
-                                       </div>
-                                   @endif --}}
+                           </div>
+                           @endif --}}
 
                                    <script>
                                        function showAlert() {
                                            alert('Data berhasil ditambahkan!');
+                                       }
+
+                                       function showAlertUpdate() {
+                                           alert('Data berhasil diupdate!');
                                        }
                                    </script>
 
@@ -164,7 +89,7 @@
                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                        <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc">By
                                                ID</button></li>
-                                       <li><button class="dropdown-item sort-button" data-sort="personil_name"
+                                       <li><button class="dropdown-item sort-button" data-sort="project_name"
                                                data-order="asc">By Name</button></li>
                                    </ul>
 
@@ -181,8 +106,7 @@
                                        <!-- Checkbox Select All -->
                                        <div>
                                            <input type="checkbox" id="select-all">
-                                           <label style="margin-left: 10px; margin-right: 0px;"
-                                               for="select-all">All</label>
+                                           <label style="margin-left: 10px; margin-right: 0px;" for="select-all">All</label>
 
                                            <script>
                                                // Pilih semua checkbox saat 'select-all' dicentang
@@ -200,15 +124,15 @@
                                                        selectedClients.push(checkbox.value);
                                                    });
 
-                                                   console.log("Selected Teams IDs:", selectedClients); // Debugging
+                                                   console.log("Selected Projects IDs:", selectedClients); // Debugging
 
                                                    if (selectedClients.length === 0) {
-                                                       alert("No team selected.");
+                                                       alert("No project selected.");
                                                        return;
                                                    }
 
-                                                   if (confirm("Are you sure you want to delete the selected teams?")) {
-                                                       fetch('/team/delete-multiple', {
+                                                   if (confirm("Are you sure you want to delete the selected project?")) {
+                                                       fetch('/project/delete-multiple', {
                                                                method: 'POST',
                                                                headers: {
                                                                    'Content-Type': 'application/json',
@@ -222,21 +146,22 @@
                                                            .then(response => response.json())
                                                            .then(data => {
                                                                if (data.success) {
-                                                                   alert("Selected Teams deleted successfully!");
+                                                                   alert("Selected projects deleted successfully!");
                                                                    location.reload(); // Refresh halaman atau update DOM
                                                                } else {
-                                                                   alert("Failed to delete Teams.");
+                                                                   alert("Failed to delete projects.");
                                                                }
                                                            })
-                                                           .catch(error => console.error("Error deleting Teams:", error));
+                                                           .catch(error => console.error("Error deleting projects:", error));
                                                    }
+
                                                });
                                            </script>
                                        </div>
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           No. Id
+                                           Project Id
                                            <span class="sort-icons sort-button" data-sort="id" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
@@ -246,8 +171,8 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Personil Name
-                                           <span class="sort-icons sort-button" data-sort="project-name" data-order="asc"
+                                           Project Name
+                                           <span class="sort-icons sort-button" data-sort="client-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
@@ -257,8 +182,9 @@
 
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Division
-                                           <span class="sort-icons sort-button" data-sort="domain" data-order="asc"
+                                           Category
+                                           <span class="sort-icons sort-button" data-sort="product-category"
+                                               data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
@@ -267,16 +193,37 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Project Handle
-                                           <span class="sort-icons sort-button" data-sort="expired" data-order="asc"
+                                           PIC
+                                           <span class="sort-icons sort-button" data-sort="pic-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </span>
                                    </th>
-                                   <th>Action</th>
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
+                                           Status
+                                           <span class="sort-icons sort-button" data-sort="status" data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                           </span>
+                                       </span>
+                                   </th>
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
+                                           Deadline
+                                           <span class="sort-icons sort-button" data-sort="deadline" data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                           </span>
+                                       </span>
+                                   </th>
+                                   {{-- <th>Action</th> --}}
                                </tr>
+
                                <script>
                                    document.querySelectorAll('.sort-button').forEach(button => {
                                        button.addEventListener('click', function() {
@@ -309,42 +256,67 @@
                                </script>
                            </thead>
                            <tbody>
-                               @foreach ($teams as $team)
+                               @foreach ($projects as $project)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
-                                               value="{{ $team->id }}">
+                                               value="{{ $project->id }}">
                                        </td>
-                                       <td style="align-content: center">{{ $team->id }}</td>
+                                       <td style="align-content: center">{{ $project->id }}</td>
                                        <td style="align-content: center" data-key="client-name">
-                                           {{ $team->personil_name }}</td>
-                                       <td style="align-content: center" data-key="product-team">
-                                           {{ $team->division }}
+                                           {{ $project->project_name }}
+                                       </td>
+                                       <td style="align-content: center" data-key="product-category">
+                                           {{ $project->category }}
                                            {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span> --}}
                                        </td>
-                                       <td style="align-content: center" data-key="pic-name">{{ $team->project_handle }}
+                                       <td style="align-content: center" data-key="pic-name">{{ $project->pic_name }}
                                        </td>
+                                       <td style="align-content: center;">
+                                           <div class="btn rounded-5 align-top d-flex justify-content-center align-items-center"
+                                               style="height: 4vh; width: 100px; background-color: #f8e2f7; border: 2px solid #f8e2f7;">
+                                               @if ($project->status == 'Mindmap')
+                                                   <p style="margin: 0; color: rgb(144, 25, 255); font-size:14px;">Mindmap
+                                                   </p>
+                                               @elseif ($project->status == 'Design')
+                                                   <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">Design
+                                                   </p>
+                                               @elseif ($project->status == 'Slicing')
+                                                   <p style="margin: 0; color: rgb(8, 230, 126); font-size:14px;">Slicing
+                                                   </p>
+                                               @elseif ($project->status == 'Maintenance')
+                                                   <p style="margin: 0; color: rgb(250, 47, 47); font-size:14px;">
+                                                       Maintenance
+                                                   </p>
+                                               @endif
+                                           </div>
+                                       </td>
+
                                        <td style="align-content: center">
+                                           {{ $project->deadline }}
+                                       </td>
+                                       <td hidden style="align-content: center">
                                            <div class="dropdown text-center">
                                                <i class="bi bi-three-dots" data-bs-toggle="dropdown"
                                                    aria-expanded="false" style="cursor: pointer;"></i>
                                                <ul class="dropdown-menu">
                                                    <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                           data-bs-target="#editTeamModal-{{ $team->id }}">Edit</a>
+                                                           data-bs-target="#editProjectModal-{{ $project->id }}">Ubah
+                                                           Status</a>
                                                    </li>
                                                </ul>
-                                               {{-- Edit Data Team --}}
-                                               <div class="modal fade" id="editTeamModal-{{ $team->id }}"
-                                                   tabindex="-1" aria-labelledby="editTeamModalLabel"
-                                                   aria-hidden="true">
+
+                                               {{-- Edit Data Project --}}
+                                               <div style="text-align: left" class="modal fade"
+                                                   id="editProjectModal-{{ $project->id }}" tabindex="-1"
+                                                   aria-labelledby="editProjectModalLabel" aria-hidden="true">
                                                    <div class="modal-dialog modal-lg">
                                                        <div class="modal-content">
                                                            <div class="modal-header" style="display: block;">
-                                                               <h5 class="modal-title" id="editTeamModalLabel">Edit
-                                                                   Data
-                                                                   Team</h5>
+                                                               <h5 class="modal-title" id="editProjectModalLabel">Ubah
+                                                                   Status Project</h5>
                                                                <p style="margin-top: 2px;"></p>
                                                                <button type="button" class="btn-close"
                                                                    data-bs-dismiss="modal" aria-label="Close"
@@ -352,60 +324,118 @@
                                                            </div>
 
                                                            <div class="modal-body">
-                                                               <form method="POST" style="text-align: left;"
-                                                                   action="{{ route('team.update', $team->id) }}">
+                                                               <form method="POST"
+                                                                   action="{{ route('project.update', [$project->id, 'from' => 'onprogress']) }}">
                                                                    @csrf
                                                                    @method('PUT')
-                                                                   <!-- Team Name & Company Name -->
-
-                                                                   <div class="row mb-3">
+                                                                   <!-- Project Name -->
+                                                                   <div class="row mb-3" hidden>
                                                                        <div class="col">
-                                                                           <label for="personil_name"
-                                                                               class="form-label">Personil
+                                                                           <label name="project_name" for="project_name"
+                                                                               id="project_name"
+                                                                               class="form-label">Project
                                                                                Name</label>
                                                                            <input type="text" class="form-control"
-                                                                               name="personil_name" id="personil_name"
-                                                                               placeholder="Enter the Personil Name"
-                                                                               required pattern="^[a-zA-Z\s]+$"
-                                                                               value="{{ $team->personil_name }}">
-                                                                           <div class="invalid-feedback">Please enter a
-                                                                               valid name (only
-                                                                               letters allowed).</div>
+                                                                               name="project_name" for="project_name"
+                                                                               id="project_name"
+                                                                               value="{{ $project->project_name }}"
+                                                                               placeholder="Enter the Project Name">
                                                                        </div>
                                                                    </div>
 
+                                                                   <!-- PIC and Product Category -->
+                                                                   <div class="row mb-3" hidden>
+                                                                       <div class="col">
+                                                                           <label name="category" for="category"
+                                                                               id="category" class="form-label">Category
+                                                                               Product</label>
+                                                                           <select class="form-select" name="category"
+                                                                               for="category" id="category">
+                                                                               <option value="{{ $project->category }}"
+                                                                                   selected>{{ $project->category }}
+                                                                               </option>
+                                                                               <option value="1">Category 1</option>
+                                                                               <option value="2">Category 2</option>
+                                                                           </select>
+                                                                       </div>
+                                                                       <div class="col">
+                                                                           <label name="pic_name" for="pic_name"
+                                                                               id="pic_name"
+                                                                               class="form-label">PIC</label>
+                                                                           <select class="form-select" name="pic_name"
+                                                                               for="pic_name" id="pic_name">
+                                                                               <option value="{{ $project->pic_name }}"
+                                                                                   selected>{{ $project->pic_name }}
+                                                                               </option>
+                                                                               <option value="1">PIC 1</option>
+                                                                               <option value="2">PIC 2</option>
+                                                                           </select>
+                                                                       </div>
+                                                                   </div>
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="division"
-                                                                               class="form-label">Division</label>
-                                                                           <input type="text" class="form-control"
-                                                                               name="division" id="division"
-                                                                               placeholder="Enter the Division" required
-                                                                               pattern="^[a-zA-Z\s]+$"
-                                                                               value="{{ $team->division }}">
-                                                                           <div class="invalid-feedback">Please enter a
-                                                                               valid division
-                                                                               (only letters allowed)
-                                                                               .</div>
+                                                                           <label name="status" for="status"
+                                                                               id="status"
+                                                                               class="form-label">Status</label>
+                                                                           <select class="form-select" name="status"
+                                                                               for="status" id="status">
+                                                                               <option value="{{ $project->status }}"
+                                                                                   selected>{{ $project->status }}
+                                                                               </option>
+                                                                               <option value="Mindmap">Mindmap</option>
+                                                                               <option value="Design">Design</option>
+                                                                               <option value="Slicing">Slicing</option>
+                                                                               <option value="Maintenance">Maintenance
+                                                                               </option>
+                                                                           </select>
                                                                        </div>
                                                                    </div>
 
-                                                                   <div class="row mb-3">
+                                                                   <!-- Tanggal Project Masuk -->
+                                                                   <div class="row mb-3" hidden>
                                                                        <div class="col">
-                                                                           <label for="project_handle"
-                                                                               class="form-label">Project
-                                                                               Handle</label>
-                                                                           <input type="text" class="form-control"
-                                                                               name="project_handle" id="project_handle"
-                                                                               placeholder="Enter the Project Handle"
-                                                                               required
-                                                                               value="{{ $team->project_handle }}">
+                                                                           <label id="tanggal_masuk_project"
+                                                                               name="tanggal_masuk_project"
+                                                                               for="tanggal_masuk_project"
+                                                                               class="form-label">Tanggal Project
+                                                                               Masuk</label>
+                                                                           <input name="tanggal_masuk_project"
+                                                                               for="tanggal_masuk_project" type="date"
+                                                                               class="form-control"
+                                                                               id="tanggal_masuk_project"
+                                                                               value="{{ $project->tanggal_masuk_project }}"
+                                                                               placeholder="Tanggal project masuk">
                                                                        </div>
                                                                    </div>
+
+                                                                   <!-- Deadline -->
+                                                                   <div class="mb-3" hidden>
+                                                                       <label name="deadline" for="deadline"
+                                                                           id="deadline"
+                                                                           class="form-label">Deadline</label>
+                                                                       <input name="deadline" for="deadline"
+                                                                           type="date" class="form-control"
+                                                                           id="deadline"
+                                                                           value="{{ $project->deadline }}"
+                                                                           placeholder="Enter the project Deadline">
+                                                                   </div>
+
+                                                                   {{-- <!-- Disclaimer -->
+                                                                   <div class="form-check mb-3">
+                                                                       <input type="checkbox" class="form-check-input"
+                                                                           id="termsCheck">
+                                                                       <label class="form-check-label" for="termsCheck">
+                                                                           By registering, you agree to the terms and
+                                                                           conditions that apply.
+                                                                       </label>
+                                                                   </div>
+
+                                                                   <div class="form-text mb-3">Check again and make
+                                                                       sure the form is completely filled out</div> --}}
+
                                                                    <!-- Submit Button -->
-                                                                   <button type="submit"
-                                                                       class="btn btn-dark w-100">Update
-                                                                       Team</button>
+                                                                   <button type="submit" class="btn btn-dark w-100"
+                                                                       onclick="showAlertUpdate()">Update</button>
                                                                </form>
                                                            </div>
                                                        </div>
@@ -419,18 +449,18 @@
                                                            const clientId = this.getAttribute('data-id');
                                                            const clientName = this.getAttribute('data-client-name');
                                                            const companyName = this.getAttribute('data-company-name');
-                                                           const picName = this.getAttribute('data-pic-name');
-                                                           const productdomain = this.getAttribute('data-product-domain');
+                                                           const pic_name = this.getAttribute('data-pic-name');
+                                                           const category = this.getAttribute('data-product-category');
                                                            const email = this.getAttribute('data-email');
                                                            const phone = this.getAttribute('data-phone');
                                                            const address = this.getAttribute('data-address');
 
                                                            // Populate the modal fields
                                                            document.getElementById('edit_client_id').value = clientId;
-                                                           document.getElementById('edit_personil_name').value = clientName;
-                                                           document.getElementById('edit_domain').value = companyName;
-                                                           document.getElementById('edit_expired').value = picName;
-                                                           document.getElementById('edit_product_domain').value = productdomain;
+                                                           document.getElementById('edit_project_name').value = clientName;
+                                                           document.getElementById('edit_company_name').value = companyName;
+                                                           document.getElementById('edit_pic_name').value = pic_name;
+                                                           document.getElementById('edit_product_category').value = category;
                                                            document.getElementById('edit_email').value = email;
                                                            document.getElementById('edit_phone').value = phone;
                                                            document.getElementById('edit_address').value = address;
@@ -449,6 +479,25 @@
                                            </div>
                                        </td>
                                    </tr>
+                                   {{-- <tr class="collapse-row" style="display: none;">
+                                       <td></td>
+                                       <td colspan="2">
+                                           <div class="collapse-content"
+                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
+                                               <span>{{ $client->company_name }}</span>
+                       <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                           onclick="copyText('{{ $client->company_name }}')"></i>
+           </div>
+           </td>
+           <td colspan="6">
+               <div class="collapse-content1"
+                   style="overflow: hidden; height: 0; transition: height 0.5s ease;">
+                   <span>{{ $client->address }}</span>
+                   <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                       onclick="copyText('{{ $client->address }}')"></i>
+               </div>
+           </td>
+           </tr> --}}
                                @endforeach
                            </tbody>
                        </table>
@@ -458,7 +507,7 @@
                        <nav aria-label="Page navigation">
                            <ul class="pagination justify-content-end" style="align-items: center;">
                                <!-- Tombol Previous -->
-                               @if ($teams->onFirstPage())
+                               @if ($projects->onFirstPage())
                                    <li class="page-item disabled">
                                        <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
@@ -466,7 +515,7 @@
                                    </li>
                                @else
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $teams->previousPageUrl() }}"
+                                       <a class="page-link" href="{{ $projects->previousPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
                                        </a>
@@ -474,48 +523,48 @@
                                @endif
 
                                <!-- Tombol Angka Halaman dengan Batas 10 -->
-                               @if ($teams->lastPage() > 10)
+                               @if ($projects->lastPage() > 10)
                                    <!-- Tampilkan halaman pertama -->
-                                   <li class="page-item {{ $teams->currentPage() == 1 ? 'active' : '' }}">
-                                       <a class="page-link1" href="{{ $teams->url(1) }}">1</a>
+                                   <li class="page-item {{ $projects->currentPage() == 1 ? 'active' : '' }}">
+                                       <a class="page-link1" href="{{ $projects->url(1) }}">1</a>
                                    </li>
 
-                                   @if ($teams->currentPage() > 5)
+                                   @if ($projects->currentPage() > 5)
                                        <!-- Tambahkan titik tiga jika halaman saat ini lebih dari 5 -->
                                        <li class="page-item disabled"><span class="page-link1">...</span></li>
                                    @endif
 
                                    <!-- Loop untuk menampilkan 5 halaman di sekitar halaman saat ini -->
-                                   @for ($i = max(2, $teams->currentPage() - 2); $i <= min($teams->lastPage() - 1, $teams->currentPage() + 2); $i++)
-                                       <li class="page-item {{ $teams->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $teams->url($i) }}">{{ $i }}</a>
+                                   @for ($i = max(2, $projects->currentPage() - 2); $i <= min($projects->lastPage() - 1, $projects->currentPage() + 2); $i++)
+                                       <li class="page-item {{ $projects->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $projects->url($i) }}">{{ $i }}</a>
                                        </li>
                                    @endfor
 
-                                   @if ($teams->currentPage() < $teams->lastPage() - 4)
+                                   @if ($projects->currentPage() < $projects->lastPage() - 4)
                                        <!-- Tambahkan titik tiga jika halaman saat ini kurang dari halaman terakhir - 4 -->
                                        <li class="page-item disabled"><span class="page-link1">...</span></li>
                                    @endif
 
                                    <!-- Tampilkan halaman terakhir -->
                                    <li
-                                       class="page-item {{ $teams->currentPage() == $teams->lastPage() ? 'active' : '' }}">
+                                       class="page-item {{ $projects->currentPage() == $projects->lastPage() ? 'active' : '' }}">
                                        <a class="page-link1"
-                                           href="{{ $teams->url($teams->lastPage()) }}">{{ $teams->lastPage() }}</a>
+                                           href="{{ $projects->url($projects->lastPage()) }}">{{ $projects->lastPage() }}</a>
                                    </li>
                                @else
                                    <!-- Jika halaman kurang dari atau sama dengan 10, tampilkan semua halaman -->
-                                   @for ($i = 1; $i <= $teams->lastPage(); $i++)
-                                       <li class="page-item {{ $teams->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $teams->url($i) }}">{{ $i }}</a>
+                                   @for ($i = 1; $i <= $projects->lastPage(); $i++)
+                                       <li class="page-item {{ $projects->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $projects->url($i) }}">{{ $i }}</a>
                                        </li>
                                    @endfor
                                @endif
 
                                <!-- Tombol Next -->
-                               @if ($teams->hasMorePages())
+                               @if ($projects->hasMorePages())
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $teams->nextPageUrl() }}"
+                                       <a class="page-link" href="{{ $projects->nextPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-right"></i>
                                        </a>
