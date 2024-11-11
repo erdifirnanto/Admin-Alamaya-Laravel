@@ -103,8 +103,9 @@
                                                                    required>
                                                                    <option value="" selected>Select a Product category
                                                                    </option>
-                                                                   <option value="1">Category 1</option>
-                                                                   <option value="2">Category 2</option>
+                                                                   <option value="Website Design">Website Design</option>
+                                                                   <option value="Maintenance">Maintenance</option>
+                                                                   <option value="Redesign">Redesign</option>
                                                                </select>
                                                            </div>
                                                            <div class="col">
@@ -114,8 +115,8 @@
                                                                    required>
                                                                    <option value="" selected>Select the PIC name
                                                                    </option>
-                                                                   <option value="1">PIC 1</option>
-                                                                   <option value="2">PIC 2</option>
+                                                                   <option value="Widia">Widia</option>
+                                                                   <option value="Handika">Handika</option>
                                                                </select>
                                                            </div>
                                                        </div>

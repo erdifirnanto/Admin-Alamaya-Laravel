@@ -127,11 +127,11 @@
                                                                    id="pic_name" name="pic_name" required>
                                                                    <option selected value="">Select the PIC name
                                                                    </option>
-                                                                   <option value="1"
-                                                                       {{ old('pic_name') == '1' ? 'selected' : '' }}>PIC 1
+                                                                   <option value="Widia"
+                                                                       {{ old('pic_name') == 'Widia' ? 'selected' : '' }}>Widia
                                                                    </option>
-                                                                   <option value="2"
-                                                                       {{ old('pic_name') == '2' ? 'selected' : '' }}>PIC 2
+                                                                   <option value="Handika"
+                                                                       {{ old('pic_name') == 'Handika' ? 'selected' : '' }}>Handika
                                                                    </option>
                                                                </select>
                                                                @error('pic_name')
@@ -146,9 +146,9 @@
                                                                    id="product_category" name="product_category" required>
                                                                    <option selected value="">Select a Product category
                                                                    </option>
-                                                                   <option value="1"
-                                                                       {{ old('product_category') == '1' ? 'selected' : '' }}>
-                                                                       Category 1</option>
+                                                                   <option value="asdapro.com"
+                                                                       {{ old('product_category') == 'asdapro.com' ? 'selected' : '' }}>
+                                                                       asdapro.com</option>
                                                                    <option value="2"
                                                                        {{ old('product_category') == '2' ? 'selected' : '' }}>
                                                                        Category 2</option>
