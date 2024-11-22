@@ -72,7 +72,7 @@
                                    <!-- Add Project Modal -->
                                    <div class="modal fade" id="addProjectModal" tabindex="-1"
                                        aria-labelledby="addProjectModalLabel" aria-hidden="true">
-                                       <div class="modal-dialog">
+                                       <div class="modal-dialog modal-lg">
                                            <div class="modal-content">
                                                <div class="modal-header">
                                                    <h5 class="modal-title" id="addProjectModalLabel">Add Project</h5>
@@ -86,8 +86,8 @@
                                                        <!-- Project Name -->
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label name="project_name" for="project_name"
-                                                                   id="project_name" class="form-label">Project Name</label>
+                                                               <label name="project_name" for="project_name" 
+                                                                   id="project_name" class="form-label" style="font-size: 0.7em;">PROJECT NAME</label>
                                                                <input type="text" class="form-control"
                                                                    name="project_name" id="project_name"
                                                                    placeholder="Enter the Project Name" required>
@@ -98,7 +98,7 @@
                                                        <div class="row mb-3">
                                                            <div class="col">
                                                                <label name="category" for="category" id="category"
-                                                                   class="form-label">Category Product</label>
+                                                                   class="form-label" style="font-size: 0.7em;">CATEGORY PRODUCT</label>
                                                                <select class="form-select" name="category" id="category"
                                                                    required>
                                                                    <option value="" selected>Select a Product category
@@ -110,7 +110,7 @@
                                                            </div>
                                                            <div class="col">
                                                                <label name="pic_name" for="pic_name" id="pic_name"
-                                                                   class="form-label">PIC</label>
+                                                                   class="form-label" style="font-size: 0.7em;">PIC</label>
                                                                <select class="form-select" name="pic_name" id="pic_name"
                                                                    required>
                                                                    <option value="" selected>Select the PIC name
@@ -126,7 +126,7 @@
                                                            <div class="col">
                                                                <label id="tanggal_masuk_project"
                                                                    name="tanggal_masuk_project" for="tanggal_masuk_project"
-                                                                   class="form-label">Tanggal Project Masuk</label>
+                                                                   class="form-label" style="font-size: 0.7em;">TANGGAL PROJECT MASUK</label>
                                                                <input name="tanggal_masuk_project" type="date"
                                                                    class="form-control" id="tanggal_masuk_project" required>
                                                            </div>
@@ -135,7 +135,7 @@
                                                        <!-- Deadline -->
                                                        <div class="mb-3">
                                                            <label name="deadline" for="deadline" id="deadline"
-                                                               class="form-label">Deadline</label>
+                                                               class="form-label" style="font-size: 0.7em;">DEADLINE</label>
                                                            <input name="deadline" type="date" class="form-control"
                                                                id="deadline" required>
                                                        </div>
@@ -146,16 +146,14 @@
                                                                id="termsCheck" required>
                                                            <label class="form-check-label" for="termsCheck">
                                                                By registering, you agree to the terms and conditions that
-                                                               apply.
+                                                               apply. Check again and make sure the form is
+                                                           completely filled out
                                                            </label>
                                                        </div>
 
-                                                       <div class="form-text mb-3">Check again and make sure the form is
-                                                           completely filled out</div>
-
                                                        <!-- Submit Button -->
                                                        <button type="submit" class="btn btn-dark w-100"
-                                                           onclick="return validateForm()">Add Project</button>
+                                                           onclick="return validateForm()">Submit</button>
                                                    </form>
                                                </div>
                                            </div>
@@ -480,8 +478,8 @@
                                                                        <div class="col">
                                                                            <label name="project_name" for="project_name"
                                                                                id="project_name"
-                                                                               class="form-label">Project
-                                                                               Name</label>
+                                                                               class="form-label" style="font-size: 0.7em;"
+                                                                               style="font-size: 0.7em;">PROJECT NAME</label>
                                                                            <input type="text" class="form-control"
                                                                                name="project_name" for="project_name"
                                                                                id="project_name"
@@ -494,8 +492,7 @@
                                                                    <div class="row mb-3">
                                                                        <div class="col">
                                                                            <label name="category" for="category"
-                                                                               id="category" class="form-label">Category
-                                                                               Product</label>
+                                                                               id="category" class="form-label" style="font-size: 0.7em;">CATEGORY PRODUCT</label>
                                                                            <select class="form-select" name="category"
                                                                                for="category" id="category">
                                                                                <option value="{{ $project->category }}"
@@ -508,7 +505,7 @@
                                                                        <div class="col">
                                                                            <label name="pic_name" for="pic_name"
                                                                                id="pic_name"
-                                                                               class="form-label">PIC</label>
+                                                                               class="form-label" style="font-size: 0.7em;">PIC</label>
                                                                            <select class="form-select" name="pic_name"
                                                                                for="pic_name" id="pic_name">
                                                                                <option value="{{ $project->pic_name }}"
@@ -521,7 +518,7 @@
                                                                        <div class="col" hidden>
                                                                            <label name="status" for="status"
                                                                                id="status"
-                                                                               class="form-label">Status</label>
+                                                                               class="form-label" style="font-size: 0.7em;">STATUS</label>
                                                                            <select class="form-select" name="status"
                                                                                for="status" id="status">
                                                                                <option value="{{ $project->status }}"
@@ -540,8 +537,7 @@
                                                                            <label id="tanggal_masuk_project"
                                                                                name="tanggal_masuk_project"
                                                                                for="tanggal_masuk_project"
-                                                                               class="form-label">Tanggal Project
-                                                                               Masuk</label>
+                                                                               class="form-label" style="font-size: 0.7em;">TANGGAL PROJECT MASUK</label>
                                                                            <input name="tanggal_masuk_project"
                                                                                for="tanggal_masuk_project" type="date"
                                                                                class="form-control"
@@ -555,7 +551,7 @@
                                                                    <div class="mb-3">
                                                                        <label name="deadline" for="deadline"
                                                                            id="deadline"
-                                                                           class="form-label">Deadline</label>
+                                                                           class="form-label" style="font-size: 0.7em;">DEADLINE</label>
                                                                        <input name="deadline" for="deadline"
                                                                            type="date" class="form-control"
                                                                            id="deadline"
@@ -578,7 +574,7 @@
 
                                                                    <!-- Submit Button -->
                                                                    <button type="submit" class="btn btn-dark w-100"
-                                                                       onclick="showAlertUpdate()">Update</button>
+                                                                       onclick="showAlertUpdate()">Submit</button>
                                                                </form>
                                                            </div>
                                                        </div>

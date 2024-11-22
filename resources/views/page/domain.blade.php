@@ -73,7 +73,7 @@
                                    <!-- Add Domain Modal -->
                                    <div class="modal fade" id="addDomainModal" tabindex="-1"
                                        aria-labelledby="addDomainModalLabel" aria-hidden="true">
-                                       <div class="modal-dialog">
+                                       <div class="modal-dialog modal-lg">
                                            <div class="modal-content">
                                                <div class="modal-header">
                                                    <h5 class="modal-title" id="addDomainModalLabel">Add Domain</h5>
@@ -87,8 +87,7 @@
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="project_name" class="form-label">Project
-                                                                   Name</label>
+                                                               <label for="project_name" class="form-label" style="font-size: 0.7em;">PROJECT NAME</label>
                                                                <input type="text" class="form-control"
                                                                    name="project_name" id="project_name"
                                                                    placeholder="Enter the Project Name" required>
@@ -97,7 +96,7 @@
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="domain" class="form-label">Domain</label>
+                                                               <label for="domain" class="form-label" style="font-size: 0.7em;">DOMAIN</label>
                                                                <input type="text" class="form-control" name="domain"
                                                                    id="domain"
                                                                    placeholder="Enter the Domain (e.g., example.com)"
@@ -109,7 +108,7 @@
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="expired" class="form-label">Expired</label>
+                                                               <label for="expired" class="form-label" style="font-size: 0.7em;">EXPIRED</label>
                                                                <input type="date" class="form-control" name="expired"
                                                                    id="expired" required>
                                                            </div>
@@ -117,7 +116,7 @@
 
                                                        <!-- Submit Button -->
                                                        <button type="submit" class="btn btn-dark w-100"
-                                                           onclick="return validateForm()">Add Domain</button>
+                                                           onclick="return validateForm()">Submit</button>
                                                    </form>
                                                </div>
                                            </div>
@@ -362,8 +361,7 @@
                                                                        <div class="col">
                                                                            <label name="project_name" for="project_name"
                                                                                id="project_name"
-                                                                               class="form-label">Project
-                                                                               Name</label>
+                                                                               class="form-label" style="font-size: 0.7em;">PROJECT NAME</label>
                                                                            <input type="text" class="form-control"
                                                                                name="project_name" for="project_name"
                                                                                id="project_name"
@@ -376,7 +374,7 @@
                                                                        <div class="col">
                                                                            <label name="domain" for="domain"
                                                                                id="domain"
-                                                                               class="form-label">Domain</label>
+                                                                               class="form-label" style="font-size: 0.7em;">DOMAIN</label>
                                                                            <input type="text" class="form-control"
                                                                                name="domain" for="domain"
                                                                                id="domain"
@@ -388,7 +386,7 @@
                                                                        <div class="col">
                                                                            <label name="expired" for="expired"
                                                                                id="expired"
-                                                                               class="form-label">Expired</label>
+                                                                               class="form-label" style="font-size: 0.7em;">EXPIRED</label>
                                                                            <input type="date" class="form-control"
                                                                                name="expired" for="expired"
                                                                                id="expired"
@@ -398,8 +396,7 @@
                                                                    </div>
                                                                    <!-- Submit Button -->
                                                                    <button type="submit"
-                                                                       class="btn btn-dark w-100">Update
-                                                                       Domain</button>
+                                                                       class="btn btn-dark w-100">Submit</button>
                                                                </form>
                                                            </div>
                                                        </div>

@@ -86,8 +86,7 @@
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="personil_name" class="form-label">Personil
-                                                                   Name</label>
+                                                               <label for="personil_name" class="form-label" style="font-size: 0.7em;">PERSONIL NAME</label>
                                                                <input type="text" class="form-control"
                                                                    name="personil_name" id="personil_name"
                                                                    placeholder="Enter the Personil Name" required
@@ -99,7 +98,7 @@
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="division" class="form-label">Division</label>
+                                                               <label for="division" class="form-label" style="font-size: 0.7em;">DIVISION</label>
                                                                <input type="text" class="form-control" name="division"
                                                                    id="division" placeholder="Enter the Division" required
                                                                    pattern="^[a-zA-Z\s]+$">
@@ -110,8 +109,7 @@
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="project_handle" class="form-label">Project
-                                                                   Handle</label>
+                                                               <label for="project_handle" class="form-label" style="font-size: 0.7em;">PROJECT HANDLE</label>
                                                                <input type="text" class="form-control"
                                                                    name="project_handle" id="project_handle"
                                                                    placeholder="Enter the Project Handle" required>
@@ -120,7 +118,7 @@
 
                                                        <!-- Submit Button -->
                                                        <button type="submit" class="btn btn-dark w-100"
-                                                           onclick="return validateForm()">Add Team</button>
+                                                           onclick="return validateForm()">Submit</button>
                                                    </form>
                                                </div>
                                            </div>
@@ -361,8 +359,7 @@
                                                                    <div class="row mb-3">
                                                                        <div class="col">
                                                                            <label for="personil_name"
-                                                                               class="form-label">Personil
-                                                                               Name</label>
+                                                                               class="form-label" style="font-size: 0.7em;">PERSONIL NAME</label>
                                                                            <input type="text" class="form-control"
                                                                                name="personil_name" id="personil_name"
                                                                                placeholder="Enter the Personil Name"
@@ -377,7 +374,7 @@
                                                                    <div class="row mb-3">
                                                                        <div class="col">
                                                                            <label for="division"
-                                                                               class="form-label">Division</label>
+                                                                               class="form-label" style="font-size: 0.7em;">DIVISION</label>
                                                                            <input type="text" class="form-control"
                                                                                name="division" id="division"
                                                                                placeholder="Enter the Division" required
@@ -393,8 +390,7 @@
                                                                    <div class="row mb-3">
                                                                        <div class="col">
                                                                            <label for="project_handle"
-                                                                               class="form-label">Project
-                                                                               Handle</label>
+                                                                               class="form-label" style="font-size: 0.7em;">PROJECT HANDLE</label>
                                                                            <input type="text" class="form-control"
                                                                                name="project_handle" id="project_handle"
                                                                                placeholder="Enter the Project Handle"
@@ -404,8 +400,7 @@
                                                                    </div>
                                                                    <!-- Submit Button -->
                                                                    <button type="submit"
-                                                                       class="btn btn-dark w-100">Update
-                                                                       Team</button>
+                                                                       class="btn btn-dark w-100">Submit</button>
                                                                </form>
                                                            </div>
                                                        </div>

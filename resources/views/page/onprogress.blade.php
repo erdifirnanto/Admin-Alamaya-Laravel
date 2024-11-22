@@ -329,8 +329,7 @@
                                                                        <div class="col">
                                                                            <label name="project_name" for="project_name"
                                                                                id="project_name"
-                                                                               class="form-label">Project
-                                                                               Name</label>
+                                                                                style="font-size: 0.7em;">PROJECT NAME</label>
                                                                            <input type="text" class="form-control"
                                                                                name="project_name" for="project_name"
                                                                                id="project_name"
@@ -343,8 +342,7 @@
                                                                    <div class="row mb-3" hidden>
                                                                        <div class="col">
                                                                            <label name="category" for="category"
-                                                                               id="category" class="form-label">Category
-                                                                               Product</label>
+                                                                               id="category"  style="font-size: 0.7em;">CATEGORY PRODUCT</label>
                                                                            <select class="form-select" name="category"
                                                                                for="category" id="category">
                                                                                <option value="{{ $project->category }}"
@@ -357,7 +355,7 @@
                                                                        <div class="col">
                                                                            <label name="pic_name" for="pic_name"
                                                                                id="pic_name"
-                                                                               class="form-label">PIC</label>
+                                                                               class="form-label" style="font-size: 0.7em;">PIC</label>
                                                                            <select class="form-select" name="pic_name"
                                                                                for="pic_name" id="pic_name">
                                                                                <option value="{{ $project->pic_name }}"
@@ -372,7 +370,7 @@
                                                                        <div class="col">
                                                                            <label name="status" for="status"
                                                                                id="status"
-                                                                               class="form-label">Status</label>
+                                                                               class="form-label" style="font-size: 0.7em;">STATUS</label>
                                                                            <select class="form-select" name="status"
                                                                                for="status" id="status">
                                                                                <option value="{{ $project->status }}"
@@ -393,8 +391,7 @@
                                                                            <label id="tanggal_masuk_project"
                                                                                name="tanggal_masuk_project"
                                                                                for="tanggal_masuk_project"
-                                                                               class="form-label">Tanggal Project
-                                                                               Masuk</label>
+                                                                               class="form-label" style="font-size: 0.7em;">TANGGAL PROJECT MASUK</label>
                                                                            <input name="tanggal_masuk_project"
                                                                                for="tanggal_masuk_project" type="date"
                                                                                class="form-control"
@@ -408,7 +405,7 @@
                                                                    <div class="mb-3" hidden>
                                                                        <label name="deadline" for="deadline"
                                                                            id="deadline"
-                                                                           class="form-label">Deadline</label>
+                                                                           class="form-label" style="font-size: 0.7em;">DEADLINE</label>
                                                                        <input name="deadline" for="deadline"
                                                                            type="date" class="form-control"
                                                                            id="deadline"
@@ -431,7 +428,7 @@
 
                                                                    <!-- Submit Button -->
                                                                    <button type="submit" class="btn btn-dark w-100"
-                                                                       onclick="showAlertUpdate()">Update</button>
+                                                                       onclick="showAlertUpdate()">Submit</button>
                                                                </form>
                                                            </div>
                                                        </div>

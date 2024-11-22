@@ -159,7 +159,7 @@
                                                            </div>
                                                        </div>
                                                        <div class="mb-3">
-                                                           <label for="email" class="form-label">Email</label>
+                                                           <label for="email" class="form-label" style="font-size: 0.7em;">EMAIL</label>
                                                            <input type="email" name="email"
                                                                class="form-control @error('email') is-invalid @enderror"
                                                                id="email" name="email" for="email"
@@ -224,8 +224,7 @@
                                                            @enderror
                                                        </div>
 
-                                                       <button type="submit" class="btn btn-dark col-12">Add
-                                                           Client</button>
+                                                       <button type="submit" class="btn btn-dark col-12">Submit</button>
                                                    </form>
                                                    <script>
                                                        function validateForm() {
@@ -577,8 +576,7 @@
 
                                                                    <!-- Submit Button -->
                                                                    <button type="submit"
-                                                                       class="btn btn-dark w-100">Update
-                                                                       Client</button>
+                                                                       class="btn btn-dark w-100">Submit</button>
                                                                </form>
                                                            </div>
                                                        </div>
