@@ -288,12 +288,12 @@
                        <table class="table table-hover mt-5 table-sm">
                            <thead>
                                <tr style="height: 70px;">
-                                   <th scope="col">
+                                   <th>
+                                       <input style="cursor: pointer" type="checkbox" id="select-all" for="select-all">
+                                   </th>
+                                   <th scope="col"> All
                                        <!-- Checkbox Select All -->
                                        <div>
-                                           <input type="checkbox" id="select-all">
-                                           <label style="margin-left: 10px; margin-right: 0px;" for="select-all">All</label>
-
                                            <script>
                                                // Pilih semua checkbox saat 'select-all' dicentang
                                                document.getElementById('select-all').addEventListener('change', function() {
@@ -389,7 +389,7 @@
                                            </span>
                                        </span>
                                    </th>
-                                   <th>Status</th>
+                                   {{-- <th>Status</th> --}}
                                    <th>Project Masuk</th>
                                    <th>Deadline</th>
                                    <th>Action</th>
@@ -432,6 +432,7 @@
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
                                                value="{{ $project->id }}">
                                        </td>
+                                       <td></td>
                                        <td style="align-content: center">
                                            {{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}</td>
                                        <td style="align-content: center" data-key="client-name">
@@ -449,7 +450,7 @@
                                        <td style="align-content: center" data-key="pic-name">{{ $project->pic_name }}
                                        </td>
                                        <td style="align-content: center">{{ $project->category }}</td>
-                                       <td style="align-content: center">{{ $project->status }}</td>
+                                       {{-- <td style="align-content: center">{{ $project->status }}</td> --}}
                                        <td style="align-content: center">{{ $project->tanggal_masuk_project }}</td>
                                        <td style="align-content: center">{{ $project->deadline }}</td>
                                        <td style="align-content: center">
@@ -616,19 +617,19 @@
                                    </tr>
                                    <tr class="collapse-row" style="display: none;">
                                        <td></td>
-                                       <td colspan="2">
+                                       <td colspan="3">
                                            <div class="collapse-content"
                                                style="overflow: hidden; height: 0; transition: height 0.5s ease;">
                                                <span>{{ $project->company_name }}</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                                               <i class="fa-regular fa-copy" style="margin-left: 20px; cursor: pointer;"
                                                    onclick="copyText('{{ $project->company_name }}')"></i>
                                            </div>
                                        </td>
-                                       <td colspan="6">
+                                       <td colspan="8">
                                            <div class="collapse-content1"
                                                style="overflow: hidden; height: 0; transition: height 0.5s ease;">
                                                <span>{{ $project->address }}</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                                               <i class="fa-regular fa-copy" style="margin-left: 20px; cursor: pointer;"
                                                    onclick="copyText('{{ $project->address }}')"></i>
                                            </div>
                                        </td>

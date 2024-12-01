@@ -125,17 +125,18 @@ document.querySelectorAll(".toggle-chevron").forEach(function (chevron, index) {
 });
 
 function copyText(text) {
-    // Membuat elemen input sementara untuk menyalin teks
-    var tempInput = document.createElement("input");
-    tempInput.value = text;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    document.execCommand("copy");
-    document.body.removeChild(tempInput);
-
-    // Menampilkan notifikasi atau perubahan ikon jika diperlukan
-    alert("Teks disalin: " + text);
+    // Menggunakan Clipboard API untuk menyalin teks
+    navigator.clipboard
+        .writeText(text)
+        .then(function () {
+            // Menampilkan alert atau perubahan ikon setelah teks berhasil disalin
+            alert("Teks disalin: " + text);
+        })
+        .catch(function (error) {
+            console.error("Teks gagal disalin: ", error);
+        });
 }
+
 // End Collapse
 
 // JavaScript for "Select All" checkbox
