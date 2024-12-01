@@ -111,7 +111,7 @@ class ProjectController extends Controller
             'address' => $request['address'],
         ]);
 
-        return redirect()->route('project.view')->with('success', 'Project berhasil ditambahkan.');
+        return redirect()->route('dashboard')->with('success', 'Project berhasil ditambahkan.');
         // return redirect()->back()->with('success', 'Client has been added successfu/lly');
     }
 
@@ -155,6 +155,11 @@ class ProjectController extends Controller
             'status' => 'required|string|max:255',
             'tanggal_masuk_project' => 'required|date',
             'deadline' => 'required|date',
+            'client_name' => 'required|string|max:255',
+            'company_name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
         ]);
 
         $project->update($validatedData);
@@ -163,7 +168,7 @@ class ProjectController extends Controller
         if ($request->input('from') === 'onprogress') {
             return redirect()->route('project.onprogress')->with('success', 'Data berhasil diupdate.');
         } else {
-            return redirect()->route('project.view')->with('success', 'Data berhasil diupdate.');
+            return redirect()->route('dashboard')->with('success', 'Data berhasil diupdate.');
         }
     }
 

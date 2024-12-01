@@ -1,7 +1,6 @@
    @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
-
        <section class="main-page" id="main-page">
            <section>
                <!-- Table Section Start -->
@@ -40,10 +39,10 @@
                                            button.addEventListener('click', function(event) {
                                                event.preventDefault();
 
-                                               const clientId = this.getAttribute('data-id');
+                                               const projectId = this.getAttribute('data-id');
 
                                                // Langsung lakukan penghapusan tanpa konfirmasi
-                                               fetch(`/clients/${clientId}`, {
+                                               fetch(`/project/${projectId}`, {
                                                        method: 'DELETE',
                                                        headers: {
                                                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
@@ -53,10 +52,10 @@
                                                    .then(response => response.json())
                                                    .then(data => {
                                                        if (data.success) {
-                                                           alert("Client deleted successfully!");
+                                                           alert("Project deleted successfully!");
                                                            location.reload(); // Refresh halaman atau update DOM
                                                        } else {
-                                                           alert("Failed to delete client.");
+                                                           alert("Failed to delete project.");
                                                        }
                                                    })
                                            });
@@ -64,282 +63,9 @@
                                    </script>
 
 
-                                   <!-- Add Project Button -->
-                                   <button class="btn btn-add-client btn1hvr" data-bs-toggle="modal"
-                                       data-bs-target="#addProjectModal">Add Project&nbsp;<i class="fa fa-plus"></i>
-                                   </button>
+                                   @include('components.dashboard.add-project')
 
-                                   <!-- Add Project Modal -->
-                                   <div class="modal fade" id="addProjectModal" tabindex="-1"
-                                       aria-labelledby="addProjectModalLabel" aria-hidden="true">
-                                       <div class="modal-dialog modal-lg">
-                                           <div class="modal-content">
-                                               <div class="modal-header" style="display: block;">
-                                                   <h5 class="modal-title" id="addProjectModalLabel">Add Project</h5>
-                                                   <p style="margin-top: 2px;">Fill in some details to start adding projects
-                                                   </p>
-                                                   <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                       aria-label="Close"
-                                                       style="position: absolute; right: 10px; top: 10px;"></button>
-                                               </div>
-
-                                               <div class="modal-body">
-                                                   <form method="POST" action="{{ route('project.store') }}"
-                                                       id="AddClientForm">
-                                                       @csrf
-
-                                                       <!-- Client Name & Company Name -->
-                                                       <div class="row mb-3">
-                                                           <div class="col">
-                                                               <label for="client_name" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">CLIENT
-                                                                   NAME</label>
-                                                               <input type="text"
-                                                                   class="form-control @error('client_name') is-invalid @enderror"
-                                                                   id="client_name" name="client_name"
-                                                                   placeholder="Enter the client name"
-                                                                   value="{{ old('client_name') }}" required>
-                                                               @error('client_name')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                           <div class="col">
-                                                               <label for="company_name" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">COMPANY
-                                                                   NAME</label>
-                                                               <input type="text"
-                                                                   class="form-control @error('company_name') is-invalid @enderror"
-                                                                   id="company_name" name="company_name"
-                                                                   placeholder="Enter the company name"
-                                                                   value="{{ old('company_name') }}" required>
-                                                               @error('company_name')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                       </div>
-                                                       {{-- /// --}}
-                                                       <div class="row mb-3">
-                                                           <div class="col">
-                                                               <label for="project_name" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">PROJECT
-                                                                   NAME</label>
-                                                               <input type="text"
-                                                                   class="form-control @error('project_name') is-invalid @enderror"
-                                                                   id="project_name" name="project_name"
-                                                                   placeholder="Enter the project name"
-                                                                   value="{{ old('project_name') }}" required>
-                                                               @error('project_name')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                           <div class="col">
-                                                               <label for="tanggal_masuk_project" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">TANGGAL
-                                                                   PROJECT MASUK
-                                                               </label>
-                                                               <input type="date"
-                                                                   class="form-control @error('tanggal_masuk_project') is-invalid @enderror"
-                                                                   id="tanggal_masuk_project" name="tanggal_masuk_project"
-                                                                   placeholder="Enter Date"
-                                                                   value="{{ old('tanggal_masuk_project') }}" required>
-                                                               @error('tanggal_masuk_project')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                       </div>
-                                                       <!-- PIC and Product Category -->
-                                                       <div class="row mb-3">
-                                                           <div class="col">
-                                                               <label for="pic_name" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">PIC</label>
-                                                               <select
-                                                                   class="form-select @error('pic_name') is-invalid @enderror"
-                                                                   id="pic_name" name="pic_name" required>
-                                                                   <option selected value="">Select PIC
-                                                                   </option>
-                                                                   {{-- @foreach ($users as $user)
-                                                                       <option value="{{ $user->name }}"
-                                                                           {{ old('$user->name') == '$user->name' ? 'selected' : '' }}>
-                                                                           {{ $user->name }}
-                                                                       </option>
-                                                                   @endforeach --}}
-                                                                   <option value="Handika Wicaksana"
-                                                                       {{ old('pic_name') == 'Handika Wicaksana' ? 'selected' : '' }}>
-                                                                       Handika Wicaksana</option>
-                                                                   <option value="Widia Hadi Purwanti"
-                                                                       {{ old('pic_name') == 'Widia Hadi Purwanti' ? 'selected' : '' }}>
-                                                                       Widia Hadi Purwanti</option>
-                                                               </select>
-                                                               @error('pic_name')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                           <div class="col">
-                                                               <label for="product_category" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">CATEGORY
-                                                                   PRODUCT</label>
-                                                               <select
-                                                                   class="form-select @error('product_category') is-invalid @enderror"
-                                                                   id="product_category" name="product_category" required>
-                                                                   <option selected value="">Select Category
-                                                                   </option>
-                                                                   <option value="1"
-                                                                       {{ old('product_category') == '1' ? 'selected' : '' }}>
-                                                                       Category 1</option>
-                                                                   <option value="2"
-                                                                       {{ old('product_category') == '2' ? 'selected' : '' }}>
-                                                                       Category 2</option>
-                                                               </select>
-                                                               @error('product_category')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                       </div>
-                                                       <div class="row mb-3">
-                                                           <div class="col">
-                                                               <label for="email" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">EMAIL</label>
-                                                               <input type="email" name="email"
-                                                                   class="form-control @error('email') is-invalid @enderror"
-                                                                   id="email" name="email" for="email"
-                                                                   placeholder="Enter email" value="{{ old('email') }}"
-                                                                   required autofocus>
-                                                               @error('email')
-                                                                   <div id="emailHelp" class="form-text text-danger">
-                                                                       {{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                           <div class="col">
-                                                               <label for="deadline" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">DEADLINE</label>
-                                                               <input type="date" name="deadline"
-                                                                   class="form-control @error('deadline') is-invalid @enderror"
-                                                                   id="deadline" name="deadline" for="deadline"
-                                                                   placeholder="Enter deadline"
-                                                                   value="{{ old('deadline') }}" required autofocus>
-                                                               @error('deadline')
-                                                                   <div id="emailHelp" class="form-text text-danger">
-                                                                       {{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                       </div>
-
-                                                       <!-- Email & Phone -->
-                                                       <div class="row mb-3">
-                                                           <div class="col">
-                                                               <label for="phone" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">PHONE</label>
-                                                               <input type="text"
-                                                                   class="form-control @error('phone') is-invalid @enderror"
-                                                                   id="phone" name="phone"
-                                                                   placeholder="Enter the client's phone number"
-                                                                   value="{{ old('phone') }}" inputmode="numeric"
-                                                                   pattern="\d+" required>
-                                                               @error('phone')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                           <!-- Address -->
-                                                           <div class="col">
-                                                               <label for="address" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">ADDRESS</label>
-                                                               <input type="text"
-                                                                   class="form-control @error('address') is-invalid @enderror"
-                                                                   id="address" name="address"
-                                                                   placeholder="Enter the client's company address"
-                                                                   value="{{ old('address') }}" required>
-                                                               @error('address')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                           {{-- STATUS HIDDEN INPUT --}}
-                                                           <div hidden class="col">
-                                                               <label for="status" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">Status</label>
-                                                               <input type="text"
-                                                                   class="form-control @error('status') is-invalid @enderror"
-                                                                   id="status" name="status"
-                                                                   placeholder="Enter the client's company status"
-                                                                   value="Belum Ditentukan" required>
-                                                               @error('status')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                       </div>
-                                                       <script>
-                                                           document.getElementById('phone').addEventListener('input', function(event) {
-                                                               let phone = event.target;
-                                                               // Mengganti semua karakter selain angka
-                                                               phone.value = phone.value.replace(/\D/g, '');
-                                                           });
-                                                       </script>
-
-
-
-                                                       <!-- Disclaimer -->
-                                                       <div class="form-check mb-3">
-                                                           <input type="checkbox"
-                                                               class="form-check-input @error('termsCheck') is-invalid @enderror"
-                                                               id="termsCheck" name="termsCheck"
-                                                               {{ old('termsCheck') ? 'checked' : '' }} required>
-                                                           <label class="form-check-label" for="termsCheck">
-                                                               By registering, you agree to the terms and conditions that
-                                                               apply. Check again and make sure the form is completely
-                                                               filled out.
-                                                           </label>
-                                                           @error('termsCheck')
-                                                               <div class="invalid-feedback">{{ $message }}</div>
-                                                           @enderror
-                                                       </div>
-
-                                                       <button type="submit" class="btn btn-dark col-12">Submit</button>
-                                                   </form>
-                                                   <script>
-                                                       function validateForm() {
-                                                           // Mendapatkan referensi form
-                                                           const form = document.getElementById('AddClientForm');
-                                                           let isValid = true;
-                                                           const category = document.getElementById('product_category');
-                                                           if (category.value === '') {
-                                                               category.classList.add('is-invalid');
-                                                               isValid = false;
-                                                           } else {
-                                                               category.classList.remove('is-invalid');
-                                                           }
-
-                                                           // Memeriksa apakah PIC dipilih
-                                                           const picName = document.getElementById('pic_name');
-                                                           if (picName.value === '') {
-                                                               picName.classList.add('is-invalid');
-                                                               isValid = false;
-                                                           } else {
-                                                               picName.classList.remove('is-invalid');
-                                                           }
-                                                           return isValid;
-                                                       }
-                                                   </script>
-                                               </div>
-                                           </div>
-                                       </div>
-                                   </div>
-
-
-                                   <!-- Edit Client Modal -->
-
-
-                                   {{-- @if (session('success'))
-                                       <div class="alert alert-success">
-                                           {{ session('success') }}
-                                       </div>
-                                   @endif --}}
-
-                                   <script>
-                                       function showAlert() {
-                                           alert('Data berhasil ditambahkan!');
-                                       }
-                                   </script>
-
-                                   <!-- Dropdown Button -->
+                                   <!-- Sortby Button -->
                                    <button class="btn btn-dropdown dropdown-toggle srtby" type="button"
                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                        Sort by
@@ -350,8 +76,6 @@
                                        <li><button class="dropdown-item sort-button" data-sort="client_name"
                                                data-order="asc">By Name</button></li>
                                    </ul>
-
-                                   <!-- Add dropdown options here if needed -->
                                </div>
                            </div>
                        </div>
@@ -363,8 +87,7 @@
                                        <!-- Checkbox Select All -->
                                        <div>
                                            <input type="checkbox" id="select-all">
-                                           <label style="margin-left: 10px; margin-right: 0px;"
-                                               for="select-all">All</label>
+                                           <label style="margin-left: 10px; margin-right: 0px;" for="select-all">All</label>
 
                                            <script>
                                                // Pilih semua checkbox saat 'select-all' dicentang
@@ -377,20 +100,20 @@
 
                                                // Menghapus semua klien yang terpilih
                                                document.querySelector('.delete-selected').addEventListener('click', function() {
-                                                   const selectedClients = [];
+                                                   const selectedProject = [];
                                                    document.querySelectorAll('.client-checkbox:checked').forEach(checkbox => {
-                                                       selectedClients.push(checkbox.value);
+                                                       selectedProject.push(checkbox.value);
                                                    });
 
-                                                   console.log("Selected Client IDs:", selectedClients); // Debugging
+                                                   console.log("Selected Client IDs:", selectedProject); // Debugging
 
-                                                   if (selectedClients.length === 0) {
-                                                       alert("No clients selected.");
+                                                   if (selectedProject.length === 0) {
+                                                       alert("No Project selected.");
                                                        return;
                                                    }
 
-                                                   if (confirm("Are you sure you want to delete the selected clients?")) {
-                                                       fetch('/clients/delete-multiple', {
+                                                   if (confirm("Are you sure you want to delete the selected Project?")) {
+                                                       fetch('/project/delete-multiple', {
                                                                method: 'POST',
                                                                headers: {
                                                                    'Content-Type': 'application/json',
@@ -398,19 +121,19 @@
                                                                        'content')
                                                                },
                                                                body: JSON.stringify({
-                                                                   ids: selectedClients
+                                                                   ids: selectedProject
                                                                })
                                                            })
                                                            .then(response => response.json())
                                                            .then(data => {
                                                                if (data.success) {
-                                                                   alert("Selected clients deleted successfully!");
+                                                                   alert("Selected Project deleted successfully!");
                                                                    location.reload(); // Refresh halaman atau update DOM
                                                                } else {
-                                                                   alert("Failed to delete clients.");
+                                                                   alert("Failed to delete Project.");
                                                                }
                                                            })
-                                                           .catch(error => console.error("Error deleting clients:", error));
+                                                           .catch(error => console.error("Error deleting Project:", error));
                                                    }
 
                                                });
@@ -499,12 +222,13 @@
                                </script>
                            </thead>
                            <tbody>
-                               @foreach ($projects as $project)
+                               @foreach ($projects as $key => $project)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
                                                value="{{ $project->id }}">
                                        </td>
-                                       <td style="align-content: center">{{ $project->id }}</td>
+                                       <td style="align-content: center">
+                                           {{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}</td>
                                        <td style="align-content: center" data-key="client-name">
                                            {{ $project->client_name }}</td>
                                        <td style="align-content: center" data-key="client-name">
@@ -532,175 +256,9 @@
                                                            data-bs-target="#editClientModal-{{ $project->id }}">Edit</a>
                                                    </li>
                                                </ul>
-                                               {{-- Edit Data Client --}}
-                                               <div class="modal fade" id="editClientModal-{{ $project->id }}"
-                                                   tabindex="-1" aria-labelledby="editClientModalLabel"
-                                                   aria-hidden="true">
-                                                   <div class="modal-dialog modal-lg">
-                                                       <div class="modal-content">
-                                                           <div class="modal-header" style="display: block;">
-                                                               <h5 class="modal-title" id="editClientModalLabel">Edit
-                                                                   Data
-                                                                   Client</h5>
-                                                               <p style="margin-top: 2px;"></p>
-                                                               <button type="button" class="btn-close"
-                                                                   data-bs-dismiss="modal" aria-label="Close"
-                                                                   style="position: absolute; right: 10px; top: 10px;"></button>
-                                                           </div>
 
-                                                           <div class="modal-body">
-                                                               <form method="POST"
-                                                                   action="{{ route('clients.update', $project->id) }}">
-                                                                   @csrf
-                                                                   @method('PUT')
-                                                                   <!-- Client Name & Company Name -->
-                                                                   <div class="row mb-3">
-                                                                       <div class="col">
-                                                                           <label for="client_name" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">CLIENT
-                                                                               NAME</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="client_name" name="client_name"
-                                                                               value="{{ $project->client_name }}"
-                                                                               placeholder="Enter the client name">
-                                                                       </div>
-                                                                       <div class="col">
-                                                                           <label for="company_name" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">COMPANY
-                                                                               NAME</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="company_name" name="company_name"
-                                                                               value="{{ $project->company_name }}"
-                                                                               placeholder="Enter the company name">
-                                                                       </div>
-                                                                   </div>
-
-                                                                   <!-- PIC and Product Category -->
-                                                                   <div class="row mb-3">
-                                                                       <div class="col">
-                                                                           <label for="pic_name" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">PIC</label>
-                                                                           <select class="form-select" id="pic_name"
-                                                                               name="pic_name">
-                                                                               <option value="{{ $project->pic_name }}"
-                                                                                   selected>{{ $project->pic_name }}
-                                                                               </option>
-
-                                                                               {{-- @foreach ($users as $user)
-                                                                                   <option value="{{ $user->name }}">
-                                                                                       {{ $user->name }}
-                                                                                   </option>
-                                                                               @endforeach --}}
-                                                                               <option value="Handika Wicaksana"
-                                                                                   {{ old('pic_name') == 'Handika Wicaksana' ? 'selected' : '' }}>
-                                                                                   Handika Wicaksana</option>
-                                                                               <option value="Widia Hadi Purwanti"
-                                                                                   {{ old('pic_name') == 'Widia Hadi Purwanti' ? 'selected' : '' }}>
-                                                                                   Widia Hadi Purwanti</option>
-                                                                           </select>
-                                                                       </div>
-                                                                       <div class="col">
-                                                                           <label for="product_category"
-                                                                               class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">CATEGORY
-                                                                               PRODUCT</label>
-                                                                           <select class="form-select"
-                                                                               id="product_category"
-                                                                               name="product_category">
-                                                                               <option
-                                                                                   value="{{ $project->product_category }}"
-                                                                                   selected>
-                                                                                   {{ $project->product_category }}
-                                                                               </option>
-                                                                               <option value="1">Category 1
-                                                                               </option>
-                                                                               <option value="2">Category 2
-                                                                               </option>
-                                                                           </select>
-                                                                       </div>
-                                                                   </div>
-
-                                                                   <!-- Email & Phone -->
-                                                                   <div class="row mb-3">
-                                                                       <div class="col">
-                                                                           <label for="email" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">EMAIL</label>
-                                                                           <input type="email" name="email"
-                                                                               class="form-control @error('email') is-invalid @enderror"
-                                                                               id="email" name="email"
-                                                                               placeholder="Enter email"
-                                                                               value="{{ $project->email }}" required
-                                                                               autofocus>
-                                                                           @error('email')
-                                                                               <div id="emailHelp"
-                                                                                   class="form-text text-danger">
-                                                                                   {{ $message }}
-                                                                               </div>
-                                                                           @enderror
-
-                                                                       </div>
-                                                                       <div class="col">
-                                                                           <label for="phone" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">PHONE</label>
-                                                                           <input type="text" class="form-control"
-                                                                               id="phone" name="phone"
-                                                                               value="{{ $project->phone }}"
-                                                                               placeholder="Enter the client's phone number">
-                                                                       </div>
-                                                                   </div>
-
-                                                                   <!-- Address -->
-                                                                   <div class="mb-3">
-                                                                       <label for="address" class="form-label"
-                                                                           style="font-size: 0.7em; font-weight: bold;">ADDRESS</label>
-                                                                       <input type="text" class="form-control"
-                                                                           id="address" name="address"
-                                                                           value="{{ $project->address }}"
-                                                                           placeholder="Enter the client's company address">
-                                                                   </div>
-
-                                                                   <!-- Submit Button -->
-                                                                   <button type="submit"
-                                                                       class="btn btn-dark w-100">Submit</button>
-                                                               </form>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                               </div>
-
-                                               {{-- <script>
-                                                   // Assuming you have edit buttons with class "edit-btn" and data attributes for the client
-                                                   document.querySelectorAll('.edit-btn').forEach(button => {
-                                                       button.addEventListener('click', function() {
-                                                           const clientId = this.getAttribute('data-id');
-                                                           const clientName = this.getAttribute('data-client-name');
-                                                           const companyName = this.getAttribute('data-company-name');
-                                                           const picName = this.getAttribute('data-pic-name');
-                                                           const productCategory = this.getAttribute('data-product-category');
-                                                           const email = this.getAttribute('data-email');
-                                                           const phone = this.getAttribute('data-phone');
-                                                           const address = this.getAttribute('data-address');
-
-                                                           // Populate the modal fields
-                                                           document.getElementById('edit_client_id').value = clientId;
-                                                           document.getElementById('edit_client_name').value = clientName;
-                                                           document.getElementById('edit_company_name').value = companyName;
-                                                           document.getElementById('edit_pic_name').value = picName;
-                                                           document.getElementById('edit_product_category').value = productCategory;
-                                                           document.getElementById('edit_email').value = email;
-                                                           document.getElementById('edit_phone').value = phone;
-                                                           document.getElementById('edit_address').value = address;
-
-                                                           // Update the form action to point to the correct client update route
-                                                           const formAction = document.getElementById('editClientForm').action.replace(':id',
-                                                               clientId);
-                                                           document.getElementById('editClientForm').action = formAction;
-
-                                                           // Show the modal
-                                                           $('#editClientModal').modal('show');
-                                                       });
-                                                   });
-                                               </script> --}}
+                                               {{-- Edit Modal --}}
+                                               @include('components.dashboard.edit-project')
 
                                            </div>
                                        </td>
@@ -728,82 +286,8 @@
                            </tbody>
                        </table>
 
-
-                       <!-- Custom Pagination -->
-                       <nav aria-label="Page navigation">
-                           <ul class="pagination justify-content-end" style="align-items: center;">
-                               <!-- Tombol Previous -->
-                               @if ($projects->onFirstPage())
-                                   <li class="page-item disabled">
-                                       <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
-                                           <i style="color: white;" class="fa-solid fa-chevron-left"></i>
-                                       </span>
-                                   </li>
-                               @else
-                                   <li class="page-item">
-                                       <a class="page-link" href="{{ $projects->previousPageUrl() }}"
-                                           style="background-color: #082F1B; border-radius: 5px;">
-                                           <i style="color: white;" class="fa-solid fa-chevron-left"></i>
-                                       </a>
-                                   </li>
-                               @endif
-
-                               <!-- Tombol Angka Halaman dengan Batas 10 -->
-                               @if ($projects->lastPage() > 10)
-                                   <!-- Tampilkan halaman pertama -->
-                                   <li class="page-item {{ $projects->currentPage() == 1 ? 'active' : '' }}">
-                                       <a class="page-link1" href="{{ $projects->url(1) }}">1</a>
-                                   </li>
-
-                                   @if ($projects->currentPage() > 5)
-                                       <!-- Tambahkan titik tiga jika halaman saat ini lebih dari 5 -->
-                                       <li class="page-item disabled"><span class="page-link1">...</span></li>
-                                   @endif
-
-                                   <!-- Loop untuk menampilkan 5 halaman di sekitar halaman saat ini -->
-                                   @for ($i = max(2, $projects->currentPage() - 2); $i <= min($projects->lastPage() - 1, $projects->currentPage() + 2); $i++)
-                                       <li class="page-item {{ $projects->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $projects->url($i) }}">{{ $i }}</a>
-                                       </li>
-                                   @endfor
-
-                                   @if ($projects->currentPage() < $projects->lastPage() - 4)
-                                       <!-- Tambahkan titik tiga jika halaman saat ini kurang dari halaman terakhir - 4 -->
-                                       <li class="page-item disabled"><span class="page-link1">...</span></li>
-                                   @endif
-
-                                   <!-- Tampilkan halaman terakhir -->
-                                   <li
-                                       class="page-item {{ $projects->currentPage() == $projects->lastPage() ? 'active' : '' }}">
-                                       <a class="page-link1"
-                                           href="{{ $projects->url($projects->lastPage()) }}">{{ $projects->lastPage() }}</a>
-                                   </li>
-                               @else
-                                   <!-- Jika halaman kurang dari atau sama dengan 10, tampilkan semua halaman -->
-                                   @for ($i = 1; $i <= $projects->lastPage(); $i++)
-                                       <li class="page-item {{ $projects->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $projects->url($i) }}">{{ $i }}</a>
-                                       </li>
-                                   @endfor
-                               @endif
-
-                               <!-- Tombol Next -->
-                               @if ($projects->hasMorePages())
-                                   <li class="page-item">
-                                       <a class="page-link" href="{{ $projects->nextPageUrl() }}"
-                                           style="background-color: #082F1B; border-radius: 5px;">
-                                           <i style="color: white;" class="fa-solid fa-chevron-right"></i>
-                                       </a>
-                                   </li>
-                               @else
-                                   <li class="page-item disabled">
-                                       <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
-                                           <i style="color: white;" class="fa-solid fa-chevron-right"></i>
-                                       </span>
-                                   </li>
-                               @endif
-                           </ul>
-                       </nav>
+                       {{-- Pagination --}}
+                       @include('components.dashboard.pagination')
 
                    </div>
                </div>
