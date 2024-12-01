@@ -9,7 +9,7 @@
                    <div class="row">
                        <div class="col-12 col-md-12">
                            <div class="d-flex justify-content-center" style="margin-bottom: 50px;">
-                               <h1>Alamaya Projects on Progress</h1>
+                               <h1>Alamaya Projects</h1>
                            </div>
                        </div>
                    </div>
@@ -63,13 +63,177 @@
                                        });
                                    </script>
 
+
+                                   <!-- Add Project Button -->
+                                   <button class="btn btn-add-project btn1hvr" data-bs-toggle="modal"
+                                       data-bs-target="#addProjectModal">Add
+                                       Project <i class="fa fa-plus"></i>
+                                   </button>
+                                   <!-- Add Project Modal -->
+                                   <div class="modal fade" id="addProjectModal" tabindex="-1"
+                                       aria-labelledby="addProjectModalLabel" aria-hidden="true">
+                                       <div class="modal-dialog">
+                                           <div class="modal-content">
+                                               <div class="modal-header">
+                                                   <h5 class="modal-title" id="addProjectModalLabel">Add Project</h5>
+                                                   <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                       aria-label="Close"></button>
+                                               </div>
+                                               <div class="modal-body">
+                                                   <form method="POST" action="{{ route('project.store') }}"
+                                                       id="addProjectForm">
+                                                       @csrf
+                                                       <!-- Project Name -->
+                                                       <div class="row mb-3">
+                                                           <div class="col">
+                                                               <label name="project_name" for="project_name"
+                                                                   id="project_name" class="form-label">Project Name</label>
+                                                               <input type="text" class="form-control"
+                                                                   name="project_name" id="project_name"
+                                                                   placeholder="Enter the Project Name" required>
+                                                           </div>
+                                                       </div>
+
+                                                       <!-- PIC and Product Category -->
+                                                       <div class="row mb-3">
+                                                           <div class="col">
+                                                               <label name="category" for="category" id="category"
+                                                                   class="form-label">Category Product</label>
+                                                               <select class="form-select" name="category" id="category"
+                                                                   required>
+                                                                   <option value="" selected>Select a Product category
+                                                                   </option>
+                                                                   <option value="1">Category 1</option>
+                                                                   <option value="2">Category 2</option>
+                                                               </select>
+                                                           </div>
+                                                           <div class="col">
+                                                               <label name="pic_name" for="pic_name" id="pic_name"
+                                                                   class="form-label">PIC</label>
+                                                               <select class="form-select" name="pic_name" id="pic_name"
+                                                                   required>
+                                                                   <option value="" selected>Select the PIC name
+                                                                   </option>
+                                                                   <option value="1">PIC 1</option>
+                                                                   <option value="2">PIC 2</option>
+                                                               </select>
+                                                           </div>
+                                                       </div>
+
+                                                       <!-- Tanggal Project Masuk -->
+                                                       <div class="row mb-3">
+                                                           <div class="col">
+                                                               <label id="tanggal_masuk_project"
+                                                                   name="tanggal_masuk_project" for="tanggal_masuk_project"
+                                                                   class="form-label">Tanggal Project Masuk</label>
+                                                               <input name="tanggal_masuk_project" type="date"
+                                                                   class="form-control" id="tanggal_masuk_project" required>
+                                                           </div>
+                                                       </div>
+
+                                                       <!-- Deadline -->
+                                                       <div class="mb-3">
+                                                           <label name="deadline" for="deadline" id="deadline"
+                                                               class="form-label">Deadline</label>
+                                                           <input name="deadline" type="date" class="form-control"
+                                                               id="deadline" required>
+                                                       </div>
+
+                                                       <!-- Disclaimer -->
+                                                       <div class="form-check mb-3">
+                                                           <input type="checkbox" class="form-check-input"
+                                                               id="termsCheck" required>
+                                                           <label class="form-check-label" for="termsCheck">
+                                                               By registering, you agree to the terms and conditions that
+                                                               apply.
+                                                           </label>
+                                                       </div>
+
+                                                       <div class="form-text mb-3">Check again and make sure the form is
+                                                           completely filled out</div>
+
+                                                       <!-- Submit Button -->
+                                                       <button type="submit" class="btn btn-dark w-100"
+                                                           onclick="return validateForm()">Add Project</button>
+                                                   </form>
+                                               </div>
+                                           </div>
+                                       </div>
+                                   </div>
+
+                                   <script>
+                                       // Menambahkan validasi JavaScript tambahan untuk validasi form sebelum submit
+                                       function validateForm() {
+                                           // Mendapatkan referensi form
+                                           const form = document.getElementById('addProjectForm');
+                                           let isValid = true;
+
+                                           // Memeriksa apakah project_name diisi
+                                           const projectName = document.getElementById('project_name');
+                                           if (projectName.value.trim() === '') {
+                                               projectName.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               projectName.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah category dipilih
+                                           const category = document.getElementById('category');
+                                           if (category.value === '') {
+                                               category.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               category.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah PIC dipilih
+                                           const picName = document.getElementById('pic_name');
+                                           if (picName.value === '') {
+                                               picName.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               picName.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah tanggal project masuk diisi
+                                           const tanggalMasukProject = document.getElementById('tanggal_masuk_project');
+                                           if (tanggalMasukProject.value === '') {
+                                               tanggalMasukProject.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               tanggalMasukProject.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah deadline diisi
+                                           const deadline = document.getElementById('deadline');
+                                           if (deadline.value === '') {
+                                               deadline.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               deadline.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah checkbox termsCheck dipilih
+                                           const termsCheck = document.getElementById('termsCheck');
+                                           if (!termsCheck.checked) {
+                                               termsCheck.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               termsCheck.classList.remove('is-invalid');
+                                           }
+
+                                           return isValid;
+                                       }
+                                   </script>
+
+
                                    {{-- End Add Project Modal --}}
 
                                    {{-- @if (session('success'))
                                        <div class="alert alert-success">
                                            {{ session('success') }}
-                           </div>
-                           @endif --}}
+                                       </div>
+                                   @endif --}}
 
                                    <script>
                                        function showAlert() {
@@ -106,7 +270,8 @@
                                        <!-- Checkbox Select All -->
                                        <div>
                                            <input type="checkbox" id="select-all">
-                                           <label style="margin-left: 10px; margin-right: 0px;" for="select-all">All</label>
+                                           <label style="margin-left: 10px; margin-right: 0px;"
+                                               for="select-all">All</label>
 
                                            <script>
                                                // Pilih semua checkbox saat 'select-all' dicentang
@@ -203,8 +368,9 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Status
-                                           <span class="sort-icons sort-button" data-sort="status" data-order="asc"
+                                           Tanggal Masuk Project
+                                           <span class="sort-icons sort-button" data-sort="tanggal-masuk-project"
+                                               data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
@@ -263,8 +429,7 @@
                                        </td>
                                        <td style="align-content: center">{{ $project->id }}</td>
                                        <td style="align-content: center" data-key="client-name">
-                                           {{ $project->project_name }}
-                                       </td>
+                                           {{ $project->project_name }}</td>
                                        <td style="align-content: center" data-key="product-category">
                                            {{ $project->category }}
                                            {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
@@ -274,36 +439,17 @@
                                        </td>
                                        <td style="align-content: center" data-key="pic-name">{{ $project->pic_name }}
                                        </td>
-                                       <td style="align-content: center;">
-                                           <div class="btn rounded-5 align-top d-flex justify-content-center align-items-center"
-                                               style="height: 4vh; width: 100px; background-color: #f8e2f7; border: 2px solid #f8e2f7;">
-                                               @if ($project->status == 'Mindmap')
-                                                   <p style="margin: 0; color: rgb(144, 25, 255); font-size:14px;">Mindmap
-                                                   </p>
-                                               @elseif ($project->status == 'Design')
-                                                   <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">Design
-                                                   </p>
-                                               @elseif ($project->status == 'Slicing')
-                                                   <p style="margin: 0; color: rgb(8, 41, 230); font-size:14px;">Slicing
-                                                   </p>
-                                               @elseif ($project->status == 'Selesai')
-                                                   <p style="margin: 0; color: rgb(8, 230, 126) ; font-size:14px;">Selesai
-                                                   </p>
-                                               @endif
-                                           </div>
-                                       </td>
-
                                        <td style="align-content: center">
-                                           {{ $project->deadline }}
-                                       </td>
+                                           {{ $project->tanggal_masuk_project }}</td>
+                                       <td style="align-content: center">
+                                           {{ $project->deadline }}</td>
                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
                                                <i class="bi bi-three-dots" data-bs-toggle="dropdown"
                                                    aria-expanded="false" style="cursor: pointer;"></i>
                                                <ul class="dropdown-menu">
                                                    <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                           data-bs-target="#editProjectModal-{{ $project->id }}">Ubah
-                                                           Status</a>
+                                                           data-bs-target="#editProjectModal-{{ $project->id }}">Edit</a>
                                                    </li>
                                                </ul>
 
@@ -314,8 +460,9 @@
                                                    <div class="modal-dialog modal-lg">
                                                        <div class="modal-content">
                                                            <div class="modal-header" style="display: block;">
-                                                               <h5 class="modal-title" id="editProjectModalLabel">Ubah
-                                                                   Status Project</h5>
+                                                               <h5 class="modal-title" id="editProjectModalLabel">Edit
+                                                                   Data
+                                                                   Project</h5>
                                                                <p style="margin-top: 2px;"></p>
                                                                <button type="button" class="btn-close"
                                                                    data-bs-dismiss="modal" aria-label="Close"
@@ -324,15 +471,16 @@
 
                                                            <div class="modal-body">
                                                                <form method="POST"
-                                                                   action="{{ route('project.update', [$project->id, 'from' => 'onprogress']) }}">
+                                                                   action="{{ route('project.update', $project->id) }}">
                                                                    @csrf
                                                                    @method('PUT')
                                                                    <!-- Project Name -->
-                                                                   <div class="row mb-3" hidden>
+                                                                   <div class="row mb-3">
                                                                        <div class="col">
                                                                            <label name="project_name" for="project_name"
                                                                                id="project_name"
-                                                                                style="font-size: 0.7em;">PROJECT NAME</label>
+                                                                               class="form-label">Project
+                                                                               Name</label>
                                                                            <input type="text" class="form-control"
                                                                                name="project_name" for="project_name"
                                                                                id="project_name"
@@ -342,10 +490,11 @@
                                                                    </div>
 
                                                                    <!-- PIC and Product Category -->
-                                                                   <div class="row mb-3" hidden>
+                                                                   <div class="row mb-3">
                                                                        <div class="col">
                                                                            <label name="category" for="category"
-                                                                               id="category"  style="font-size: 0.7em;">CATEGORY PRODUCT</label>
+                                                                               id="category" class="form-label">Category
+                                                                               Product</label>
                                                                            <select class="form-select" name="category"
                                                                                for="category" id="category">
                                                                                <option value="{{ $project->category }}"
@@ -358,7 +507,7 @@
                                                                        <div class="col">
                                                                            <label name="pic_name" for="pic_name"
                                                                                id="pic_name"
-                                                                               class="form-label" style="font-size: 0.7em;">PIC</label>
+                                                                               class="form-label">PIC</label>
                                                                            <select class="form-select" name="pic_name"
                                                                                for="pic_name" id="pic_name">
                                                                                <option value="{{ $project->pic_name }}"
@@ -368,12 +517,10 @@
                                                                                <option value="2">PIC 2</option>
                                                                            </select>
                                                                        </div>
-                                                                   </div>
-                                                                   <div class="row mb-3">
-                                                                       <div class="col">
+                                                                       <div class="col" hidden>
                                                                            <label name="status" for="status"
                                                                                id="status"
-                                                                               class="form-label" style="font-size: 0.7em;">STATUS</label>
+                                                                               class="form-label">Status</label>
                                                                            <select class="form-select" name="status"
                                                                                for="status" id="status">
                                                                                <option value="{{ $project->status }}"
@@ -382,19 +529,18 @@
                                                                                <option value="Mindmap">Mindmap</option>
                                                                                <option value="Design">Design</option>
                                                                                <option value="Slicing">Slicing</option>
-                                                                               <option value="Maintenance">Maintenance
-                                                                               </option>
                                                                            </select>
                                                                        </div>
                                                                    </div>
 
                                                                    <!-- Tanggal Project Masuk -->
-                                                                   <div class="row mb-3" hidden>
+                                                                   <div class="row mb-3">
                                                                        <div class="col">
                                                                            <label id="tanggal_masuk_project"
                                                                                name="tanggal_masuk_project"
                                                                                for="tanggal_masuk_project"
-                                                                               class="form-label" style="font-size: 0.7em;">TANGGAL PROJECT MASUK</label>
+                                                                               class="form-label">Tanggal Project
+                                                                               Masuk</label>
                                                                            <input name="tanggal_masuk_project"
                                                                                for="tanggal_masuk_project" type="date"
                                                                                class="form-control"
@@ -405,10 +551,10 @@
                                                                    </div>
 
                                                                    <!-- Deadline -->
-                                                                   <div class="mb-3" hidden>
+                                                                   <div class="mb-3">
                                                                        <label name="deadline" for="deadline"
                                                                            id="deadline"
-                                                                           class="form-label" style="font-size: 0.7em;">DEADLINE</label>
+                                                                           class="form-label">Deadline</label>
                                                                        <input name="deadline" for="deadline"
                                                                            type="date" class="form-control"
                                                                            id="deadline"
@@ -431,7 +577,7 @@
 
                                                                    <!-- Submit Button -->
                                                                    <button type="submit" class="btn btn-dark w-100"
-                                                                       onclick="showAlertUpdate()">Submit</button>
+                                                                       onclick="showAlertUpdate()">Update</button>
                                                                </form>
                                                            </div>
                                                        </div>
@@ -481,19 +627,19 @@
                                            <div class="collapse-content"
                                                style="overflow: hidden; height: 0; transition: height 0.5s ease;">
                                                <span>{{ $client->company_name }}</span>
-                       <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                           onclick="copyText('{{ $client->company_name }}')"></i>
-           </div>
-           </td>
-           <td colspan="6">
-               <div class="collapse-content1"
-                   style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                   <span>{{ $client->address }}</span>
-                   <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                       onclick="copyText('{{ $client->address }}')"></i>
-               </div>
-           </td>
-           </tr> --}}
+                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                                                   onclick="copyText('{{ $client->company_name }}')"></i>
+                                           </div>
+                                       </td>
+                                       <td colspan="6">
+                                           <div class="collapse-content1"
+                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
+                                               <span>{{ $client->address }}</span>
+                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
+                                                   onclick="copyText('{{ $client->address }}')"></i>
+                                           </div>
+                                       </td>
+                                   </tr> --}}
                                @endforeach
                            </tbody>
                        </table>

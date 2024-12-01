@@ -15,11 +15,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <b><a class="nav-link" href="/">Client</a></b>
+                            <b><a class="nav-link" href="/">Project</a></b>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <b><a class="nav-link" href="{{ route('project.view') }}">Project</a></b>
-                        </li>
+                        </li> --}}
                         <li class="nav-item">
                             <b><a class="nav-link" href="{{ route('domain.view') }}">Domain</a></b>
                         </li>
@@ -58,8 +58,6 @@
                                 </ul>
                             </div>
                         </li>
-
-
                         <script>
                             function tampil_button_notif() {
                                 // Data dummy untuk jumlah notifikasi
@@ -104,10 +102,6 @@
                                 });
                             });
                         </script>
-
-
-
-
                         <li class="nav-item bullet-none mx-3">
                             <a href="{{ route('profile.show') }}" class="text-light">
                                 <i class="fa-solid fa-gear"></i>

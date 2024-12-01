@@ -17,22 +17,15 @@
                                         </div>
                                         <div class="col-md-6 col-6 d-flex justify-content-end align-items-center">
                                             <div class="btn-group dropup">
-                                                <button type="button"
-                                                    class="border-white text-light btn rounded-5 align-top d-flex justify-content-center align-items-center mt-2"
+                                                <div class="border-white text-light btn rounded-5 align-top d-flex justify-content-center align-items-center mt-2"
                                                     style="height: 4vh; width: 60px; display: flex; align-items: center; justify-content: center;"
                                                     data-bs-toggle="dropdown">
 
                                                     <span class="fas fa-chevron-up text-light"
                                                         style="font-size: 13px; margin-right: 5px;"></span>
                                                     <p class="text-light" style="margin: 0;">+3</p>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Another
-                                                            action</a></li>
-                                                    <li><a class="dropdown-item" href="#">Something else
-                                                            here</a></li>
-                                                </ul>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -72,22 +65,15 @@
                                     <div class="col-md-6 col-6 d-flex justify-content-end align-items-center">
 
                                         <div class="btn-group dropup">
-                                            <button type="button"
-                                                class="border-white text-light btn rounded-5 align-top d-flex justify-content-center align-items-center mt-2"
+                                            <div class="border-white text-light btn rounded-5 align-top d-flex justify-content-center align-items-center mt-2"
                                                 style="height: 4vh; width: 60px; display: flex; align-items: center; justify-content: center;"
                                                 data-bs-toggle="dropdown">
 
                                                 <span class="fas fa-chevron-up text-light"
                                                     style="font-size: 13px; margin-right: 5px;"></span>
                                                 <p class="text-light" style="margin: 0;">+2</p>
-                                            </button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another
-                                                        action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else
-                                                        here</a></li>
-                                            </ul>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -123,13 +109,6 @@
                                     </div>
                                     <div class="col-md-6 col-6 d-flex justify-content-end align-items-center">
                                         <div class="btn-group dropup">
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Action</a></li>
-                                                <li><a class="dropdown-item" href="#">Another
-                                                        action</a></li>
-                                                <li><a class="dropdown-item" href="#">Something else
-                                                        here</a></li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>

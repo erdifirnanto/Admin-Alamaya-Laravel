@@ -16,5 +16,10 @@ class Project extends Model
         'status',
         'tanggal_masuk_project',
         'deadline',
+        'client_name',
+        'company_name',
+        'email',
+        'phone',
+        'address',
     ];
 }

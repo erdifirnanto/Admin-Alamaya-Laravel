@@ -68,6 +68,7 @@ Route::post('/clients/delete-multiple', [ClientController::class, 'deleteMultipl
 Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
 Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update');
 Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
+
 // route data project
 Route::resource('project', ProjectController::class);
 Route::get('/project', [ProjectController::class, 'View'])->name('project.view');

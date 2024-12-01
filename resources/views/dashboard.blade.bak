@@ -1,6 +1,7 @@
    @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
+
        <section class="main-page" id="main-page">
            <section>
                <!-- Table Section Start -->
@@ -8,7 +9,7 @@
                    <div class="row">
                        <div class="col-12 col-md-12">
                            <div class="d-flex justify-content-center" style="margin-bottom: 50px;">
-                               <h1>Alamaya Project</h1>
+                               <h1>Alamaya Client</h1>
                            </div>
                        </div>
                    </div>
@@ -39,10 +40,10 @@
                                            button.addEventListener('click', function(event) {
                                                event.preventDefault();
 
-                                               const projectId = this.getAttribute('data-id');
+                                               const clientId = this.getAttribute('data-id');
 
                                                // Langsung lakukan penghapusan tanpa konfirmasi
-                                               fetch(`/project/${projectId}`, {
+                                               fetch(`/clients/${clientId}`, {
                                                        method: 'DELETE',
                                                        headers: {
                                                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
@@ -52,10 +53,10 @@
                                                    .then(response => response.json())
                                                    .then(data => {
                                                        if (data.success) {
-                                                           alert("Project deleted successfully!");
+                                                           alert("Client deleted successfully!");
                                                            location.reload(); // Refresh halaman atau update DOM
                                                        } else {
-                                                           alert("Failed to delete project.");
+                                                           alert("Failed to delete client.");
                                                        }
                                                    })
                                            });
@@ -63,9 +64,12 @@
                                    </script>
 
 
-                                   @include('components.dashboard.add-project')
+                                   <!-- Add Client Button -->
+                                   <button class="btn btn-add-client btn1hvr" data-bs-toggle="modal"
+                                       data-bs-target="#addClientModal">Add
+                                       Client <i class="fa fa-plus"></i>
+                                   </button>
 
-<<<<<<< HEAD
                                    <!-- Add Client Modal -->
                                    <div class="modal fade" id="addClientModal" tabindex="-1"
                                        aria-labelledby="addClientModalLabel" aria-hidden="true">
@@ -123,12 +127,18 @@
                                                                    id="pic_name" name="pic_name" required>
                                                                    <option selected value="">Select the PIC name
                                                                    </option>
-                                                                   <option value="Widia"
-                                                                       {{ old('pic_name') == 'Widia' ? 'selected' : '' }}>Widia
-                                                                   </option>
-                                                                   <option value="Handika"
-                                                                       {{ old('pic_name') == 'Handika' ? 'selected' : '' }}>Handika
-                                                                   </option>
+                                                                   {{-- @foreach ($users as $user)
+                                                                       <option value="{{ $user->name }}"
+                                                                           {{ old('$user->name') == '$user->name' ? 'selected' : '' }}>
+                                                                           {{ $user->name }}
+                                                                       </option>
+                                                                   @endforeach --}}
+                                                                   <option value="Handika Wicaksana"
+                                                                       {{ old('pic_name') == 'Handika Wicaksana' ? 'selected' : '' }}>
+                                                                       Handika Wicaksana</option>
+                                                                   <option value="Widia Hadi Purwanti"
+                                                                       {{ old('pic_name') == 'Widia Hadi Purwanti' ? 'selected' : '' }}>
+                                                                       Widia Hadi Purwanti</option>
                                                                </select>
                                                                @error('pic_name')
                                                                    <div class="invalid-feedback">{{ $message }}</div>
@@ -142,9 +152,9 @@
                                                                    id="product_category" name="product_category" required>
                                                                    <option selected value="">Select a Product category
                                                                    </option>
-                                                                   <option value="asdapro.com"
-                                                                       {{ old('product_category') == 'asdapro.com' ? 'selected' : '' }}>
-                                                                       asdapro.com</option>
+                                                                   <option value="1"
+                                                                       {{ old('product_category') == '1' ? 'selected' : '' }}>
+                                                                       Category 1</option>
                                                                    <option value="2"
                                                                        {{ old('product_category') == '2' ? 'selected' : '' }}>
                                                                        Category 2</option>
@@ -155,7 +165,7 @@
                                                            </div>
                                                        </div>
                                                        <div class="mb-3">
-                                                           <label for="email" class="form-label" style="font-size: 0.7em;">EMAIL</label>
+                                                           <label for="email" class="form-label">Email</label>
                                                            <input type="email" name="email"
                                                                class="form-control @error('email') is-invalid @enderror"
                                                                id="email" name="email" for="email"
@@ -220,7 +230,8 @@
                                                            @enderror
                                                        </div>
 
-                                                       <button type="submit" class="btn btn-dark col-12">Submit</button>
+                                                       <button type="submit" class="btn btn-dark col-12">Add
+                                                           Client</button>
                                                    </form>
                                                    <script>
                                                        function validateForm() {
@@ -268,9 +279,6 @@
                                    </script>
 
                                    <!-- Dropdown Button -->
-=======
-                                   <!-- Sortby Button -->
->>>>>>> 97a980b1a6642aef7dc1e0d698092798fed04118
                                    <button class="btn btn-dropdown dropdown-toggle srtby" type="button"
                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                        Sort by
@@ -281,6 +289,9 @@
                                        <li><button class="dropdown-item sort-button" data-sort="client_name"
                                                data-order="asc">By Name</button></li>
                                    </ul>
+
+
+                                   <!-- Add dropdown options here if needed -->
                                </div>
                            </div>
                        </div>
@@ -292,7 +303,8 @@
                                        <!-- Checkbox Select All -->
                                        <div>
                                            <input type="checkbox" id="select-all">
-                                           <label style="margin-left: 10px; margin-right: 0px;" for="select-all">All</label>
+                                           <label style="margin-left: 10px; margin-right: 0px;"
+                                               for="select-all">All</label>
 
                                            <script>
                                                // Pilih semua checkbox saat 'select-all' dicentang
@@ -305,20 +317,20 @@
 
                                                // Menghapus semua klien yang terpilih
                                                document.querySelector('.delete-selected').addEventListener('click', function() {
-                                                   const selectedProject = [];
+                                                   const selectedClients = [];
                                                    document.querySelectorAll('.client-checkbox:checked').forEach(checkbox => {
-                                                       selectedProject.push(checkbox.value);
+                                                       selectedClients.push(checkbox.value);
                                                    });
 
-                                                   console.log("Selected Client IDs:", selectedProject); // Debugging
+                                                   console.log("Selected Client IDs:", selectedClients); // Debugging
 
-                                                   if (selectedProject.length === 0) {
-                                                       alert("No Project selected.");
+                                                   if (selectedClients.length === 0) {
+                                                       alert("No clients selected.");
                                                        return;
                                                    }
 
-                                                   if (confirm("Are you sure you want to delete the selected Project?")) {
-                                                       fetch('/project/delete-multiple', {
+                                                   if (confirm("Are you sure you want to delete the selected clients?")) {
+                                                       fetch('/clients/delete-multiple', {
                                                                method: 'POST',
                                                                headers: {
                                                                    'Content-Type': 'application/json',
@@ -326,19 +338,19 @@
                                                                        'content')
                                                                },
                                                                body: JSON.stringify({
-                                                                   ids: selectedProject
+                                                                   ids: selectedClients
                                                                })
                                                            })
                                                            .then(response => response.json())
                                                            .then(data => {
                                                                if (data.success) {
-                                                                   alert("Selected Project deleted successfully!");
+                                                                   alert("Selected clients deleted successfully!");
                                                                    location.reload(); // Refresh halaman atau update DOM
                                                                } else {
-                                                                   alert("Failed to delete Project.");
+                                                                   alert("Failed to delete clients.");
                                                                }
                                                            })
-                                                           .catch(error => console.error("Error deleting Project:", error));
+                                                           .catch(error => console.error("Error deleting clients:", error));
                                                    }
 
                                                });
@@ -347,7 +359,7 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           No.
+                                           No. Id
                                            <span class="sort-icons sort-button" data-sort="id" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
@@ -357,7 +369,7 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Name
+                                           Client Name
                                            <span class="sort-icons sort-button" data-sort="client-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
@@ -365,7 +377,6 @@
                                            </span>
                                        </span>
                                    </th>
-                                   <th>Project</th>
                                    <th>Email</th>
                                    <th>Phone</th>
                                    <th>
@@ -389,9 +400,6 @@
                                            </span>
                                        </span>
                                    </th>
-                                   <th>Status</th>
-                                   <th>Project Masuk</th>
-                                   <th>Deadline</th>
                                    <th>Action</th>
                                </tr>
 
@@ -427,42 +435,51 @@
                                </script>
                            </thead>
                            <tbody>
-                               @foreach ($projects as $key => $project)
+                               @foreach ($clients as $client)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
-                                               value="{{ $project->id }}">
+                                               value="{{ $client->id }}">
                                        </td>
-                                       <td style="align-content: center">
-                                           {{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}</td>
+                                       <td style="align-content: center">{{ $client->id }}</td>
                                        <td style="align-content: center" data-key="client-name">
-                                           {{ $project->client_name }}</td>
-                                       <td style="align-content: center" data-key="client-name">
-                                           {{ $project->project_name }}</td>
+                                           {{ $client->client_name }}</td>
                                        <td style="align-content: center">
-                                           {{ $project->email }}
+                                           {{ $client->email }}
                                            <span class="sort-icons toggle-chevron" aria-expanded="false"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </td>
-                                       <td style="align-content: center">{{ $project->phone }}</td>
-                                       <td style="align-content: center" data-key="pic-name">{{ $project->pic_name }}
+                                       <td style="align-content: center">{{ $client->phone }}</td>
+                                       <td style="align-content: center" data-key="pic-name">{{ $client->pic_name }}
                                        </td>
-                                       <td style="align-content: center">{{ $project->category }}</td>
-                                       <td style="align-content: center">{{ $project->status }}</td>
-                                       <td style="align-content: center">{{ $project->tanggal_masuk_project }}</td>
-                                       <td style="align-content: center">{{ $project->deadline }}</td>
+                                       <td style="align-content: center" data-key="product-category">
+                                           {{ $client->product_category }}</td>
                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
                                                <i class="bi bi-three-dots" data-bs-toggle="dropdown"
                                                    aria-expanded="false" style="cursor: pointer;"></i>
                                                <ul class="dropdown-menu">
                                                    <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                           data-bs-target="#editClientModal-{{ $project->id }}">Edit</a>
+                                                           data-bs-target="#editClientModal-{{ $client->id }}">Edit</a>
                                                    </li>
                                                </ul>
+                                               {{-- Edit Data Client --}}
+                                               <div class="modal fade" id="editClientModal-{{ $client->id }}"
+                                                   tabindex="-1" aria-labelledby="editClientModalLabel"
+                                                   aria-hidden="true">
+                                                   <div class="modal-dialog modal-lg">
+                                                       <div class="modal-content">
+                                                           <div class="modal-header" style="display: block;">
+                                                               <h5 class="modal-title" id="editClientModalLabel">Edit
+                                                                   Data
+                                                                   Client</h5>
+                                                               <p style="margin-top: 2px;"></p>
+                                                               <button type="button" class="btn-close"
+                                                                   data-bs-dismiss="modal" aria-label="Close"
+                                                                   style="position: absolute; right: 10px; top: 10px;"></button>
+                                                           </div>
 
-<<<<<<< HEAD
                                                            <div class="modal-body">
                                                                <form method="POST"
                                                                    action="{{ route('clients.update', $client->id) }}">
@@ -500,8 +517,18 @@
                                                                                <option value="{{ $client->pic_name }}"
                                                                                    selected>{{ $client->pic_name }}
                                                                                </option>
-                                                                               <option value="1">PIC 1</option>
-                                                                               <option value="2">PIC 2</option>
+
+                                                                               {{-- @foreach ($users as $user)
+                                                                                   <option value="{{ $user->name }}">
+                                                                                       {{ $user->name }}
+                                                                                   </option>
+                                                                               @endforeach --}}
+                                                                               <option value="Handika Wicaksana"
+                                                                                   {{ old('pic_name') == 'Handika Wicaksana' ? 'selected' : '' }}>
+                                                                                   Handika Wicaksana</option>
+                                                                               <option value="Widia Hadi Purwanti"
+                                                                                   {{ old('pic_name') == 'Widia Hadi Purwanti' ? 'selected' : '' }}>
+                                                                                   Widia Hadi Purwanti</option>
                                                                            </select>
                                                                        </div>
                                                                        <div class="col">
@@ -566,7 +593,8 @@
 
                                                                    <!-- Submit Button -->
                                                                    <button type="submit"
-                                                                       class="btn btn-dark w-100">Submit</button>
+                                                                       class="btn btn-dark w-100">Update
+                                                                       Client</button>
                                                                </form>
                                                            </div>
                                                        </div>
@@ -606,10 +634,6 @@
                                                        });
                                                    });
                                                </script> --}}
-=======
-                                               {{-- Edit Modal --}}
-                                               @include('components.dashboard.edit-project')
->>>>>>> 97a980b1a6642aef7dc1e0d698092798fed04118
 
                                            </div>
                                        </td>
@@ -619,17 +643,17 @@
                                        <td colspan="2">
                                            <div class="collapse-content"
                                                style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $project->company_name }}</span>
+                                               <span>{{ $client->company_name }}</span>
                                                <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $project->company_name }}')"></i>
+                                                   onclick="copyText('{{ $client->company_name }}')"></i>
                                            </div>
                                        </td>
                                        <td colspan="6">
                                            <div class="collapse-content1"
                                                style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $project->address }}</span>
+                                               <span>{{ $client->address }}</span>
                                                <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $project->address }}')"></i>
+                                                   onclick="copyText('{{ $client->address }}')"></i>
                                            </div>
                                        </td>
                                    </tr>
@@ -637,8 +661,82 @@
                            </tbody>
                        </table>
 
-                       {{-- Pagination --}}
-                       @include('components.dashboard.pagination')
+
+                       <!-- Custom Pagination -->
+                       <nav aria-label="Page navigation">
+                           <ul class="pagination justify-content-end" style="align-items: center;">
+                               <!-- Tombol Previous -->
+                               @if ($clients->onFirstPage())
+                                   <li class="page-item disabled">
+                                       <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-left"></i>
+                                       </span>
+                                   </li>
+                               @else
+                                   <li class="page-item">
+                                       <a class="page-link" href="{{ $clients->previousPageUrl() }}"
+                                           style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-left"></i>
+                                       </a>
+                                   </li>
+                               @endif
+
+                               <!-- Tombol Angka Halaman dengan Batas 10 -->
+                               @if ($clients->lastPage() > 10)
+                                   <!-- Tampilkan halaman pertama -->
+                                   <li class="page-item {{ $clients->currentPage() == 1 ? 'active' : '' }}">
+                                       <a class="page-link1" href="{{ $clients->url(1) }}">1</a>
+                                   </li>
+
+                                   @if ($clients->currentPage() > 5)
+                                       <!-- Tambahkan titik tiga jika halaman saat ini lebih dari 5 -->
+                                       <li class="page-item disabled"><span class="page-link1">...</span></li>
+                                   @endif
+
+                                   <!-- Loop untuk menampilkan 5 halaman di sekitar halaman saat ini -->
+                                   @for ($i = max(2, $clients->currentPage() - 2); $i <= min($clients->lastPage() - 1, $clients->currentPage() + 2); $i++)
+                                       <li class="page-item {{ $clients->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $clients->url($i) }}">{{ $i }}</a>
+                                       </li>
+                                   @endfor
+
+                                   @if ($clients->currentPage() < $clients->lastPage() - 4)
+                                       <!-- Tambahkan titik tiga jika halaman saat ini kurang dari halaman terakhir - 4 -->
+                                       <li class="page-item disabled"><span class="page-link1">...</span></li>
+                                   @endif
+
+                                   <!-- Tampilkan halaman terakhir -->
+                                   <li
+                                       class="page-item {{ $clients->currentPage() == $clients->lastPage() ? 'active' : '' }}">
+                                       <a class="page-link1"
+                                           href="{{ $clients->url($clients->lastPage()) }}">{{ $clients->lastPage() }}</a>
+                                   </li>
+                               @else
+                                   <!-- Jika halaman kurang dari atau sama dengan 10, tampilkan semua halaman -->
+                                   @for ($i = 1; $i <= $clients->lastPage(); $i++)
+                                       <li class="page-item {{ $clients->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $clients->url($i) }}">{{ $i }}</a>
+                                       </li>
+                                   @endfor
+                               @endif
+
+                               <!-- Tombol Next -->
+                               @if ($clients->hasMorePages())
+                                   <li class="page-item">
+                                       <a class="page-link" href="{{ $clients->nextPageUrl() }}"
+                                           style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-right"></i>
+                                       </a>
+                                   </li>
+                               @else
+                                   <li class="page-item disabled">
+                                       <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
+                                           <i style="color: white;" class="fa-solid fa-chevron-right"></i>
+                                       </span>
+                                   </li>
+                               @endif
+                           </ul>
+                       </nav>
 
                    </div>
                </div>
