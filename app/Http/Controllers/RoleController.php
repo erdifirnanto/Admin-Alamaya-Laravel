@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Client;
+// use App\Models\Client;
+use App\Models\Project;
+use App\Models\User;
 
 class RoleController extends Controller
 {
@@ -15,12 +17,13 @@ class RoleController extends Controller
         // if (Auth::user()->role === 'admin') {
         // Ambil data klien untuk admin
         $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-        $clients = Client::orderBy('id', $sort)->paginate(10);
+        $projects = Project::orderBy('id', $sort)->paginate(10);
+        $users = User::select('name')->get();
         // $clients = Client::paginate(10);
         // $clients = Client::all(); // Ganti dengan model yang sesuai
         // dd($clients);
         // dd(csrf_token());
-        return view('dashboard', compact('clients')); // Tampilkan halaman admin dengan data klien
+        return view('dashboard', compact('projects', 'users')); // Tampilkan halaman admin dengan data klien
         // }
         // return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
     }

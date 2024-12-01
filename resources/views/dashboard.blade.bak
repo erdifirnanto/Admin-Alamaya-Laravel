@@ -9,7 +9,7 @@
                    <div class="row">
                        <div class="col-12 col-md-12">
                            <div class="d-flex justify-content-center" style="margin-bottom: 50px;">
-                               <h1>Alamaya Project</h1>
+                               <h1>Alamaya Client</h1>
                            </div>
                        </div>
                    </div>
@@ -64,19 +64,20 @@
                                    </script>
 
 
-                                   <!-- Add Project Button -->
+                                   <!-- Add Client Button -->
                                    <button class="btn btn-add-client btn1hvr" data-bs-toggle="modal"
-                                       data-bs-target="#addProjectModal">Add Project&nbsp;<i class="fa fa-plus"></i>
+                                       data-bs-target="#addClientModal">Add
+                                       Client <i class="fa fa-plus"></i>
                                    </button>
 
-                                   <!-- Add Project Modal -->
-                                   <div class="modal fade" id="addProjectModal" tabindex="-1"
-                                       aria-labelledby="addProjectModalLabel" aria-hidden="true">
+                                   <!-- Add Client Modal -->
+                                   <div class="modal fade" id="addClientModal" tabindex="-1"
+                                       aria-labelledby="addClientModalLabel" aria-hidden="true">
                                        <div class="modal-dialog modal-lg">
                                            <div class="modal-content">
                                                <div class="modal-header" style="display: block;">
-                                                   <h5 class="modal-title" id="addProjectModalLabel">Add Project</h5>
-                                                   <p style="margin-top: 2px;">Fill in some details to start adding projects
+                                                   <h5 class="modal-title" id="addClientModalLabel">Add Client</h5>
+                                                   <p style="margin-top: 2px;">Fill in some details to start adding clients
                                                    </p>
                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                        aria-label="Close"
@@ -84,7 +85,7 @@
                                                </div>
 
                                                <div class="modal-body">
-                                                   <form method="POST" action="{{ route('project.store') }}"
+                                                   <form method="POST" action="{{ route('clients.store') }}"
                                                        id="AddClientForm">
                                                        @csrf
 
@@ -92,8 +93,7 @@
                                                        <div class="row mb-3">
                                                            <div class="col">
                                                                <label for="client_name" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">CLIENT
-                                                                   NAME</label>
+                                                                   style="font-size: 0.7em;">CLIENT NAME</label>
                                                                <input type="text"
                                                                    class="form-control @error('client_name') is-invalid @enderror"
                                                                    id="client_name" name="client_name"
@@ -105,8 +105,7 @@
                                                            </div>
                                                            <div class="col">
                                                                <label for="company_name" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">COMPANY
-                                                                   NAME</label>
+                                                                   style="font-size: 0.7em;">COMPANY NAME</label>
                                                                <input type="text"
                                                                    class="form-control @error('company_name') is-invalid @enderror"
                                                                    id="company_name" name="company_name"
@@ -117,45 +116,16 @@
                                                                @enderror
                                                            </div>
                                                        </div>
-                                                       {{-- /// --}}
-                                                       <div class="row mb-3">
-                                                           <div class="col">
-                                                               <label for="project_name" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">PROJECT
-                                                                   NAME</label>
-                                                               <input type="text"
-                                                                   class="form-control @error('project_name') is-invalid @enderror"
-                                                                   id="project_name" name="project_name"
-                                                                   placeholder="Enter the project name"
-                                                                   value="{{ old('project_name') }}" required>
-                                                               @error('project_name')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                           <div class="col">
-                                                               <label for="tanggal_masuk_project" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">TANGGAL
-                                                                   PROJECT MASUK
-                                                               </label>
-                                                               <input type="date"
-                                                                   class="form-control @error('tanggal_masuk_project') is-invalid @enderror"
-                                                                   id="tanggal_masuk_project" name="tanggal_masuk_project"
-                                                                   placeholder="Enter Date"
-                                                                   value="{{ old('tanggal_masuk_project') }}" required>
-                                                               @error('tanggal_masuk_project')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                       </div>
+
                                                        <!-- PIC and Product Category -->
                                                        <div class="row mb-3">
                                                            <div class="col">
                                                                <label for="pic_name" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">PIC</label>
+                                                                   style="font-size: 0.7em;">PIC</label>
                                                                <select
                                                                    class="form-select @error('pic_name') is-invalid @enderror"
                                                                    id="pic_name" name="pic_name" required>
-                                                                   <option selected value="">Select PIC
+                                                                   <option selected value="">Select the PIC name
                                                                    </option>
                                                                    {{-- @foreach ($users as $user)
                                                                        <option value="{{ $user->name }}"
@@ -176,12 +146,11 @@
                                                            </div>
                                                            <div class="col">
                                                                <label for="product_category" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">CATEGORY
-                                                                   PRODUCT</label>
+                                                                   style="font-size: 0.7em;">CATEGORY PRODUCT</label>
                                                                <select
                                                                    class="form-select @error('product_category') is-invalid @enderror"
                                                                    id="product_category" name="product_category" required>
-                                                                   <option selected value="">Select Category
+                                                                   <option selected value="">Select a Product category
                                                                    </option>
                                                                    <option value="1"
                                                                        {{ old('product_category') == '1' ? 'selected' : '' }}>
@@ -195,40 +164,23 @@
                                                                @enderror
                                                            </div>
                                                        </div>
-                                                       <div class="row mb-3">
-                                                           <div class="col">
-                                                               <label for="email" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">EMAIL</label>
-                                                               <input type="email" name="email"
-                                                                   class="form-control @error('email') is-invalid @enderror"
-                                                                   id="email" name="email" for="email"
-                                                                   placeholder="Enter email" value="{{ old('email') }}"
-                                                                   required autofocus>
-                                                               @error('email')
-                                                                   <div id="emailHelp" class="form-text text-danger">
-                                                                       {{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                           <div class="col">
-                                                               <label for="deadline" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">DEADLINE</label>
-                                                               <input type="date" name="deadline"
-                                                                   class="form-control @error('deadline') is-invalid @enderror"
-                                                                   id="deadline" name="deadline" for="deadline"
-                                                                   placeholder="Enter deadline"
-                                                                   value="{{ old('deadline') }}" required autofocus>
-                                                               @error('deadline')
-                                                                   <div id="emailHelp" class="form-text text-danger">
-                                                                       {{ $message }}</div>
-                                                               @enderror
-                                                           </div>
+                                                       <div class="mb-3">
+                                                           <label for="email" class="form-label">Email</label>
+                                                           <input type="email" name="email"
+                                                               class="form-control @error('email') is-invalid @enderror"
+                                                               id="email" name="email" for="email"
+                                                               placeholder="Enter email" value="{{ old('email') }}"
+                                                               required autofocus>
+                                                           @error('email')
+                                                               <div id="emailHelp" class="form-text text-danger">
+                                                                   {{ $message }}</div>
+                                                           @enderror
                                                        </div>
-
                                                        <!-- Email & Phone -->
                                                        <div class="row mb-3">
                                                            <div class="col">
                                                                <label for="phone" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">PHONE</label>
+                                                                   style="font-size: 0.7em;">PHONE</label>
                                                                <input type="text"
                                                                    class="form-control @error('phone') is-invalid @enderror"
                                                                    id="phone" name="phone"
@@ -236,32 +188,6 @@
                                                                    value="{{ old('phone') }}" inputmode="numeric"
                                                                    pattern="\d+" required>
                                                                @error('phone')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                           <!-- Address -->
-                                                           <div class="col">
-                                                               <label for="address" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">ADDRESS</label>
-                                                               <input type="text"
-                                                                   class="form-control @error('address') is-invalid @enderror"
-                                                                   id="address" name="address"
-                                                                   placeholder="Enter the client's company address"
-                                                                   value="{{ old('address') }}" required>
-                                                               @error('address')
-                                                                   <div class="invalid-feedback">{{ $message }}</div>
-                                                               @enderror
-                                                           </div>
-                                                           {{-- STATUS HIDDEN INPUT --}}
-                                                           <div hidden class="col">
-                                                               <label for="status" class="form-label"
-                                                                   style="font-size: 0.7em; font-weight: bold;">Status</label>
-                                                               <input type="text"
-                                                                   class="form-control @error('status') is-invalid @enderror"
-                                                                   id="status" name="status"
-                                                                   placeholder="Enter the client's company status"
-                                                                   value="Belum Ditentukan" required>
-                                                               @error('status')
                                                                    <div class="invalid-feedback">{{ $message }}</div>
                                                                @enderror
                                                            </div>
@@ -274,7 +200,19 @@
                                                            });
                                                        </script>
 
-
+                                                       <!-- Address -->
+                                                       <div class="mb-3">
+                                                           <label for="address" class="form-label"
+                                                               style="font-size: 0.7em;">ADDRESS</label>
+                                                           <input type="text"
+                                                               class="form-control @error('address') is-invalid @enderror"
+                                                               id="address" name="address"
+                                                               placeholder="Enter the client's company address"
+                                                               value="{{ old('address') }}" required>
+                                                           @error('address')
+                                                               <div class="invalid-feedback">{{ $message }}</div>
+                                                           @enderror
+                                                       </div>
 
                                                        <!-- Disclaimer -->
                                                        <div class="form-check mb-3">
@@ -292,7 +230,8 @@
                                                            @enderror
                                                        </div>
 
-                                                       <button type="submit" class="btn btn-dark col-12">Submit</button>
+                                                       <button type="submit" class="btn btn-dark col-12">Add
+                                                           Client</button>
                                                    </form>
                                                    <script>
                                                        function validateForm() {
@@ -350,6 +289,7 @@
                                        <li><button class="dropdown-item sort-button" data-sort="client_name"
                                                data-order="asc">By Name</button></li>
                                    </ul>
+
 
                                    <!-- Add dropdown options here if needed -->
                                </div>
@@ -419,7 +359,7 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           No.
+                                           No. Id
                                            <span class="sort-icons sort-button" data-sort="id" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
@@ -429,7 +369,7 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Name
+                                           Client Name
                                            <span class="sort-icons sort-button" data-sort="client-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
@@ -437,7 +377,6 @@
                                            </span>
                                        </span>
                                    </th>
-                                   <th>Project</th>
                                    <th>Email</th>
                                    <th>Phone</th>
                                    <th>
@@ -461,9 +400,6 @@
                                            </span>
                                        </span>
                                    </th>
-                                   <th>Status</th>
-                                   <th>Project Masuk</th>
-                                   <th>Deadline</th>
                                    <th>Action</th>
                                </tr>
 
@@ -499,41 +435,37 @@
                                </script>
                            </thead>
                            <tbody>
-                               @foreach ($projects as $project)
+                               @foreach ($clients as $client)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
-                                               value="{{ $project->id }}">
+                                               value="{{ $client->id }}">
                                        </td>
-                                       <td style="align-content: center">{{ $project->id }}</td>
+                                       <td style="align-content: center">{{ $client->id }}</td>
                                        <td style="align-content: center" data-key="client-name">
-                                           {{ $project->client_name }}</td>
-                                       <td style="align-content: center" data-key="client-name">
-                                           {{ $project->project_name }}</td>
+                                           {{ $client->client_name }}</td>
                                        <td style="align-content: center">
-                                           {{ $project->email }}
+                                           {{ $client->email }}
                                            <span class="sort-icons toggle-chevron" aria-expanded="false"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </td>
-                                       <td style="align-content: center">{{ $project->phone }}</td>
-                                       <td style="align-content: center" data-key="pic-name">{{ $project->pic_name }}
+                                       <td style="align-content: center">{{ $client->phone }}</td>
+                                       <td style="align-content: center" data-key="pic-name">{{ $client->pic_name }}
                                        </td>
-                                       <td style="align-content: center">{{ $project->category }}</td>
-                                       <td style="align-content: center">{{ $project->status }}</td>
-                                       <td style="align-content: center">{{ $project->tanggal_masuk_project }}</td>
-                                       <td style="align-content: center">{{ $project->deadline }}</td>
+                                       <td style="align-content: center" data-key="product-category">
+                                           {{ $client->product_category }}</td>
                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
                                                <i class="bi bi-three-dots" data-bs-toggle="dropdown"
                                                    aria-expanded="false" style="cursor: pointer;"></i>
                                                <ul class="dropdown-menu">
                                                    <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                           data-bs-target="#editClientModal-{{ $project->id }}">Edit</a>
+                                                           data-bs-target="#editClientModal-{{ $client->id }}">Edit</a>
                                                    </li>
                                                </ul>
                                                {{-- Edit Data Client --}}
-                                               <div class="modal fade" id="editClientModal-{{ $project->id }}"
+                                               <div class="modal fade" id="editClientModal-{{ $client->id }}"
                                                    tabindex="-1" aria-labelledby="editClientModalLabel"
                                                    aria-hidden="true">
                                                    <div class="modal-dialog modal-lg">
@@ -550,27 +482,27 @@
 
                                                            <div class="modal-body">
                                                                <form method="POST"
-                                                                   action="{{ route('clients.update', $project->id) }}">
+                                                                   action="{{ route('clients.update', $client->id) }}">
                                                                    @csrf
                                                                    @method('PUT')
                                                                    <!-- Client Name & Company Name -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
                                                                            <label for="client_name" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">CLIENT
+                                                                               style="font-size: 0.7em;">CLIENT
                                                                                NAME</label>
                                                                            <input type="text" class="form-control"
                                                                                id="client_name" name="client_name"
-                                                                               value="{{ $project->client_name }}"
+                                                                               value="{{ $client->client_name }}"
                                                                                placeholder="Enter the client name">
                                                                        </div>
                                                                        <div class="col">
                                                                            <label for="company_name" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">COMPANY
+                                                                               style="font-size: 0.7em;">COMPANY
                                                                                NAME</label>
                                                                            <input type="text" class="form-control"
                                                                                id="company_name" name="company_name"
-                                                                               value="{{ $project->company_name }}"
+                                                                               value="{{ $client->company_name }}"
                                                                                placeholder="Enter the company name">
                                                                        </div>
                                                                    </div>
@@ -579,11 +511,11 @@
                                                                    <div class="row mb-3">
                                                                        <div class="col">
                                                                            <label for="pic_name" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">PIC</label>
+                                                                               style="font-size: 0.7em;">PIC</label>
                                                                            <select class="form-select" id="pic_name"
                                                                                name="pic_name">
-                                                                               <option value="{{ $project->pic_name }}"
-                                                                                   selected>{{ $project->pic_name }}
+                                                                               <option value="{{ $client->pic_name }}"
+                                                                                   selected>{{ $client->pic_name }}
                                                                                </option>
 
                                                                                {{-- @foreach ($users as $user)
@@ -602,15 +534,15 @@
                                                                        <div class="col">
                                                                            <label for="product_category"
                                                                                class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">CATEGORY
+                                                                               style="font-size: 0.7em;">CATEGORY
                                                                                PRODUCT</label>
                                                                            <select class="form-select"
                                                                                id="product_category"
                                                                                name="product_category">
                                                                                <option
-                                                                                   value="{{ $project->product_category }}"
+                                                                                   value="{{ $client->product_category }}"
                                                                                    selected>
-                                                                                   {{ $project->product_category }}
+                                                                                   {{ $client->product_category }}
                                                                                </option>
                                                                                <option value="1">Category 1
                                                                                </option>
@@ -624,12 +556,12 @@
                                                                    <div class="row mb-3">
                                                                        <div class="col">
                                                                            <label for="email" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">EMAIL</label>
+                                                                               style="font-size: 0.7em;">EMAIL</label>
                                                                            <input type="email" name="email"
                                                                                class="form-control @error('email') is-invalid @enderror"
                                                                                id="email" name="email"
                                                                                placeholder="Enter email"
-                                                                               value="{{ $project->email }}" required
+                                                                               value="{{ $client->email }}" required
                                                                                autofocus>
                                                                            @error('email')
                                                                                <div id="emailHelp"
@@ -641,10 +573,10 @@
                                                                        </div>
                                                                        <div class="col">
                                                                            <label for="phone" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">PHONE</label>
+                                                                               style="font-size: 0.7em;">PHONE</label>
                                                                            <input type="text" class="form-control"
                                                                                id="phone" name="phone"
-                                                                               value="{{ $project->phone }}"
+                                                                               value="{{ $client->phone }}"
                                                                                placeholder="Enter the client's phone number">
                                                                        </div>
                                                                    </div>
@@ -652,10 +584,10 @@
                                                                    <!-- Address -->
                                                                    <div class="mb-3">
                                                                        <label for="address" class="form-label"
-                                                                           style="font-size: 0.7em; font-weight: bold;">ADDRESS</label>
+                                                                           style="font-size: 0.7em;">ADDRESS</label>
                                                                        <input type="text" class="form-control"
                                                                            id="address" name="address"
-                                                                           value="{{ $project->address }}"
+                                                                           value="{{ $client->address }}"
                                                                            placeholder="Enter the client's company address">
                                                                    </div>
 
@@ -711,17 +643,17 @@
                                        <td colspan="2">
                                            <div class="collapse-content"
                                                style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $project->company_name }}</span>
+                                               <span>{{ $client->company_name }}</span>
                                                <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $project->company_name }}')"></i>
+                                                   onclick="copyText('{{ $client->company_name }}')"></i>
                                            </div>
                                        </td>
                                        <td colspan="6">
                                            <div class="collapse-content1"
                                                style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $project->address }}</span>
+                                               <span>{{ $client->address }}</span>
                                                <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $project->address }}')"></i>
+                                                   onclick="copyText('{{ $client->address }}')"></i>
                                            </div>
                                        </td>
                                    </tr>
@@ -734,7 +666,7 @@
                        <nav aria-label="Page navigation">
                            <ul class="pagination justify-content-end" style="align-items: center;">
                                <!-- Tombol Previous -->
-                               @if ($projects->onFirstPage())
+                               @if ($clients->onFirstPage())
                                    <li class="page-item disabled">
                                        <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
@@ -742,7 +674,7 @@
                                    </li>
                                @else
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $projects->previousPageUrl() }}"
+                                       <a class="page-link" href="{{ $clients->previousPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
                                        </a>
@@ -750,48 +682,48 @@
                                @endif
 
                                <!-- Tombol Angka Halaman dengan Batas 10 -->
-                               @if ($projects->lastPage() > 10)
+                               @if ($clients->lastPage() > 10)
                                    <!-- Tampilkan halaman pertama -->
-                                   <li class="page-item {{ $projects->currentPage() == 1 ? 'active' : '' }}">
-                                       <a class="page-link1" href="{{ $projects->url(1) }}">1</a>
+                                   <li class="page-item {{ $clients->currentPage() == 1 ? 'active' : '' }}">
+                                       <a class="page-link1" href="{{ $clients->url(1) }}">1</a>
                                    </li>
 
-                                   @if ($projects->currentPage() > 5)
+                                   @if ($clients->currentPage() > 5)
                                        <!-- Tambahkan titik tiga jika halaman saat ini lebih dari 5 -->
                                        <li class="page-item disabled"><span class="page-link1">...</span></li>
                                    @endif
 
                                    <!-- Loop untuk menampilkan 5 halaman di sekitar halaman saat ini -->
-                                   @for ($i = max(2, $projects->currentPage() - 2); $i <= min($projects->lastPage() - 1, $projects->currentPage() + 2); $i++)
-                                       <li class="page-item {{ $projects->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $projects->url($i) }}">{{ $i }}</a>
+                                   @for ($i = max(2, $clients->currentPage() - 2); $i <= min($clients->lastPage() - 1, $clients->currentPage() + 2); $i++)
+                                       <li class="page-item {{ $clients->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $clients->url($i) }}">{{ $i }}</a>
                                        </li>
                                    @endfor
 
-                                   @if ($projects->currentPage() < $projects->lastPage() - 4)
+                                   @if ($clients->currentPage() < $clients->lastPage() - 4)
                                        <!-- Tambahkan titik tiga jika halaman saat ini kurang dari halaman terakhir - 4 -->
                                        <li class="page-item disabled"><span class="page-link1">...</span></li>
                                    @endif
 
                                    <!-- Tampilkan halaman terakhir -->
                                    <li
-                                       class="page-item {{ $projects->currentPage() == $projects->lastPage() ? 'active' : '' }}">
+                                       class="page-item {{ $clients->currentPage() == $clients->lastPage() ? 'active' : '' }}">
                                        <a class="page-link1"
-                                           href="{{ $projects->url($projects->lastPage()) }}">{{ $projects->lastPage() }}</a>
+                                           href="{{ $clients->url($clients->lastPage()) }}">{{ $clients->lastPage() }}</a>
                                    </li>
                                @else
                                    <!-- Jika halaman kurang dari atau sama dengan 10, tampilkan semua halaman -->
-                                   @for ($i = 1; $i <= $projects->lastPage(); $i++)
-                                       <li class="page-item {{ $projects->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $projects->url($i) }}">{{ $i }}</a>
+                                   @for ($i = 1; $i <= $clients->lastPage(); $i++)
+                                       <li class="page-item {{ $clients->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $clients->url($i) }}">{{ $i }}</a>
                                        </li>
                                    @endfor
                                @endif
 
                                <!-- Tombol Next -->
-                               @if ($projects->hasMorePages())
+                               @if ($clients->hasMorePages())
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $projects->nextPageUrl() }}"
+                                       <a class="page-link" href="{{ $clients->nextPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-right"></i>
                                        </a>

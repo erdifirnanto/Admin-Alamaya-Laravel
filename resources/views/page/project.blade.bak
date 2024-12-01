@@ -1,6 +1,7 @@
    @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
+
        <section class="main-page" id="main-page">
            <section>
                <!-- Table Section Start -->
@@ -8,7 +9,7 @@
                    <div class="row">
                        <div class="col-12 col-md-12">
                            <div class="d-flex justify-content-center" style="margin-bottom: 50px;">
-                               <h1>Domain</h1>
+                               <h1>Alamaya Projects</h1>
                            </div>
                        </div>
                    </div>
@@ -63,61 +64,97 @@
                                    </script>
 
 
-                                   <!-- Add Domain Button -->
+                                   <!-- Add Project Button -->
                                    <button class="btn btn-add-project btn1hvr" data-bs-toggle="modal"
-                                       data-bs-target="#addDomainModal">Add
-                                       Domain <i class="fa fa-plus"></i>
+                                       data-bs-target="#addProjectModal">Add
+                                       Project <i class="fa fa-plus"></i>
                                    </button>
-
-                                   <!-- Add Domain Modal -->
-                                   <!-- Add Domain Modal -->
-                                   <div class="modal fade" id="addDomainModal" tabindex="-1"
-                                       aria-labelledby="addDomainModalLabel" aria-hidden="true">
+                                   <!-- Add Project Modal -->
+                                   <div class="modal fade" id="addProjectModal" tabindex="-1"
+                                       aria-labelledby="addProjectModalLabel" aria-hidden="true">
                                        <div class="modal-dialog">
                                            <div class="modal-content">
                                                <div class="modal-header">
-                                                   <h5 class="modal-title" id="addDomainModalLabel">Add Domain</h5>
+                                                   <h5 class="modal-title" id="addProjectModalLabel">Add Project</h5>
                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
                                                        aria-label="Close"></button>
                                                </div>
                                                <div class="modal-body">
-                                                   <form method="POST" action="{{ route('domain.store') }}"
-                                                       id="addDomainForm">
+                                                   <form method="POST" action="{{ route('project.store') }}"
+                                                       id="addProjectForm">
                                                        @csrf
-
+                                                       <!-- Project Name -->
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="project_name" class="form-label">Project
-                                                                   Name</label>
+                                                               <label name="project_name" for="project_name"
+                                                                   id="project_name" class="form-label">Project Name</label>
                                                                <input type="text" class="form-control"
                                                                    name="project_name" id="project_name"
                                                                    placeholder="Enter the Project Name" required>
                                                            </div>
                                                        </div>
 
+                                                       <!-- PIC and Product Category -->
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="domain" class="form-label">Domain</label>
-                                                               <input type="text" class="form-control" name="domain"
-                                                                   id="domain"
-                                                                   placeholder="Enter the Domain (e.g., example.com)"
-                                                                   required pattern="^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
-                                                               <div class="invalid-feedback">Please enter a valid domain
-                                                                   (e.g., www.example.com).</div>
+                                                               <label name="category" for="category" id="category"
+                                                                   class="form-label">Category Product</label>
+                                                               <select class="form-select" name="category" id="category"
+                                                                   required>
+                                                                   <option value="" selected>Select a Product category
+                                                                   </option>
+                                                                   <option value="1">Category 1</option>
+                                                                   <option value="2">Category 2</option>
+                                                               </select>
+                                                           </div>
+                                                           <div class="col">
+                                                               <label name="pic_name" for="pic_name" id="pic_name"
+                                                                   class="form-label">PIC</label>
+                                                               <select class="form-select" name="pic_name" id="pic_name"
+                                                                   required>
+                                                                   <option value="" selected>Select the PIC name
+                                                                   </option>
+                                                                   <option value="1">PIC 1</option>
+                                                                   <option value="2">PIC 2</option>
+                                                               </select>
                                                            </div>
                                                        </div>
 
+                                                       <!-- Tanggal Project Masuk -->
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="expired" class="form-label">Expired</label>
-                                                               <input type="date" class="form-control" name="expired"
-                                                                   id="expired" required>
+                                                               <label id="tanggal_masuk_project"
+                                                                   name="tanggal_masuk_project" for="tanggal_masuk_project"
+                                                                   class="form-label">Tanggal Project Masuk</label>
+                                                               <input name="tanggal_masuk_project" type="date"
+                                                                   class="form-control" id="tanggal_masuk_project" required>
                                                            </div>
                                                        </div>
+
+                                                       <!-- Deadline -->
+                                                       <div class="mb-3">
+                                                           <label name="deadline" for="deadline" id="deadline"
+                                                               class="form-label">Deadline</label>
+                                                           <input name="deadline" type="date" class="form-control"
+                                                               id="deadline" required>
+                                                       </div>
+
+                                                       <!-- Disclaimer -->
+                                                       <div class="form-check mb-3">
+                                                           <input type="checkbox" class="form-check-input"
+                                                               id="termsCheck" required>
+                                                           <label class="form-check-label" for="termsCheck">
+                                                               By registering, you agree to the terms and conditions that
+                                                               apply.
+                                                           </label>
+                                                       </div>
+
+                                                       <div class="form-text mb-3">Check again and make sure the form is
+                                                           completely filled out</div>
 
                                                        <!-- Submit Button -->
                                                        <button type="submit" class="btn btn-dark w-100"
-                                                           onclick="return validateForm()">Submit</button>
+                                                           onclick="return validateForm()">Add Project</button>
                                                    </form>
                                                </div>
                                            </div>
@@ -125,24 +162,72 @@
                                    </div>
 
                                    <script>
+                                       // Menambahkan validasi JavaScript tambahan untuk validasi form sebelum submit
                                        function validateForm() {
-                                           const domainInput = document.getElementById('domain');
-                                           const domainPattern = /^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+                                           // Mendapatkan referensi form
+                                           const form = document.getElementById('addProjectForm');
+                                           let isValid = true;
 
-                                           // Check if domain format is valid
-                                           if (!domainPattern.test(domainInput.value)) {
-                                               domainInput.classList.add('is-invalid');
-                                               return false;
+                                           // Memeriksa apakah project_name diisi
+                                           const projectName = document.getElementById('project_name');
+                                           if (projectName.value.trim() === '') {
+                                               projectName.classList.add('is-invalid');
+                                               isValid = false;
                                            } else {
-                                               domainInput.classList.remove('is-invalid');
+                                               projectName.classList.remove('is-invalid');
                                            }
 
-                                           return true; // Return true if all validations pass
+                                           // Memeriksa apakah category dipilih
+                                           const category = document.getElementById('category');
+                                           if (category.value === '') {
+                                               category.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               category.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah PIC dipilih
+                                           const picName = document.getElementById('pic_name');
+                                           if (picName.value === '') {
+                                               picName.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               picName.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah tanggal project masuk diisi
+                                           const tanggalMasukProject = document.getElementById('tanggal_masuk_project');
+                                           if (tanggalMasukProject.value === '') {
+                                               tanggalMasukProject.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               tanggalMasukProject.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah deadline diisi
+                                           const deadline = document.getElementById('deadline');
+                                           if (deadline.value === '') {
+                                               deadline.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               deadline.classList.remove('is-invalid');
+                                           }
+
+                                           // Memeriksa apakah checkbox termsCheck dipilih
+                                           const termsCheck = document.getElementById('termsCheck');
+                                           if (!termsCheck.checked) {
+                                               termsCheck.classList.add('is-invalid');
+                                               isValid = false;
+                                           } else {
+                                               termsCheck.classList.remove('is-invalid');
+                                           }
+
+                                           return isValid;
                                        }
                                    </script>
 
 
-                                   {{-- End Add Domain Modal --}}
+                                   {{-- End Add Project Modal --}}
 
                                    {{-- @if (session('success'))
                                        <div class="alert alert-success">
@@ -153,6 +238,10 @@
                                    <script>
                                        function showAlert() {
                                            alert('Data berhasil ditambahkan!');
+                                       }
+
+                                       function showAlertUpdate() {
+                                           alert('Data berhasil diupdate!');
                                        }
                                    </script>
 
@@ -181,7 +270,8 @@
                                        <!-- Checkbox Select All -->
                                        <div>
                                            <input type="checkbox" id="select-all">
-                                           <label style="margin-left: 10px; margin-right: 0px;" for="select-all">All</label>
+                                           <label style="margin-left: 10px; margin-right: 0px;"
+                                               for="select-all">All</label>
 
                                            <script>
                                                // Pilih semua checkbox saat 'select-all' dicentang
@@ -199,15 +289,15 @@
                                                        selectedClients.push(checkbox.value);
                                                    });
 
-                                                   console.log("Selected Domains IDs:", selectedClients); // Debugging
+                                                   console.log("Selected Projects IDs:", selectedClients); // Debugging
 
                                                    if (selectedClients.length === 0) {
-                                                       alert("No domain selected.");
+                                                       alert("No project selected.");
                                                        return;
                                                    }
 
-                                                   if (confirm("Are you sure you want to delete the selected domains?")) {
-                                                       fetch('/domain/delete-multiple', {
+                                                   if (confirm("Are you sure you want to delete the selected project?")) {
+                                                       fetch('/project/delete-multiple', {
                                                                method: 'POST',
                                                                headers: {
                                                                    'Content-Type': 'application/json',
@@ -221,13 +311,13 @@
                                                            .then(response => response.json())
                                                            .then(data => {
                                                                if (data.success) {
-                                                                   alert("Selected Domains deleted successfully!");
+                                                                   alert("Selected projects deleted successfully!");
                                                                    location.reload(); // Refresh halaman atau update DOM
                                                                } else {
-                                                                   alert("Failed to delete Domains.");
+                                                                   alert("Failed to delete projects.");
                                                                }
                                                            })
-                                                           .catch(error => console.error("Error deleting Domains:", error));
+                                                           .catch(error => console.error("Error deleting projects:", error));
                                                    }
 
                                                });
@@ -236,7 +326,7 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           No. Id
+                                           Project Id
                                            <span class="sort-icons sort-button" data-sort="id" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
@@ -247,7 +337,7 @@
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Project Name
-                                           <span class="sort-icons sort-button" data-sort="Domain-name" data-order="asc"
+                                           <span class="sort-icons sort-button" data-sort="client-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
@@ -257,8 +347,9 @@
 
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Domain
-                                           <span class="sort-icons sort-button" data-sort="domain" data-order="asc"
+                                           Category
+                                           <span class="sort-icons sort-button" data-sort="product-category"
+                                               data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
@@ -267,8 +358,29 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Expired
-                                           <span class="sort-icons sort-button" data-sort="expired" data-order="asc"
+                                           PIC
+                                           <span class="sort-icons sort-button" data-sort="pic-name" data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                           </span>
+                                       </span>
+                                   </th>
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
+                                           Tanggal Masuk Project
+                                           <span class="sort-icons sort-button" data-sort="tanggal-masuk-project"
+                                               data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
+                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                           </span>
+                                       </span>
+                                   </th>
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
+                                           Deadline
+                                           <span class="sort-icons sort-button" data-sort="deadline" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
@@ -277,6 +389,7 @@
                                    </th>
                                    <th>Action</th>
                                </tr>
+
                                <script>
                                    document.querySelectorAll('.sort-button').forEach(button => {
                                        button.addEventListener('click', function() {
@@ -309,42 +422,47 @@
                                </script>
                            </thead>
                            <tbody>
-                               @foreach ($domains as $domain)
+                               @foreach ($projects as $project)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
-                                               value="{{ $domain->id }}">
+                                               value="{{ $project->id }}">
                                        </td>
-                                       <td style="align-content: center">{{ $domain->id }}</td>
+                                       <td style="align-content: center">{{ $project->id }}</td>
                                        <td style="align-content: center" data-key="client-name">
-                                           {{ $domain->project_name }}</td>
-                                       <td style="align-content: center" data-key="product-domain">
-                                           {{ $domain->domain }}
+                                           {{ $project->project_name }}</td>
+                                       <td style="align-content: center" data-key="product-category">
+                                           {{ $project->category }}
                                            {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span> --}}
                                        </td>
-                                       <td style="align-content: center" data-key="pic-name">{{ $domain->expired }}
+                                       <td style="align-content: center" data-key="pic-name">{{ $project->pic_name }}
                                        </td>
+                                       <td style="align-content: center">
+                                           {{ $project->tanggal_masuk_project }}</td>
+                                       <td style="align-content: center">
+                                           {{ $project->deadline }}</td>
                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
                                                <i class="bi bi-three-dots" data-bs-toggle="dropdown"
                                                    aria-expanded="false" style="cursor: pointer;"></i>
                                                <ul class="dropdown-menu">
                                                    <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                           data-bs-target="#editDomainModal-{{ $domain->id }}">Edit</a>
+                                                           data-bs-target="#editProjectModal-{{ $project->id }}">Edit</a>
                                                    </li>
                                                </ul>
-                                               {{-- Edit Data Domain --}}
-                                               <div class="modal fade" id="editDomainModal-{{ $domain->id }}"
-                                                   tabindex="-1" aria-labelledby="editDomainModalLabel"
-                                                   aria-hidden="true">
+
+                                               {{-- Edit Data Project --}}
+                                               <div style="text-align: left" class="modal fade"
+                                                   id="editProjectModal-{{ $project->id }}" tabindex="-1"
+                                                   aria-labelledby="editProjectModalLabel" aria-hidden="true">
                                                    <div class="modal-dialog modal-lg">
                                                        <div class="modal-content">
                                                            <div class="modal-header" style="display: block;">
-                                                               <h5 class="modal-title" id="editDomainModalLabel">Edit
+                                                               <h5 class="modal-title" id="editProjectModalLabel">Edit
                                                                    Data
-                                                                   Domain</h5>
+                                                                   Project</h5>
                                                                <p style="margin-top: 2px;"></p>
                                                                <button type="button" class="btn-close"
                                                                    data-bs-dismiss="modal" aria-label="Close"
@@ -353,11 +471,10 @@
 
                                                            <div class="modal-body">
                                                                <form method="POST"
-                                                                   action="{{ route('domain.update', $domain->id) }}">
+                                                                   action="{{ route('project.update', $project->id) }}">
                                                                    @csrf
                                                                    @method('PUT')
-                                                                   <!-- Domain Name & Company Name -->
-
+                                                                   <!-- Project Name -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
                                                                            <label name="project_name" for="project_name"
@@ -367,39 +484,100 @@
                                                                            <input type="text" class="form-control"
                                                                                name="project_name" for="project_name"
                                                                                id="project_name"
-                                                                               value="{{ $domain->project_name }}"
+                                                                               value="{{ $project->project_name }}"
                                                                                placeholder="Enter the Project Name">
                                                                        </div>
                                                                    </div>
 
+                                                                   <!-- PIC and Product Category -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label name="domain" for="domain"
-                                                                               id="domain"
-                                                                               class="form-label">Domain</label>
-                                                                           <input type="text" class="form-control"
-                                                                               name="domain" for="domain"
-                                                                               id="domain"
-                                                                               value="{{ $domain->domain }}"
-                                                                               placeholder="Enter the Domain">
+                                                                           <label name="category" for="category"
+                                                                               id="category" class="form-label">Category
+                                                                               Product</label>
+                                                                           <select class="form-select" name="category"
+                                                                               for="category" id="category">
+                                                                               <option value="{{ $project->category }}"
+                                                                                   selected>{{ $project->category }}
+                                                                               </option>
+                                                                               <option value="1">Category 1</option>
+                                                                               <option value="2">Category 2</option>
+                                                                           </select>
+                                                                       </div>
+                                                                       <div class="col">
+                                                                           <label name="pic_name" for="pic_name"
+                                                                               id="pic_name"
+                                                                               class="form-label">PIC</label>
+                                                                           <select class="form-select" name="pic_name"
+                                                                               for="pic_name" id="pic_name">
+                                                                               <option value="{{ $project->pic_name }}"
+                                                                                   selected>{{ $project->pic_name }}
+                                                                               </option>
+                                                                               <option value="1">PIC 1</option>
+                                                                               <option value="2">PIC 2</option>
+                                                                           </select>
+                                                                       </div>
+                                                                       <div class="col" hidden>
+                                                                           <label name="status" for="status"
+                                                                               id="status"
+                                                                               class="form-label">Status</label>
+                                                                           <select class="form-select" name="status"
+                                                                               for="status" id="status">
+                                                                               <option value="{{ $project->status }}"
+                                                                                   selected>{{ $project->status }}
+                                                                               </option>
+                                                                               <option value="Mindmap">Mindmap</option>
+                                                                               <option value="Design">Design</option>
+                                                                               <option value="Slicing">Slicing</option>
+                                                                           </select>
                                                                        </div>
                                                                    </div>
+
+                                                                   <!-- Tanggal Project Masuk -->
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label name="expired" for="expired"
-                                                                               id="expired"
-                                                                               class="form-label">Expired</label>
-                                                                           <input type="date" class="form-control"
-                                                                               name="expired" for="expired"
-                                                                               id="expired"
-                                                                               value="{{ $domain->expired }}"
-                                                                               placeholder="Enter the Expired">
+                                                                           <label id="tanggal_masuk_project"
+                                                                               name="tanggal_masuk_project"
+                                                                               for="tanggal_masuk_project"
+                                                                               class="form-label">Tanggal Project
+                                                                               Masuk</label>
+                                                                           <input name="tanggal_masuk_project"
+                                                                               for="tanggal_masuk_project" type="date"
+                                                                               class="form-control"
+                                                                               id="tanggal_masuk_project"
+                                                                               value="{{ $project->tanggal_masuk_project }}"
+                                                                               placeholder="Tanggal project masuk">
                                                                        </div>
                                                                    </div>
+
+                                                                   <!-- Deadline -->
+                                                                   <div class="mb-3">
+                                                                       <label name="deadline" for="deadline"
+                                                                           id="deadline"
+                                                                           class="form-label">Deadline</label>
+                                                                       <input name="deadline" for="deadline"
+                                                                           type="date" class="form-control"
+                                                                           id="deadline"
+                                                                           value="{{ $project->deadline }}"
+                                                                           placeholder="Enter the project Deadline">
+                                                                   </div>
+
+                                                                   {{-- <!-- Disclaimer -->
+                                                                   <div class="form-check mb-3">
+                                                                       <input type="checkbox" class="form-check-input"
+                                                                           id="termsCheck">
+                                                                       <label class="form-check-label" for="termsCheck">
+                                                                           By registering, you agree to the terms and
+                                                                           conditions that apply.
+                                                                       </label>
+                                                                   </div>
+
+                                                                   <div class="form-text mb-3">Check again and make
+                                                                       sure the form is completely filled out</div> --}}
+
                                                                    <!-- Submit Button -->
-                                                                   <button type="submit"
-                                                                       class="btn btn-dark w-100">Update
-                                                                       Domain</button>
+                                                                   <button type="submit" class="btn btn-dark w-100"
+                                                                       onclick="showAlertUpdate()">Update</button>
                                                                </form>
                                                            </div>
                                                        </div>
@@ -413,8 +591,8 @@
                                                            const clientId = this.getAttribute('data-id');
                                                            const clientName = this.getAttribute('data-client-name');
                                                            const companyName = this.getAttribute('data-company-name');
-                                                           const picName = this.getAttribute('data-pic-name');
-                                                           const productdomain = this.getAttribute('data-product-domain');
+                                                           const pic_name = this.getAttribute('data-pic-name');
+                                                           const category = this.getAttribute('data-product-category');
                                                            const email = this.getAttribute('data-email');
                                                            const phone = this.getAttribute('data-phone');
                                                            const address = this.getAttribute('data-address');
@@ -422,9 +600,9 @@
                                                            // Populate the modal fields
                                                            document.getElementById('edit_client_id').value = clientId;
                                                            document.getElementById('edit_project_name').value = clientName;
-                                                           document.getElementById('edit_domain').value = companyName;
-                                                           document.getElementById('edit_expired').value = picName;
-                                                           document.getElementById('edit_product_domain').value = productdomain;
+                                                           document.getElementById('edit_company_name').value = companyName;
+                                                           document.getElementById('edit_pic_name').value = pic_name;
+                                                           document.getElementById('edit_product_category').value = category;
                                                            document.getElementById('edit_email').value = email;
                                                            document.getElementById('edit_phone').value = phone;
                                                            document.getElementById('edit_address').value = address;
@@ -435,7 +613,7 @@
                                                            document.getElementById('editClientForm').action = formAction;
 
                                                            // Show the modal
-                                                           $('#editDomainModal').modal('show');
+                                                           $('#editProjectModal').modal('show');
                                                        });
                                                    });
                                                </script> --}}
@@ -448,9 +626,9 @@
                                        <td colspan="2">
                                            <div class="collapse-content"
                                                style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $client->domain }}</span>
+                                               <span>{{ $client->company_name }}</span>
                                                <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $client->domain }}')"></i>
+                                                   onclick="copyText('{{ $client->company_name }}')"></i>
                                            </div>
                                        </td>
                                        <td colspan="6">
@@ -471,7 +649,7 @@
                        <nav aria-label="Page navigation">
                            <ul class="pagination justify-content-end" style="align-items: center;">
                                <!-- Tombol Previous -->
-                               @if ($domains->onFirstPage())
+                               @if ($projects->onFirstPage())
                                    <li class="page-item disabled">
                                        <span class="page-link" style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
@@ -479,7 +657,7 @@
                                    </li>
                                @else
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $domains->previousPageUrl() }}"
+                                       <a class="page-link" href="{{ $projects->previousPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-left"></i>
                                        </a>
@@ -487,48 +665,48 @@
                                @endif
 
                                <!-- Tombol Angka Halaman dengan Batas 10 -->
-                               @if ($domains->lastPage() > 10)
+                               @if ($projects->lastPage() > 10)
                                    <!-- Tampilkan halaman pertama -->
-                                   <li class="page-item {{ $domains->currentPage() == 1 ? 'active' : '' }}">
-                                       <a class="page-link1" href="{{ $domains->url(1) }}">1</a>
+                                   <li class="page-item {{ $projects->currentPage() == 1 ? 'active' : '' }}">
+                                       <a class="page-link1" href="{{ $projects->url(1) }}">1</a>
                                    </li>
 
-                                   @if ($domains->currentPage() > 5)
+                                   @if ($projects->currentPage() > 5)
                                        <!-- Tambahkan titik tiga jika halaman saat ini lebih dari 5 -->
                                        <li class="page-item disabled"><span class="page-link1">...</span></li>
                                    @endif
 
                                    <!-- Loop untuk menampilkan 5 halaman di sekitar halaman saat ini -->
-                                   @for ($i = max(2, $domains->currentPage() - 2); $i <= min($domains->lastPage() - 1, $domains->currentPage() + 2); $i++)
-                                       <li class="page-item {{ $domains->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $domains->url($i) }}">{{ $i }}</a>
+                                   @for ($i = max(2, $projects->currentPage() - 2); $i <= min($projects->lastPage() - 1, $projects->currentPage() + 2); $i++)
+                                       <li class="page-item {{ $projects->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $projects->url($i) }}">{{ $i }}</a>
                                        </li>
                                    @endfor
 
-                                   @if ($domains->currentPage() < $domains->lastPage() - 4)
+                                   @if ($projects->currentPage() < $projects->lastPage() - 4)
                                        <!-- Tambahkan titik tiga jika halaman saat ini kurang dari halaman terakhir - 4 -->
                                        <li class="page-item disabled"><span class="page-link1">...</span></li>
                                    @endif
 
                                    <!-- Tampilkan halaman terakhir -->
                                    <li
-                                       class="page-item {{ $domains->currentPage() == $domains->lastPage() ? 'active' : '' }}">
+                                       class="page-item {{ $projects->currentPage() == $projects->lastPage() ? 'active' : '' }}">
                                        <a class="page-link1"
-                                           href="{{ $domains->url($domains->lastPage()) }}">{{ $domains->lastPage() }}</a>
+                                           href="{{ $projects->url($projects->lastPage()) }}">{{ $projects->lastPage() }}</a>
                                    </li>
                                @else
                                    <!-- Jika halaman kurang dari atau sama dengan 10, tampilkan semua halaman -->
-                                   @for ($i = 1; $i <= $domains->lastPage(); $i++)
-                                       <li class="page-item {{ $domains->currentPage() == $i ? 'active' : '' }}">
-                                           <a class="page-link1" href="{{ $domains->url($i) }}">{{ $i }}</a>
+                                   @for ($i = 1; $i <= $projects->lastPage(); $i++)
+                                       <li class="page-item {{ $projects->currentPage() == $i ? 'active' : '' }}">
+                                           <a class="page-link1" href="{{ $projects->url($i) }}">{{ $i }}</a>
                                        </li>
                                    @endfor
                                @endif
 
                                <!-- Tombol Next -->
-                               @if ($domains->hasMorePages())
+                               @if ($projects->hasMorePages())
                                    <li class="page-item">
-                                       <a class="page-link" href="{{ $domains->nextPageUrl() }}"
+                                       <a class="page-link" href="{{ $projects->nextPageUrl() }}"
                                            style="background-color: #082F1B; border-radius: 5px;">
                                            <i style="color: white;" class="fa-solid fa-chevron-right"></i>
                                        </a>
