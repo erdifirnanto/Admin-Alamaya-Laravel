@@ -284,7 +284,10 @@
                                                    <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">Design
                                                    </p>
                                                @elseif ($project->status == 'Slicing')
-                                                   <p style="margin: 0; color: rgb(8, 230, 126); font-size:14px;">Slicing
+                                                   <p style="margin: 0; color: rgb(8, 41, 230); font-size:14px;">Slicing
+                                                   </p>
+                                               @elseif ($project->status == 'Selesai')
+                                                   <p style="margin: 0; color: rgb(8, 230, 126) ; font-size:14px;">Selesai
                                                    </p>
                                                @endif
                                            </div>

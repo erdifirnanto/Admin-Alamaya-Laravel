@@ -661,8 +661,7 @@
 
                                                                    <!-- Submit Button -->
                                                                    <button type="submit"
-                                                                       class="btn btn-dark w-100">Update
-                                                                       Client</button>
+                                                                       class="btn btn-dark w-100">Submit</button>
                                                                </form>
                                                            </div>
                                                        </div>

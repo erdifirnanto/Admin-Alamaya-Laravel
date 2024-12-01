@@ -120,7 +120,7 @@
 
                                                        <!-- Submit Button -->
                                                        <button type="submit" class="btn btn-dark w-100"
-                                                           onclick="return validateForm()">Add Team</button>
+                                                           onclick="return validateForm()">Submit</button>
                                                    </form>
                                                </div>
                                            </div>
@@ -404,8 +404,7 @@
                                                                    </div>
                                                                    <!-- Submit Button -->
                                                                    <button type="submit"
-                                                                       class="btn btn-dark w-100">Update
-                                                                       Team</button>
+                                                                       class="btn btn-dark w-100">Submit</button>
                                                                </form>
                                                            </div>
                                                        </div>
