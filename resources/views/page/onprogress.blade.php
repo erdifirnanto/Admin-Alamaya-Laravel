@@ -291,6 +291,9 @@
                                                @elseif ($project->status == 'Selesai')
                                                    <p style="margin: 0; color: rgb(8, 230, 126) ; font-size:14px;">Selesai
                                                    </p>
+                                                @elseif ($project->status == 'new_project')
+                                                   <p style="margin: 0; color: rgb(8, 230, 126) ; font-size:14px;">New Project
+                                                   </p>
                                                @endif
                                            </div>
                                        </td>

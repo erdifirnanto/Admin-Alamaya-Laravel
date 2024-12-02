@@ -170,7 +170,7 @@
                                 style="font-size: 0.7em; font-weight: bold;">Status</label>
                             <input type="text" class="form-control @error('status') is-invalid @enderror"
                                 id="status" name="status" placeholder="Enter the client's company status"
-                                value="New Project" required>
+                                value="new_project" required>
                             @error('status')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

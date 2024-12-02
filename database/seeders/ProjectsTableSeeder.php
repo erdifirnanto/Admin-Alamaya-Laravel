@@ -20,7 +20,7 @@ class ProjectsTableSeeder extends Seeder
                 'project_name' => $faker->sentence(3),
                 'category' => $faker->randomElement(['1', '2']),
                 'pic_name' => $faker->randomElement(['Widia Hadi Purwanti', 'Handika Wicaksana']),
-                'status' => 'New Project',
+                'status' => 'new_project',
                 'tanggal_masuk_project' => $faker->date(),
                 'deadline' => $faker->dateTimeBetween('now', '+6 months')->format('Y-m-d'),
                 'client_name' => $faker->name,
