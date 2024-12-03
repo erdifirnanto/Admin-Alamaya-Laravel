@@ -63,17 +63,17 @@ class ProjectController extends Controller
         if (Auth::user()->role === 'admin') {
             // Ambil data klien untuk admin
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('status', '=', 'Maintenance')
+            $projects = Project::where('category', '=', 'Maintenance')
                 ->orderBy('id', $sort)
                 ->paginate(10);
 
             return view('page.maintenance', compact('projects'));
         } else if (Auth::user()->role === 'staff') {
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('status', '=', 'Maintenance')
+            $projects = Project::where('category', '=', 'Maintenance')
                 ->orderBy('id', $sort)
                 ->paginate(10);
-            return view('page.onprogress', compact('projects'));
+            return view('page.maintenance', compact('projects'));
         }
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
     }

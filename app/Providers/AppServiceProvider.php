@@ -24,11 +24,14 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('totalClients', Client::count());
         View::share('totalProjects', Project::count());
-        $projectOnProgressCount = Project::whereIn('status', ['Slicing', 'Mindmap', 'Design', 'new_project'])->count();
+        // $projectOnProgressCount = Project::whereIn('status', ['Slicing', 'Mindmap', 'Design', 'new_project'])->count();
+        // View::share('totalProjects', $projectOnProgressCount);
+
+        $projectOnProgressCount = Project::where('category', '!=', 'Maintenance')->count();
         View::share('totalProjects', $projectOnProgressCount);
 
         // View::share('totalProjects', Project::count());
-        $maintenanceProjectsCount = Project::where('status', 'Maintenance')->count();
+        $maintenanceProjectsCount = Project::where('category', 'Maintenance')->count();
         View::share('totalMaintenanceProjects', $maintenanceProjectsCount);
     }
 }

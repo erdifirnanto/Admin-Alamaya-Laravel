@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('category')->nullable();
             $table->string('pic_name')->nullable();
             $table->string('status')->default('Mindmap');
-            $table->date('tanggal_masuk_project')->default(DB::raw('CURRENT_DATE'));
+            $table->date('tanggal_masuk_project');
             $table->date('deadline')->nullable();
             $table->string('client_name')->nullable();
             $table->string('company_name')->nullable();
