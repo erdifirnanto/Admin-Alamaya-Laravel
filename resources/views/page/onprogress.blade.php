@@ -442,9 +442,9 @@
                                                                                <option value="Hosting"
                                                                                    {{ old('category') == 'Hosting' ? 'selected' : '' }}>
                                                                                    Hosting</option>
-                                                                                   <option value="Hosting"
-                                                                                   {{ old('category') == 'Hosting' ? 'selected' : '' }}>
-                                                                                   Hosting</option>
+                                                                                   <option value="Re-Design"
+                                                                                   {{ old('category') == 'Re-Design' ? 'selected' : '' }}>
+                                                                                   Re-Design</option>
                                                                            </select>
                                                                            @error('category')
                                                                                <div class="invalid-feedback">
