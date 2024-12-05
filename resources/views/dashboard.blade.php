@@ -62,7 +62,6 @@
                                        });
                                    </script>
 
-
                                    @include('components.dashboard.add-project')
 
                                    <!-- Sortby Button -->
@@ -250,13 +249,7 @@
                                        <td style="align-content: center">{{ $project->deadline }}</td>
                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
-                                               <i class="bi bi-three-dots" data-bs-toggle="dropdown"
-                                                   aria-expanded="false" style="cursor: pointer;"></i>
-                                               <ul class="dropdown-menu">
-                                                   <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                           data-bs-target="#editClientModal-{{ $project->id }}">Edit</a>
-                                                   </li>
-                                               </ul>
+                                              
 
                                                {{-- Edit Modal --}}
                                                @include('components.dashboard.edit-project')

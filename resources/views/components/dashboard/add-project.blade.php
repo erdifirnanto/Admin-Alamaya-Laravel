@@ -105,10 +105,12 @@
                                 name="category" required>
                                 <option selected value="">Select Category
                                 </option>
-                                <option value="1" {{ old('category') == '1' ? 'selected' : '' }}>
-                                    Category 1</option>
-                                <option value="2" {{ old('category') == '2' ? 'selected' : '' }}>
-                                    Category 2</option>
+                                <option value="Maintenance" {{ old('category') == 'Maintenance' ? 'selected' : '' }}>
+                                    Maintenance</option>
+                                <option value="Re-Design" {{ old('category') == 'Re-Design' ? 'selected' : '' }}>
+                                    Re-Design</option>
+                                <option value="Hosting" {{ old('category') == 'Hosting' ? 'selected' : '' }}>
+                                    Hosting</option>
                             </select>
                             @error('category')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -170,7 +172,7 @@
                                 style="font-size: 0.7em; font-weight: bold;">Status</label>
                             <input type="text" class="form-control @error('status') is-invalid @enderror"
                                 id="status" name="status" placeholder="Enter the client's company status"
-                                value="New Project" required>
+                                value="new_project" required>
                             @error('status')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
