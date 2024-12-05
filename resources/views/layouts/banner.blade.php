@@ -11,7 +11,7 @@
                            </div>
                            <!-- Kolom untuk teks -->
                            <div class="col-9 col-sm-8 text-light text-start" style="margin-top: 150px; z-index: 500;">
-                               <h3>Welcome Back, {{ Auth::user()->name }}</h3>
+                               <h2>Welcome Back, {{ Auth::user()->name }}</h2>
                                <h6>This is an update from Alamaya Company</h6>
                            </div>
                        </div>
