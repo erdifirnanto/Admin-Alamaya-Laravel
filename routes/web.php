@@ -92,6 +92,9 @@ Route::post('/domain/delete-multiple', [DomainController::class, 'deleteMultiple
 Route::get('/domain/{id}/edit', [DomainController::class, 'edit'])->name('domain.edit');
 Route::put('/domain/{id}', [DomainController::class, 'update'])->name('domain.update');
 Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('domain.update');
+// Route::get('/domain/notifications', [DomainController::class, 'showDomainNotifications'])->name('domain.notifications');
+
+
 // route data team
 Route::resource('team', TeamController::class);
 Route::get('/team', [TeamController::class, 'View'])->name('team.view');
