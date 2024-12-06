@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Domain;
+use Illuminate\Support\Carbon;
+
 
 class DomainController extends Controller
 {
@@ -93,4 +95,32 @@ class DomainController extends Controller
         // return response()->json(['success' => true]);
         return redirect()->route('domain.view')->with('success', 'Data berhasil diupdate.');
     }
+
+
+    //     public function showDomainNotifications()
+    //     {
+    //         // Daftar interval pengingat
+    //         $reminderIntervals = [30, 25, 20, 15, 10, 5, 4, 3, 2, 1];
+
+    //         // Tanggal sekarang
+    //         $now = Carbon::now();
+    //         $notifications = [];
+
+    //         foreach ($reminderIntervals as $interval) {
+    //             // Cari domain yang akan expired pada interval tertentu
+    //             $targetDate = $now->copy()->addDays($interval);
+    //             $domains = Domain::whereDate('expired', $targetDate->toDateString())->get();
+
+    //             foreach ($domains as $domain) {
+    //                 $notifications[] = [
+    //                     'domain' => $domain->domain,
+    //                     'days_remaining' => $interval,
+    //                     'expired_date' => $domain->expired
+    //                 ];
+    //             }
+    //         }
+
+    //         // Kirim data notifikasi ke view
+    //         return view('domain.notifications', compact('notifications'));
+    //     }
 }

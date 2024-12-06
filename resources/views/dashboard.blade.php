@@ -243,13 +243,20 @@
                                        <td style="align-content: center">{{ $project->phone }}</td>
                                        <td style="align-content: center" data-key="pic-name">{{ $project->pic_name }}
                                        </td>
-                                       <td style="align-content: center">{{ $project->category }}</td>
+                                       <td style="align-content: center">
+                                           @if ($project->category === 'new_project')
+                                               New Project
+                                           @else
+                                               {{ $project->category }}
+                                           @endif
+                                       </td>
+
                                        {{-- <td style="align-content: center">{{ $project->status }}</td> --}}
                                        <td style="align-content: center">{{ $project->tanggal_masuk_project }}</td>
                                        <td style="align-content: center">{{ $project->deadline }}</td>
                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
-                                              
+
 
                                                {{-- Edit Modal --}}
                                                @include('components.dashboard.edit-project')

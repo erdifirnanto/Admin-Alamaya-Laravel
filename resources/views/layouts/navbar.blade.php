@@ -58,40 +58,47 @@
                                 </ul>
                             </div>
                         </li>
-                        <script>
-                            function tampil_button_notif() {
-                                // Data dummy untuk jumlah notifikasi
-                                const data = {
-                                    jumlah_total: 18
-                                };
 
-                                // Update jumlah notifikasi
-                                $("#notif_count").text(data.jumlah_total);
+                        {{-- Notifikasi --}}
+                        {{-- <script>
+                            function tampil_button_notif(jumlahNotifikasi) {
+                                // Update jumlah notifikasi pada badge atau elemen lainnya
+                                $("#notif_count").text(jumlahNotifikasi);
                             }
 
-                            function tampil_isi_notif() {
-                                // Data dummy untuk isi notifikasi
-                                const notifikasi = [
-                                    'Notifikasi 1: Pesan baru diterima.',
-                                    'Notifikasi 2: Tugas selesai.',
-                                    'Notifikasi 3: Pembaruan tersedia.'
-                                ];
-
+                            function tampil_isi_notif(notifikasi) {
                                 // Mengisi isi notifikasi ke dalam dropdown
                                 let html = '';
-                                notifikasi.forEach(function(notif) {
-                                    html += `<li>${notif}</li>`;
-                                });
+                                if (notifikasi.length > 0) {
+                                    notifikasi.forEach(function(notif) {
+                                        html += `
+                            <li>
+                                Domain <strong>${notif.domain}</strong> akan expired dalam 
+                                <strong>${notif.days_remaining} hari</strong> (${notif.expired_date}).
+                            </li>`;
+                                    });
+                                } else {
+                                    html = '<p>Tidak ada notifikasi saat ini.</p>';
+                                }
 
                                 // Update dropdown dengan isi notifikasi
                                 $('#notifList').html(html);
 
                                 // Tampilkan atau sembunyikan dropdown
-                                $('#notifDropdown').toggle(); // Menampilkan atau menyembunyikan dropdown
+                                $('#notifDropdown').toggle();
                             }
 
                             $(document).ready(function() {
-                                tampil_button_notif();
+                                // Data notifikasi dari server
+                                const notifications = @json($notifications);
+
+                                // Tampilkan jumlah notifikasi
+                                tampil_button_notif(notifications.length);
+
+                                // Event untuk tombol notifikasi
+                                $('#button_notif').click(function() {
+                                    tampil_isi_notif(notifications);
+                                });
 
                                 // Menyembunyikan dropdown ketika mengklik di luar
                                 $(document).click(function(e) {
@@ -101,7 +108,51 @@
                                     }
                                 });
                             });
+                        </script> --}}
+
+                        {{-- NOtifikasi v2 --}}
+                        <script>
+                            const notifications = @json($notifications);
+                            console.log(notifications); // Memastikan data sudah terambil dengan benar
+
+                            function tampil_button_notif(jumlahNotifikasi) {
+                                $("#notif_count").text(jumlahNotifikasi);
+                            }
+
+                            function tampil_isi_notif(notifikasi) {
+                                let html = '';
+                                if (notifikasi.length > 0) {
+                                    notifikasi.forEach(function(notif) {
+                                        html += `
+                    <li>
+                        Domain <strong>${notif.domain}</strong> akan expired dalam 
+                        <strong>${notif.days_remaining} hari</strong> (${notif.expired_date}).
+                    </li>`;
+                                    });
+                                } else {
+                                    html = '<p>Tidak ada notifikasi saat ini.</p>';
+                                }
+
+                                $('#notifList').html(html);
+                                $('#notifDropdown').toggle();
+                            }
+
+                            $(document).ready(function() {
+                                tampil_button_notif(notifications.length);
+
+                                $('#button_notif').click(function() {
+                                    tampil_isi_notif(notifications);
+                                });
+
+                                $(document).click(function(e) {
+                                    const target = $(e.target);
+                                    if (!target.closest('#button_notif').length && !target.closest('#notifDropdown').length) {
+                                        $('#notifDropdown').hide();
+                                    }
+                                });
+                            });
                         </script>
+
                         <li class="nav-item bullet-none mx-3">
                             <a href="{{ route('profile.show') }}" class="text-light">
                                 <i class="fa-solid fa-gear"></i>
