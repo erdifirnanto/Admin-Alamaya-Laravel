@@ -59,17 +59,18 @@
                         </div>
                         <div class="col">
                             <label for="tanggal_masuk_project" class="form-label"
-                                style="font-size: 0.7em; font-weight: bold;">TANGGAL
-                                PROJECT MASUK
+                                style="font-size: 0.7em; font-weight: bold;">
+                                TANGGAL PROJECT MASUK
                             </label>
                             <input type="date"
                                 class="form-control @error('tanggal_masuk_project') is-invalid @enderror"
                                 id="tanggal_masuk_project" name="tanggal_masuk_project" placeholder="Enter Date"
-                                value="{{ old('tanggal_masuk_project') }}" required>
+                                value="{{ old('tanggal_masuk_project', date('Y-m-d')) }}" required>
                             @error('tanggal_masuk_project')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+
                     </div>
                     <!-- PIC and Category -->
                     <div class="row mb-3">
@@ -99,12 +100,14 @@
                         </div>
                         <div class="col">
                             <label for="category" class="form-label"
-                                style="font-size: 0.7em; font-weight: bold;">CATEGORY
-                                PRODUCT</label>
+                                style="font-size: 0.7em; font-weight: bold;">CATEGORY PROJECT
+                            </label>
                             <select class="form-select @error('category') is-invalid @enderror" id="category"
                                 name="category" required>
-                                <option selected value="">Select Category
+                                <option selected value="new_project">New Project
                                 </option>
+                                <option value="new_project" {{ old('category') == 'new_project' ? 'selected' : '' }}>
+                                    New Project</option>
                                 <option value="Maintenance" {{ old('category') == 'Maintenance' ? 'selected' : '' }}>
                                     Maintenance</option>
                                 <option value="Re-Design" {{ old('category') == 'Re-Design' ? 'selected' : '' }}>

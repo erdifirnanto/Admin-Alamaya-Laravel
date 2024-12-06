@@ -368,10 +368,11 @@
                                                                            <input type="text"
                                                                                class="form-control @error('project_name') is-invalid @enderror"
                                                                                id="project_name" name="project_name"
-                                                                               placeholder="Enter the project name"
-                                                                           <label name="project_name" for="project_name"
+                                                                               placeholder="Enter the project name" <label
+                                                                               name="project_name" for="project_name"
                                                                                id="project_name"
-                                                                                style="font-size: 0.7em;">PROJECT NAME</label>
+                                                                               style="font-size: 0.7em;">PROJECT
+                                                                           NAME</label>
                                                                            <input type="text" class="form-control"
                                                                                name="project_name" for="project_name"
                                                                                id="project_name"
@@ -412,30 +413,35 @@
                                                                                <option selected
                                                                                    value="{{ $project->pic_name }}">
                                                                                    {{ $project->pic_name }}
-                                                                           <label name="category" for="category"
-                                                                               id="category"  style="font-size: 0.7em;">CATEGORY PRODUCT</label>
-                                                                           <select class="form-select" name="category"
-                                                                               for="category" id="category">
-                                                                               <option value="{{ $project->category }}"
-                                                                                   selected>{{ $project->category }}
-                                                                               </option>
-                                                                               {{-- @foreach ($users as $user)
+                                                                                   <label name="category" for="category"
+                                                                                       id="category"
+                                                                                       style="font-size: 0.7em;">CATEGORY
+                                                                                       PRODUCT</label>
+                                                                                   <select class="form-select"
+                                                                                       name="category" for="category"
+                                                                                       id="category">
+                                                                                       <option
+                                                                                           value="{{ $project->category }}"
+                                                                                           selected>
+                                                                                           {{ $project->category }}
+                                                                                       </option>
+                                                                                       {{-- @foreach ($users as $user)
                                                                        <option value="{{ $user->name }}"
                                                                            {{ old('$user->name') == '$user->name' ? 'selected' : '' }}>
                                                                            {{ $user->name }}
                                                                        </option>
                                                                    @endforeach --}}
-                                                                               <option value="Handika Wicaksana"
-                                                                                   {{ old('pic_name') == 'Handika Wicaksana' ? 'selected' : '' }}>
-                                                                                   Handika Wicaksana</option>
-                                                                               <option value="Widia Hadi Purwanti"
-                                                                                   {{ old('pic_name') == 'Widia Hadi Purwanti' ? 'selected' : '' }}>
-                                                                                   Widia Hadi Purwanti</option>
-                                                                           </select>
-                                                                           @error('pic_name')
-                                                                               <div class="invalid-feedback">
-                                                                                   {{ $message }}</div>
-                                                                           @enderror
+                                                                                       <option value="Handika Wicaksana"
+                                                                                           {{ old('pic_name') == 'Handika Wicaksana' ? 'selected' : '' }}>
+                                                                                           Handika Wicaksana</option>
+                                                                                       <option value="Widia Hadi Purwanti"
+                                                                                           {{ old('pic_name') == 'Widia Hadi Purwanti' ? 'selected' : '' }}>
+                                                                                           Widia Hadi Purwanti</option>
+                                                                                   </select>
+                                                                                   @error('pic_name')
+                                                                                       <div class="invalid-feedback">
+                                                                                           {{ $message }}</div>
+                                                                                   @enderror
                                                                        </div>
                                                                        <div hidden class="col">
                                                                            <label for="category" class="form-label"
@@ -447,158 +453,169 @@
                                                                                <option selected
                                                                                    value="{{ $project->category }}">
                                                                                    {{ $project->category }}
-                                                                       <div class="col">
-                                                                           <label name="pic_name" for="pic_name"
-                                                                               id="pic_name"
-                                                                               class="form-label" style="font-size: 0.7em;">PIC</label>
-                                                                           <select class="form-select" name="pic_name"
-                                                                               for="pic_name" id="pic_name">
-                                                                               <option value="{{ $project->pic_name }}"
-                                                                                   selected>{{ $project->pic_name }}
-                                                                               </option>
-                                                                               <option value="Maintenance"
-                                                                                   {{ old('category') == 'Maintenance' ? 'selected' : '' }}>
-                                                                                   Maintenance</option>
-                                                                               <option value="Hosting"
-                                                                                   {{ old('category') == 'Hosting' ? 'selected' : '' }}>
-                                                                                   Hosting</option>
-                                                                                   <option value="Re-Design"
-                                                                                   {{ old('category') == 'Re-Design' ? 'selected' : '' }}>
-                                                                                   Re-Design</option>
-                                                                           </select>
-                                                                           @error('category')
-                                                                               <div class="invalid-feedback">
-                                                                                   {{ $message }}</div>
-                                                                           @enderror
+                                                                                   <div class="col">
+                                                                                       <label name="pic_name"
+                                                                                           for="pic_name" id="pic_name"
+                                                                                           class="form-label"
+                                                                                           style="font-size: 0.7em;">PIC</label>
+                                                                                       <select class="form-select"
+                                                                                           name="pic_name" for="pic_name"
+                                                                                           id="pic_name">
+                                                                                           <option
+                                                                                               value="{{ $project->pic_name }}"
+                                                                                               selected>
+                                                                                               {{ $project->pic_name }}
+                                                                                           </option>
+                                                                                           <option value="Maintenance"
+                                                                                               {{ old('category') == 'Maintenance' ? 'selected' : '' }}>
+                                                                                               Maintenance</option>
+                                                                                           <option value="Hosting"
+                                                                                               {{ old('category') == 'Hosting' ? 'selected' : '' }}>
+                                                                                               Hosting</option>
+                                                                                           <option value="Re-Design"
+                                                                                               {{ old('category') == 'Re-Design' ? 'selected' : '' }}>
+                                                                                               Re-Design</option>
+                                                                                       </select>
+                                                                                       @error('category')
+                                                                                           <div class="invalid-feedback">
+                                                                                               {{ $message }}</div>
+                                                                                       @enderror
+                                                                                   </div>
                                                                        </div>
-                                                                   </div>
-                                                                   {{-- Email & Deadline --}}
-                                                                   <div hidden class="row mb-3">
-                                                                       <div class="col">
-                                                                           <label for="email" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">EMAIL</label>
-                                                                           <input type="email" name="email"
-                                                                               class="form-control @error('email') is-invalid @enderror"
-                                                                               id="email" name="email"
-                                                                               for="email" placeholder="Enter email"
-                                                                               value="{{ $project->email }}" required
-                                                                               autofocus>
-                                                                           @error('email')
-                                                                               <div id="emailHelp"
-                                                                                   class="form-text text-danger">
-                                                                                   {{ $message }}</div>
-                                                                           @enderror
+                                                                       {{-- Email & Deadline --}}
+                                                                       <div hidden class="row mb-3">
+                                                                           <div class="col">
+                                                                               <label for="email" class="form-label"
+                                                                                   style="font-size: 0.7em; font-weight: bold;">EMAIL</label>
+                                                                               <input type="email" name="email"
+                                                                                   class="form-control @error('email') is-invalid @enderror"
+                                                                                   id="email" name="email"
+                                                                                   for="email"
+                                                                                   placeholder="Enter email"
+                                                                                   value="{{ $project->email }}" required
+                                                                                   autofocus>
+                                                                               @error('email')
+                                                                                   <div id="emailHelp"
+                                                                                       class="form-text text-danger">
+                                                                                       {{ $message }}</div>
+                                                                               @enderror
+                                                                           </div>
+                                                                           <div hidden class="col">
+                                                                               <label for="deadline" class="form-label"
+                                                                                   style="font-size: 0.7em; font-weight: bold;">DEADLINE</label>
+                                                                               <input type="date" name="deadline"
+                                                                                   class="form-control @error('deadline') is-invalid @enderror"
+                                                                                   id="deadline" name="deadline"
+                                                                                   for="deadline"
+                                                                                   placeholder="Enter deadline"
+                                                                                   value="{{ $project->deadline }}"
+                                                                                   required autofocus>
+                                                                               @error('deadline')
+                                                                                   <div id="emailHelp"
+                                                                                       class="form-text text-danger">
+                                                                                       {{ $message }}</div>
+                                                                               @enderror
+                                                                           </div>
                                                                        </div>
-                                                                       <div hidden class="col">
-                                                                           <label for="deadline" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">DEADLINE</label>
-                                                                           <input type="date" name="deadline"
-                                                                               class="form-control @error('deadline') is-invalid @enderror"
-                                                                               id="deadline" name="deadline"
-                                                                               for="deadline" placeholder="Enter deadline"
-                                                                               value="{{ $project->deadline }}" required
-                                                                               autofocus>
-                                                                           @error('deadline')
-                                                                               <div id="emailHelp"
-                                                                                   class="form-text text-danger">
-                                                                                   {{ $message }}</div>
-                                                                           @enderror
-                                                                       </div>
-                                                                   </div>
-                                                                   <!-- Address & Phone & Hidden Status-->
-                                                                   <div hidden class="row mb-3">
-                                                                       <div class="col">
-                                                                           <label for="phone" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">PHONE</label>
-                                                                           <input type="text"
-                                                                               class="form-control @error('phone') is-invalid @enderror"
-                                                                               id="phone" name="phone"
-                                                                               placeholder="Enter the client's phone number"
-                                                                               value="{{ $project->phone }}"
-                                                                               inputmode="numeric" pattern="\d+"
-                                                                               required>
-                                                                           @error('phone')
-                                                                               <div class="invalid-feedback">
-                                                                                   {{ $message }}</div>
-                                                                           @enderror
-                                                                       </div>
-                                                                       <div hidden class="col">
-                                                                           <label for="address" class="form-label"
-                                                                               style="font-size: 0.7em; font-weight: bold;">ADDRESS</label>
-                                                                           <input type="text"
-                                                                               class="form-control @error('address') is-invalid @enderror"
-                                                                               id="address" name="address"
-                                                                               placeholder="Enter the client's company address"
-                                                                               value="{{ $project->address }}" required>
-                                                                           @error('address')
-                                                                               <div class="invalid-feedback">
-                                                                                   {{ $message }}</div>
-                                                                           @enderror
-                                                                       </div>
+                                                                       <!-- Address & Phone & Hidden Status-->
+                                                                       <div hidden class="row mb-3">
+                                                                           <div class="col">
+                                                                               <label for="phone" class="form-label"
+                                                                                   style="font-size: 0.7em; font-weight: bold;">PHONE</label>
+                                                                               <input type="text"
+                                                                                   class="form-control @error('phone') is-invalid @enderror"
+                                                                                   id="phone" name="phone"
+                                                                                   placeholder="Enter the client's phone number"
+                                                                                   value="{{ $project->phone }}"
+                                                                                   inputmode="numeric" pattern="\d+"
+                                                                                   required>
+                                                                               @error('phone')
+                                                                                   <div class="invalid-feedback">
+                                                                                       {{ $message }}</div>
+                                                                               @enderror
+                                                                           </div>
+                                                                           <div hidden class="col">
+                                                                               <label for="address" class="form-label"
+                                                                                   style="font-size: 0.7em; font-weight: bold;">ADDRESS</label>
+                                                                               <input type="text"
+                                                                                   class="form-control @error('address') is-invalid @enderror"
+                                                                                   id="address" name="address"
+                                                                                   placeholder="Enter the client's company address"
+                                                                                   value="{{ $project->address }}"
+                                                                                   required>
+                                                                               @error('address')
+                                                                                   <div class="invalid-feedback">
+                                                                                       {{ $message }}</div>
+                                                                               @enderror
+                                                                           </div>
 
-                                                                   </div>
-                                                                   {{-- STATUS HIDDEN INPUT --}}
-                                                                   <div class="row mb-3">
-                                                                       <div class="col">
-                                                                           <label name="status" for="status"
-                                                                               id="status"
-                                                                               class="form-label" style="font-size: 0.7em;">STATUS</label>
-                                                                           <select class="form-select" name="status"
-                                                                               for="status" id="status">
-                                                                               @if ($project->status == 'new_project')
-                                                                                   <option value="new_project" selected>New
+                                                                       </div>
+                                                                       {{-- STATUS HIDDEN INPUT --}}
+                                                                       <div class="row mb-3">
+                                                                           <div class="col">
+                                                                               <label name="status" for="status"
+                                                                                   id="status" class="form-label"
+                                                                                   style="font-size: 0.7em;">STATUS</label>
+                                                                               <select class="form-select" name="status"
+                                                                                   for="status" id="status">
+                                                                                   @if ($project->status == 'new_project')
+                                                                                       <option value="new_project"
+                                                                                           selected>New
+                                                                                       </option>
+                                                                                   @else
+                                                                                       <option
+                                                                                           value="{{ $project->status }}"
+                                                                                           selected>{{ $project->status }}
+                                                                                       </option>
+                                                                                   @endif
+                                                                                   <option value="Mindmap">Mindmap</option>
+                                                                                   <option value="Design">Design</option>
+                                                                                   <option value="Slicing">Slicing</option>
+                                                                                   <option value="Maintenance">Maintenance
                                                                                    </option>
-                                                                               @else
-                                                                                   <option value="{{ $project->status }}"
-                                                                                       selected>{{ $project->status }}
-                                                                                   </option>
-                                                                               @endif
-                                                                               <option value="Mindmap">Mindmap</option>
-                                                                               <option value="Design">Design</option>
-                                                                               <option value="Slicing">Slicing</option>
-                                                                               <option value="Maintenance">Maintenance
-                                                                               </option>
-                                                                               <option value="Selesai">Selesai</option>
-                                                                           </select>
+                                                                                   <option value="Selesai">Selesai</option>
+                                                                               </select>
+                                                                           </div>
                                                                        </div>
-                                                                   </div>
 
-                                                                   <script>
-                                                                       document.getElementById('phone').addEventListener('input', function(event) {
-                                                                           let phone = event.target;
-                                                                           // Mengganti semua karakter selain angka
-                                                                           phone.value = phone.value.replace(/\D/g, '');
-                                                                       });
-                                                                   </script>
-                                                                   <!-- Tanggal Project Masuk -->
-                                                                   <div class="row mb-3" hidden>
-                                                                       <div class="col">
-                                                                           <label id="tanggal_masuk_project"
-                                                                               name="tanggal_masuk_project"
-                                                                               for="tanggal_masuk_project"
-                                                                               class="form-label" style="font-size: 0.7em;">TANGGAL PROJECT MASUK</label>
-                                                                           <input name="tanggal_masuk_project"
-                                                                               for="tanggal_masuk_project" type="date"
-                                                                               class="form-control"
-                                                                               id="tanggal_masuk_project"
-                                                                               value="{{ $project->tanggal_masuk_project }}"
-                                                                               placeholder="Tanggal project masuk">
+                                                                       <script>
+                                                                           document.getElementById('phone').addEventListener('input', function(event) {
+                                                                               let phone = event.target;
+                                                                               // Mengganti semua karakter selain angka
+                                                                               phone.value = phone.value.replace(/\D/g, '');
+                                                                           });
+                                                                       </script>
+                                                                       <!-- Tanggal Project Masuk -->
+                                                                       <div class="row mb-3" hidden>
+                                                                           <div class="col">
+                                                                               <label id="tanggal_masuk_project"
+                                                                                   name="tanggal_masuk_project"
+                                                                                   for="tanggal_masuk_project"
+                                                                                   class="form-label"
+                                                                                   style="font-size: 0.7em;">TANGGAL
+                                                                                   PROJECT MASUK</label>
+                                                                               <input name="tanggal_masuk_project"
+                                                                                   for="tanggal_masuk_project"
+                                                                                   type="date" class="form-control"
+                                                                                   id="tanggal_masuk_project"
+                                                                                   value="{{ $project->tanggal_masuk_project }}"
+                                                                                   placeholder="Tanggal project masuk">
+                                                                           </div>
                                                                        </div>
-                                                                   </div>
 
-                                                                   <!-- Deadline -->
-                                                                   <div class="mb-3" hidden>
-                                                                       <label name="deadline" for="deadline"
-                                                                           id="deadline"
-                                                                           class="form-label" style="font-size: 0.7em;">DEADLINE</label>
-                                                                       <input name="deadline" for="deadline"
-                                                                           type="date" class="form-control"
-                                                                           id="deadline"
-                                                                           value="{{ $project->deadline }}"
-                                                                           placeholder="Enter the project Deadline">
-                                                                   </div>
+                                                                       <!-- Deadline -->
+                                                                       <div class="mb-3" hidden>
+                                                                           <label name="deadline" for="deadline"
+                                                                               id="deadline" class="form-label"
+                                                                               style="font-size: 0.7em;">DEADLINE</label>
+                                                                           <input name="deadline" for="deadline"
+                                                                               type="date" class="form-control"
+                                                                               id="deadline"
+                                                                               value="{{ $project->deadline }}"
+                                                                               placeholder="Enter the project Deadline">
+                                                                       </div>
 
-                                                                   {{-- <!-- Disclaimer -->
+                                                                       {{-- <!-- Disclaimer -->
                                                                    <div class="form-check mb-3">
                                                                        <input type="checkbox" class="form-check-input"
                                                                            id="termsCheck">
@@ -611,11 +628,9 @@
                                                                    <div class="form-text mb-3">Check again and make
                                                                        sure the form is completely filled out</div> --}}
 
-                                                                   <!-- Submit Button -->
-                                                                   <button type="submit"
-                                                                       class="btn btn-dark w-100">Submit</button>
-                                                                   <button type="submit" class="btn btn-dark w-100"
-                                                                       onclick="showAlertUpdate()">Submit</button>
+                                                                       <!-- Submit Button -->
+                                                                       <button type="submit" class="btn btn-dark w-100"
+                                                                           onclick="showAlertUpdate()">Submit</button>
                                                                </form>
                                                            </div>
                                                        </div>
