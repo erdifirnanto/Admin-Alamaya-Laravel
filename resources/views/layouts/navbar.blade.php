@@ -31,120 +31,78 @@
                         <li class="nav-item bullet-none mx-2">
                             <i class="clock text-light" id="clock"></i>
                         </li>
-
+                        {{-- Notifikasi --}}
                         <li class="nav-item bullet-none mx-3">
                             <div style="position: relative; display: inline-block;">
-                                <a href="#" id="button_notif" style="font-size: 24px;"
-                                    onclick="tampil_isi_notif(); return false;">
+                                <a href="#" id="button_notif" style="font-size: 24px;">
                                     <i class="fa-regular fa-bell text-light"></i>
                                 </a>
                                 <span id="notif_count" class="notif-badge"
                                     style="position: absolute; top: -5px; right: -20px; background-color: red; color: white; border: 1px solid white; border-radius: 50%; padding: 2px 4px; font-size: 10px;">
-                                    18
+                                    0
                                 </span>
                                 <!-- Dropdown Menu untuk Notifikasi -->
                                 <ul id="notifDropdown" class="dropdown-menu dropdown-menu-end"
-                                    style="display: none; position: absolute; background: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; z-index: 1000; top: 70px; right: 0px;">
+                                    style="overflow: auto; max-height: 300px; display: none; position: absolute; background: white; border: 1px solid #ccc; border-radius: 5px; padding: 10px; z-index: 1000; top: 70px; right: 0px;">
                                     <li>
-                                        <p class="text-muted" style="margin-left: 15px; font-size: small;">Notifikasi
+                                        <p class="text-muted" style="margin-left: 15px; font-size: medium;">Notifikasi
                                         </p>
                                     </li>
-                                    {{-- nanti diisi ya --}}
-                                    {{-- @foreach ($clients as $client)
-                                        <li id="">
-                                            {{ $client->client_name }}
-                                        </li> <!-- Tempat untuk menampilkan isi notifikasi -->
-                                    @endforeach --}}
+                                    <div id="notifList">
+                                        <!-- Tempat untuk menampilkan isi notifikasi -->
+                                    </div>
                                 </ul>
                             </div>
                         </li>
 
-                        {{-- Notifikasi --}}
-                        {{-- <script>
-                            function tampil_button_notif(jumlahNotifikasi) {
-                                // Update jumlah notifikasi pada badge atau elemen lainnya
-                                $("#notif_count").text(jumlahNotifikasi);
-                            }
-
-                            function tampil_isi_notif(notifikasi) {
-                                // Mengisi isi notifikasi ke dalam dropdown
-                                let html = '';
-                                if (notifikasi.length > 0) {
-                                    notifikasi.forEach(function(notif) {
-                                        html += `
-                            <li>
-                                Domain <strong>${notif.domain}</strong> akan expired dalam 
-                                <strong>${notif.days_remaining} hari</strong> (${notif.expired_date}).
-                            </li>`;
-                                    });
-                                } else {
-                                    html = '<p>Tidak ada notifikasi saat ini.</p>';
-                                }
-
-                                // Update dropdown dengan isi notifikasi
-                                $('#notifList').html(html);
-
-                                // Tampilkan atau sembunyikan dropdown
-                                $('#notifDropdown').toggle();
-                            }
-
-                            $(document).ready(function() {
-                                // Data notifikasi dari server
-                                const notifications = @json($notifications);
-
-                                // Tampilkan jumlah notifikasi
-                                tampil_button_notif(notifications.length);
-
-                                // Event untuk tombol notifikasi
-                                $('#button_notif').click(function() {
-                                    tampil_isi_notif(notifications);
-                                });
-
-                                // Menyembunyikan dropdown ketika mengklik di luar
-                                $(document).click(function(e) {
-                                    const target = $(e.target);
-                                    if (!target.closest('#button_notif').length && !target.closest('#notifDropdown').length) {
-                                        $('#notifDropdown').hide(); // Sembunyikan dropdown jika klik di luar
-                                    }
-                                });
-                            });
-                        </script> --}}
-
                         {{-- NOtifikasi v2 --}}
                         <script>
-                            const notifications = @json($notifications);
-                            console.log(notifications); // Memastikan data sudah terambil dengan benar
+                            // Simulasi data notifikasi dari controller
+                            const notifications = @json($notifications ?? ['Domain A kedaluwarsa dalam 2 hari', 'Domain B kedaluwarsa besok']);
 
+                            // Fungsi untuk menampilkan jumlah notifikasi di tombol
                             function tampil_button_notif(jumlahNotifikasi) {
                                 $("#notif_count").text(jumlahNotifikasi);
                             }
 
+                            // Fungsi untuk menampilkan isi daftar notifikasi
                             function tampil_isi_notif(notifikasi) {
                                 let html = '';
+
                                 if (notifikasi.length > 0) {
-                                    notifikasi.forEach(function(notif) {
+                                    notifikasi.forEach(notification => {
                                         html += `
-                    <li>
-                        Domain <strong>${notif.domain}</strong> akan expired dalam 
-                        <strong>${notif.days_remaining} hari</strong> (${notif.expired_date}).
-                    </li>`;
+                        <div class="alert alert-info" style=" font-size: small; padding: 5px 15px; margin: 5px 0px;">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            ${notification}
+                        </div>
+                    `;
                                     });
                                 } else {
-                                    html = '<p>Tidak ada notifikasi saat ini.</p>';
+                                    html = `
+                    <div class="alert alert-success">
+                        <span class="glyphicon glyphicon-ok-circle"></span>
+                        Tidak ada domain yang mendekati batas kedaluwarsa.
+                    </div>
+                `;
                                 }
 
                                 $('#notifList').html(html);
-                                $('#notifDropdown').toggle();
+                                $('#notifDropdown').toggle(); // Menampilkan atau menyembunyikan dropdown
                             }
 
                             $(document).ready(function() {
+                                // Tampilkan jumlah notifikasi di tombol
                                 tampil_button_notif(notifications.length);
 
-                                $('#button_notif').click(function() {
+                                // Ketika tombol notifikasi diklik
+                                $('#button_notif').on('click', function(e) {
+                                    e.preventDefault(); // Mencegah default behavior dari <a>
                                     tampil_isi_notif(notifications);
                                 });
 
-                                $(document).click(function(e) {
+                                // Klik di luar dropdown untuk menutup
+                                $(document).on('click', function(e) {
                                     const target = $(e.target);
                                     if (!target.closest('#button_notif').length && !target.closest('#notifDropdown').length) {
                                         $('#notifDropdown').hide();

@@ -79,12 +79,6 @@
                                  name="pic_name" required>
                                  <option selected value="{{ $project->pic_name }}">{{ $project->pic_name }}
                                  </option>
-                                 {{-- @foreach ($users as $user)
-                                                                       <option value="{{ $user->name }}"
-                                                                           {{ old('$user->name') == '$user->name' ? 'selected' : '' }}>
-                                                                           {{ $user->name }}
-                                                                       </option>
-                                                                   @endforeach --}}
                                  <option value="Handika Wicaksana"
                                      {{ old('pic_name') == 'Handika Wicaksana' ? 'selected' : '' }}>
                                      Handika Wicaksana</option>
@@ -102,7 +96,12 @@
                                  PRODUCT</label>
                              <select class="form-select @error('category') is-invalid @enderror" id="category"
                                  name="category" required>
-                                 <option selected value="{{ $project->category }}">{{ $project->category }}
+                                 <option selected value="{{ $project->category }}">
+                                     @if ($project->category === 'new_project')
+                                         New Project
+                                     @else
+                                         {{ $project->category }}
+                                     @endif
                                  </option>
                                  <option value="Maintenance" {{ old('category') == 'Maintenance' ? 'selected' : '' }}>
                                      Maintenance</option>
