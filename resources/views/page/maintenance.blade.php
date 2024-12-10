@@ -286,6 +286,9 @@
                                                @elseif ($project->status == 'Slicing')
                                                    <p style="margin: 0; color: rgb(8, 230, 126); font-size:14px;">Slicing
                                                    </p>
+                                               @elseif ($project->status == 'new_project')
+                                                   <p style="margin: 0; color: rgb(167, 6, 6) ; font-size:14px;">New
+                                                   </p>
                                                @elseif ($project->status == 'Maintenance')
                                                    <p style="margin: 0; color: rgb(250, 47, 47); font-size:14px;">
                                                        Maintenance

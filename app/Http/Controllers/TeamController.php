@@ -28,7 +28,7 @@ class TeamController extends Controller
             // dd(csrf_token());
             return view('page.team', compact('teams'));
         }
-        return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
+        return redirect('/dashboard')->with('error', 'Anda tidak memiliki akses ke halaman ini');
     }
 
     public function Dstore(Request $request)
