@@ -36,20 +36,26 @@ Route::middleware([
     'verified',
 ])->group(function () {
 
-    // Route utama dashboard
+    // Route::get('/dashboard', function () {
+    //     return view('dashboard');
+    // })->name('dashboard');
     Route::get('/dashboard', [RoleController::class, 'Dashboard'])->name('dashboard');
+    // Route::get('/dashboard', [RoleController::class, 'userDashboard'])->name('dashboard');
+
 
     // route khusus admin
     Route::middleware('role:admin')->group(function () {
         Route::get('/admin/dashboard', [RoleController::class, 'Dashboard'])->name('admin.dashboard');
         Route::get('/admin/add-account', [AdminAccountController::class, 'showAddAccountForm'])->name('admin.add-account-form');
         Route::post('/admin/add-account', [AdminAccountController::class, 'addAccount'])->name('admin.add-account');
+        // Route untuk melihat klien (hanya admin)
         Route::get('/admin/clients', [ClientController::class, 'index'])->name('admin.clients'); // Pastikan method 'index' di ClientController ada
     });
 
     // route khusus staff
     Route::middleware('role:staff')->group(function () {
         Route::get('/user/dashboard', [RoleController::class, 'Dashboard'])->name('user.dashboard');
+        // Route untuk melihat klien (hanya staff)
         Route::get('/user/clients', [ClientController::class, 'index'])->name('user.clients'); // Pastikan method 'index' di ClientController ada
     });
 });
@@ -82,7 +88,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/project/{id}/edit', [ProjectController::class, 'Pedit'])->name('project.Pedit');
         Route::put('/projectonprogress/{id}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
         Route::put('/projectonprogress/{project}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
-        Route::get('/search', [ProjectController::class, 'search'])->name('project.search');
+        Route::get('/', [ProjectController::class, 'search'])->name('project.search');
 
 
         // route data domain
@@ -94,6 +100,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/domain/{id}/edit', [DomainController::class, 'edit'])->name('domain.edit');
         Route::put('/domain/{id}', [DomainController::class, 'update'])->name('domain.update');
         Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('domain.update');
+        // Route::get('/domain/notifications', [DomainController::class, 'showDomainNotifications'])->name('domain.notifications');
 
 
         // route data team
