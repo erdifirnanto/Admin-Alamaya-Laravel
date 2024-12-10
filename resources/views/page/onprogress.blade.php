@@ -268,11 +268,11 @@
                                            {{ $project->project_name }}
                                        </td>
                                        <td style="align-content: center" data-key="product-category">
-                                           {{ $project->category }}
-                                           {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span> --}}
+                                           @if ($project->category === 'new_project')
+                                               New Project
+                                           @else
+                                               {{ $project->category }}
+                                           @endif
                                        </td>
                                        <td style="align-content: center" data-key="pic-name">{{ $project->pic_name }}
                                        </td>
@@ -368,11 +368,11 @@
                                                                            <input type="text"
                                                                                class="form-control @error('project_name') is-invalid @enderror"
                                                                                id="project_name" name="project_name"
-                                                                               placeholder="Enter the project name" <label
+                                                                               placeholder="Enter the project name"><label
                                                                                name="project_name" for="project_name"
                                                                                id="project_name"
-                                                                               style="font-size: 0.7em;">PROJECT
-                                                                           NAME</label>
+                                                                               style="font-size: 0.7em;"> PROJECT
+                                                                               NAME</label>
                                                                            <input type="text" class="form-control"
                                                                                name="project_name" for="project_name"
                                                                                id="project_name"

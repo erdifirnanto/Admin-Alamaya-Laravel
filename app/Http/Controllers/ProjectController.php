@@ -37,8 +37,10 @@ class ProjectController extends Controller
             // Ambil data klien untuk admin
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
             $projects = Project::where('status', '!=', 'Maintenance')
+                ->where('category', '!=', 'Maintenance')
                 ->orderBy('id', $sort)
                 ->paginate(10);
+
 
             // $clients = Client::paginate(10);
             // $clients = Client::all(); // Ganti dengan model yang sesuai

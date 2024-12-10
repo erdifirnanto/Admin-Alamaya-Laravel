@@ -20,6 +20,12 @@ use Illuminate\Routing\Route as RoutingRoute;
 */
 
 Route::get('/', function () {
+    // Jika sudah login, arahkan ke dashboard
+    if (auth()->check()) {
+        return redirect()->route('dashboard');
+    }
+
+    // Jika belum login, arahkan ke halaman login
     return redirect()->route('login');
 });
 
@@ -58,52 +64,52 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
     ->group(function () {
         Route::get('/account-management', [AdminAccountController::class, 'index'])->name('account.management');
         Route::delete('/account-management/{user}', [AdminAccountController::class, 'destroy'])->name('account.destroy');
+
+        // route data clients
+        Route::resource('clients', ClientController::class);
+        Route::post('/clients/store', [ClientController::class, 'Cstore'])->name('clients.store');
+        Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
+        Route::post('/clients/delete-multiple', [ClientController::class, 'deleteMultiple'])->name('clients.deleteMultiple');
+        Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+        Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update');
+        Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
+
+        // route data project
+        Route::resource('project', ProjectController::class);
+        Route::get('/project', [ProjectController::class, 'View'])->name('project.view');
+        Route::get('/projectonprogress', [ProjectController::class, 'ViewOnprogress'])->name('project.onprogress');
+        Route::get('/projectmaintenance', [ProjectController::class, 'ViewMaintenance'])->name('project.Maintenance');
+        Route::post('/project/store', [ProjectController::class, 'Pstore'])->name('project.store');
+        Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
+        Route::post('/project/delete-multiple', [ProjectController::class, 'deleteMultiple'])->name('project.deleteMultiple');
+        Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit');
+        Route::put('/project/{id}', [ProjectController::class, 'update'])->name('project.update');
+        Route::put('/project/{project}', [ProjectController::class, 'update'])->name('project.update');
+        Route::get('/project/{id}/edit', [ProjectController::class, 'Pedit'])->name('project.Pedit');
+        Route::put('/projectonprogress/{id}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
+        Route::put('/projectonprogress/{project}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
+        Route::get('/', [ProjectController::class, 'search'])->name('project.search');
+
+
+        // route data domain
+        Route::resource('domain', DomainController::class);
+        Route::get('/domain', [DomainController::class, 'View'])->name('domain.view');
+        Route::post('/domain/store', [DomainController::class, 'Dstore'])->name('domain.store');
+        Route::delete('/domain/{id}', [DomainController::class, 'destroy'])->name('domain.destroy');
+        Route::post('/domain/delete-multiple', [DomainController::class, 'deleteMultiple'])->name('domain.deleteMultiple');
+        Route::get('/domain/{id}/edit', [DomainController::class, 'edit'])->name('domain.edit');
+        Route::put('/domain/{id}', [DomainController::class, 'update'])->name('domain.update');
+        Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('domain.update');
+        // Route::get('/domain/notifications', [DomainController::class, 'showDomainNotifications'])->name('domain.notifications');
+
+
+        // route data team
+        Route::resource('team', TeamController::class);
+        Route::get('/team', [TeamController::class, 'View'])->name('team.view');
+        Route::post('/team/store', [TeamController::class, 'Dstore'])->name('team.store');
+        Route::delete('/team/{id}', [TeamController::class, 'destroy'])->name('team.destroy');
+        Route::post('/team/delete-multiple', [TeamController::class, 'deleteMultiple'])->name('team.deleteMultiple');
+        Route::get('/team/{id}/edit', [TeamController::class, 'edit'])->name('team.edit');
+        Route::put('/team/{id}', [TeamController::class, 'update'])->name('team.update');
+        Route::put('/team/{team}', [TeamController::class, 'update'])->name('team.update');
     });
-
-// route data clients
-Route::resource('clients', ClientController::class);
-Route::post('/clients/store', [ClientController::class, 'Cstore'])->name('clients.store');
-Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
-Route::post('/clients/delete-multiple', [ClientController::class, 'deleteMultiple'])->name('clients.deleteMultiple');
-Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
-Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update');
-Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
-
-// route data project
-Route::resource('project', ProjectController::class);
-Route::get('/project', [ProjectController::class, 'View'])->name('project.view');
-Route::get('/projectonprogress', [ProjectController::class, 'ViewOnprogress'])->name('project.onprogress');
-Route::get('/projectmaintenance', [ProjectController::class, 'ViewMaintenance'])->name('project.Maintenance');
-Route::post('/project/store', [ProjectController::class, 'Pstore'])->name('project.store');
-Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
-Route::post('/project/delete-multiple', [ProjectController::class, 'deleteMultiple'])->name('project.deleteMultiple');
-Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit');
-Route::put('/project/{id}', [ProjectController::class, 'update'])->name('project.update');
-Route::put('/project/{project}', [ProjectController::class, 'update'])->name('project.update');
-Route::get('/project/{id}/edit', [ProjectController::class, 'Pedit'])->name('project.Pedit');
-Route::put('/projectonprogress/{id}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
-Route::put('/projectonprogress/{project}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
-Route::get('/', [ProjectController::class, 'search'])->name('project.search');
-
-
-// route data domain
-Route::resource('domain', DomainController::class);
-Route::get('/domain', [DomainController::class, 'View'])->name('domain.view');
-Route::post('/domain/store', [DomainController::class, 'Dstore'])->name('domain.store');
-Route::delete('/domain/{id}', [DomainController::class, 'destroy'])->name('domain.destroy');
-Route::post('/domain/delete-multiple', [DomainController::class, 'deleteMultiple'])->name('domain.deleteMultiple');
-Route::get('/domain/{id}/edit', [DomainController::class, 'edit'])->name('domain.edit');
-Route::put('/domain/{id}', [DomainController::class, 'update'])->name('domain.update');
-Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('domain.update');
-// Route::get('/domain/notifications', [DomainController::class, 'showDomainNotifications'])->name('domain.notifications');
-
-
-// route data team
-Route::resource('team', TeamController::class);
-Route::get('/team', [TeamController::class, 'View'])->name('team.view');
-Route::post('/team/store', [TeamController::class, 'Dstore'])->name('team.store');
-Route::delete('/team/{id}', [TeamController::class, 'destroy'])->name('team.destroy');
-Route::post('/team/delete-multiple', [TeamController::class, 'deleteMultiple'])->name('team.deleteMultiple');
-Route::get('/team/{id}/edit', [TeamController::class, 'edit'])->name('team.edit');
-Route::put('/team/{id}', [TeamController::class, 'update'])->name('team.update');
-Route::put('/team/{team}', [TeamController::class, 'update'])->name('team.update');
