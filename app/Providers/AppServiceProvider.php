@@ -26,10 +26,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        View::share('totalClients', Client::count());
-        View::share('totalProjects', Project::count());
+        // View::share('totalClients', Client::count());
+        // View::share('totalProjects', Project::count());
         // $projectOnProgressCount = Project::whereIn('status', ['Slicing', 'Mindmap', 'Design', 'new_project'])->count();
         // View::share('totalProjects', $projectOnProgressCount);
+
+        $clientCount = Project::distinct('email')->count('email');
+        View::share('totalClients', $clientCount);
 
         $projectOnProgressCount = Project::where('category', '!=', 'Maintenance')->count();
         View::share('totalProjects', $projectOnProgressCount);
@@ -38,28 +41,7 @@ class AppServiceProvider extends ServiceProvider
         $maintenanceProjectsCount = Project::where('category', 'Maintenance')->count();
         View::share('totalMaintenanceProjects', $maintenanceProjectsCount);
 
-        // // Daftar interval pengingat
-        // $reminderIntervals = [30, 25, 20, 15, 10, 5, 4, 3, 2, 1];
-        // $now = Carbon::now();
-        // $notifications = [];
-
-        // // Ambil semua domain
-        // $domains = Domain::all();
-
-        // foreach ($domains as $domain) {
-        //     $expiredDate = Carbon::parse($domain->expired);
-        //     $daysRemaining = $now->diffInDays($expiredDate, false); // false untuk menghitung dengan arah yang benar
-
-        //     // Periksa apakah sisa hari kedaluwarsa sesuai dengan interval yang telah ditentukan
-        //     if (in_array($daysRemaining, $reminderIntervals)) {
-        //         $notifications[] = [
-        //             'domain' => $domain->name,
-        //             'days_remaining' => $daysRemaining,
-        //             'expired_date' => $domain->expired->toDateString(),
-        //         ];
-        //     }
-        // }
-
+        // Domain Expired Notification
         // Tanggal hari ini
         $today = Carbon::today();
 
@@ -89,5 +71,32 @@ class AppServiceProvider extends ServiceProvider
         // Log::info('Notifikasi Domain:', $notifications);
         // Bagikan data notifikasi ke seluruh view
         View::share('notifications', $notifications);
+
+        // Project Deadline Notification
+        // Tanggal hari ini
+        $today1 = Carbon::today();
+
+        // Ambil data dari tabel 'domain'
+        $projects = DB::table('projects')->select('id', 'project_name', 'deadline')->get();
+
+        $notifications1 = [];
+
+        foreach ($projects as $project) {
+            // Hitung selisih tanggal
+            $interval1 = $today1->diffInDays(Carbon::parse($domain->expired), false);
+
+            // Tentukan pesan berdasarkan selisih
+            if ($interval1 === 1) {
+                $notifications1[] = "Project <strong>{$project->project_name}</strong> akan kedaluwarsa besok.";
+            } elseif ($interval1 === 2) {
+                $notifications1[] = "Project <strong>{$project->project_name}</strong> akan kedaluwarsa dalam 2 hari.";
+            } elseif ($interval1 === 3) {
+                $notifications1[] = "Project <strong>{$project->project_name}</strong> akan kedaluwarsa dalam 3 hari.";
+            } elseif ($interval1 === 0) {
+                $notifications1[] = "Project <strong>{$project->project_name}</strong> kedaluwarsa hari ini.";
+            }
+        }
+
+        View::share('notifications1', $notifications1);
     }
 }

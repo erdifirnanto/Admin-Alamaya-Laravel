@@ -172,6 +172,24 @@ class ProjectController extends Controller
         }
     }
 
+    public function search(Request $request)
+    {
+        $searchQuery = $request->input('search', '');
+
+        // Mengambil data dengan pencarian
+        $projects = Project::where('project_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('pic_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('client_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('company_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('email', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('phone', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('address', 'LIKE', "%{$searchQuery}%")
+
+            ->paginate(10);
+
+        return view('dashboard', compact('projects'));
+    }
+
     // public function Pedit($id)
     // {
     //     // Ambil data klien berdasarkan ID

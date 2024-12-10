@@ -83,6 +83,9 @@ Route::put('/project/{project}', [ProjectController::class, 'update'])->name('pr
 Route::get('/project/{id}/edit', [ProjectController::class, 'Pedit'])->name('project.Pedit');
 Route::put('/projectonprogress/{id}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
 Route::put('/projectonprogress/{project}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
+Route::get('/', [ProjectController::class, 'search'])->name('project.search');
+
+
 // route data domain
 Route::resource('domain', DomainController::class);
 Route::get('/domain', [DomainController::class, 'View'])->name('domain.view');

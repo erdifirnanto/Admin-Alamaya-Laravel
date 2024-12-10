@@ -169,7 +169,7 @@
     position: absolute;
     left: 10px;
     /* Posisi ikon di dalam input */
-    top: 50%;
+    top: 35%;
     transform: translateY(-50%);
     /* Agar ikon tepat di tengah vertikal */
     font-size: 16px;
@@ -405,6 +405,28 @@ p {
 .btn1hvr:hover {
     background-color: #175f28;
     color: white;
+}
+
+.pagination .page-item.active .page-link1 {
+    /* background-color: #082f1b; */
+    background-color: #06733a;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    /* border: 2px solid #06733a; */
+}
+
+.pagination .page-link1 {
+    color: #082f1b;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: all 0.3s ease;
+}
+
+.pagination .page-link1:hover {
+    background-color: #06733a;
+    color: white;
+    border-radius: 5px;
 }
 
 /* end pagination */

@@ -18,13 +18,13 @@
         @endif
 
         <!-- Tombol Angka Halaman dengan Batas 10 -->
-        @if ($projects->lastPage() > 10)
+        @if ($projects->lastPage() > 7)
             <!-- Tampilkan halaman pertama -->
             <li class="page-item {{ $projects->currentPage() == 1 ? 'active' : '' }}">
                 <a class="page-link1" href="{{ $projects->url(1) }}">1</a>
             </li>
 
-            @if ($projects->currentPage() > 5)
+            @if ($projects->currentPage() > 4)
                 <!-- Tambahkan titik tiga jika halaman saat ini lebih dari 5 -->
                 <li class="page-item disabled"><span class="page-link1">...</span></li>
             @endif
@@ -36,7 +36,7 @@
                 </li>
             @endfor
 
-            @if ($projects->currentPage() < $projects->lastPage() - 4)
+            @if ($projects->currentPage() < $projects->lastPage() - 3)
                 <!-- Tambahkan titik tiga jika halaman saat ini kurang dari halaman terakhir - 4 -->
                 <li class="page-item disabled"><span class="page-link1">...</span></li>
             @endif

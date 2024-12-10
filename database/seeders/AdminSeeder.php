@@ -11,7 +11,7 @@ class AdminSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Saya Admin',
+            'name' => 'Widia Hadi Purwanti',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
@@ -19,7 +19,15 @@ class AdminSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Saya Staff',
+            'name' => 'Hendra Kalijaga',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('password'),
+            'role' => 'admin',
+            'profile_photo_path' => null, // Tambahkan ini
+        ]);
+
+        User::create([
+            'name' => 'Rena Amalia Afifah',
             'email' => 'rena@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'staff',
@@ -27,7 +35,7 @@ class AdminSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'Saya Staff',
+            'name' => 'Erdi Vernanto',
             'email' => 'erdi@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'staff',
