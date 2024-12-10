@@ -19,11 +19,8 @@
                <div class="row">
                    <div class="col-12 col-md-12">
                        <div class="search-add-sort-container">
-                           <!-- Search Input -->
-                           <div class="search-box">
-                               <input id="searchInput" style="width: 400px;" type="text" placeholder="Search">
-                               <span class="icon-search"><i class="fas fa-search"></i></span>
-                           </div>
+                           {{-- Seacrh --}}
+                           @include('components.dashboard.search')
                            <!-- Buttons Section -->
                            <div class="button-container">
                                <!-- Sort by Dropdown -->
@@ -221,7 +218,7 @@
                                </script>
                            </thead>
                            <tbody>
-                               @foreach ($projects as $key => $project)
+                               @forelse ($projects as $key => $project)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
                                                value="{{ $project->id }}">
@@ -283,7 +280,13 @@
                                            </div>
                                        </td>
                                    </tr>
-                               @endforeach
+                               @empty
+                                   <tr>
+                                       <td colspan="12" class="text-center"
+                                           style="height: 80px; align-content: center;">Tidak
+                                           ada data yang ditemukan</td>
+                                   </tr>
+                               @endforelse
                            </tbody>
                        </table>
 

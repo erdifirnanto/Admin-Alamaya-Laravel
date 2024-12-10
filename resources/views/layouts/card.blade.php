@@ -34,7 +34,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="-home-body text-dark mt-2">
-                                                <div class="card-text text-dark mt-4  ">Total
+                                                <div class="card-text text-dark mt-4">Total
                                                     Client<br>
                                                     <h2><strong>{{ number_format($totalClients) }}</strong></h2>
                                                 </div>
