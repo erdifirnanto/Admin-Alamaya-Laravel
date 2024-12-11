@@ -256,12 +256,12 @@
                                </script>
                            </thead>
                            <tbody>
-                               @foreach ($projects as $project)
+                               @foreach ($projects as $key => $project)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
                                                value="{{ $project->id }}">
                                        </td>
-                                       <td style="align-content: center">{{ $project->id }}</td>
+                                       <td style="align-content: center">{{ $key + 1 }}</td>
                                        <td style="align-content: center" data-key="client-name">
                                            {{ $project->project_name }}
                                        </td>

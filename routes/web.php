@@ -94,6 +94,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/domain/{id}/edit', [DomainController::class, 'edit'])->name('domain.edit');
         Route::put('/domain/{id}', [DomainController::class, 'update'])->name('domain.update');
         Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('domain.update');
+        Route::get('/search1', [DomainController::class, 'search'])->name('domain.search');
+
 
 
         // route data team

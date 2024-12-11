@@ -176,18 +176,16 @@ class ProjectController extends Controller
 
     public function search(Request $request)
     {
-        // Cek apakah ada pencarian sebelumnya
-        if (session()->has('search_query')) {
-            // Hapus session pencarian dan redirect ke root
-            session()->forget('search_query');
+        // Deteksi apakah search berasal dari form
+        if (!$request->has('search')) {
+            // Jika tidak ada parameter `search`, redirect ke /
             return redirect('/');
         }
 
-        // Simpan kata kunci pencarian ke session
+        // Ambil query pencarian
         $searchQuery = $request->input('search', '');
-        session()->put('search_query', $searchQuery);
 
-        // Mengambil data dengan pencarian
+        // Query untuk mencari data
         $projects = Project::where('project_name', 'LIKE', "%{$searchQuery}%")
             ->orWhere('pic_name', 'LIKE', "%{$searchQuery}%")
             ->orWhere('client_name', 'LIKE', "%{$searchQuery}%")
@@ -197,8 +195,15 @@ class ProjectController extends Controller
             ->orWhere('address', 'LIKE', "%{$searchQuery}%")
             ->paginate(50);
 
+        // Tampilkan data pada view
         return view('dashboard', compact('projects'));
     }
+
+
+
+
+
+
 
 
     // public function Pedit($id)

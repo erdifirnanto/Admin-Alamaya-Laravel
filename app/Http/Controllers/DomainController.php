@@ -96,6 +96,27 @@ class DomainController extends Controller
         return redirect()->route('domain.view')->with('success', 'Data berhasil diupdate.');
     }
 
+    public function search(Request $request)
+    {
+        // Deteksi apakah search berasal dari form
+        if (!$request->has('search')) {
+            // Jika tidak ada parameter `search`, redirect ke /
+            return redirect('/');
+        }
+
+        // Ambil query pencarian
+        $searchQuery = $request->input('search', '');
+
+        // Query untuk mencari data
+        $domains = Domain::where('project_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('domain', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('expired', 'LIKE', "%{$searchQuery}%")
+            ->paginate(50);
+
+        // Tampilkan data pada view
+        return view('page.domain', compact('domains'));
+    }
+
 
     //     public function showDomainNotifications()
     //     {
