@@ -162,8 +162,6 @@
                                            Project Name
                                            <span class="sort-icons sort-button" data-sort="Domain-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </span>
                                    </th>
@@ -173,8 +171,6 @@
                                            Domain
                                            <span class="sort-icons sort-button" data-sort="domain" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span>
                                        </span>
                                    </th>
