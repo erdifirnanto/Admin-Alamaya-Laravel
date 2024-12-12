@@ -1,3 +1,56 @@
+<style>
+/* Responsif untuk Navbar pada ukuran layar iPad Air */
+@media (min-width: 768px) and (max-width: 1024px) {
+    .navbar {
+        padding: 10px 15px; /* Menambah jarak padding pada navbar */
+    }
+
+    .navbar-brand img {
+        height: 25px; /* Menyesuaikan ukuran logo */
+    }
+
+    .navbar-toggler {
+        margin-top: 10px; /* Menambahkan jarak antara toggler dan navbar */
+    }
+
+    .navbar-nav {
+        margin-left: 0; /* Menghilangkan margin kiri pada navbar */
+    }
+
+    .navbar-nav .nav-item {
+        margin-right: 10px; /* Memberi jarak antar item navbar */
+    }
+
+    .nav-link {
+        font-size: 14px; /* Menyesuaikan ukuran font untuk tampilan di layar lebih kecil */
+    }
+
+    .user-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .user-photo {
+        width: 30px;
+        height: 30px;
+    }
+
+    /* Menyesuaikan tampilan dropdown menu */
+    .dropdown-menu {
+        top: 50px; /* Sesuaikan dengan posisi dropdown pada perangkat */
+    }
+
+    .notif-badge {
+        font-size: 9px;
+        padding: 3px 5px;
+    }
+
+    .clock {
+        font-size: 16px; /* Ukuran font jam pada navbar */
+    }
+}
+</style>
+
 <section class="main-page" id="main-page">
     <div class="container-fluid position-relative" style="z-index: 1;">
         <!-- Navbar Start -->

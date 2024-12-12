@@ -1,6 +1,7 @@
    @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
+   
        <section class="main-page" id="main-page">
            <section>
                <!-- Table Section Start -->

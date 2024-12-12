@@ -1,7 +1,6 @@
    @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
-
        <section class="main-page" id="main-page">
            <section>
                <!-- Table Section Start -->
@@ -28,7 +27,7 @@
                                <div class="dropdown">
                                    <button class="btn btn-dropdown srtby delete-btn delete-selected" type="button"
                                        aria-expanded="false">
-                                       <a style="color: rgb(255, 0, 0);" href="#"><i class="fa fa-trash"
+                                       <a style="color: rgb(51, 255, 0);" href="#"><i class="fa fa-trash"
                                                aria-hidden="true"></i></a>
                                    </button>
 
@@ -77,14 +76,6 @@
                            </div>
                        </div>
 
-
-                    <style>
-                        .table-responsive {
-                        overflow-x: auto;
-                        }
-                    </style>
-                       
-                    <div class="table-responsive">
                        <table class="table table-hover mt-5 table-sm">
                            <thead>
                                <tr style="height: 70px;">
@@ -190,7 +181,7 @@
                                        </span>
                                    </th>
                                    {{-- <th>Status</th> --}}
-                                   <th>Incoming</th>
+                                   <th>Project Masuk</th>
                                    <th>Deadline</th>
                                    <th>Action</th>
                                </tr>
@@ -298,14 +289,12 @@
                                @endforelse
                            </tbody>
                        </table>
-                    </div>
 
                        {{-- Pagination --}}
                        @include('components.dashboard.pagination')
 
                    </div>
                </div>
-            </div>
+           </div>
        </section>
-       
    @endsection

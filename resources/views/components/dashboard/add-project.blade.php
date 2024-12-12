@@ -60,7 +60,7 @@
                         <div class="col">
                             <label for="tanggal_masuk_project" class="form-label"
                                 style="font-size: 0.7em; font-weight: bold;">
-                                TANGGAL PROJECT MASUK
+                                INCOMING PROJECT
                             </label>
                             <input type="date"
                                 class="form-control @error('tanggal_masuk_project') is-invalid @enderror"
