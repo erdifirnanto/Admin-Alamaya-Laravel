@@ -184,13 +184,15 @@
                                    <!-- Main Row 1 -->
                                    @forelse ($projects as $key => $project)
                                        <tr style="height: 80px;">
-                                           <td><input type="checkbox" class="client-checkbox" value="{{ $project->id }}">
+                                           <td style="align-content: center;"><input type="checkbox" class="client-checkbox"
+                                                   value="{{ $project->id }}">
                                            </td>
-                                           <td>{{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}
+                                           <td style="align-content: center;">
+                                               {{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}
                                            </td>
-                                           <td>{{ $project->client_name }}</td>
-                                           <td>{{ $project->project_name }}</td>
-                                           <td>
+                                           <td style="align-content: center;">{{ $project->client_name }}</td>
+                                           <td style="align-content: center;">{{ $project->project_name }}</td>
+                                           <td style="align-content: center;">
                                                <div class="accordion" id="accordionExample1">
                                                    <h2 class="accordion-header" id="headingOne1">
                                                        <button class="accordion-button collapsed" type="button"
@@ -215,18 +217,19 @@
                                                    </div>
                                                </div>
                                            </td>
-                                           <td>{{ $project->phone }}</td>
-                                           <td>{{ $project->pic_name }}</td>
-                                           <td>
+                                           <td style="align-content: center;">{{ $project->phone }}</td>
+                                           <td style="align-content: center;">{{ $project->pic_name }}</td>
+                                           <td style="align-content: center;">
                                                @if ($project->category === 'new_project')
                                                    New Project
                                                @else
                                                    {{ $project->category }}
                                                @endif
                                            </td>
-                                           <td>{{ $project->tanggal_masuk_project }}</td>
-                                           <td>{{ $project->deadline }}</td>
-                                           <td>{{-- Edit Modal --}}
+                                           <td style="align-content: center;">{{ $project->tanggal_masuk_project }}
+                                           </td>
+                                           <td style="align-content: center;">{{ $project->deadline }}</td>
+                                           <td style="align-content: center;">{{-- Edit Modal --}}
                                                @include('components.dashboard.edit-project')</td>
                                        </tr>
                                    @empty
