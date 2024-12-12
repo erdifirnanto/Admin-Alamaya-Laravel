@@ -1,7 +1,6 @@
    @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
-
        <section class="main-page" id="main-page">
            <section>
                <!-- Table Section Start -->
@@ -78,234 +77,175 @@
                        </div>
 
 
-                    <style>
-                        .table-responsive {
-                        overflow-x: auto;
-                        }
-                    </style>
-                       
-                    <div class="table-responsive">
-                       <table class="table table-hover mt-5 table-sm">
-                           <thead>
-                               <tr style="height: 70px;">
-                                   <th>
-                                       <input style="cursor: pointer" type="checkbox" id="select-all" for="select-all">
-                                   </th>
-                                   <th scope="col"> All
-                                       <!-- Checkbox Select All -->
-                                       <div>
-                                           <script>
-                                               // Pilih semua checkbox saat 'select-all' dicentang
-                                               document.getElementById('select-all').addEventListener('change', function() {
-                                                   const checkboxes = document.querySelectorAll('.client-checkbox');
-                                                   checkboxes.forEach(checkbox => {
-                                                       checkbox.checked = this.checked;
-                                                   });
+                       <style>
+                           .table-responsive {
+                               overflow-x: auto;
+                           }
+                       </style>
+
+                       <div class="table-responsive">
+                           <table class="table table-hover mt-5 table-sm">
+                               <thead>
+                                   <tr style="height: 70px;">
+                                       <th>
+                                           <input style="cursor: pointer" type="checkbox" id="select-all" for="select-all">
+                                           All
+                                       </th>
+                                       <script>
+                                           // Pilih semua checkbox saat 'select-all' dicentang
+                                           document.getElementById('select-all').addEventListener('change', function() {
+                                               const checkboxes = document.querySelectorAll('.client-checkbox');
+                                               checkboxes.forEach(checkbox => {
+                                                   checkbox.checked = this.checked;
                                                });
-
-                                               // Menghapus semua klien yang terpilih
-                                               document.querySelector('.delete-selected').addEventListener('click', function() {
-                                                   const selectedProject = [];
-                                                   document.querySelectorAll('.client-checkbox:checked').forEach(checkbox => {
-                                                       selectedProject.push(checkbox.value);
-                                                   });
-
-                                                   console.log("Selected Client IDs:", selectedProject); // Debugging
-
-                                                   if (selectedProject.length === 0) {
-                                                       alert("No Project selected.");
-                                                       return;
-                                                   }
-
-                                                   if (confirm("Are you sure you want to delete the selected Project?")) {
-                                                       fetch('/project/delete-multiple', {
-                                                               method: 'POST',
-                                                               headers: {
-                                                                   'Content-Type': 'application/json',
-                                                                   'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
-                                                                       'content')
-                                                               },
-                                                               body: JSON.stringify({
-                                                                   ids: selectedProject
-                                                               })
-                                                           })
-                                                           .then(response => response.json())
-                                                           .then(data => {
-                                                               if (data.success) {
-                                                                   alert("Selected Project deleted successfully!");
-                                                                   location.reload(); // Refresh halaman atau update DOM
-                                                               } else {
-                                                                   alert("Failed to delete Project.");
-                                                               }
-                                                           })
-                                                           .catch(error => console.error("Error deleting Project:", error));
-                                                   }
-
-                                               });
-                                           </script>
-                                       </div>
-                                   </th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           No.
-                                           <span class="sort-icons sort-button" data-sort="id" data-order="asc"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           Name
-                                           <span class="sort-icons sort-button" data-sort="client-name" data-order="asc"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   <th>Project</th>
-                                   <th>Email</th>
-                                   <th>Phone</th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           PIC
-                                           <span class="sort-icons sort-button" data-sort="pic-name" data-order="asc"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           Category
-                                           <span class="sort-icons sort-button" data-sort="product-category"
-                                               data-order="asc"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span>
-                                       </span>
-                                   </th>
-                                   {{-- <th>Status</th> --}}
-                                   <th>Incoming</th>
-                                   <th>Deadline</th>
-                                   <th>Action</th>
-                               </tr>
-
-                               <script>
-                                   document.querySelectorAll('.sort-button').forEach(button => {
-                                       button.addEventListener('click', function() {
-                                           const sortKey = this.getAttribute('data-sort');
-                                           const order = this.getAttribute('data-order');
-
-                                           // Toggle sort order
-                                           const newOrder = order === 'asc' ? 'desc' : 'asc';
-                                           this.setAttribute('data-order', newOrder);
-
-                                           const table = document.querySelector('.table tbody');
-                                           const rows = Array.from(table.rows);
-
-                                           // Sort rows
-                                           rows.sort((a, b) => {
-                                               const aValue = a.querySelector(`td:nth-child(${sortKey === 'id' ? 2 : 3})`)
-                                                   .textContent; // Ganti 2/3 dengan nomor kolom yang sesuai
-                                               const bValue = b.querySelector(`td:nth-child(${sortKey === 'id' ? 2 : 3})`)
-                                                   .textContent;
-
-                                               return (order === 'asc' ? aValue.localeCompare(bValue) : bValue.localeCompare(
-                                                   aValue));
                                            });
 
-                                           // Clear and append sorted rows
-                                           table.innerHTML = '';
-                                           rows.forEach(row => table.appendChild(row));
-                                       });
-                                   });
-                               </script>
-                           </thead>
-                           <tbody>
-                               @forelse ($projects as $key => $project)
-                                   <tr style="height: 80px;">
-                                       <td style="align-content: center"><input type="checkbox" class="client-checkbox"
-                                               value="{{ $project->id }}">
-                                       </td>
-                                       <td></td>
-                                       <td style="align-content: center">
-                                           {{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}</td>
-                                       <td style="align-content: center" data-key="client-name">
-                                           {{ $project->client_name }}</td>
-                                       <td style="align-content: center" data-key="client-name">
-                                           {{ $project->project_name }}</td>
-                                       <td style="align-content: center">
-                                           {{ $project->email }}
-                                           <span class="sort-icons toggle-chevron" aria-expanded="false"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span>
-                                       </td>
-                                       <td style="align-content: center">{{ $project->phone }}</td>
-                                       <td style="align-content: center" data-key="pic-name">{{ $project->pic_name }}
-                                       </td>
-                                       <td style="align-content: center">
-                                           @if ($project->category === 'new_project')
-                                               New Project
-                                           @else
-                                               {{ $project->category }}
-                                           @endif
-                                       </td>
+                                           // Menghapus semua klien yang terpilih
+                                           document.querySelector('.delete-selected').addEventListener('click', function() {
+                                               const selectedProject = [];
+                                               document.querySelectorAll('.client-checkbox:checked').forEach(checkbox => {
+                                                   selectedProject.push(checkbox.value);
+                                               });
 
-                                       {{-- <td style="align-content: center">{{ $project->status }}</td> --}}
-                                       <td style="align-content: center">{{ $project->tanggal_masuk_project }}</td>
-                                       <td style="align-content: center">{{ $project->deadline }}</td>
-                                       <td style="align-content: center">
-                                           <div class="dropdown text-center">
+                                               console.log("Selected Client IDs:", selectedProject); // Debugging
 
+                                               if (selectedProject.length === 0) {
+                                                   alert("No Project selected.");
+                                                   return;
+                                               }
 
-                                               {{-- Edit Modal --}}
-                                               @include('components.dashboard.edit-project')
+                                               if (confirm("Are you sure you want to delete the selected Project?")) {
+                                                   fetch('/project/delete-multiple', {
+                                                           method: 'POST',
+                                                           headers: {
+                                                               'Content-Type': 'application/json',
+                                                               'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute(
+                                                                   'content')
+                                                           },
+                                                           body: JSON.stringify({
+                                                               ids: selectedProject
+                                                           })
+                                                       })
+                                                       .then(response => response.json())
+                                                       .then(data => {
+                                                           if (data.success) {
+                                                               alert("Selected Project deleted successfully!");
+                                                               location.reload(); // Refresh halaman atau update DOM
+                                                           } else {
+                                                               alert("Failed to delete Project.");
+                                                           }
+                                                       })
+                                                       .catch(error => console.error("Error deleting Project:", error));
+                                               }
 
-                                           </div>
-                                       </td>
+                                           });
+
+                                           //    Sorting
+                                           function sortTable(columnIndex) {
+                                               const table = document.getElementById('table-body');
+                                               const rows = Array.from(table.rows);
+                                               const isAscending = table.getAttribute('data-sort-order') === 'asc';
+
+                                               rows.sort((a, b) => {
+                                                   const cellA = a.cells[columnIndex].innerText.toLowerCase();
+                                                   const cellB = b.cells[columnIndex].innerText.toLowerCase();
+
+                                                   if (!isNaN(cellA) && !isNaN(cellB)) {
+                                                       return isAscending ? cellA - cellB : cellB - cellA;
+                                                   } else {
+                                                       return isAscending ? cellA.localeCompare(cellB) : cellB.localeCompare(cellA);
+                                                   }
+                                               });
+
+                                               rows.forEach(row => table.appendChild(row));
+                                               table.setAttribute('data-sort-order', isAscending ? 'desc' : 'asc');
+                                           }
+                                       </script>
+                                       <th style="align-items: center;" data-sort="id" onclick="sortTable(1)">No <i
+                                               class="fa fa-sort"></i></th>
+                                       <th style="align-items: center;" data-sort="name" onclick="sortTable(2)">Name <i
+                                               class="fa fa-sort"></i></th>
+                                       <th style="align-items: center;">Project</th>
+                                       <th style="align-items: center;">Email</th>
+                                       <th style="align-items: center;">Phone</th>
+                                       <th style="align-items: center;">PIC</th>
+                                       <th style="align-items: center;" data-sort="category" onclick="sortTable(3)">Category
+                                           <i class="fa fa-sort"></i>
+                                       </th>
+                                       <th style="align-items: center;" data-sort="projectmasuk" onclick="sortTable(4)">
+                                           Incoming<i class="fa fa-sort"></i></th>
+                                       <th style="align-items: center;" data-sort="deadline" onclick="sortTable(6)">Deadline
+                                           <i class="fa fa-sort"></i>
+                                       </th>
+                                       <th style="align-items: center;">Action</th>
                                    </tr>
-                                   <tr class="collapse-row" style="display: none;">
-                                       <td></td>
-                                       <td colspan="3">
-                                           <div class="collapse-content"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $project->company_name }}</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 20px; cursor: pointer;"
-                                                   onclick="copyText('{{ $project->company_name }}')"></i>
-                                           </div>
-                                       </td>
-                                       <td colspan="8">
-                                           <div class="collapse-content1"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $project->address }}</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 20px; cursor: pointer;"
-                                                   onclick="copyText('{{ $project->address }}')"></i>
-                                           </div>
-                                       </td>
-                                   </tr>
-                               @empty
-                                   <tr>
-                                       <td colspan="12" class="text-center"
-                                           style="height: 80px; align-content: center;">Tidak
-                                           ada data yang ditemukan</td>
-                                   </tr>
-                               @endforelse
-                           </tbody>
-                       </table>
-                    </div>
+                               </thead>
+                               <tbody id="table-body">
+                                   <!-- Main Row 1 -->
+                                   @forelse ($projects as $key => $project)
+                                       <tr style="height: 80px;">
+                                           <td><input type="checkbox" class="client-checkbox" value="{{ $project->id }}">
+                                           </td>
+                                           <td>{{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}
+                                           </td>
+                                           <td>{{ $project->client_name }}</td>
+                                           <td>{{ $project->project_name }}</td>
+                                           <td>
+                                               <div class="accordion" id="accordionExample1">
+                                                   <h2 class="accordion-header" id="headingOne1">
+                                                       <button class="accordion-button collapsed" type="button"
+                                                           data-bs-toggle="collapse" data-bs-target="#{{ $project->id }}"
+                                                           aria-expanded="false" aria-controls="{{ $project->id }}">
+                                                           <p>{{ $project->email }}</p>
+                                                       </button>
+                                                   </h2>
+                                                   <div class="accordion-item">
+                                                       <div id="{{ $project->id }}" class="accordion-collapse collapse"
+                                                           aria-labelledby="headingOne1"
+                                                           data-bs-parent="#accordionExample1">
+                                                           <div class="accordion-body">
+                                                               <span>{{ $project->company_name }}</span>
+                                                               <i class="fa-regular fa-copy"
+                                                                   onclick="copyText('{{ $project->company_name }}')"></i>
+                                                               <span>{{ $project->address }}</span>
+                                                               <i class="fa-regular fa-copy"
+                                                                   onclick="copyText('{{ $project->address }}')"></i>
+                                                           </div>
+                                                       </div>
+                                                   </div>
+                                               </div>
+                                           </td>
+                                           <td>{{ $project->phone }}</td>
+                                           <td>{{ $project->pic_name }}</td>
+                                           <td>
+                                               @if ($project->category === 'new_project')
+                                                   New Project
+                                               @else
+                                                   {{ $project->category }}
+                                               @endif
+                                           </td>
+                                           <td>{{ $project->tanggal_masuk_project }}</td>
+                                           <td>{{ $project->deadline }}</td>
+                                           <td>{{-- Edit Modal --}}
+                                               @include('components.dashboard.edit-project')</td>
+                                       </tr>
+                                   @empty
+                                       <tr>
+                                           <td colspan="12" class="text-center"
+                                               style="height: 80px; align-content: center;">Tidak
+                                               ada data yang ditemukan</td>
+                                       </tr>
+                                   @endforelse
+
+                               </tbody>
+                           </table>
+                       </div>
 
                        {{-- Pagination --}}
                        @include('components.dashboard.pagination')
 
                    </div>
                </div>
-            </div>
+           </div>
        </section>
-       
    @endsection
