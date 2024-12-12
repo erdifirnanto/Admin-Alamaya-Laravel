@@ -181,7 +181,7 @@
                                    </tr>
                                </thead>
                                <tbody id="table-body">
-                                   <!-- Main Row 1 -->
+                                   <!-- Main Row -->
                                    @forelse ($projects as $key => $project)
                                        <tr style="height: 80px;">
                                            <td style="align-content: center;"><input type="checkbox" class="client-checkbox"
@@ -206,12 +206,16 @@
                                                            aria-labelledby="headingOne1"
                                                            data-bs-parent="#accordionExample1">
                                                            <div class="accordion-body">
-                                                               <span>{{ $project->company_name }}</span>
-                                                               <i class="fa-regular fa-copy"
-                                                                   onclick="copyText('{{ $project->company_name }}')"></i>
-                                                               <span>{{ $project->address }}</span>
-                                                               <i class="fa-regular fa-copy"
-                                                                   onclick="copyText('{{ $project->address }}')"></i>
+                                                               <div>
+                                                                   <span>{{ $project->company_name }}</span>
+                                                                   <i class="fa-regular fa-copy"
+                                                                       onclick="copyText('{{ $project->company_name }}')"></i>
+                                                               </div>
+                                                               <div>
+                                                                   <span>{{ $project->address }}</span>
+                                                                   <i class="fa-regular fa-copy"
+                                                                       onclick="copyText('{{ $project->address }}')"></i>
+                                                               </div>
                                                            </div>
                                                        </div>
                                                    </div>
