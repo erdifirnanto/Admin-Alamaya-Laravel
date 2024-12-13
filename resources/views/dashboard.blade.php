@@ -67,10 +67,11 @@
                                        Sort by
                                    </button>
                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                       <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc">By
-                                               ID</button></li>
+                                       <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc"
+                                               onclick="sortTable(1)">By
+                                               No</button></li>
                                        <li><button class="dropdown-item sort-button" data-sort="client_name"
-                                               data-order="asc">By Name</button></li>
+                                               data-order="asc" onclick="sortTable(2)">By Name</button></li>
                                    </ul>
                                </div>
                            </div>
@@ -84,6 +85,7 @@
                        </style>
 
                        <div class="table-responsive">
+                           <table class="table table-hover table-sm">
                            <table class="table table-hover table-sm">
                                <thead>
                                    <tr style="height: 50px;">
@@ -170,20 +172,17 @@
                                        <th style="align-items: center;">Email</th>
                                        <th style="align-items: center;">Phone</th>
                                        <th style="align-items: center;">PIC</th>
-                                       <th style="align-items: center;" data-sort="category" onclick="sortTable(3)">Category
-                                           <i class="fa fa-sort"></i>
+                                       <th style="align-items: center;">Category</i>
                                        </th>
                                        {{-- <th style="align-items: center; width: 95px;" data-sort="projectmasuk"
                                            onclick="sortTable(4)">
                                            Incoming <i class="fa fa-sort"></i></th> --}}
-                                       <th style="align-items: center; width: 95px;" data-sort="deadline"
-                                           onclick="sortTable(6)">Deadline
-                                           <i class="fa fa-sort"></i>
+                                       <th style="align-items: center; width: 95px;">Deadline
                                        </th>
                                        <th style="align-items: center;">Action</th>
                                    </tr>
                                </thead>
-                               <tbody id="table-body">
+                               <tbody id="table-body" style="text-transform: capitalize">
                                    <!-- Main Row -->
                                    @forelse ($projects as $key => $project)
                                        <tr style="height: 80px;">
@@ -193,8 +192,10 @@
                                            <td style="align-content: center;">
                                                {{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}
                                            </td>
-                                           <td style="align-content: center;">{{ $project->client_name }}</td>
-                                           <td style="align-content: center;">{{ $project->project_name }}</td>
+                                           <td style="align-content: center;">
+                                               {{ $project->client_name }}</td>
+                                           <td style="align-content: center;">
+                                               {{ $project->project_name }}</td>
                                            <td style="align-content: center;">
                                                <div class="accordion" id="accordionExample1">
                                                    <h2 class="accordion-header" id="headingOne1">
@@ -220,8 +221,9 @@
                                                                        onclick="copyText('{{ $project->address }}')"></i>
                                                                </div>
                                                                <div>
-                                                                   <span>Incoming -
-                                                                       {{ $project->tanggal_masuk_project }}</span>
+                                                                   <span><b>JOIN DATE -
+                                                                           {{ $project->tanggal_masuk_project }}
+                                                                       </b></span>
                                                                    {{-- <i class="fa-regular fa-copy"
                                                                        onclick="copyText('{{ $project->tanggal_masuk_project }}')"></i> --}}
                                                                </div>
@@ -230,8 +232,10 @@
                                                    </div>
                                                </div>
                                            </td>
-                                           <td style="align-content: center;">{{ $project->phone }}</td>
-                                           <td style="align-content: center;">{{ $project->pic_name }}</td>
+                                           <td style="align-content: center;">{{ $project->phone }}
+                                           </td>
+                                           <td style="align-content: center;">{{ $project->pic_name }}
+                                           </td>
                                            <td style="align-content: center;">
                                                @if ($project->category === 'new_project')
                                                    New Project
@@ -241,8 +245,10 @@
                                            </td>
                                            {{-- <td style="align-content: center;">{{ $project->tanggal_masuk_project }}
                                            </td> --}}
-                                           <td style="align-content: center;">{{ $project->deadline }}</td>
-                                           <td style="align-content: center; text-align: end;">{{-- Edit Modal --}}
+                                           <td style="align-content: center;">{{ $project->deadline }}
+                                           </td>
+                                           <td style="align-content: center; text-align: end;">
+                                               {{-- Edit Modal --}}
                                                @include('components.dashboard.edit-project')</td>
                                        </tr>
                                    @empty

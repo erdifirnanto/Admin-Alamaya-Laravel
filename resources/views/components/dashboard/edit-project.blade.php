@@ -58,9 +58,7 @@
                          </div>
                          <div class="col">
                              <label for="tanggal_masuk_project" class="form-label"
-                                 style="font-size: 0.7em; font-weight: bold;">INCOMING
-                                 PROJECT
-                             </label>
+                                 style="font-size: 0.7em; font-weight: bold;">Join Date</label>
                              <input type="date"
                                  class="form-control @error('tanggal_masuk_project') is-invalid @enderror"
                                  id="tanggal_masuk_project" name="tanggal_masuk_project" placeholder="Enter Date"
@@ -93,7 +91,7 @@
                          <div class="col">
                              <label for="category" class="form-label"
                                  style="font-size: 0.7em; font-weight: bold;">CATEGORY
-                                 PRODUCT</label>
+                                 PROJECT</label>
                              <select class="form-select @error('category') is-invalid @enderror" id="category"
                                  name="category" required>
                                  <option selected value="{{ $project->category }}">
