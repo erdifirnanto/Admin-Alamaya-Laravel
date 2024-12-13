@@ -205,7 +205,7 @@
                                                        <div id="{{ $project->id }}" class="accordion-collapse collapse"
                                                            aria-labelledby="headingOne1"
                                                            data-bs-parent="#accordionExample1">
-                                                           <div class="accordion-body">
+                                                           <div class="accordion-body justify-content-between align-items-center">
                                                                <div>
                                                                    <span>{{ $project->company_name }}</span>
                                                                    <i class="fa-regular fa-copy"
