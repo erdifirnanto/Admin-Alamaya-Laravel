@@ -1,7 +1,7 @@
    @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
-   
+
        <section class="main-page" id="main-page">
            <section>
                <!-- Table Section Start -->
@@ -87,7 +87,8 @@
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="personil_name" class="form-label" style="font-size: 0.7em;">PERSONIL NAME</label>
+                                                               <label for="personil_name" class="form-label"
+                                                                   style="font-size: 0.7em;">PERSONIL NAME</label>
                                                                <input type="text" class="form-control"
                                                                    name="personil_name" id="personil_name"
                                                                    placeholder="Enter the Personil Name" required
@@ -99,7 +100,8 @@
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="division" class="form-label" style="font-size: 0.7em;">DIVISION</label>
+                                                               <label for="division" class="form-label"
+                                                                   style="font-size: 0.7em;">DIVISION</label>
                                                                <input type="text" class="form-control" name="division"
                                                                    id="division" placeholder="Enter the Division" required
                                                                    pattern="^[a-zA-Z\s]+$">
@@ -110,7 +112,8 @@
 
                                                        <div class="row mb-3">
                                                            <div class="col">
-                                                               <label for="project_handle" class="form-label" style="font-size: 0.7em;">PROJECT HANDLE</label>
+                                                               <label for="project_handle" class="form-label"
+                                                                   style="font-size: 0.7em;">PROJECT HANDLE</label>
                                                                <input type="text" class="form-control"
                                                                    name="project_handle" id="project_handle"
                                                                    placeholder="Enter the Project Handle" required>
@@ -173,9 +176,9 @@
                            </div>
                        </div>
 
-                       <table class="table table-hover mt-5 table-sm">
+                       <table class="table table-hover table-sm">
                            <thead>
-                               <tr style="height: 70px;">
+                               <tr style="height: 50px;">
                                    <th scope="col">
                                        <!-- Checkbox Select All -->
                                        <div>
@@ -235,11 +238,10 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           No. Id
+                                           No.
                                            <span class="sort-icons sort-button" data-sort="id" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <span class="fa fa-sort"></span>
                                            </span>
                                        </span>
                                    </th>
@@ -248,8 +250,7 @@
                                            Personil Name
                                            <span class="sort-icons sort-button" data-sort="project-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <span class="fa fa-sort"></span>
                                            </span>
                                        </span>
                                    </th>
@@ -259,8 +260,7 @@
                                            Division
                                            <span class="sort-icons sort-button" data-sort="domain" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <span class="fa fa-sort"></span>
                                            </span>
                                        </span>
                                    </th>
@@ -269,8 +269,7 @@
                                            Project Handle
                                            <span class="sort-icons sort-button" data-sort="expired" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <span class="fa fa-sort"></span>
                                            </span>
                                        </span>
                                    </th>
@@ -359,8 +358,9 @@
 
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="personil_name"
-                                                                               class="form-label" style="font-size: 0.7em;">PERSONIL NAME</label>
+                                                                           <label for="personil_name" class="form-label"
+                                                                               style="font-size: 0.7em;">PERSONIL
+                                                                               NAME</label>
                                                                            <input type="text" class="form-control"
                                                                                name="personil_name" id="personil_name"
                                                                                placeholder="Enter the Personil Name"
@@ -374,8 +374,8 @@
 
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="division"
-                                                                               class="form-label" style="font-size: 0.7em;">DIVISION</label>
+                                                                           <label for="division" class="form-label"
+                                                                               style="font-size: 0.7em;">DIVISION</label>
                                                                            <input type="text" class="form-control"
                                                                                name="division" id="division"
                                                                                placeholder="Enter the Division" required
@@ -390,8 +390,9 @@
 
                                                                    <div class="row mb-3">
                                                                        <div class="col">
-                                                                           <label for="project_handle"
-                                                                               class="form-label" style="font-size: 0.7em;">PROJECT HANDLE</label>
+                                                                           <label for="project_handle" class="form-label"
+                                                                               style="font-size: 0.7em;">PROJECT
+                                                                               HANDLE</label>
                                                                            <input type="text" class="form-control"
                                                                                name="project_handle" id="project_handle"
                                                                                placeholder="Enter the Project Handle"

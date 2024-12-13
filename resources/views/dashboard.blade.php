@@ -88,9 +88,12 @@
                            <table class="table table-hover table-sm">
                                <thead>
                                    <tr style="height: 40px;">
-                                       <th style="width: 50px">
-                                           <input style="cursor: pointer" type="checkbox" id="select-all" for="select-all">
-                                           All
+                                       <th scope="col" style="width: 50px">
+                                           <div>
+                                               <input style="cursor: pointer" type="checkbox" id="select-all"
+                                                   for="select-all">
+                                               <label for="select-all">All</label>
+                                           </div>
                                        </th>
                                        <script>
                                            // Pilih semua checkbox saat 'select-all' dicentang
@@ -163,19 +166,24 @@
                                            }
                                        </script>
                                        <th style="align-items: center; min-width:50px" data-sort="id"
-                                           onclick="sortTable(1)">
-                                           No <i class="fa fa-sort"></i></th>
+                                           onclick="sortTable(1)"><span style="display: inline-flex; align-items: center;">
+                                               No.
+                                               <span class="sort-icons sort-button"
+                                                   style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                                   <span class="fa fa-sort"></span>
+                                               </span>
+                                           </span></th>
                                        <th style="align-items: center;" data-sort="name" onclick="sortTable(2)">Name <i
                                                class="fa fa-sort"></i></th>
                                        <th style="align-items: center;">Project</th>
                                        <th style="align-items: center;">Email</th>
-                                       <th style="align-items: center;">Phone</th>
+                                       {{-- <th style="align-items: center;">Phone</th> --}}
                                        <th style="align-items: center;">PIC</th>
                                        <th style="align-items: center;">Category</i>
                                        </th>
-                                       {{-- <th style="align-items: center; width: 95px;" data-sort="projectmasuk"
+                                       <th style="align-items: center; width: 95px;" data-sort="projectmasuk"
                                            onclick="sortTable(4)">
-                                           Incoming <i class="fa fa-sort"></i></th> --}}
+                                           Join Date <i class="fa fa-sort"></i></th>
                                        <th style="align-items: center; width: 95px;">Deadline
                                        </th>
                                        <th style="align-items: center;">Action</th>
@@ -220,8 +228,8 @@
                                                                        onclick="copyText('{{ $project->address }}')"></i>
                                                                </div>
                                                                <div>
-                                                                   <span><b>JOIN DATE -
-                                                                           {{ $project->tanggal_masuk_project }}
+                                                                   <span><b>Phone -
+                                                                           {{ $project->phone }}
                                                                        </b></span>
                                                                    {{-- <i class="fa-regular fa-copy"
                                                                        onclick="copyText('{{ $project->tanggal_masuk_project }}')"></i> --}}
@@ -231,8 +239,8 @@
                                                    </div>
                                                </div>
                                            </td>
-                                           <td style="align-content: center;">{{ $project->phone }}
-                                           </td>
+                                           {{-- <td style="align-content: center;">{{ $project->phone }}
+                                           </td> --}}
                                            <td style="align-content: center;">{{ $project->pic_name }}
                                            </td>
                                            <td style="align-content: center;">
@@ -242,8 +250,8 @@
                                                    {{ $project->category }}
                                                @endif
                                            </td>
-                                           {{-- <td style="align-content: center;">{{ $project->tanggal_masuk_project }}
-                                           </td> --}}
+                                           <td style="align-content: center;">{{ $project->tanggal_masuk_project }}
+                                           </td>
                                            <td style="align-content: center;">{{ $project->deadline }}
                                            </td>
                                            <td style="align-content: center; text-align: end;">
