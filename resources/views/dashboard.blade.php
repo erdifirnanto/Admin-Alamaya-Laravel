@@ -84,9 +84,9 @@
                        </style>
 
                        <div class="table-responsive">
-                           <table class="table table-hover mt-5 table-sm">
+                           <table class="table table-hover table-sm">
                                <thead>
-                                   <tr style="height: 70px;">
+                                   <tr style="height: 50px;">
                                        <th style="width: 50px">
                                            <input style="cursor: pointer" type="checkbox" id="select-all" for="select-all">
                                            All
