@@ -87,7 +87,7 @@
                            <table class="table table-hover mt-5 table-sm">
                                <thead>
                                    <tr style="height: 70px;">
-                                       <th>
+                                       <th style="width: 50px">
                                            <input style="cursor: pointer" type="checkbox" id="select-all" for="select-all">
                                            All
                                        </th>
@@ -161,8 +161,9 @@
                                                table.setAttribute('data-sort-order', isAscending ? 'desc' : 'asc');
                                            }
                                        </script>
-                                       <th style="align-items: center;" data-sort="id" onclick="sortTable(1)">No <i
-                                               class="fa fa-sort"></i></th>
+                                       <th style="align-items: center; min-width:50px" data-sort="id"
+                                           onclick="sortTable(1)">
+                                           No <i class="fa fa-sort"></i></th>
                                        <th style="align-items: center;" data-sort="name" onclick="sortTable(2)">Name <i
                                                class="fa fa-sort"></i></th>
                                        <th style="align-items: center;">Project</th>
@@ -172,9 +173,11 @@
                                        <th style="align-items: center;" data-sort="category" onclick="sortTable(3)">Category
                                            <i class="fa fa-sort"></i>
                                        </th>
-                                       <th style="align-items: center;" data-sort="projectmasuk" onclick="sortTable(4)">
-                                           Incoming<i class="fa fa-sort"></i></th>
-                                       <th style="align-items: center;" data-sort="deadline" onclick="sortTable(6)">Deadline
+                                       {{-- <th style="align-items: center; width: 95px;" data-sort="projectmasuk"
+                                           onclick="sortTable(4)">
+                                           Incoming <i class="fa fa-sort"></i></th> --}}
+                                       <th style="align-items: center; width: 95px;" data-sort="deadline"
+                                           onclick="sortTable(6)">Deadline
                                            <i class="fa fa-sort"></i>
                                        </th>
                                        <th style="align-items: center;">Action</th>
@@ -184,8 +187,8 @@
                                    <!-- Main Row -->
                                    @forelse ($projects as $key => $project)
                                        <tr style="height: 80px;">
-                                           <td style="align-content: center;"><input type="checkbox" class="client-checkbox"
-                                                   value="{{ $project->id }}">
+                                           <td style="align-content: center; cursor: pointer;"><input type="checkbox"
+                                                   class="client-checkbox" value="{{ $project->id }}">
                                            </td>
                                            <td style="align-content: center;">
                                                {{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}
@@ -198,7 +201,7 @@
                                                        <button class="accordion-button collapsed" type="button"
                                                            data-bs-toggle="collapse" data-bs-target="#{{ $project->id }}"
                                                            aria-expanded="false" aria-controls="{{ $project->id }}">
-                                                           <p>{{ $project->email }}</p>
+                                                           <span>{{ $project->email }}</span>
                                                        </button>
                                                    </h2>
                                                    <div class="accordion-item">
@@ -208,13 +211,19 @@
                                                            <div class="accordion-body">
                                                                <div>
                                                                    <span>{{ $project->company_name }}</span>
-                                                                   <i class="fa-regular fa-copy"
+                                                                   <i style="cursor: pointer" class="fa-regular fa-copy"
                                                                        onclick="copyText('{{ $project->company_name }}')"></i>
                                                                </div>
                                                                <div>
                                                                    <span>{{ $project->address }}</span>
-                                                                   <i class="fa-regular fa-copy"
+                                                                   <i style="cursor: pointer" class="fa-regular fa-copy"
                                                                        onclick="copyText('{{ $project->address }}')"></i>
+                                                               </div>
+                                                               <div>
+                                                                   <span>Incoming -
+                                                                       {{ $project->tanggal_masuk_project }}</span>
+                                                                   {{-- <i class="fa-regular fa-copy"
+                                                                       onclick="copyText('{{ $project->tanggal_masuk_project }}')"></i> --}}
                                                                </div>
                                                            </div>
                                                        </div>
@@ -230,10 +239,10 @@
                                                    {{ $project->category }}
                                                @endif
                                            </td>
-                                           <td style="align-content: center;">{{ $project->tanggal_masuk_project }}
-                                           </td>
+                                           {{-- <td style="align-content: center;">{{ $project->tanggal_masuk_project }}
+                                           </td> --}}
                                            <td style="align-content: center;">{{ $project->deadline }}</td>
-                                           <td style="align-content: center;">{{-- Edit Modal --}}
+                                           <td style="align-content: center; text-align: end;">{{-- Edit Modal --}}
                                                @include('components.dashboard.edit-project')</td>
                                        </tr>
                                    @empty
