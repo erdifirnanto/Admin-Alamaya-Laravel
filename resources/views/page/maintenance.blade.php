@@ -81,16 +81,17 @@
                                        }
                                    </script>
 
-                                   <!-- Dropdown Button -->
+                                   <!-- Sortby Button -->
                                    <button class="btn btn-dropdown dropdown-toggle srtby" type="button"
                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                        Sort by
                                    </button>
                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                       <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc">By
-                                               ID</button></li>
-                                       <li><button class="dropdown-item sort-button" data-sort="project_name"
-                                               data-order="asc">By Name</button></li>
+                                       <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc"
+                                               onclick="sortTable(1)">By
+                                               No</button></li>
+                                       <li><button class="dropdown-item sort-button" data-sort="client_name"
+                                               data-order="asc" onclick="sortTable(2)">By Name</button></li>
                                    </ul>
 
 
@@ -278,7 +279,7 @@
                                            <div class="btn rounded-5 align-top d-flex justify-content-center align-items-center"
                                                style="height: 4vh; width: 100px; background-color: #f8e2f7; border: 2px solid #f8e2f7;">
                                                @if ($project->status == 'new_project')
-                                                   <p style="margin: 0; color: rgb(240, 255, 25); font-size:14px;">New
+                                                   <p style="margin: 0; color: rgb(25, 240, 255); font-size:14px;">New
                                                    </p>
                                                @elseif ($project->status == 'Mindmap')
                                                    <p style="margin: 0; color: rgb(6, 129, 167) ; font-size:14px;">1. Mindmap
@@ -287,7 +288,7 @@
                                                     <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">2. Design
                                                    </p>
                                                @elseif ($project->status == 'Slicing')
-                                                   <p style="margin: 0; color: rgb(8, 230, 126); font-size:14px;">3. Slicing
+                                                   <p style="margin: 0; color: rgb(10, 100, 58); font-size:14px;">3. Slicing
                                                    </p>
                                                @elseif ($project->status == 'Maintenance')
                                                    <p style="margin: 0; color: rgb(250, 47, 47); font-size:14px;">

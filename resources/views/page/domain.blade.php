@@ -69,16 +69,17 @@
                                    {{-- Add Domain --}}
                                    @include('components.domain.add-domain')
 
-                                   <!-- Dropdown Button -->
+                                   <!-- Sortby Button -->
                                    <button class="btn btn-dropdown dropdown-toggle srtby" type="button"
                                        id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                        Sort by
                                    </button>
                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                       <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc">By
-                                               ID</button></li>
-                                       <li><button class="dropdown-item sort-button" data-sort="project_name"
-                                               data-order="asc">By Name</button></li>
+                                       <li><button class="dropdown-item sort-button" data-sort="id" data-order="asc"
+                                               onclick="sortTable(1)">By
+                                               No</button></li>
+                                       <li><button class="dropdown-item sort-button" data-sort="client_name"
+                                               data-order="asc" onclick="sortTable(2)">By Name</button></li>
                                    </ul>
 
 
