@@ -1,7 +1,7 @@
-{{-- <!-- Search Input -->
+<!-- Search Input -->
 <div class="search-box">
-    <form action="{{ route('onprogress.search') }}" method="GET">
+    <form action=>
         <input id="searchInput" style="width: 400px;" type="text" name="search" placeholder="Search">
         <span class="icon-search"><i class="fas fa-search"></i></span>
     </form>
-</div> --}}
+</div>

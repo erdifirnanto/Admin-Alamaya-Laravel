@@ -182,9 +182,8 @@
                                        <th style="align-items: center;">PIC</th>
                                        <th style="align-items: center;">Category</i>
                                        </th>
-                                       <th style="align-items: center; width: 95px;" data-sort="projectmasuk"
-                                           onclick="sortTable(4)">
-                                           Join Date <i class="fa fa-sort"></i></th>
+                                       <th style="align-items: center; width: 95px;">
+                                           Join Date</th>
                                        <th style="align-items: center; width: 95px;">Deadline
                                        </th>
                                        <th style="align-items: center;">Action</th>

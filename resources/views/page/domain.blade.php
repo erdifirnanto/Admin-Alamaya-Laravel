@@ -301,7 +301,7 @@
                            </tbody>
                        </table>
 
-                       @include('components.domain.pagination')
+                       @include('components.domain.pagination-domain')
 
 
                    </div>

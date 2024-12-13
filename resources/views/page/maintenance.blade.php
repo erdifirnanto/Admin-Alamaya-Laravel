@@ -185,7 +185,6 @@
                                            <span class="sort-icons sort-button" data-sort="product-category"
                                                data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -212,7 +211,6 @@
                                            Deadline
                                            <span class="sort-icons sort-button" data-sort="deadline" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
