@@ -153,8 +153,7 @@
                                            No. Id
                                            <span class="sort-icons sort-button" data-sort="id" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -180,8 +179,7 @@
                                            Expired
                                            <span class="sort-icons sort-button" data-sort="expired" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -229,10 +227,6 @@
                                            {{ $domain->project_name }}</td>
                                        <td style="align-content: center" data-key="product-domain">
                                            {{ $domain->domain }}
-                                           {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span> --}}
                                        </td>
                                        <td style="align-content: center" data-key="pic-name">{{ $domain->expired }}
                                        </td>
@@ -299,8 +293,7 @@
                                    </tr> --}}
                                @empty
                                    <tr>
-                                       <td colspan="12" class="text-center"
-                                           style="height: 80px; align-content: center;">
+                                       <td colspan="12" class="text-center" style="height: 80px; align-content: center;">
                                            Tidak
                                            ada data yang ditemukan</td>
                                    </tr>

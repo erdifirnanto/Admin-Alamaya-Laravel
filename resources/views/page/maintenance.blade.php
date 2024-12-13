@@ -162,11 +162,10 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Project Id
+                                           No.
                                            <span class="sort-icons sort-button" data-sort="id" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -175,8 +174,7 @@
                                            Project Name
                                            <span class="sort-icons sort-button" data-sort="client-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -187,8 +185,7 @@
                                            <span class="sort-icons sort-button" data-sort="product-category"
                                                data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -197,8 +194,7 @@
                                            PIC
                                            <span class="sort-icons sort-button" data-sort="pic-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -207,8 +203,7 @@
                                            Status
                                            <span class="sort-icons sort-button" data-sort="status" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -217,8 +212,7 @@
                                            Deadline
                                            <span class="sort-icons sort-button" data-sort="deadline" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -282,12 +276,16 @@
                                                    <p style="margin: 0; color: rgb(25, 240, 255); font-size:14px;">New
                                                    </p>
                                                @elseif ($project->status == 'Mindmap')
-                                                   <p style="margin: 0; color: rgb(6, 129, 167) ; font-size:14px;">1. Mindmap
+                                                   <p style="margin: 0; color: rgb(6, 129, 167) ; font-size:14px;">1.
+                                                       Mindmap
                                                    </p>
-                                                @elseif ($project->status == 'Design')
-                                                    <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">2. Design
+                                               @elseif ($project->status == 'Design')
+                                                   <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">2.
+                                                       Design
                                                    </p>
                                                @elseif ($project->status == 'Slicing')
+                                                   <p style="margin: 0; color: rgb(8, 230, 126); font-size:14px;">3.
+                                                       Slicing
                                                    <p style="margin: 0; color: rgb(10, 100, 58); font-size:14px;">3. Slicing
                                                    </p>
                                                @elseif ($project->status == 'Maintenance')

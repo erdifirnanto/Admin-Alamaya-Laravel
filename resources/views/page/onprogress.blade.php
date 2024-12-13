@@ -159,11 +159,10 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Project Id
+                                           No.
                                            <span class="sort-icons sort-button" data-sort="id" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -172,8 +171,7 @@
                                            Project Name
                                            <span class="sort-icons sort-button" data-sort="client-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -184,8 +182,7 @@
                                            <span class="sort-icons sort-button" data-sort="product-category"
                                                data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -194,8 +191,7 @@
                                            PIC
                                            <span class="sort-icons sort-button" data-sort="pic-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -204,8 +200,7 @@
                                            Status
                                            <span class="sort-icons sort-button" data-sort="status" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -214,8 +209,8 @@
                                            Deadline
                                            <span class="sort-icons sort-button" data-sort="deadline" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-up" style="font-size: 10px;"></span>
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
+                                               <i class="fa fa-sort"></i>
+
                                            </span>
                                        </span>
                                    </th>
