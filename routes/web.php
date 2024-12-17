@@ -6,6 +6,7 @@ use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\DomainController;
+use App\Http\Controllers\HostingController;
 use App\Http\Controllers\TeamController;
 use App\Models\Domain;
 use App\Models\Project;
@@ -96,6 +97,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::put('/domain/{domain}', [DomainController::class, 'update'])->name('domain.update');
         Route::get('/search1', [DomainController::class, 'search'])->name('domain.search');
 
+        // route data hosting
+        Route::resource('hosting', HostingController::class);
+        Route::get('/hosting', [HostingController::class, 'View'])->name('hosting.view');
+        Route::post('/hosting/store', [HostingController::class, 'Dstore'])->name('hosting.store');
+        Route::delete('/hosting/{id}', [HostingController::class, 'destroy'])->name('hosting.destroy');
+        Route::post('/hosting/delete-multiple', [HostingController::class, 'deleteMultiple'])->name('hosting.deleteMultiple');
+        Route::get('/hosting/{id}/edit', [HostingController::class, 'edit'])->name('hosting.edit');
+        Route::put('/hosting/{id}', [HostingController::class, 'update'])->name('hosting.update');
+        Route::put('/hosting/{hosting}', [HostingController::class, 'update'])->name('hosting.update');
+        Route::get('/search2', [HostingController::class, 'search'])->name('hosting.search');
 
 
         // route data team

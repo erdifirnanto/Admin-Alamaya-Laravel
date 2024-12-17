@@ -77,6 +77,9 @@
                             <b><a class="nav-link" href="{{ route('domain.view') }}">Domain</a></b>
                         </li>
                         <li class="nav-item">
+                            <b><a class="nav-link" href="{{ route('hosting.view') }}">Hosting</a></b>
+                        </li>
+                        <li class="nav-item">
                             <b><a class="nav-link" href="{{ route('team.view') }}">Teams</a></b>
                         </li>
                     </ul>

@@ -263,9 +263,9 @@
                                                                                            selected>{{ $project->status }}
                                                                                        </option>
                                                                                    @endif
-                                                                                   <option value="Mindmap">Mindmap</option>
-                                                                                   <option value="Design">Design</option>
-                                                                                   <option value="Slicing">Slicing</option>
+                                                                                   <option value="Mindmap">Step 1 - Mindmap</option>
+                                                                                   <option value="Design">Step 2 - Design</option>
+                                                                                   <option value="Slicing">Step 3 - Slicing</option>
                                                                                    <option value="Maintenance">Maintenance
                                                                                    </option>
                                                                                    <option value="Selesai">Selesai</option>

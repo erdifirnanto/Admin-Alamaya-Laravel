@@ -34,6 +34,13 @@
                          </div>
                      </div>
 
+<div class="row mb-3">
+                         <div class="col">
+                             <label for="join_date" class="form-label" style="font-size: 0.7em;">JOIN DATE</label>
+                             <input type="date" class="form-control" name="join_date" id="join_date" required>
+                         </div>
+                     </div>
+
                      <div class="row mb-3">
                          <div class="col">
                              <label for="expired" class="form-label" style="font-size: 0.7em;">EXPIRED</label>

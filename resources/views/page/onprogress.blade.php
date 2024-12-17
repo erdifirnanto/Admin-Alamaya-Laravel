@@ -276,13 +276,13 @@
                                                    <p style="margin: 0; color: rgb(167, 6, 6) ; font-size:14px;">New
                                                    </p>
                                                 @elseif ($project->status == 'Mindmap')
-                                                <p style="margin: 0; color: rgb(144, 25, 255); font-size:14px;">1. Mindmap
+                                                <p style="margin: 0; color: rgb(144, 25, 255); font-size:14px;">Mindmap
                                                 </p>
                                                @elseif ($project->status == 'Design')
-                                                   <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">2. Design
+                                                   <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">Design
                                                    </p>
                                                @elseif ($project->status == 'Slicing')
-                                                   <p style="margin: 0; color: rgb(8, 41, 230); font-size:14px;">3. Slicing
+                                                   <p style="margin: 0; color: rgb(8, 41, 230); font-size:14px;">Slicing
                                                    </p>
                                                @elseif ($project->status == 'Selesai')
                                                    <p style="margin: 0; color: rgb(8, 160, 89) ; font-size:14px;">Selesai

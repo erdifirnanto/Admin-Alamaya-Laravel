@@ -8,7 +8,7 @@
                    <div class="row">
                        <div class="col-12 col-md-12">
                            <div class="d-flex justify-content-center" style="margin-bottom: 50px;">
-                               <h1>Domain</h1>
+                               <h1>Hosting</h1>
                            </div>
                        </div>
                    </div>
@@ -21,7 +21,7 @@
                        <div class="search-add-sort-container">
                            <!-- Search Input -->
                            <div class="search-box">
-                               <form action="{{ route('domain.search') }}" method="GET">
+                               <form action="{{ route('hosting.search') }}" method="GET">
                                    <input id="searchInput" style="width: 400px;" type="text" name="search"
                                        placeholder="Search">
                                    <span class="icon-search"><i class="fas fa-search"></i></span>
@@ -66,8 +66,8 @@
                                        });
                                    </script>
 
-                                   {{-- Add Domain --}}
-                                   @include('components.domain.add-domain')
+                                   {{-- Add Hosting --}}
+                                   @include('components.hosting.add-hosting')
 
                                    <!-- Sortby Button -->
                                    <button class="btn btn-dropdown dropdown-toggle srtby" type="button"
@@ -113,15 +113,15 @@
                                                        selectedClients.push(checkbox.value);
                                                    });
 
-                                                   console.log("Selected Domains IDs:", selectedClients); // Debugging
+                                                   console.log("Selected Hosting IDs:", selectedClients); // Debugging
 
                                                    if (selectedClients.length === 0) {
-                                                       alert("No domain selected.");
+                                                       alert("No hostings selected.");
                                                        return;
                                                    }
 
-                                                   if (confirm("Are you sure you want to delete the selected domains?")) {
-                                                       fetch('/domain/delete-multiple', {
+                                                   if (confirm("Are you sure you want to delete the selected hostings?")) {
+                                                       fetch('/hosting/delete-multiple', {
                                                                method: 'POST',
                                                                headers: {
                                                                    'Content-Type': 'application/json',
@@ -135,13 +135,13 @@
                                                            .then(response => response.json())
                                                            .then(data => {
                                                                if (data.success) {
-                                                                   alert("Selected Domains deleted successfully!");
+                                                                   alert("Selected Hostings deleted successfully!");
                                                                    location.reload(); // Refresh halaman atau update DOM
                                                                } else {
-                                                                   alert("Failed to delete Domains.");
+                                                                   alert("Failed to delete Hostings.");
                                                                }
                                                            })
-                                                           .catch(error => console.error("Error deleting Domains:", error));
+                                                           .catch(error => console.error("Error deleting Hostings:", error));
                                                    }
 
                                                });
@@ -168,9 +168,28 @@
 
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
+                                           Package
+                                           <span class="sort-icons sort-button" data-sort="pic-name" data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <i class="fa fa-sort"></i>
+                                           </span>
+                                       </span>
+                                   </th>
+
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
                                            Domain
                                            <span class="sort-icons sort-button" data-sort="domain" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                           </span>
+                                       </span>
+                                   </th>
+                                   <th>
+                                       <span style="display: inline-flex; align-items: center;">
+                                           Status
+                                           <span class="sort-icons sort-button" data-sort="status" data-order="asc"
+                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
+                                               <i class="fa fa-sort"></i>
                                            </span>
                                        </span>
                                    </th>
@@ -183,7 +202,6 @@
                                            </span>
                                        </span>
                                    </th>
-                                   <th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Expired
@@ -227,24 +245,46 @@
                                </script>
                            </thead>
                            <tbody>
-                               @forelse ($domains as $key => $domain)
+                               @forelse ($hostings as $key => $hosting)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center"><input type="checkbox" class="client-checkbox"
-                                               value="{{ $domain->id }}">
+                                               value="{{ $hosting->id }}">
                                        </td>
                                        <td style="align-content: center">{{ $key + 1 }}</td>
                                        <td style="align-content: center" data-key="client-name">
-                                           {{ $domain->project_name }}</td>
-                                       <td style="align-content: center" data-key="product-domain">
-                                           {{ $domain->domain }}
+                                           {{ $hosting->project_name }}</td>
+                                       <td style="align-content: center" data-key="product-hosting">
+                                           {{ $hosting->hosting }}
                                        </td>
-                                       
-                                       <td style="align-content: center" data-key="pic-name">{{ $domain->expired }}
+                                       <td style="align-content: center" data-key="pic-name">{{ $hosting->expired }}
+                                       </td>
+
+                                       <td style="align-content: center;">
+                                           <div class="btn rounded-5 align-top d-flex justify-content-center align-items-center"
+                                               style="height: 4vh; width: 100px; background-color: #f8e2f7; border: 2px solid #f8e2f7;">
+                                               @if ($hosting->status == 'new_project')
+                                                   <p style="margin: 0; color: rgb(167, 6, 6) ; font-size:14px;">New
+                                                   </p>
+                                                @elseif ($hosting->status == 'Mindmap')
+                                                <p style="margin: 0; color: rgb(144, 25, 255); font-size:14px;">Mindmap
+                                                </p>
+                                               @elseif ($hosting->status == 'Design')
+                                                   <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">Design
+                                                   </p>
+                                               @elseif ($hosting->status == 'Slicing')
+                                                   <p style="margin: 0; color: rgb(8, 41, 230); font-size:14px;">Slicing
+                                                   </p>
+                                               @elseif ($hosting->status == 'Selesai')
+                                                   <p style="margin: 0; color: rgb(8, 160, 89) ; font-size:14px;">Selesai
+                                                   </p>
+                                            
+                                               @endif
+                                           </div>
                                        </td>
                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
 
-                                               @include('components.domain.edit-domain')
+                                               @include('components.hosting.edit-hosting')
 
                                                {{-- <script>
                                                    // Assuming you have edit buttons with class "edit-btn" and data attributes for the client
@@ -312,7 +352,7 @@
                            </tbody>
                        </table>
 
-                       @include('components.domain.pagination-domain')
+                       @include('components.hosting.pagination-hosting')
 
 
                    </div>
