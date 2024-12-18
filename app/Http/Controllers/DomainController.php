@@ -40,12 +40,14 @@ class DomainController extends Controller
         $request->validate([
             'project_name' => 'required|string|max:255',
             'domain' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
             'expired' => 'required|date',
         ]);
         // Simpan data ke database
         Domain::create([
             'project_name' => $request['project_name'],
             'domain' => $request['domain'],
+            'status' => $request['status'],
             'expired' => $request['expired'],
         ]);
         return redirect()->route('domain.view')->with('success', 'Project berhasil ditambahkan.');
@@ -85,6 +87,7 @@ class DomainController extends Controller
         $validatedData = $request->validate([
             'project_name' => 'required|string|max:255',
             'domain' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
             'expired' => 'required|date',
         ]);
 

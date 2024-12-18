@@ -20,7 +20,7 @@ class AdminSeeder extends Seeder
 
         User::create([
             'name' => 'Hendra Kalijaga',
-            'email' => 'admin@gmail.com',
+            'email' => 'admin1@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'admin',
             'profile_photo_path' => null, // Tambahkan ini

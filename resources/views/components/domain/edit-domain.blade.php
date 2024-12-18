@@ -42,6 +42,21 @@
                     </div>
                     <div class="row mb-3">
                         <div class="col">
+                            <label name="status" for="status" id="status" class="form-label"
+                                style="font-size: 0.7em;">STATUS</label>
+                            <select class="form-select" name="status" for="status" id="status">
+                                <option value="{{ $domain->status }}" selected>
+                                    {{ $domain->status }}
+                                </option>
+                                <option value="active">Active</option>
+                                <option value="in_active">In Active</option>
+                                <option value="expired">Expired</option>
+                                <option value="redemtion">Redemtion</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
                             <label name="expired" for="expired" id="expired" class="form-label"
                                 style="font-size: 0.7em;">EXPIRED</label>
                             <input type="date" class="form-control" name="expired" for="expired" id="expired"

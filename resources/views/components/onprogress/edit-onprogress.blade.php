@@ -120,16 +120,12 @@
                                                                                            selected>
                                                                                            {{ $project->category }}
                                                                                        </option>
-                                                                                       {{-- @foreach ($users as $user)
-                                                                       <option value="{{ $user->name }}"
-                                                                           {{ old('$user->name') == '$user->name' ? 'selected' : '' }}>
-                                                                           {{ $user->name }}
-                                                                       </option>
-                                                                   @endforeach --}}
+
                                                                                        <option value="Handika Wicaksana"
                                                                                            {{ old('pic_name') == 'Handika Wicaksana' ? 'selected' : '' }}>
                                                                                            Handika Wicaksana</option>
-                                                                                       <option value="Widia Hadi Purwanti"
+                                                                                       <option
+                                                                                           value="Widia Hadi Purwanti"
                                                                                            {{ old('pic_name') == 'Widia Hadi Purwanti' ? 'selected' : '' }}>
                                                                                            Widia Hadi Purwanti</option>
                                                                                    </select>
@@ -144,17 +140,20 @@
                                                                                PRODUCT</label>
                                                                            <select
                                                                                class="form-select @error('category') is-invalid @enderror"
-                                                                               id="category" name="category" required>
+                                                                               id="category" name="category"
+                                                                               required>
                                                                                <option selected
                                                                                    value="{{ $project->category }}">
                                                                                    {{ $project->category }}
                                                                                    <div class="col">
                                                                                        <label name="pic_name"
-                                                                                           for="pic_name" id="pic_name"
+                                                                                           for="pic_name"
+                                                                                           id="pic_name"
                                                                                            class="form-label"
                                                                                            style="font-size: 0.7em;">PIC</label>
                                                                                        <select class="form-select"
-                                                                                           name="pic_name" for="pic_name"
+                                                                                           name="pic_name"
+                                                                                           for="pic_name"
                                                                                            id="pic_name">
                                                                                            <option
                                                                                                value="{{ $project->pic_name }}"
@@ -180,15 +179,16 @@
                                                                        {{-- Email & Deadline --}}
                                                                        <div hidden class="row mb-3">
                                                                            <div class="col">
-                                                                               <label for="email" class="form-label"
+                                                                               <label for="email"
+                                                                                   class="form-label"
                                                                                    style="font-size: 0.7em; font-weight: bold;">EMAIL</label>
                                                                                <input type="email" name="email"
                                                                                    class="form-control @error('email') is-invalid @enderror"
                                                                                    id="email" name="email"
                                                                                    for="email"
                                                                                    placeholder="Enter email"
-                                                                                   value="{{ $project->email }}" required
-                                                                                   autofocus>
+                                                                                   value="{{ $project->email }}"
+                                                                                   required autofocus>
                                                                                @error('email')
                                                                                    <div id="emailHelp"
                                                                                        class="form-text text-danger">
@@ -196,7 +196,8 @@
                                                                                @enderror
                                                                            </div>
                                                                            <div hidden class="col">
-                                                                               <label for="deadline" class="form-label"
+                                                                               <label for="deadline"
+                                                                                   class="form-label"
                                                                                    style="font-size: 0.7em; font-weight: bold;">DEADLINE</label>
                                                                                <input type="date" name="deadline"
                                                                                    class="form-control @error('deadline') is-invalid @enderror"
@@ -215,7 +216,8 @@
                                                                        <!-- Address & Phone & Hidden Status-->
                                                                        <div hidden class="row mb-3">
                                                                            <div class="col">
-                                                                               <label for="phone" class="form-label"
+                                                                               <label for="phone"
+                                                                                   class="form-label"
                                                                                    style="font-size: 0.7em; font-weight: bold;">PHONE</label>
                                                                                <input type="text"
                                                                                    class="form-control @error('phone') is-invalid @enderror"
@@ -230,7 +232,8 @@
                                                                                @enderror
                                                                            </div>
                                                                            <div hidden class="col">
-                                                                               <label for="address" class="form-label"
+                                                                               <label for="address"
+                                                                                   class="form-label"
                                                                                    style="font-size: 0.7em; font-weight: bold;">ADDRESS</label>
                                                                                <input type="text"
                                                                                    class="form-control @error('address') is-invalid @enderror"
@@ -245,14 +248,15 @@
                                                                            </div>
 
                                                                        </div>
-                                                                       {{-- STATUS HIDDEN INPUT --}}
+                                                                       {{-- STATUS INPUT --}}
                                                                        <div class="row mb-3">
                                                                            <div class="col">
                                                                                <label name="status" for="status"
                                                                                    id="status" class="form-label"
                                                                                    style="font-size: 0.7em;">STATUS</label>
-                                                                               <select class="form-select" name="status"
-                                                                                   for="status" id="status">
+                                                                               <select class="form-select"
+                                                                                   name="status" for="status"
+                                                                                   id="status">
                                                                                    @if ($project->status == 'new_project')
                                                                                        <option value="new_project"
                                                                                            selected>New
@@ -260,15 +264,21 @@
                                                                                    @else
                                                                                        <option
                                                                                            value="{{ $project->status }}"
-                                                                                           selected>{{ $project->status }}
+                                                                                           selected>
+                                                                                           {{ $project->status }}
                                                                                        </option>
                                                                                    @endif
-                                                                                   <option value="Mindmap">Step 1 - Mindmap</option>
-                                                                                   <option value="Design">Step 2 - Design</option>
-                                                                                   <option value="Slicing">Step 3 - Slicing</option>
-                                                                                   <option value="Maintenance">Maintenance
+                                                                                   <option value="Mindmap">Step 1 -
+                                                                                       Mindmap</option>
+                                                                                   <option value="Design">Step 2 -
+                                                                                       Design</option>
+                                                                                   <option value="Slicing">Step 3 -
+                                                                                       Slicing</option>
+                                                                                   <option value="Maintenance">
+                                                                                       Maintenance
                                                                                    </option>
-                                                                                   <option value="Selesai">Selesai</option>
+                                                                                   <option value="Selesai">Selesai
+                                                                                   </option>
                                                                                </select>
                                                                            </div>
                                                                        </div>
@@ -324,7 +334,8 @@
                                                                        sure the form is completely filled out</div> --}}
 
                                                                        <!-- Submit Button -->
-                                                                       <button type="submit" class="btn btn-dark w-100"
+                                                                       <button type="submit"
+                                                                           class="btn btn-dark w-100"
                                                                            onclick="showAlertUpdate()">Submit</button>
                                                                </form>
                                                            </div>
@@ -365,5 +376,3 @@
                                                        });
                                                    });
                                                </script> --}}
-
-                                        
