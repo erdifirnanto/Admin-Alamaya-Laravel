@@ -284,13 +284,13 @@
                                            {{ $hosting->join_date }}</td>
                                        <td style="align-content: center">
                                            {{ $hosting->expired }}</td>
-                                       
 
-                                        <td style="align-content: center">
+
+                                       <td style="align-content: center">
                                            <div class="dropdown text-center">
 
                                                @include('components.hosting.edit-hosting')
-   
+
                                            </div>
                                        </td>
                                    </tr>
@@ -304,10 +304,7 @@
                                @endforelse
                            </tbody>
                        </table>
-
                        @include('components.hosting.pagination-hosting')
-
-
                    </div>
                </div>
            </div>
