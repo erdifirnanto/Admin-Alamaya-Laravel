@@ -1,5 +1,5 @@
 <i class="fas fa-edit" style="cursor: pointer;" aria-expanded="false" data-bs-toggle="modal"
-    data-bs-target="#editDomainModal-{{ $domain->id }}"></i>
+    data-bs-target="#editHostingModal-{{ $hosting->id }}"></i>
 
 {{-- Edit Data Hosting --}}
 <div class="modal fade" id="editHostingModal-{{ $hosting->id }}" tabindex="-1" aria-labelledby="editHostingModalLabel"
