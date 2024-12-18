@@ -100,7 +100,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         // route data hosting
         Route::resource('hosting', HostingController::class);
         Route::get('/hosting', [HostingController::class, 'View'])->name('hosting.view');
-        Route::post('/hosting/store', [HostingController::class, 'Dstore'])->name('hosting.store');
+        Route::post('/hosting/store', [HostingController::class, 'Hstore'])->name('hosting.store');
         Route::delete('/hosting/{id}', [HostingController::class, 'destroy'])->name('hosting.destroy');
         Route::post('/hosting/delete-multiple', [HostingController::class, 'deleteMultiple'])->name('hosting.deleteMultiple');
         Route::get('/hosting/{id}/edit', [HostingController::class, 'edit'])->name('hosting.edit');

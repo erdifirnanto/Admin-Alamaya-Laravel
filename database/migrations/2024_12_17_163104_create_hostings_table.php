@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('hostings', function (Blueprint $table) {
             $table->id();
+            $table->string('project_name')->nullable();
+            $table->string('package')->nullable();
+            $table->string('domain')->nullable();
+            $table->date('join_date')->default(now());
+            $table->string('expired')->nullable();
             $table->timestamps();
         });
     }

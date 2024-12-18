@@ -22,6 +22,7 @@ class DomainSeeder extends Seeder
                 'project_name' => $faker->company, // Nama proyek acak
                 'domain' => $faker->domainName, // Nama domain acak
                 'expired' => $expiredDate->format('Y-m-d'),
+                'join_date' => $expiredDate->format('Y-m-d'),
                 // 'expired' => $expiredDate->toDateString()
                 // 'expired' => $faker->date('Y-m-d', '+1 year'),
                 // 'expired' => Carbon::instance($faker->dateTimeBetween('now', '+1 year')), // Menggunakan Carbon untuk tanggal kedaluwarsa

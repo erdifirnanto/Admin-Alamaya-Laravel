@@ -33,7 +33,7 @@ class HostingController extends Controller
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
     }
 
-    public function Dstore(Request $request)
+    public function Hstore(Request $request)
     {
         // dd($request);
 
@@ -128,32 +128,4 @@ class HostingController extends Controller
         // Tampilkan data pada view
         return view('page.hosting', compact('hostings'));
     }
-
-
-    //     public function showDomainNotifications()
-    //     {
-    //         // Daftar interval pengingat
-    //         $reminderIntervals = [30, 25, 20, 15, 10, 5, 4, 3, 2, 1];
-
-    //         // Tanggal sekarang
-    //         $now = Carbon::now();
-    //         $notifications = [];
-
-    //         foreach ($reminderIntervals as $interval) {
-    //             // Cari domain yang akan expired pada interval tertentu
-    //             $targetDate = $now->copy()->addDays($interval);
-    //             $domains = Domain::whereDate('expired', $targetDate->toDateString())->get();
-
-    //             foreach ($domains as $domain) {
-    //                 $notifications[] = [
-    //                     'domain' => $domain->domain,
-    //                     'days_remaining' => $interval,
-    //                     'expired_date' => $domain->expired
-    //                 ];
-    //             }
-    //         }
-
-    //         // Kirim data notifikasi ke view
-    //         return view('domain.notifications', compact('notifications'));
-    //     }
 }

@@ -23,45 +23,32 @@
                          </div>
                      </div>
 
- <!-- PIC and Category -->
-                    <div class="row mb-3">
-                        <div class="col">
-                            <label for="package" class="form-label"
-                                style="font-size: 0.7em;">PACKAGE</label>
-                            <select class="form-select @error('package') is-invalid @enderror" id="package"
-                                name="package" required>
-                                <option selected value="Widia Hadi Purwanti">Package 1
-                                </option>
-                                {{-- @foreach ($users as $user)
-                                                                       <option value="{{ $user->name }}"
-                                                                           {{ old('$user->name') == '$user->name' ? 'selected' : '' }}>
-                                                                           {{ $user->name }}
-                                                                       </option>
-                                                                   @endforeach --}}
-                                <option value="Package 1"
-                                    {{ old('package') == 'Package 1' ? 'selected' : '' }}>
-                                    Package 1</option>
-                                <option value="Package 3"
-                                    {{ old('package') == 'Package 3' ? 'selected' : '' }}>
-                                    Package 3</option>
-                                <option value="Package 5"
-                                    {{ old('package') == 'Package 5' ? 'selected' : '' }}>
-                                    Package 5</option>
-                                <option value="Package 10"
-                                    {{ old('package') == 'Package 10' ? 'selected' : '' }}>
-                                    Package 10</option>
-                                <option value="Package 20"
-                                    {{ old('package') == 'Package 20' ? 'selected' : '' }}>
-                                    Package 20</option>
-                                <option value="Package 25"
-                                    {{ old('package') == 'Package 25' ? 'selected' : '' }}>
-                                    Package 25</option>
-                            </select>
-                            @error('package')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div>
-                    </div>
+                     <!-- PIC and PACKAGE -->
+                     <div class="row mb-3">
+                         <div class="col">
+                             <label for="package" class="form-label" style="font-size: 0.7em;">PACKAGE</label>
+                             <select class="form-select @error('package') is-invalid @enderror" id="package"
+                                 name="package" required>
+                                 <option>Select Package
+                                 </option>
+                                 <option value="package_1" {{ old('package') == 'package_1' ? 'selected' : '' }}>
+                                     Package 1</option>
+                                 <option value="package_3" {{ old('package') == 'package_3' ? 'selected' : '' }}>
+                                     Package 3</option>
+                                 <option value="package_5" {{ old('package') == 'package_5' ? 'selected' : '' }}>
+                                     Package 5</option>
+                                 <option value="package_10" {{ old('package') == 'package_10' ? 'selected' : '' }}>
+                                     Package 10</option>
+                                 <option value="package_20" {{ old('package') == 'package_20' ? 'selected' : '' }}>
+                                     Package 20</option>
+                                 <option value="package_25" {{ old('package') == 'package_25' ? 'selected' : '' }}>
+                                     Package 25</option>
+                             </select>
+                             @error('package')
+                                 <div class="invalid-feedback">{{ $message }}</div>
+                             @enderror
+                         </div>
+                     </div>
 
                      <div class="row mb-3">
                          <div class="col">
@@ -73,7 +60,7 @@
                                  (e.g., www.example.com).</div>
                          </div>
                      </div>
-                                                                       
+
 
 
                      <div class="row mb-3">

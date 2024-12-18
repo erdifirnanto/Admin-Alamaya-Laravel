@@ -30,7 +30,7 @@
             @endif
 
             <!-- Loop untuk menampilkan 5 halaman di sekitar halaman saat ini -->
-            @for ($i = max(2, $hostings->currentPage() - 2); $i <= min($domains->lastPage() - 1, $domains->currentPage() + 2); $i++)
+            @for ($i = max(2, $hostings->currentPage() - 2); $i <= min($hostings->lastPage() - 1, $hostings->currentPage() + 2); $i++)
                 <li class="page-item {{ $hostings->currentPage() == $i ? 'active' : '' }}">
                     <a class="page-link1" href="{{ $hostings->url($i) }}">{{ $i }}</a>
                 </li>
@@ -57,7 +57,7 @@
         <!-- Tombol Next -->
         @if ($hostings->hasMorePages())
             <li class="page-item">
-                <a class="page-link" href="{{ $domains->nextPageUrl() }}"
+                <a class="page-link" href="{{ $hostings->nextPageUrl() }}"
                     style="background-color: #082F1B; border-radius: 5px;">
                     <i style="color: white;" class="fa-solid fa-chevron-right"></i>
                 </a>

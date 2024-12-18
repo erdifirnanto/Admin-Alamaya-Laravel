@@ -27,7 +27,7 @@
                                 style="font-size: 0.7em;">PROJECT
                                 NAME</label>
                             <input type="text" class="form-control" name="project_name" for="project_name"
-                                id="project_name" value="{{ $domain->project_name }}"
+                                id="project_name" value="{{ $hosting->project_name }}"
                                 placeholder="Enter the Project Name">
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                             <label name="domain" for="domain" id="domain" class="form-label"
                                 style="font-size: 0.7em;">DOMAIN</label>
                             <input type="text" class="form-control" name="domain" for="domain" id="domain"
-                                value="{{ $domain->domain }}" placeholder="Enter the Domain">
+                                value="{{ $hosting->domain }}" placeholder="Enter the Domain">
                         </div>
                     </div>
                     <div class="row mb-3">

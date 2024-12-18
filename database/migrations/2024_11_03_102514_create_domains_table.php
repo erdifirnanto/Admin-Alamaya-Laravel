@@ -16,6 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('project_name');
             $table->string('domain')->nullable();
+            $table->date('join_date')->default(now());
             $table->date('expired')->default(now());
             // $table->date('expired')->default(DB::raw('DATE_ADD(CURDATE(), INTERVAL 1 YEAR)'));
             $table->timestamps();

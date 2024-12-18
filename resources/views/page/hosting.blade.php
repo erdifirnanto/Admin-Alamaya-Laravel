@@ -150,7 +150,7 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           No. Id
+                                           No.
                                            <span class="sort-icons sort-button" data-sort="id" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <i class="fa fa-sort"></i>
@@ -160,7 +160,7 @@
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Project Name
-                                           <span class="sort-icons sort-button" data-sort="Domain-name" data-order="asc"
+                                           <span class="sort-icons sort-button" data-sort="Project-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                            </span>
                                        </span>
@@ -265,9 +265,9 @@
                                                @if ($hosting->status == 'new_project')
                                                    <p style="margin: 0; color: rgb(167, 6, 6) ; font-size:14px;">New
                                                    </p>
-                                                @elseif ($hosting->status == 'Mindmap')
-                                                <p style="margin: 0; color: rgb(144, 25, 255); font-size:14px;">Mindmap
-                                                </p>
+                                               @elseif ($hosting->status == 'Mindmap')
+                                                   <p style="margin: 0; color: rgb(144, 25, 255); font-size:14px;">Mindmap
+                                                   </p>
                                                @elseif ($hosting->status == 'Design')
                                                    <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">Design
                                                    </p>
@@ -277,74 +277,20 @@
                                                @elseif ($hosting->status == 'Selesai')
                                                    <p style="margin: 0; color: rgb(8, 160, 89) ; font-size:14px;">Selesai
                                                    </p>
-                                            
                                                @endif
                                            </div>
                                        </td>
                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
-
+{{-- edit --}}
                                                @include('components.hosting.edit-hosting')
-
-                                               {{-- <script>
-                                                   // Assuming you have edit buttons with class "edit-btn" and data attributes for the client
-                                                   document.querySelectorAll('.edit-btn').forEach(button => {
-                                                       button.addEventListener('click', function() {
-                                                           const clientId = this.getAttribute('data-id');
-                                                           const clientName = this.getAttribute('data-client-name');
-                                                           const companyName = this.getAttribute('data-company-name');
-                                                           const picName = this.getAttribute('data-pic-name');
-                                                           const productdomain = this.getAttribute('data-product-domain');
-                                                           const email = this.getAttribute('data-email');
-                                                           const phone = this.getAttribute('data-phone');
-                                                           const address = this.getAttribute('data-address');
-
-                                                           // Populate the modal fields
-                                                           document.getElementById('edit_client_id').value = clientId;
-                                                           document.getElementById('edit_project_name').value = clientName;
-                                                           document.getElementById('edit_domain').value = companyName;
-                                                           document.getElementById('edit_expired').value = picName;
-                                                           document.getElementById('edit_product_domain').value = productdomain;
-                                                           document.getElementById('edit_email').value = email;
-                                                           document.getElementById('edit_phone').value = phone;
-                                                           document.getElementById('edit_address').value = address;
-
-                                                           // Update the form action to point to the correct client update route
-                                                           const formAction = document.getElementById('editClientForm').action.replace(':id',
-                                                               clientId);
-                                                           document.getElementById('editClientForm').action = formAction;
-
-                                                           // Show the modal
-                                                           $('#editDomainModal').modal('show');
-                                                       });
-                                                   });
-                                               </script> --}}
-
                                            </div>
                                        </td>
                                    </tr>
-                                   {{-- <tr class="collapse-row" style="display: none;">
-                                       <td></td>
-                                       <td colspan="2">
-                                           <div class="collapse-content"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $client->domain }}</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $client->domain }}')"></i>
-                                           </div>
-                                       </td>
-                                       <td colspan="6">
-                                           <div class="collapse-content1"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $client->address }}</span>
-                                               <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                                                   onclick="copyText('{{ $client->address }}')"></i>
-                                           </div>
-                                       </td>
-                                   </tr> --}}
                                @empty
                                    <tr>
-                                       <td colspan="12" class="text-center" style="height: 80px; align-content: center;">
+                                       <td colspan="12" class="text-center"
+                                           style="height: 80px; align-content: center;">
                                            Tidak
                                            ada data yang ditemukan</td>
                                    </tr>
