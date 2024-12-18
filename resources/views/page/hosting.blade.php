@@ -169,7 +169,7 @@
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Package
-                                           <span class="sort-icons sort-button" data-sort="pic-name" data-order="asc"
+                                           <span class="sort-icons sort-button" data-sort="package" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <i class="fa fa-sort"></i>
                                            </span>
@@ -196,7 +196,7 @@
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Join Date
-                                           <span class="sort-icons sort-button" data-sort="expired" data-order="asc"
+                                           <span class="sort-icons sort-button" data-sort="join_date" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <i class="fa fa-sort"></i>
                                            </span>
@@ -253,10 +253,10 @@
                                        <td style="align-content: center">{{ $key + 1 }}</td>
                                        <td style="align-content: center" data-key="client-name">
                                            {{ $hosting->project_name }}</td>
-                                       <td style="align-content: center" data-key="product-hosting">
-                                           {{ $hosting->hosting }}
+                                       <td style="align-content: center" data-key="package">{{ $hosting->package }}
                                        </td>
-                                       <td style="align-content: center" data-key="pic-name">{{ $hosting->expired }}
+                                       <td style="align-content: center" data-key="product-domain">
+                                           {{ $hosting->domain }}
                                        </td>
 
                                        <td style="align-content: center;">
@@ -281,9 +281,16 @@
                                            </div>
                                        </td>
                                        <td style="align-content: center">
+                                           {{ $hosting->join_date }}</td>
+                                       <td style="align-content: center">
+                                           {{ $hosting->expired }}</td>
+                                       
+
+                                        <td style="align-content: center">
                                            <div class="dropdown text-center">
-{{-- edit --}}
+
                                                @include('components.hosting.edit-hosting')
+   
                                            </div>
                                        </td>
                                    </tr>

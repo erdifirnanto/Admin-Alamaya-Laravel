@@ -160,7 +160,7 @@
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Project Name
-                                           <span class="sort-icons sort-button" data-sort="Domain-name" data-order="asc"
+                                           <span class="sort-icons sort-button" data-sort="Project-name" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                            </span>
                                        </span>
@@ -177,7 +177,7 @@
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Join Date
-                                           <span class="sort-icons sort-button" data-sort="expired" data-order="asc"
+                                           <span class="sort-icons sort-button" data-sort="join_date" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <i class="fa fa-sort"></i>
                                            </span>

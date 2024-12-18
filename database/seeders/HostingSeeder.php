@@ -20,6 +20,7 @@ class HostingSeeder extends Seeder
                 'project_name' => $faker->company(),
                 'package' => $faker->randomElement(['Basic', 'Standard', 'Premium', 'Enterprise']),
                 'domain' => $faker->domainName(),
+                'status' => 'new_project',
                 'join_date' => $faker->date(),
                 'expired' => $faker->dateTimeBetween('+1 year', '+5 years')->format('Y-m-d'),
                 'created_at' => now(),
