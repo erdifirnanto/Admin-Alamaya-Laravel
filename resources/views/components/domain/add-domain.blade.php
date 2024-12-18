@@ -33,14 +33,25 @@
                                  (e.g., www.example.com).</div>
                          </div>
                      </div>
-
-<div class="row mb-3">
+                     <div class="row mb-3">
                          <div class="col">
                              <label for="join_date" class="form-label" style="font-size: 0.7em;">JOIN DATE</label>
                              <input type="date" class="form-control" name="join_date" id="join_date" required>
                          </div>
                      </div>
-
+                     <div class="row mb-3">
+                         <div class="col">
+                             <label name="status" for="status" id="status" class="form-label"
+                                 style="font-size: 0.7em;">STATUS</label>
+                             <select class="form-select" name="status" for="status" id="status">
+                                 <option value="active" selected>Active</option>
+                                 <option value="active">Active</option>
+                                 <option value="in_active">In Active</option>
+                                 <option value="expired">Expired</option>
+                                 <option value="redemtion">Redemtion</option>
+                             </select>
+                         </div>
+                     </div>
                      <div class="row mb-3">
                          <div class="col">
                              <label for="expired" class="form-label" style="font-size: 0.7em;">EXPIRED</label>

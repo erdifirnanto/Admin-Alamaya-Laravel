@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('project_name')->nullable();
             $table->string('package')->nullable();
             $table->string('domain')->nullable();
+            $table->string('status')->nullable();
             $table->date('join_date')->default(now());
             $table->string('expired')->nullable();
             $table->timestamps();

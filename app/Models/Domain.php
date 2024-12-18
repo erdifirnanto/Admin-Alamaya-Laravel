@@ -12,6 +12,8 @@ class Domain extends Model
     protected $fillable = [
         'project_name',
         'domain',
+        'status',
+        'join_date',
         'expired',
     ];
 }
