@@ -283,16 +283,7 @@
                                        <td style="align-content: center">
                                            {{ $hosting->join_date }}</td>
                                        <td style="align-content: center">
-                                           {{ $hosting->expired }}</td>
-                                       
-
-                                        <td style="align-content: center">
-                                           <div class="dropdown text-center">
-
-                                               @include('components.hosting.edit-hosting')
-   
-                                           </div>
-                                       </td>
+                                           {{ $hosting->expired }}</td>                                          
                                    </tr>
                                @empty
                                    <tr>
