@@ -246,11 +246,23 @@
                                            {{ $domain->domain }}
                                        </td>
                                        <td style="align-content: center; text-transform: capitalize;" data-key="status">
-                                           @if ($domain->status === 'in_active')
-                                               In Active
-                                           @else
-                                               {{ $domain->status }}
-                                           @endif
+                                           <div class="btn rounded-5 align-top d-flex justify-content-center align-items-center"
+                                               style="height: 4vh; width: 100px; background-color: #f8e2f7; border: 2px solid #f8e2f7;">
+                                               @if ($domain->status == 'active')
+                                                   <p style="margin: 0; color: rgb(8, 160, 89) ; font-size:14px;">Active
+                                                   </p>
+                                               @elseif ($domain->status == 'in_active')
+                                                   <p style="margin: 0; color: rgb(255, 213, 25); font-size:14px;">In Active
+                                                   </p>
+                                               @elseif ($domain->status == 'expired')
+                                                   <p style="margin: 0; color: rgb(230, 34, 8); font-size:14px;">Expired
+                                                   </p>
+                                               @elseif ($domain->status == 'redemtion')
+                                                   <p style="margin: 0; color: rgb(0, 102, 255) ; font-size:14px;">Redemtion
+                                                   </p>
+                                            
+                                               @endif
+                                           </div>
                                        </td>
 
                                        <td style="align-content: center" data-key="join_date">{{ $domain->join_date }}
