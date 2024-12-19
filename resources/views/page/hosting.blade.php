@@ -67,7 +67,7 @@
                                    </script>
 
                                    {{-- Add Domain --}}
-                                   @include('components.domain.add-domain')
+                                   @include('components.hosting.add-hosting')
 
                                    <!-- Sortby Button -->
                                    <button class="btn btn-dropdown dropdown-toggle srtby" type="button"
@@ -250,6 +250,8 @@
                                        <td style="align-content: center">{{ $key + 1 }}</td>
                                        <td style="align-content: center" data-key="project-name">
                                            {{ $hosting->project_name }}</td>
+                                       <td style="align-content: center" data-key="project-name">
+                                           {{ $hosting->package }}</td>
                                        <td style="align-content: center" data-key="domain">
                                            {{ $hosting->domain }}
                                        </td>

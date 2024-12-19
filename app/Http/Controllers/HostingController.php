@@ -33,13 +33,14 @@ class HostingController extends Controller
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
     }
 
-    public function Dstore(Request $request)
+    public function Hstore(Request $request)
     {
         // dd($request);
 
         $request->validate([
             'project_name' => 'required|string|max:255',
             'domain' => 'required|string|max:255',
+            'package' => 'required|string|max:255',
             'status' => 'required|string|max:255',
             'expired' => 'required|date',
         ]);
@@ -47,10 +48,11 @@ class HostingController extends Controller
         Hosting::create([
             'project_name' => $request['project_name'],
             'domain' => $request['domain'],
+            'package' => $request['package'],
             'status' => $request['status'],
             'expired' => $request['expired'],
         ]);
-        return redirect()->route('domain.view')->with('success', 'Project berhasil ditambahkan.');
+        return redirect()->route('hosting.view')->with('success', 'Hosting berhasil ditambahkan.');
         // return redirect()->back()->with('success', 'Client has been added successfu/lly');
     }
 
@@ -74,29 +76,30 @@ class HostingController extends Controller
     public function edit($id)
     {
         // Ambil data domain berdasarkan ID
-        $domain = Hosting::findOrFail($id);
+        $hosting = Hosting::findOrFail($id);
         $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
         $hostings = Hosting::orderBy('id', $sort)->paginate(10);
-        // Kembalikan view dengan data domain
-        return view('domain.view', compact('domain', 'hostings'));
+        // Kembalikan view dengan data hosting
+        return view('hosting.view', compact('hosting', 'hostings'));
     }
 
-    public function update(Request $request, Hosting $domain)
+    public function update(Request $request, Hosting $hosting)
     {
         // Validasi data permintaan
         $validatedData = $request->validate([
             'project_name' => 'required|string|max:255',
             'domain' => 'required|string|max:255',
+            'package' => 'required|string|max:255',
             'status' => 'required|string|max:255',
             'expired' => 'required|date',
         ]);
 
         // Perbarui domain dengan data yang sudah divalidasi
-        $domain->update($validatedData);
+        $hosting->update($validatedData);
 
         // Kembalikan respons (bisa berupa redirect, respons JSON, dll.)
         // return response()->json(['success' => true]);
-        return redirect()->route('domain.view')->with('success', 'Data berhasil diupdate.');
+        return redirect()->route('hosting.view')->with('success', 'Data berhasil diupdate.');
     }
 
     public function search(Request $request)
@@ -117,34 +120,6 @@ class HostingController extends Controller
             ->paginate(50);
 
         // Tampilkan data pada view
-        return view('page.domain', compact('hostings'));
+        return view('page.hosting', compact('hostings'));
     }
-
-
-    //     public function showDomainNotifications()
-    //     {
-    //         // Daftar interval pengingat
-    //         $reminderIntervals = [30, 25, 20, 15, 10, 5, 4, 3, 2, 1];
-
-    //         // Tanggal sekarang
-    //         $now = Carbon::now();
-    //         $notifications = [];
-
-    //         foreach ($reminderIntervals as $interval) {
-    //             // Cari domain yang akan expired pada interval tertentu
-    //             $targetDate = $now->copy()->addDays($interval);
-    //             $hostings = Hosting::whereDate('expired', $targetDate->toDateString())->get();
-
-    //             foreach ($hostings as $domain) {
-    //                 $notifications[] = [
-    //                     'domain' => $domain->domain,
-    //                     'days_remaining' => $interval,
-    //                     'expired_date' => $domain->expired
-    //                 ];
-    //             }
-    //         }
-
-    //         // Kirim data notifikasi ke view
-    //         return view('domain.notifications', compact('notifications'));
-    //     }
 }

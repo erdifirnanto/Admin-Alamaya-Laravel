@@ -12,7 +12,7 @@
                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
              </div>
              <div class="modal-body">
-                 <form method="POST" action="{{ route('domain.store') }}" id="addDomainForm">
+                 <form method="POST" action="{{ route('hosting.store') }}" id="addDomainForm">
                      @csrf
 
                      <div class="row mb-3">
@@ -35,8 +35,16 @@
                      </div>
                      <div class="row mb-3">
                          <div class="col">
-                             <label for="join_date" class="form-label" style="font-size: 0.7em;">JOIN DATE</label>
-                             <input type="date" class="form-control" name="join_date" id="join_date" required>
+                             <label name="package" for="package" id="package" class="form-label"
+                                 style="font-size: 0.7em;">PACKAGE</label>
+                             <select class="form-select" name="package" for="package" id="package">
+                                 <option value="1" selected>1</option>
+                                 <option value="3">3</option>
+                                 <option value="5">5</option>
+                                 <option value="10">10</option>
+                                 <option value="20">20</option>
+                                 <option value="25">25</option>
+                             </select>
                          </div>
                      </div>
                      <div class="row mb-3">
@@ -48,8 +56,13 @@
                                  <option value="active">Active</option>
                                  <option value="in_active">In Active</option>
                                  <option value="expired">Expired</option>
-                                 <option value="redemtion">Redemtion</option>
                              </select>
+                         </div>
+                     </div>
+                     <div class="row mb-3">
+                         <div class="col">
+                             <label for="join_date" class="form-label" style="font-size: 0.7em;">JOIN DATE</label>
+                             <input type="date" class="form-control" name="join_date" id="join_date" required>
                          </div>
                      </div>
                      <div class="row mb-3">
