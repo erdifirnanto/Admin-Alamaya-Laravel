@@ -68,7 +68,6 @@
                                 <option value="active">Active</option>
                                 <option value="in_active">In Active</option>
                                 <option value="expired">Expired</option>
-                                <option value="redemtion">Redemtion</option>
                             </select>
                         </div>
                     </div>
