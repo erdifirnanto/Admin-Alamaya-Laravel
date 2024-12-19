@@ -21,7 +21,7 @@
                        <div class="search-add-sort-container">
                            <!-- Search Input -->
                            <div class="search-box">
-                               <form action="{{ route('domain.search') }}" method="GET">
+                               <form action="{{ route('hosting.search') }}" method="GET">
                                    <input id="searchInput" style="width: 400px;" type="text" name="search"
                                        placeholder="Search">
                                    <span class="icon-search"><i class="fas fa-search"></i></span>
@@ -113,15 +113,15 @@
                                                        selectedClients.push(checkbox.value);
                                                    });
 
-                                                   console.log("Selected Domains IDs:", selectedClients); // Debugging
+                                                   console.log("Selected Hosting IDs:", selectedClients); // Debugging
 
                                                    if (selectedClients.length === 0) {
-                                                       alert("No domain selected.");
+                                                       alert("No hosting selected.");
                                                        return;
                                                    }
 
-                                                   if (confirm("Are you sure you want to delete the selected domains?")) {
-                                                       fetch('/domain/delete-multiple', {
+                                                   if (confirm("Are you sure you want to delete the selected hostings?")) {
+                                                       fetch('/hosting/delete-multiple', {
                                                                method: 'POST',
                                                                headers: {
                                                                    'Content-Type': 'application/json',
@@ -135,13 +135,13 @@
                                                            .then(response => response.json())
                                                            .then(data => {
                                                                if (data.success) {
-                                                                   alert("Selected Domains deleted successfully!");
+                                                                   alert("Selected Hostings deleted successfully!");
                                                                    location.reload(); // Refresh halaman atau update DOM
                                                                } else {
-                                                                   alert("Failed to delete Domains.");
+                                                                   alert("Failed to delete Hostings.");
                                                                }
                                                            })
-                                                           .catch(error => console.error("Error deleting Domains:", error));
+                                                           .catch(error => console.error("Error deleting Hostings:", error));
                                                    }
 
                                                });

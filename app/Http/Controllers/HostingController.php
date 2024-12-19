@@ -115,6 +115,8 @@ class HostingController extends Controller
 
         // Query untuk mencari data
         $hostings = Hosting::where('project_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('package', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('status', 'LIKE', "%{$searchQuery}%")
             ->orWhere('domain', 'LIKE', "%{$searchQuery}%")
             ->orWhere('expired', 'LIKE', "%{$searchQuery}%")
             ->paginate(50);
