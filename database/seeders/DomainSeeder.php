@@ -22,6 +22,10 @@ class DomainSeeder extends Seeder
                 'project_name' => $faker->company, // Nama proyek acak
                 'domain' => $faker->domainName, // Nama domain acak
                 'expired' => $expiredDate->format('Y-m-d'),
+                'expired' => $faker->dateTimeBetween('now', '+6 months')->format('Y-m-d'),
+                'expired' => $faker->dateTimeBetween('now', '+10 days')->format('Y-m-d'),
+                'expired' => $faker->dateTimeBetween('now', '+20 days')->format('Y-m-d'),
+                'expired' => $faker->dateTimeBetween('now', '+1 month')->format('Y-m-d'),
                 'status' => $faker->randomElement(['active', 'in_active', 'expired', 'redemtion']),
                 'join_date' => $expiredDate->format('Y-m-d'),
                 // 'expired' => $expiredDate->toDateString()

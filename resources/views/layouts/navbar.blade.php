@@ -138,7 +138,7 @@
                                     html = `
                     <div class="alert alert-success">
                         <span class="glyphicon glyphicon-ok-circle"></span>
-                        Tidak ada domain yang mendekati batas kedaluwarsa.
+                        Tidak ada notifikasi.
                     </div>
                 `;
                                 }

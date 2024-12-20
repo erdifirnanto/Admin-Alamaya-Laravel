@@ -41,62 +41,50 @@ class AppServiceProvider extends ServiceProvider
         $maintenanceProjectsCount = Project::where('category', 'Maintenance')->count();
         View::share('totalMaintenanceProjects', $maintenanceProjectsCount);
 
-        // Domain Expired Notification
-        // Tanggal hari ini
+        // Notifikasi Domain dan Project
         $today = Carbon::today();
 
-        // Ambil data dari tabel 'domain'
-        $domains = DB::table('domains')->select('id', 'domain', 'expired')->get();
-
         $notifications = [];
+
+        // Notifikasi Domain
+        $domains = DB::table('domains')->select('id', 'domain', 'expired')->get();
 
         foreach ($domains as $domain) {
             // Hitung selisih tanggal
             $interval = $today->diffInDays(Carbon::parse($domain->expired), false);
 
             // Tentukan pesan berdasarkan selisih
-            if ($interval === 1) {
-                $notifications[] = "Domain <strong>{$domain->domain}</strong> akan kedaluwarsa besok.";
-            } elseif ($interval === 2) {
-                $notifications[] = "Domain <strong>{$domain->domain}</strong> akan kedaluwarsa dalam 2 hari.";
-            } elseif ($interval === 3) {
-                $notifications[] = "Domain <strong>{$domain->domain}</strong> akan kedaluwarsa dalam 3 hari.";
+            if ($interval === 10) {
+                $notifications[] = "Domain <strong>{$domain->domain}</strong> akan kedaluwarsa dalam 10 hari.";
+            } elseif ($interval === 20) {
+                $notifications[] = "Domain <strong>{$domain->domain}</strong> akan kedaluwarsa dalam 20 hari.";
+            } elseif ($interval === 30) {
+                $notifications[] = "Domain <strong>{$domain->domain}</strong> akan kedaluwarsa dalam 30 hari.";
             } elseif ($interval === 0) {
                 $notifications[] = "Domain <strong>{$domain->domain}</strong> kedaluwarsa hari ini.";
             }
         }
 
-        // Kirim notifikasi ke view
-        // return view('domains.notifications', compact('notifications'));
-        // Log::info('Notifikasi Domain:', $notifications);
-        // Bagikan data notifikasi ke seluruh view
-        View::share('notifications', $notifications);
-
-        // Project Deadline Notification
-        // Tanggal hari ini
-        $today1 = Carbon::today();
-
-        // Ambil data dari tabel 'domain'
+        // Notifikasi Proyek
         $projects = DB::table('projects')->select('id', 'project_name', 'deadline')->get();
-
-        $notifications1 = [];
 
         foreach ($projects as $project) {
             // Hitung selisih tanggal
-            $interval1 = $today1->diffInDays(Carbon::parse($domain->expired), false);
+            $interval = $today->diffInDays(Carbon::parse($project->deadline), false);
 
             // Tentukan pesan berdasarkan selisih
-            if ($interval1 === 1) {
-                $notifications1[] = "Project <strong>{$project->project_name}</strong> akan kedaluwarsa besok.";
-            } elseif ($interval1 === 2) {
-                $notifications1[] = "Project <strong>{$project->project_name}</strong> akan kedaluwarsa dalam 2 hari.";
-            } elseif ($interval1 === 3) {
-                $notifications1[] = "Project <strong>{$project->project_name}</strong> akan kedaluwarsa dalam 3 hari.";
-            } elseif ($interval1 === 0) {
-                $notifications1[] = "Project <strong>{$project->project_name}</strong> kedaluwarsa hari ini.";
+            if ($interval === 10) {
+                $notifications[] = "Project <strong>{$project->project_name}</strong> deadline sisa 10 hari.";
+            } elseif ($interval === 20) {
+                $notifications[] = "Project <strong>{$project->project_name}</strong> deadline sisa 20 hari.";
+            } elseif ($interval === 30) {
+                $notifications[] = "Project <strong>{$project->project_name}</strong> deadline sisa 30 hari.";
+            } elseif ($interval === 0) {
+                $notifications[] = "Project <strong>{$project->project_name}</strong> deadline hari ini.";
             }
         }
 
-        View::share('notifications1', $notifications1);
+        // Bagikan data notifikasi ke seluruh view
+        View::share('notifications', $notifications);
     }
 }
