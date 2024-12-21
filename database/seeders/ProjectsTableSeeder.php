@@ -19,7 +19,7 @@ class ProjectsTableSeeder extends Seeder
             DB::table('projects')->insert([
                 'project_name' => $faker->sentence(3),
                 'category' => $faker->randomElement(['Maintenance', 'Re-Design', 'Hosting']),
-                'pic_name' => $faker->randomElement(['Widia Hadi Purwanti', 'Handika Wicaksana']),
+                'project_handler' => $faker->randomElement(['Widia Hadi Purwanti', 'Handika Wicaksana']),
                 'status' => 'new_project',
                 'tanggal_masuk_project' => $faker->date(),
                 'deadline' => $faker->dateTimeBetween('now', '+6 months')->format('Y-m-d'),

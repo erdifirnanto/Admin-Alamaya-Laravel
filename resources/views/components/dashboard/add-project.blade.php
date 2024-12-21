@@ -72,29 +72,25 @@
                         </div>
 
                     </div>
-                    <!-- PIC and Category -->
+                    <!-- Project Handler and Category -->
                     <div class="row mb-3">
                         <div class="col">
-                            <label for="pic_name" class="form-label"
-                                style="font-size: 0.7em; font-weight: bold;">PIC</label>
-                            <select class="form-select @error('pic_name') is-invalid @enderror" id="pic_name"
-                                name="pic_name" required>
-                                <option selected value="Widia Hadi Purwanti">Widia Hadi Purwanti
+                            <label for="project_handler" class="form-label"
+                                style="font-size: 0.7em; font-weight: bold;">Project Handler</label>
+                            <select class="form-select @error('project_handler') is-invalid @enderror"
+                                id="project_handler" name="project_handler" required>
+                                <option selected value="">Select Person
                                 </option>
-                                {{-- @foreach ($users as $user)
-                                                                       <option value="{{ $user->name }}"
-                                                                           {{ old('$user->name') == '$user->name' ? 'selected' : '' }}>
-                                                                           {{ $user->name }}
-                                                                       </option>
-                                                                   @endforeach --}}
-                                <option value="Handika Wicaksana"
-                                    {{ old('pic_name') == 'Handika Wicaksana' ? 'selected' : '' }}>
-                                    Handika Wicaksana</option>
-                                <option value="Widia Hadi Purwanti"
-                                    {{ old('pic_name') == 'Widia Hadi Purwanti' ? 'selected' : '' }}>
-                                    Widia Hadi Purwanti</option>
+
+                                @foreach ($teams as $team)
+                                    <option value="{{ $team->personil_name }}"
+                                        {{ old('project_handler') == $team->personil_name ? 'selected' : '' }}>
+                                        {{ $team->personil_name }}
+                                    </option>
+                                @endforeach
+
                             </select>
-                            @error('pic_name')
+                            @error('project_handler')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -219,7 +215,7 @@
                         }
 
                         // Memeriksa apakah PIC dipilih
-                        const picName = document.getElementById('pic_name');
+                        const picName = document.getElementById('project_handler');
                         if (picName.value === '') {
                             picName.classList.add('is-invalid');
                             isValid = false;

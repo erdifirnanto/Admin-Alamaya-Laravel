@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('project_name');
             $table->string('category')->nullable();
-            $table->string('pic_name')->nullable();
+            $table->string('project_handler')->nullable();
             $table->string('status')->default('Mindmap');
             $table->date('tanggal_masuk_project');
             $table->date('deadline')->nullable();

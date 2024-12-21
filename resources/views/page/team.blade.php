@@ -1,7 +1,6 @@
    @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
-
        <section class="main-page" id="main-page">
            <section>
                <!-- Table Section Start -->
@@ -63,7 +62,7 @@
                                        });
                                    </script>
 
-                                @include('components.team.add-team')
+                                   @include('components.team.add-team')
 
                                    <!-- Sortby Button -->
                                    <button class="btn btn-dropdown dropdown-toggle srtby" type="button"
@@ -91,8 +90,7 @@
                                        <!-- Checkbox Select All -->
                                        <div>
                                            <input type="checkbox" id="select-all">
-                                           <label style="margin-left: 10px; margin-right: 0px;"
-                                               for="select-all">All</label>
+                                           <label style="margin-left: 10px; margin-right: 0px;" for="select-all">All</label>
 
                                            <script>
                                                // Pilih semua checkbox saat 'select-all' dicentang
@@ -230,52 +228,18 @@
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span> --}}
                                        </td>
-                                       <td style="align-content: center" data-key="pic-name">{{ $team->project_handle }}
+                                       <td style="align-content: center" data-key="project-handle">
+                                           {{ $team->project_handle }}
                                        </td>
-                                               <td style="align-content: center; text-align: start;">
-                                               {{-- Edit Modal --}}
-                                               @include('components.team.edit-team')</td>
-
-                                               {{-- <script>
-                                                   // Assuming you have edit buttons with class "edit-btn" and data attributes for the client
-                                                   document.querySelectorAll('.edit-btn').forEach(button => {
-                                                       button.addEventListener('click', function() {
-                                                           const clientId = this.getAttribute('data-id');
-                                                           const clientName = this.getAttribute('data-client-name');
-                                                           const companyName = this.getAttribute('data-company-name');
-                                                           const picName = this.getAttribute('data-pic-name');
-                                                           const productdomain = this.getAttribute('data-product-domain');
-                                                           const email = this.getAttribute('data-email');
-                                                           const phone = this.getAttribute('data-phone');
-                                                           const address = this.getAttribute('data-address');
-
-                                                           // Populate the modal fields
-                                                           document.getElementById('edit_client_id').value = clientId;
-                                                           document.getElementById('edit_personil_name').value = clientName;
-                                                           document.getElementById('edit_domain').value = companyName;
-                                                           document.getElementById('edit_expired').value = picName;
-                                                           document.getElementById('edit_product_domain').value = productdomain;
-                                                           document.getElementById('edit_email').value = email;
-                                                           document.getElementById('edit_phone').value = phone;
-                                                           document.getElementById('edit_address').value = address;
-
-                                                           // Update the form action to point to the correct client update route
-                                                           const formAction = document.getElementById('editClientForm').action.replace(':id',
-                                                               clientId);
-                                                           document.getElementById('editClientForm').action = formAction;
-
-                                                           // Show the modal
-                                                           $('#editProjectModal').modal('show');
-                                                       });
-                                                   });
-                                               </script> --}}
-
+                                       <td style="align-content: center; text-align: start;">
+                                           {{-- Edit Modal --}}
+                                           @include('components.team.edit-team')</td>
                                    </tr>
                                @endforeach
                            </tbody>
                        </table>
 
- {{-- Pagination --}}
+                       {{-- Pagination --}}
                        @include('components.team.pagination-team')
 
                    </div>

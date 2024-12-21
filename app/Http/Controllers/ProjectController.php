@@ -86,7 +86,7 @@ class ProjectController extends Controller
         $request->validate([
             'project_name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
-            'pic_name' => 'required|string|max:255',
+            'project_handler' => 'required|string|max:255',
             'status' => 'required|string|max:255',
             'tanggal_masuk_project' => 'required|date',
             'deadline' => 'required|date',
@@ -102,7 +102,7 @@ class ProjectController extends Controller
         Project::create([
             'project_name' => $request['project_name'],
             'category' => $request['category'],
-            'pic_name' => $request['pic_name'],
+            'project_handler' => $request['project_handler'],
             'status' => $request['status'],
             'tanggal_masuk_project' => $request['tanggal_masuk_project'],
             'deadline' => $request['deadline'],
@@ -153,7 +153,7 @@ class ProjectController extends Controller
         $validatedData = $request->validate([
             'project_name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
-            'pic_name' => 'required|string|max:255',
+            'project_handler' => 'required|string|max:255',
             'status' => 'required|string|max:255',
             'tanggal_masuk_project' => 'required|date',
             'deadline' => 'required|date',
@@ -187,7 +187,7 @@ class ProjectController extends Controller
 
         // Query untuk mencari data
         $projects = Project::where('project_name', 'LIKE', "%{$searchQuery}%")
-            ->orWhere('pic_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('project_handler', 'LIKE', "%{$searchQuery}%")
             ->orWhere('client_name', 'LIKE', "%{$searchQuery}%")
             ->orWhere('company_name', 'LIKE', "%{$searchQuery}%")
             ->orWhere('email', 'LIKE', "%{$searchQuery}%")

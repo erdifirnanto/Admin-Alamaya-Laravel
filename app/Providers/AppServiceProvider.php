@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 use App\Models\Client;
 use App\Models\Project;
+use App\Models\Team;
 use App\Models\Domain;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,16 @@ class AppServiceProvider extends ServiceProvider
         // View::share('totalProjects', Project::count());
         $maintenanceProjectsCount = Project::where('category', 'Maintenance')->count();
         View::share('totalMaintenanceProjects', $maintenanceProjectsCount);
+
+        // Data Team 
+        $teams = DB::table('teams')
+            ->select('id', 'personil_name')
+            ->orderBy('personil_name', 'asc')
+            ->get();
+
+        View::share('teams', $teams);
+
+
 
         // Notifikasi Domain dan Project
         $today = Carbon::today();

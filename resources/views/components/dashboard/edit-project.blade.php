@@ -68,23 +68,25 @@
                              @enderror
                          </div>
                      </div>
-                     <!-- PIC and Category -->
+                     <!-- Project Handler and Category -->
                      <div class="row mb-3">
                          <div class="col">
-                             <label for="pic_name" class="form-label"
-                                 style="font-size: 0.7em; font-weight: bold;">PIC</label>
-                             <select class="form-select @error('pic_name') is-invalid @enderror" id="pic_name"
-                                 name="pic_name" required>
-                                 <option selected value="{{ $project->pic_name }}">{{ $project->pic_name }}
+                             <label for="project_handler" class="form-label"
+                                 style="font-size: 0.7em; font-weight: bold;">Project Handler</label>
+                             <select class="form-select @error('project_handler') is-invalid @enderror"
+                                 id="project_handler" name="project_handler" required>
+                                 <option selected value="{{ $project->project_handler }}">
+                                     {{ $project->project_handler }}
                                  </option>
-                                 <option value="Handika Wicaksana"
-                                     {{ old('pic_name') == 'Handika Wicaksana' ? 'selected' : '' }}>
-                                     Handika Wicaksana</option>
-                                 <option value="Widia Hadi Purwanti"
-                                     {{ old('pic_name') == 'Widia Hadi Purwanti' ? 'selected' : '' }}>
-                                     Widia Hadi Purwanti</option>
+
+                                 @foreach ($teams as $team)
+                                     <option value="{{ $team->personil_name }}"
+                                         {{ old('project_handler') == $team->personil_name ? 'selected' : '' }}>
+                                         {{ $team->personil_name }}
+                                     </option>
+                                 @endforeach
                              </select>
-                             @error('pic_name')
+                             @error('project_handler')
                                  <div class="invalid-feedback">{{ $message }}</div>
                              @enderror
                          </div>
@@ -189,37 +191,3 @@
          </div>
      </div>
  </div>
-
- {{-- <script>
-                                                   // Assuming you have edit buttons with class "edit-btn" and data attributes for the client
-                                                   document.querySelectorAll('.edit-btn').forEach(button => {
-                                                       button.addEventListener('click', function() {
-                                                           const clientId = this.getAttribute('data-id');
-                                                           const clientName = this.getAttribute('data-client-name');
-                                                           const companyName = this.getAttribute('data-company-name');
-                                                           const picName = this.getAttribute('data-pic-name');
-                                                           const productCategory = this.getAttribute('data-product-category');
-                                                           const email = this.getAttribute('data-email');
-                                                           const phone = this.getAttribute('data-phone');
-                                                           const address = this.getAttribute('data-address');
-
-                                                           // Populate the modal fields
-                                                           document.getElementById('edit_client_id').value = clientId;
-                                                           document.getElementById('edit_client_name').value = clientName;
-                                                           document.getElementById('edit_company_name').value = companyName;
-                                                           document.getElementById('edit_pic_name').value = picName;
-                                                           document.getElementById('edit_category').value = productCategory;
-                                                           document.getElementById('edit_email').value = email;
-                                                           document.getElementById('edit_phone').value = phone;
-                                                           document.getElementById('edit_address').value = address;
-
-                                                           // Update the form action to point to the correct client update route
-                                                           const formAction = document.getElementById('editClientForm').action.replace(':id',
-                                                               clientId);
-                                                           document.getElementById('editClientForm').action = formAction;
-
-                                                           // Show the modal
-                                                           $('#editProjectModal').modal('show');
-                                                       });
-                                                   });
-                                               </script> --}}
