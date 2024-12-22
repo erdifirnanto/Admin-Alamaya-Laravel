@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="/" class="text-dark" style="text-decoration: none;">
+                            <a href="{{ route('project.completed') }}" class="text-dark" style="text-decoration: none;">
                                 <h6 class="d-flex justify-content-center" style="margin-top: -20px;">Detail
                                     stats <i class="fa-solid fa-arrow-right" style="margin-left: 5px;"></i>
                                 </h6>

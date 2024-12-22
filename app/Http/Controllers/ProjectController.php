@@ -79,6 +79,25 @@ class ProjectController extends Controller
         }
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
     }
+    public function ViewCompleted()
+    {
+        if (Auth::user()->role === 'admin') {
+            // Ambil data klien untuk admin
+            $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
+            $projects = Project::where('category', '=', 'Selesai')
+                ->orderBy('id', $sort)
+                ->paginate(10);
+
+            return view('page.completed', compact('projects'));
+        } else if (Auth::user()->role === 'staff') {
+            $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
+            $projects = Project::where('category', '=', 'Selesai')
+                ->orderBy('id', $sort)
+                ->paginate(10);
+            return view('page.completed', compact('projects'));
+        }
+        return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
+    }
 
     public function Pstore(Request $request)
     {
