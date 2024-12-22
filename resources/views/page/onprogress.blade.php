@@ -20,8 +20,11 @@
                <div class="row">
                    <div class="col-12 col-md-12">
                        <div class="search-add-sort-container">
-                           {{-- Seacrh --}}
-                           @include('components.onprogress.search-onprogress')
+                           <!-- Search Input -->
+                           <div class="search-box">
+                               <input id="searchInput" style="width: 400px;" type="text" placeholder="Search">
+                               <span class="icon-search"><i class="fas fa-search"></i></span>
+                           </div>
                            <!-- Buttons Section -->
                            <div class="button-container">
                                <!-- Sort by Dropdown -->
@@ -292,8 +295,7 @@
                                            </div>
                                        </td>
                                         <td style="align-content: center">
-                                           {{ $project->deadline }}
-                                       </td>
+                                           {{ $project->tanggal_masuk_project }}</td>
                                        <td style="align-content: center">
                                            {{ $project->deadline }}
                                        </td>

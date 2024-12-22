@@ -9,7 +9,7 @@
                    <div class="row">
                        <div class="col-12 col-md-12">
                            <div class="d-flex justify-content-center" style="margin-bottom: 50px;">
-                               <h1>Maintenance</h1>
+                               <h1>Project Completed</h1>
                            </div>
                        </div>
                    </div>
@@ -213,7 +213,7 @@
                                            </span>
                                        </span>
                                    </th>
-                                   <th>Action</th>
+                                   {{-- <th>Action</th> --}}
                                </tr>
 
                                <script>
@@ -291,8 +291,9 @@
                                                @endif
                                            </div>
                                        </td>
-                                       <td style="align-content: center">
-                                           {{ $project->tanggal_masuk_project }}</td>
+                                        <td style="align-content: center">
+                                           {{ $project->join_date }}
+                                       </td>
                                        <td style="align-content: center">
                                            {{ $project->deadline }}
                                        </td>
@@ -357,7 +358,19 @@
                                                                                <option value="2">Category 2</option>
                                                                            </select>
                                                                        </div>
-
+                                                                       <div class="col">
+                                                                           <label name="pic_name" for="pic_name"
+                                                                               id="pic_name"
+                                                                               class="form-label">PIC</label>
+                                                                           <select class="form-select" name="pic_name"
+                                                                               for="pic_name" id="pic_name">
+                                                                               <option value="{{ $project->pic_name }}"
+                                                                                   selected>{{ $project->pic_name }}
+                                                                               </option>
+                                                                               <option value="1">PIC 1</option>
+                                                                               <option value="2">PIC 2</option>
+                                                                           </select>
+                                                                       </div>
                                                                    </div>
                                                                    <div class="row mb-3">
                                                                        <div class="col">

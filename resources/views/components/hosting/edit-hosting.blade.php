@@ -1,13 +1,13 @@
 <i class="fas fa-edit" style="cursor: pointer;" aria-expanded="false" data-bs-toggle="modal"
-    data-bs-target="#editDomainModal-{{ $hosting->id }}"></i>
+    data-bs-target="#editHostingModal-{{ $hosting->id }}"></i>
 
-{{-- Edit Data Domain --}}
-<div class="modal fade" id="editDomainModal-{{ $hosting->id }}" tabindex="-1" aria-labelledby="editDomainModalLabel"
+{{-- Edit Data Hosting --}}
+<div class="modal fade" id="editHostingModal-{{ $hosting->id }}" tabindex="-1" aria-labelledby="editHostingModalLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header" style="display: block;">
-                <h5 class="modal-title" id="editDomainModalLabel">Edit
+                <h5 class="modal-title" id="editHostingModalLabel">Edit
                     Data
                     Hosting</h5>
                 <p style="margin-top: 2px;"></p>
