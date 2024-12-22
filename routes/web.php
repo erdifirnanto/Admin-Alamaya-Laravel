@@ -118,4 +118,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/team/{id}/edit', [TeamController::class, 'edit'])->name('team.edit');
         Route::put('/team/{id}', [TeamController::class, 'update'])->name('team.update');
         Route::put('/team/{team}', [TeamController::class, 'update'])->name('team.update');
+        Route::get('/search3', [TeamController::class, 'search'])->name('team.search');
     });

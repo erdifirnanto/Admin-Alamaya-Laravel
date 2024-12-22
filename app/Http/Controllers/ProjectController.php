@@ -188,6 +188,7 @@ class ProjectController extends Controller
         // Query untuk mencari data
         $projects = Project::where('project_name', 'LIKE', "%{$searchQuery}%")
             ->orWhere('project_handler', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('category', 'LIKE', "%{$searchQuery}%")
             ->orWhere('client_name', 'LIKE', "%{$searchQuery}%")
             ->orWhere('company_name', 'LIKE', "%{$searchQuery}%")
             ->orWhere('email', 'LIKE', "%{$searchQuery}%")

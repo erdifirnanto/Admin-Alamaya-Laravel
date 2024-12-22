@@ -188,8 +188,8 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           PIC
-                                           <span class="sort-icons sort-button" data-sort="pic-name" data-order="asc"
+                                           Status
+                                           <span class="sort-icons sort-button" data-sort="status" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <i class="fa fa-sort"></i>
                                            </span>
@@ -197,10 +197,11 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           Status
-                                           <span class="sort-icons sort-button" data-sort="status" data-order="asc"
+                                           Join Date
+                                           <span class="sort-icons sort-button" data-sort="join_date" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <i class="fa fa-sort"></i>
+
                                            </span>
                                        </span>
                                    </th>
@@ -267,8 +268,7 @@
                                                {{ $project->category }}
                                            @endif
                                        </td>
-                                       <td style="align-content: center" data-key="pic-name">{{ $project->pic_name }}
-                                       </td>
+            
                                        <td style="align-content: center;">
                                            <div class="btn rounded-5 align-top d-flex justify-content-center align-items-center"
                                                style="height: 4vh; width: 100px; background-color: #f8e2f7; border: 2px solid #f8e2f7;">
@@ -291,7 +291,9 @@
                                                @endif
                                            </div>
                                        </td>
-
+                                        <td style="align-content: center">
+                                           {{ $project->deadline }}
+                                       </td>
                                        <td style="align-content: center">
                                            {{ $project->deadline }}
                                        </td>

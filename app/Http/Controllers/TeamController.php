@@ -91,4 +91,25 @@ class TeamController extends Controller
         // return response()->json(['success' => true]);
         return redirect()->route('team.view')->with('success', 'Data berhasil diupdate.');
     }
+
+    public function search(Request $request)
+    {
+        // Deteksi apakah search berasal dari form
+        if (!$request->has('search')) {
+            // Jika tidak ada parameter `search`, redirect ke /
+            return redirect('/');
+        }
+
+        // Ambil query pencarian
+        $searchQuery = $request->input('search', '');
+
+        // Query untuk mencari data
+        $teams = Team::where('personil_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('division', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('project_handle', 'LIKE', "%{$searchQuery}%")
+            ->paginate(50);
+
+        // Tampilkan data pada view
+        return view('page.team', compact('teams'));
+    }
 }
