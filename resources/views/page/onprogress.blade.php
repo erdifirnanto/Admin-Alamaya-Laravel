@@ -1,7 +1,6 @@
    @include('layouts.animasi')
    @extends('layouts.master')
    @section('content')
-
        <section class="main-page" id="main-page">
            <section>
                <!-- Table Section Start -->
@@ -175,7 +174,7 @@
                                            </span>
                                        </span>
                                    </th>
-                                <th style="align-items: center;">Project Handler</th>
+                                   <th style="align-items: center;">Project Handler</th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Category
@@ -195,7 +194,7 @@
                                            </span>
                                        </span>
                                    </th>
-                                   
+
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Join Date
@@ -252,72 +251,72 @@
                            </thead>
                            <tbody>
                                <!-- Main Row -->
-                               
-                                       @forelse ($projects as $key => $project)
-                                           <tr style="height: 80px;">
-                                               <td style="align-content: center; cursor: pointer;"><input type="checkbox"
-                                                       class="client-checkbox" value="{{ $project->id }}">
-                                               </td>
-                                               <td style="align-content: center;">
-                                                   {{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}
-                                               </td>
-                                               <td style="align-content: center;">
-                                                   {{ $project->project_name }}</td>
-                                               {{-- <td style="align-content: center;">{{ $project->phone }}
+
+                               @forelse ($projects as $key => $project)
+                                   <tr style="height: 80px;">
+                                       <td style="align-content: center; cursor: pointer;"><input type="checkbox"
+                                               class="client-checkbox" value="{{ $project->id }}">
+                                       </td>
+                                       <td style="align-content: center;">
+                                           {{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}
+                                       </td>
+                                       <td style="align-content: center;">
+                                           {{ $project->project_name }}</td>
+                                       <td style="align-content: center;">
+                                           {{ $project->project_handler }}</td>
+                                       {{-- <td style="align-content: center;">{{ $project->phone }}
                                            </td> --}}
-                                               <td style="align-content: center;">
-                                                   @if ($project->category === 'new_project')
-                                                       New Project
-                                                   @else
-                                                       {{ $project->category }}
-                                                   @endif
-                                               </td>
-                                        <td style="align-content: center;">
+                                       <td style="align-content: center;">
+                                           @if ($project->category === 'new_project')
+                                               New Project
+                                           @else
+                                               {{ $project->category }}
+                                           @endif
+                                       </td>
+                                       <td style="align-content: center;">
                                            <div class="btn rounded-5 align-top d-flex justify-content-center align-items-center"
                                                style="height: 4vh; width: 100px; background-color: #f8e2f7; border: 2px solid #f8e2f7;">
                                                @if ($project->status == 'new_project')
                                                    <p style="margin: 0; color: rgb(25, 240, 255); font-size:14px;">New
                                                    </p>
                                                @elseif ($project->status == 'Mindmap')
-                                                   <p style="margin: 0; color: rgb(6, 129, 167) ; font-size:14px;">1.
+                                                   <p style="margin: 0; color: rgb(6, 129, 167) ; font-size:14px;">
                                                        Mindmap
                                                    </p>
                                                @elseif ($project->status == 'Design')
-                                                   <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">2.
+                                                   <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">
                                                        Design
                                                    </p>
                                                @elseif ($project->status == 'Slicing')
-                                                   <p style="margin: 0; color: rgb(8, 230, 126); font-size:14px;">3.
-                                                       Slicing
-                                                   <p style="margin: 0; color: rgb(10, 100, 58); font-size:14px;">3. Slicing
+                                                   <p style="margin: 0; color: rgb(10, 100, 58); font-size:14px;">Slicing
                                                    </p>
                                                @elseif ($project->status == 'Maintenance')
                                                    <p style="margin: 0; color: rgb(250, 47, 47); font-size:14px;">
                                                        Maintenance
                                                    </p>
                                                @endif
-                                           </div>   
+                                           </div>
                                        </td>
 
-                                               <td style="align-content: center;">{{ $project->tanggal_masuk_project }}
-                                               </td>
-                                               <td style="align-content: center;">{{ $project->deadline }}
-                                               </td>
-                                               <td style="align-content: center; text-align: start;">
-                                                   {{-- Edit Modal --}}
-                                                   @include('components.onprogress.edit-onprogress')</td>
-                                           </tr>
-                                       @empty
-                                           <tr>
-                                               <td colspan="12" class="text-center"
-                                                   style="height: 80px; align-content: center;">Tidak
-                                                   ada data yang ditemukan</td>
-                                           </tr>
-                                       @endforelse
+                                       <td style="align-content: center;">{{ $project->tanggal_masuk_project }}
+                                       </td>
+                                       <td style="align-content: center;">{{ $project->deadline }}
+                                       </td>
+                                       <td style="align-content: center; text-align: start;">
+                                           {{-- Edit Modal --}}
+                                           @include('components.onprogress.edit-onprogress')</td>
+                                   </tr>
+                               @empty
+                                   <tr>
+                                       <td colspan="12" class="text-center"
+                                           style="height: 80px; align-content: center;">Tidak
+                                           ada data yang ditemukan</td>
+                                   </tr>
+                               @endforelse
                            </tbody>
                        </table>
 
-                        {{-- Pagination --}}
+                       {{-- Pagination --}}
                        @include('components.onprogress.pagination-onprogress')
 
                    </div>

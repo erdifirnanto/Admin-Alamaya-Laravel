@@ -22,7 +22,10 @@ class HostingSeeder extends Seeder
                 'domain' => $faker->domainName(),
                 'status' => 'new_project',
                 'join_date' => $faker->date(),
-                'expired' => $faker->dateTimeBetween('+1 year', '+5 years')->format('Y-m-d'),
+                'expired' => $faker->dateTimeBetween('now', '+6 months')->format('Y-m-d'),
+                'expired' => $faker->dateTimeBetween('now', '+10 days')->format('Y-m-d'),
+                'expired' => $faker->dateTimeBetween('now', '+20 days')->format('Y-m-d'),
+                'expired' => $faker->dateTimeBetween('now', '+1 month')->format('Y-m-d'),
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);

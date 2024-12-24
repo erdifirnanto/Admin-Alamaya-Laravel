@@ -19,7 +19,7 @@ class ProjectController extends Controller
             // dd($clients);
             // dd(csrf_token());
             return view('page.project', compact('projects'));
-        } else if (Auth::user()->role === 'staff') {
+        } elseif (Auth::user()->role === 'staff') {
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
             $projects = Project::orderBy('id', $sort)->paginate(10);
             // $clients = Client::paginate(10);
@@ -36,22 +36,16 @@ class ProjectController extends Controller
         if (Auth::user()->role === 'admin') {
             // Ambil data klien untuk admin
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('status', '!=', 'Maintenance')
-                ->where('category', '!=', 'Maintenance')
-                ->orderBy('id', $sort)
-                ->paginate(10);
-
+            $projects = Project::where('status', '!=', 'Maintenance')->where('category', '!=', 'Maintenance')->orderBy('id', $sort)->paginate(10);
 
             // $clients = Client::paginate(10);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             // dd($clients);
             // dd(csrf_token());
             return view('page.onprogress', compact('projects'));
-        } else if (Auth::user()->role === 'staff') {
+        } elseif (Auth::user()->role === 'staff') {
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('status', '!=', 'Maintenance')
-                ->orderBy('id', $sort)
-                ->paginate(10);
+            $projects = Project::where('status', '!=', 'Maintenance')->orderBy('id', $sort)->paginate(10);
             // $clients = Client::paginate(10);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             // dd($clients);
@@ -65,16 +59,13 @@ class ProjectController extends Controller
         if (Auth::user()->role === 'admin') {
             // Ambil data klien untuk admin
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('category', '=', 'Maintenance')
-                ->orderBy('id', $sort)
-                ->paginate(10);
+            $projects = Project::where('category', '=', 'Maintenance')->orWhere('status', '=', 'Maintenance')->orderBy('id', $sort)->paginate(10);
 
             return view('page.maintenance', compact('projects'));
-        } else if (Auth::user()->role === 'staff') {
+        } elseif (Auth::user()->role === 'staff') {
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('category', '=', 'Maintenance')
-                ->orderBy('id', $sort)
-                ->paginate(10);
+            $projects = Project::where('category', '=', 'Maintenance')->orWhere('status', '=', 'Maintenance')->orderBy('id', $sort)->paginate(10);
+
             return view('page.maintenance', compact('projects'));
         }
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
@@ -84,16 +75,12 @@ class ProjectController extends Controller
         if (Auth::user()->role === 'admin') {
             // Ambil data klien untuk admin
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('category', '=', 'Selesai')
-                ->orderBy('id', $sort)
-                ->paginate(10);
+            $projects = Project::where('category', '=', 'Selesai')->orderBy('id', $sort)->paginate(10);
 
             return view('page.completed', compact('projects'));
-        } else if (Auth::user()->role === 'staff') {
+        } elseif (Auth::user()->role === 'staff') {
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('category', '=', 'Selesai')
-                ->orderBy('id', $sort)
-                ->paginate(10);
+            $projects = Project::where('category', '=', 'Selesai')->orderBy('id', $sort)->paginate(10);
             return view('page.completed', compact('projects'));
         }
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
@@ -101,7 +88,6 @@ class ProjectController extends Controller
 
     public function Pstore(Request $request)
     {
-
         $request->validate([
             'project_name' => 'required|string|max:255',
             'category' => 'required|string|max:255',
@@ -114,7 +100,6 @@ class ProjectController extends Controller
             'email' => 'required|string|max:255',
             'phone' => 'required|string|max:255',
             'address' => 'required|string|max:255',
-
         ]);
         // dd($request);
         // Simpan data ke database
@@ -187,7 +172,7 @@ class ProjectController extends Controller
 
         // return response()->json(['success' => true]);
         if ($request->input('from') === 'onprogress') {
-            return redirect()->route('page.onprogress')->with('success', 'Data berhasil diupdate.');
+            return redirect()->route('project.onprogress')->with('success', 'Data berhasil diupdate.');
         } else {
             return redirect()->route('dashboard')->with('success', 'Data berhasil diupdate.');
         }
@@ -262,40 +247,4 @@ class ProjectController extends Controller
         // Tampilkan data pada view
         return view('page.onprogress', compact('projects'));
     }
-
-
-
-
-
-
-
-    // public function Pedit($id)
-    // {
-    //     // Ambil data klien berdasarkan ID
-    //     $project = Project::findOrFail($id);
-    //     $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-    //     $projects = Project::orderBy('id', $sort)->paginate(10);
-    //     // Kembalikan view dengan data klien
-    //     return view('dashboard', compact('project', 'projects'));
-    // }
-
-    // public function Pupdate(Request $request, Project $project)
-    // {
-    //     // Validasi data permintaan
-    //     $validatedData = $request->validate([
-    //         'project_name' => 'required|string|max:255',
-    //         'category' => 'required|string|max:255',
-    //         'pic_name' => 'required|string|max:255',
-    //         'status' => 'required|string|max:255',
-    //         'tanggal_masuk_project' => 'required|date',
-    //         'deadline' => 'required|date',
-    //     ]);
-
-    //     // Perbarui klien dengan data yang sudah divalidasi
-    //     $project->update($validatedData);
-
-    //     // Kembalikan respons (bisa berupa redirect, respons JSON, dll.)
-    //     // return response()->json(['success' => true]);
-    //     return redirect()->route('project.onprogress')->with('success', 'Data berhasil diupdate.');
-    // }
 }
