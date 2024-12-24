@@ -15,7 +15,7 @@ class ProjectsTableSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        foreach (range(1, 50) as $index) {
+        foreach (range(1, 300) as $index) {
             DB::table('projects')->insert([
                 'project_name' => $faker->sentence(3),
                 'category' => $faker->randomElement(['Maintenance', 'Re-Design', 'Hosting']),
