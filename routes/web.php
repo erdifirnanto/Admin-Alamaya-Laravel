@@ -74,6 +74,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/project', [ProjectController::class, 'View'])->name('project.view');
         Route::get('/projectonprogress', [ProjectController::class, 'ViewOnprogress'])->name('project.onprogress');
         Route::get('/projectmaintenance', [ProjectController::class, 'ViewMaintenance'])->name('project.Maintenance');
+        Route::get('/projectcompleted', [ProjectController::class, 'ViewCompleted'])->name('project.completed');
         Route::post('/project/store', [ProjectController::class, 'Pstore'])->name('project.store');
         Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
         Route::post('/project/delete-multiple', [ProjectController::class, 'deleteMultiple'])->name('project.deleteMultiple');
@@ -84,6 +85,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::put('/projectonprogress/{id}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
         Route::put('/projectonprogress/{project}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
         Route::get('/search', [ProjectController::class, 'search'])->name('project.search');
+        Route::get('/search4', [ProjectController::class, 'search4'])->name('search.maintenance');
+        Route::get('/search5', [ProjectController::class, 'search5'])->name('search.onprogress');
 
 
         // route data domain
@@ -118,4 +121,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/team/{id}/edit', [TeamController::class, 'edit'])->name('team.edit');
         Route::put('/team/{id}', [TeamController::class, 'update'])->name('team.update');
         Route::put('/team/{team}', [TeamController::class, 'update'])->name('team.update');
+        Route::get('/search3', [TeamController::class, 'search'])->name('team.search');
     });

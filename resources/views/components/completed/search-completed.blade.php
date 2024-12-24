@@ -1,6 +1,6 @@
 <!-- Search Input -->
 <div class="search-box">
-    <form action="{{ route('search.onprogress') }}" method="GET">
+    <form action="{{ route('search.completed') }}" method="GET">
         <input id="searchInput" style="width: 400px;" type="text" name="search" placeholder="Search">
         <span class="icon-search"><i class="fas fa-search"></i></span>
     </form>
