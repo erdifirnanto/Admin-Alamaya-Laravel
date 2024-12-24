@@ -85,8 +85,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::put('/projectonprogress/{id}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
         Route::put('/projectonprogress/{project}', [ProjectController::class, 'Pupdate'])->name('project.Pupdate');
         Route::get('/search', [ProjectController::class, 'search'])->name('project.search');
-        Route::get('/search4', [ProjectController::class, 'search'])->name('search.Maintenance');
-        Route::get('/search5', [ProjectController::class, 'search'])->name('search.onprogress');
+        Route::get('/search4', [ProjectController::class, 'search4'])->name('search.maintenance');
+        Route::get('/search5', [ProjectController::class, 'search5'])->name('search.onprogress');
 
 
         // route data domain

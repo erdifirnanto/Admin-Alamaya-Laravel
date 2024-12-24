@@ -187,7 +187,7 @@ class ProjectController extends Controller
 
         // return response()->json(['success' => true]);
         if ($request->input('from') === 'onprogress') {
-            return redirect()->route('project.onprogress')->with('success', 'Data berhasil diupdate.');
+            return redirect()->route('page.onprogress')->with('success', 'Data berhasil diupdate.');
         } else {
             return redirect()->route('dashboard')->with('success', 'Data berhasil diupdate.');
         }
@@ -219,6 +219,49 @@ class ProjectController extends Controller
         return view('dashboard', compact('projects'));
     }
 
+    public function search4(Request $request)
+    {
+        // Deteksi apakah search berasal dari form
+        if (!$request->has('search')) {
+            // Jika tidak ada parameter `search`, redirect ke /
+            return redirect('/');
+        }
+
+        // Ambil query pencarian
+        $searchQuery = $request->input('search', '');
+
+        // Query untuk mencari data
+        $projects = Project::where('project_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('category', 'LIKE', "%{$searchQuery}%")
+            ->paginate(50);
+
+        // Tampilkan data pada view
+        return view('page.maintenance', compact('projects'));
+    }
+
+    public function search5(Request $request)
+    {
+        // Deteksi apakah search berasal dari form
+        if (!$request->has('search')) {
+            // Jika tidak ada parameter `search`, redirect ke /
+            return redirect('/');
+        }
+
+        // Ambil query pencarian
+        $searchQuery = $request->input('search', '');
+
+        // Query untuk mencari data
+        $projects = Project::where('project_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('category', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('address', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('company_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('email', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('phone', 'LIKE', "%{$searchQuery}%")
+            ->paginate(50);
+
+        // Tampilkan data pada view
+        return view('page.onprogress', compact('projects'));
+    }
 
 
 

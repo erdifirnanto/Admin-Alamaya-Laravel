@@ -20,11 +20,8 @@
                <div class="row">
                    <div class="col-12 col-md-12">
                        <div class="search-add-sort-container">
-                           <!-- Search Input -->
-                           <div class="search-box">
-                               <input id="searchInput" style="width: 400px;" type="text" placeholder="Search">
-                               <span class="icon-search"><i class="fas fa-search"></i></span>
-                           </div>
+                           {{-- Seacrh --}}
+                           @include('components.onprogress.search-onprogress')
                            <!-- Buttons Section -->
                            <div class="button-container">
                                <!-- Sort by Dropdown -->
@@ -178,7 +175,7 @@
                                            </span>
                                        </span>
                                    </th>
-
+                                <th style="align-items: center;">Project Handler</th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Category
@@ -198,6 +195,7 @@
                                            </span>
                                        </span>
                                    </th>
+                                   
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            Join Date
@@ -253,77 +251,69 @@
                                </script>
                            </thead>
                            <tbody>
-                               @foreach ($projects as $key => $project)
-                                   <tr style="height: 80px;">
-                                       <td style="align-content: center"><input type="checkbox" class="client-checkbox"
-                                               value="{{ $project->id }}">
-                                       </td>
-                                       <td style="align-content: center">
-                                           {{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}</td>
-                                       {{-- <td style="align-content: center">{{ $project->id }}</td> --}}
-                                       <td style="align-content: center" data-key="client-name">
-                                           {{ $project->project_name }}
-                                       </td>
-                                       <td style="align-content: center" data-key="product-category">
-                                           @if ($project->category === 'new_project')
-                                               New Project
-                                           @else
-                                               {{ $project->category }}
-                                           @endif
-                                       </td>
-            
-                                       <td style="align-content: center;">
+                               <!-- Main Row -->
+                               
+                                       @forelse ($projects as $key => $project)
+                                           <tr style="height: 80px;">
+                                               <td style="align-content: center; cursor: pointer;"><input type="checkbox"
+                                                       class="client-checkbox" value="{{ $project->id }}">
+                                               </td>
+                                               <td style="align-content: center;">
+                                                   {{ ($projects->currentPage() - 1) * $projects->perPage() + $key + 1 }}
+                                               </td>
+                                               <td style="align-content: center;">
+                                                   {{ $project->project_name }}</td>
+                                               {{-- <td style="align-content: center;">{{ $project->phone }}
+                                           </td> --}}
+                                               <td style="align-content: center;">
+                                                   @if ($project->category === 'new_project')
+                                                       New Project
+                                                   @else
+                                                       {{ $project->category }}
+                                                   @endif
+                                               </td>
+                                        <td style="align-content: center;">
                                            <div class="btn rounded-5 align-top d-flex justify-content-center align-items-center"
                                                style="height: 4vh; width: 100px; background-color: #f8e2f7; border: 2px solid #f8e2f7;">
                                                @if ($project->status == 'new_project')
-                                                   <p style="margin: 0; color: rgb(167, 6, 6) ; font-size:14px;">New
+                                                   <p style="margin: 0; color: rgb(25, 240, 255); font-size:14px;">New
                                                    </p>
-                                                @elseif ($project->status == 'Mindmap')
-                                                <p style="margin: 0; color: rgb(144, 25, 255); font-size:14px;">Mindmap
-                                                </p>
+                                               @elseif ($project->status == 'Mindmap')
+                                                   <p style="margin: 0; color: rgb(6, 129, 167) ; font-size:14px;">1.
+                                                       Mindmap
+                                                   </p>
                                                @elseif ($project->status == 'Design')
-                                                   <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">Design
+                                                   <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">2.
+                                                       Design
                                                    </p>
                                                @elseif ($project->status == 'Slicing')
-                                                   <p style="margin: 0; color: rgb(8, 41, 230); font-size:14px;">Slicing
+                                                   <p style="margin: 0; color: rgb(8, 230, 126); font-size:14px;">3.
+                                                       Slicing
+                                                   <p style="margin: 0; color: rgb(10, 100, 58); font-size:14px;">3. Slicing
                                                    </p>
-                                               @elseif ($project->status == 'Selesai')
-                                                   <p style="margin: 0; color: rgb(8, 160, 89) ; font-size:14px;">Selesai
+                                               @elseif ($project->status == 'Maintenance')
+                                                   <p style="margin: 0; color: rgb(250, 47, 47); font-size:14px;">
+                                                       Maintenance
                                                    </p>
-                                            
                                                @endif
-                                           </div>
+                                           </div>   
                                        </td>
-                                        <td style="align-content: center">
-                                           {{ $project->tanggal_masuk_project }}</td>
-                                       <td style="align-content: center">
-                                           {{ $project->deadline }}
-                                       </td>
-                                       <td style="align-content: center">
-                                           {{-- Edit Modal --}}
-                                               @include('components.onprogress.edit-onprogress')</td>
-                                       </td>
-                                   </tr>
-                                   {{-- <tr class="collapse-row" style="display: none;">
-                                       <td></td>
-                                       <td colspan="2">
-                                           <div class="collapse-content"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $client->company_name }}</span>
-                       <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                           onclick="copyText('{{ $client->company_name }}')"></i>
-           </div>
-           </td>
-           <td colspan="6">
-               <div class="collapse-content1"
-                   style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                   <span>{{ $client->address }}</span>
-                   <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                       onclick="copyText('{{ $client->address }}')"></i>
-               </div>
-           </td>
-           </tr> --}}
-                               @endforeach
+
+                                               <td style="align-content: center;">{{ $project->tanggal_masuk_project }}
+                                               </td>
+                                               <td style="align-content: center;">{{ $project->deadline }}
+                                               </td>
+                                               <td style="align-content: center; text-align: start;">
+                                                   {{-- Edit Modal --}}
+                                                   @include('components.onprogress.edit-onprogress')</td>
+                                           </tr>
+                                       @empty
+                                           <tr>
+                                               <td colspan="12" class="text-center"
+                                                   style="height: 80px; align-content: center;">Tidak
+                                                   ada data yang ditemukan</td>
+                                           </tr>
+                                       @endforelse
                            </tbody>
                        </table>
 

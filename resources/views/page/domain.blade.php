@@ -150,7 +150,7 @@
                                    </th>
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
-                                           No. Id
+                                           No.
                                            <span class="sort-icons sort-button" data-sort="id" data-order="asc"
                                                style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
                                                <i class="fa fa-sort"></i>
