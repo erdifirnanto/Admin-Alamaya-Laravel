@@ -71,7 +71,9 @@ class AppServiceProvider extends ServiceProvider
                 $notifications[] = "Domain <strong>{$domain->domain}</strong> akan kedaluwarsa dalam 20 hari.";
             } elseif ($interval === 30) {
                 $notifications[] = "Domain <strong>{$domain->domain}</strong> akan kedaluwarsa dalam 30 hari.";
-            } elseif ($interval === 0) {
+            } elseif ($interval === 3) {
+                $notifications[] = "Domain <strong>{$domain->domain}</strong> kedaluwarsa dalam 3 hari.";
+            }elseif ($interval === 0) {
                 $notifications[] = "Domain <strong>{$domain->domain}</strong> kedaluwarsa hari ini.";
             }
         }
@@ -90,6 +92,8 @@ class AppServiceProvider extends ServiceProvider
                 $notifications[] = "Project <strong>{$project->project_name}</strong> deadline sisa 20 hari.";
             } elseif ($interval === 30) {
                 $notifications[] = "Project <strong>{$project->project_name}</strong> deadline sisa 30 hari.";
+            } elseif ($interval === 3) {
+                $notifications[] = "Project <strong>{$project->project_name}</strong> deadline sisa 3 hari.";
             } elseif ($interval === 0) {
                 $notifications[] = "Project <strong>{$project->project_name}</strong> deadline hari ini.";
             }
