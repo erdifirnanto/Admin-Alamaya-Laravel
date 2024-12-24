@@ -36,7 +36,7 @@ class ProjectController extends Controller
         if (Auth::user()->role === 'admin') {
             // Ambil data klien untuk admin
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('status', '!=', 'Maintenance')->where('category', '!=', 'Maintenance')->orderBy('id', $sort)->paginate(10);
+            $projects = Project::where('status', '!=', 'Maintenance')->where('category', '!=', 'Maintenance')->where('status', '!=', 'Selesai')->orderBy('id', $sort)->paginate(10);
 
             // $clients = Client::paginate(10);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
@@ -45,7 +45,7 @@ class ProjectController extends Controller
             return view('page.onprogress', compact('projects'));
         } elseif (Auth::user()->role === 'staff') {
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('status', '!=', 'Maintenance')->orderBy('id', $sort)->paginate(10);
+            $projects = Project::where('status', '!=', 'Maintenance')->where('category', '!=', 'Maintenance')->where('status', '!=', 'Selesai')->orderBy('id', $sort)->paginate(10);
             // $clients = Client::paginate(10);
             // $clients = Client::all(); // Ganti dengan model yang sesuai
             // dd($clients);
@@ -75,12 +75,12 @@ class ProjectController extends Controller
         if (Auth::user()->role === 'admin') {
             // Ambil data klien untuk admin
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('category', '=', 'Selesai')->orderBy('id', $sort)->paginate(10);
+            $projects = Project::where('status', '=', 'Selesai')->orderBy('id', $sort)->paginate(10);
 
             return view('page.completed', compact('projects'));
         } elseif (Auth::user()->role === 'staff') {
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('category', '=', 'Selesai')->orderBy('id', $sort)->paginate(10);
+            $projects = Project::where('status', '=', 'Selesai')->orderBy('id', $sort)->paginate(10);
             return view('page.completed', compact('projects'));
         }
         return redirect('/')->with('error', 'Anda tidak memiliki akses ke halaman ini');
@@ -173,6 +173,45 @@ class ProjectController extends Controller
         // return response()->json(['success' => true]);
         if ($request->input('from') === 'onprogress') {
             return redirect()->route('project.onprogress')->with('success', 'Data berhasil diupdate.');
+        } elseif ($request->input('from') === 'projectcompleted') {
+            return redirect()->route('project.completed')->with('success', 'Data berhasil diupdate.');
+        } else {
+            return redirect()->route('dashboard')->with('success', 'Data berhasil diupdate.');
+        }
+    }
+
+    public function Cedit($id)
+    {
+        // Ambil data klien berdasarkan ID
+        $project = Project::findOrFail($id);
+        $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
+        $projects = Project::orderBy('id', $sort)->paginate(10);
+        // Kembalikan view dengan data klien
+        return view('dashboard', compact('project', 'projects'));
+    }
+
+    public function Cupdate(Request $request, Project $project)
+    {
+        // Validasi data permintaan
+        $validatedData = $request->validate([
+            'project_name' => 'required|string|max:255',
+            'category' => 'required|string|max:255',
+            'project_handler' => 'required|string|max:255',
+            'status' => 'required|string|max:255',
+            'tanggal_masuk_project' => 'required|date',
+            'deadline' => 'required|date',
+            'client_name' => 'required|string|max:255',
+            'company_name' => 'required|string|max:255',
+            'email' => 'required|string|max:255',
+            'phone' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+        ]);
+
+        $project->update($validatedData);
+
+        // return response()->json(['success' => true]);
+        if ($request->input('from') === 'projectcompleted') {
+            return redirect()->route('project.completed')->with('success', 'Data berhasil diupdate.');
         } else {
             return redirect()->route('dashboard')->with('success', 'Data berhasil diupdate.');
         }

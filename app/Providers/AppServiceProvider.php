@@ -32,14 +32,14 @@ class AppServiceProvider extends ServiceProvider
         // $projectOnProgressCount = Project::whereIn('status', ['Slicing', 'Mindmap', 'Design', 'new_project'])->count();
         // View::share('totalProjects', $projectOnProgressCount);
 
+        // Count Project Selesai
         $selesaiCount = Project::where('status', 'selesai')->count();
         View::share('totalSelesai', $selesaiCount);
-
+        // Count Total Project
         $projectOnProgressCount = Project::where('category', '!=', 'Maintenance')->count();
         View::share('totalProjects', $projectOnProgressCount);
-
-        // View::share('totalProjects', Project::count());
-        $maintenanceProjectsCount = Project::where('category', 'Maintenance')->count();
+        // Count Maintenance
+        $maintenanceProjectsCount = Project::where('category', 'Maintenance')->orWhere('status', 'Maintenance')->count();
         View::share('totalMaintenanceProjects', $maintenanceProjectsCount);
 
         // Data Team

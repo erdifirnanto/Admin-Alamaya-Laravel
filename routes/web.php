@@ -75,6 +75,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/projectonprogress', [ProjectController::class, 'ViewOnprogress'])->name('project.onprogress');
         Route::get('/projectmaintenance', [ProjectController::class, 'ViewMaintenance'])->name('project.Maintenance');
         Route::get('/projectcompleted', [ProjectController::class, 'ViewCompleted'])->name('project.completed');
+        Route::get('/project/{id}/edit', [ProjectController::class, 'Cedit'])->name('projectcompleted.edit');
+        Route::put('/projectcompleted/{id}', [ProjectController::class, 'Cupdate'])->name('projectcompleted.update');
+        Route::put('/projectcompleted/{project}', [ProjectController::class, 'Cupdate'])->name('projectcompleted.update');
         Route::post('/project/store', [ProjectController::class, 'Pstore'])->name('project.store');
         Route::delete('/project/{id}', [ProjectController::class, 'destroy'])->name('project.destroy');
         Route::post('/project/delete-multiple', [ProjectController::class, 'deleteMultiple'])->name('project.deleteMultiple');

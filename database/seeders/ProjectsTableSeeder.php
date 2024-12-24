@@ -20,7 +20,7 @@ class ProjectsTableSeeder extends Seeder
                 'project_name' => $faker->sentence(3),
                 'category' => $faker->randomElement(['Maintenance', 'Re-Design', 'Hosting']),
                 'project_handler' => $faker->randomElement(['Widia Hadi Purwanti', 'Handika Wicaksana']),
-                'status' => 'new_project',
+                'status' => $faker->randomElement(['new_project', 'Selesai', 'Maintenance']),
                 'tanggal_masuk_project' => $faker->date(),
                 'deadline' => $faker->dateTimeBetween('now', '+6 months')->format('Y-m-d'),
                 'deadline' => $faker->dateTimeBetween('now', '+10 days')->format('Y-m-d'),

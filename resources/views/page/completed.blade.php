@@ -62,15 +62,6 @@
                                            });
                                        });
                                    </script>
-
-                                   {{-- End Add Project Modal --}}
-
-                                   {{-- @if (session('success'))
-                                       <div class="alert alert-success">
-                                           {{ session('success') }}
-                           </div>
-                           @endif --}}
-
                                    <script>
                                        function showAlert() {
                                            alert('Data berhasil ditambahkan!');
@@ -205,15 +196,7 @@
                                            </span>
                                        </span>
                                    </th>
-                                   <th>
-                                       <span style="display: inline-flex; align-items: center;">
-                                           Deadline
-                                           <span class="sort-icons sort-button" data-sort="deadline" data-order="asc"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                           </span>
-                                       </span>
-                                   </th>
-                                   {{-- <th>Action</th> --}}
+                                   <th>Action</th>
                                </tr>
 
                                <script>
@@ -264,240 +247,28 @@
                                                <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
                                            </span> --}}
                                        </td>
-                            
+
                                        <td style="align-content: center;">
                                            <div class="btn rounded-5 align-top d-flex justify-content-center align-items-center"
                                                style="height: 4vh; width: 100px; background-color: #f8e2f7; border: 2px solid #f8e2f7;">
-                                               @if ($project->status == 'new_project')
-                                                   <p style="margin: 0; color: rgb(25, 240, 255); font-size:14px;">New
-                                                   </p>
-                                               @elseif ($project->status == 'Mindmap')
-                                                   <p style="margin: 0; color: rgb(6, 129, 167) ; font-size:14px;">1.
-                                                       Mindmap
-                                                   </p>
-                                               @elseif ($project->status == 'Design')
-                                                   <p style="margin: 0; color: rgb(255, 128, 25); font-size:14px;">2.
-                                                       Design
-                                                   </p>
-                                               @elseif ($project->status == 'Slicing')
-                                                   <p style="margin: 0; color: rgb(8, 230, 126); font-size:14px;">3.
-                                                       Slicing
-                                                   <p style="margin: 0; color: rgb(10, 100, 58); font-size:14px;">3. Slicing
-                                                   </p>
-                                               @elseif ($project->status == 'Maintenance')
-                                                   <p style="margin: 0; color: rgb(250, 47, 47); font-size:14px;">
-                                                       Maintenance
-                                                   </p>
-                                               @endif
+                                               <p style="margin: 0; color: rgb(10, 100, 58); font-size:14px;">
+                                                   {{ $project->status }}
+                                               </p>
                                            </div>
                                        </td>
-                                        <td style="align-content: center">
-                                           {{ $project->join_date }}
-                                       </td>
                                        <td style="align-content: center">
-                                           {{ $project->deadline }}
+                                           {{ $project->tanggal_masuk_project }}
                                        </td>
-                                       <td hidden style="align-content: center">
+
+                                       <td style="align-content: center">
                                            <div class="dropdown text-center">
-                                               <i class="bi bi-three-dots" data-bs-toggle="dropdown"
-                                                   aria-expanded="false" style="cursor: pointer;"></i>
-                                               <ul class="dropdown-menu">
-                                                   <li><a class="dropdown-item" data-bs-toggle="modal"
-                                                           data-bs-target="#editProjectModal-{{ $project->id }}">Ubah
-                                                           Status</a>
-                                                   </li>
-                                               </ul>
 
                                                {{-- Edit Data Project --}}
-                                               <div style="text-align: left" class="modal fade"
-                                                   id="editProjectModal-{{ $project->id }}" tabindex="-1"
-                                                   aria-labelledby="editProjectModalLabel" aria-hidden="true">
-                                                   <div class="modal-dialog modal-lg">
-                                                       <div class="modal-content">
-                                                           <div class="modal-header" style="display: block;">
-                                                               <h5 class="modal-title" id="editProjectModalLabel">Ubah
-                                                                   Status Project</h5>
-                                                               <p style="margin-top: 2px;"></p>
-                                                               <button type="button" class="btn-close"
-                                                                   data-bs-dismiss="modal" aria-label="Close"
-                                                                   style="position: absolute; right: 10px; top: 10px;"></button>
-                                                           </div>
-
-                                                           <div class="modal-body">
-                                                               <form method="POST"
-                                                                   action="{{ route('project.update', [$project->id, 'from' => 'onprogress']) }}">
-                                                                   @csrf
-                                                                   @method('PUT')
-                                                                   <!-- Project Name -->
-                                                                   <div class="row mb-3" hidden>
-                                                                       <div class="col">
-                                                                           <label name="project_name" for="project_name"
-                                                                               id="project_name"
-                                                                               class="form-label">Project
-                                                                               Name</label>
-                                                                           <input type="text" class="form-control"
-                                                                               name="project_name" for="project_name"
-                                                                               id="project_name"
-                                                                               value="{{ $project->project_name }}"
-                                                                               placeholder="Enter the Project Name">
-                                                                       </div>
-                                                                   </div>
-
-                                                                   <!-- PIC and Product Category -->
-                                                                   <div class="row mb-3" hidden>
-                                                                       <div class="col">
-                                                                           <label name="category" for="category"
-                                                                               id="category" class="form-label">Category
-                                                                               Product</label>
-                                                                           <select class="form-select" name="category"
-                                                                               for="category" id="category">
-                                                                               <option value="{{ $project->category }}"
-                                                                                   selected>{{ $project->category }}
-                                                                               </option>
-                                                                               <option value="1">Category 1</option>
-                                                                               <option value="2">Category 2</option>
-                                                                           </select>
-                                                                       </div>
-                                                                       <div class="col">
-                                                                           <label name="pic_name" for="pic_name"
-                                                                               id="pic_name"
-                                                                               class="form-label">PIC</label>
-                                                                           <select class="form-select" name="pic_name"
-                                                                               for="pic_name" id="pic_name">
-                                                                               <option value="{{ $project->pic_name }}"
-                                                                                   selected>{{ $project->pic_name }}
-                                                                               </option>
-                                                                               <option value="1">PIC 1</option>
-                                                                               <option value="2">PIC 2</option>
-                                                                           </select>
-                                                                       </div>
-                                                                   </div>
-                                                                   <div class="row mb-3">
-                                                                       <div class="col">
-                                                                           <label name="status" for="status"
-                                                                               id="status"
-                                                                               class="form-label">Status</label>
-                                                                           <select class="form-select" name="status"
-                                                                               for="status" id="status">
-                                                                               <option value="{{ $project->status }}"
-                                                                                   selected>{{ $project->status }}
-                                                                               </option>
-                                                                               <option value="Mindmap">Mindmap</option>
-                                                                               <option value="Design">Design</option>
-                                                                               <option value="Slicing">Slicing</option>
-                                                                               <option value="Maintenance">Maintenance
-                                                                               </option>
-                                                                           </select>
-                                                                       </div>
-                                                                   </div>
-
-                                                                   <!-- Tanggal Project Masuk -->
-                                                                   <div class="row mb-3" hidden>
-                                                                       <div class="col">
-                                                                           <label id="tanggal_masuk_project"
-                                                                               name="tanggal_masuk_project"
-                                                                               for="tanggal_masuk_project"
-                                                                               class="form-label">Tanggal Project
-                                                                               Masuk</label>
-                                                                           <input name="tanggal_masuk_project"
-                                                                               for="tanggal_masuk_project" type="date"
-                                                                               class="form-control"
-                                                                               id="tanggal_masuk_project"
-                                                                               value="{{ $project->tanggal_masuk_project }}"
-                                                                               placeholder="Tanggal project masuk">
-                                                                       </div>
-                                                                   </div>
-
-                                                                   <!-- Deadline -->
-                                                                   <div class="mb-3" hidden>
-                                                                       <label name="deadline" for="deadline"
-                                                                           id="deadline"
-                                                                           class="form-label">Deadline</label>
-                                                                       <input name="deadline" for="deadline"
-                                                                           type="date" class="form-control"
-                                                                           id="deadline"
-                                                                           value="{{ $project->deadline }}"
-                                                                           placeholder="Enter the project Deadline">
-                                                                   </div>
-
-                                                                   {{-- <!-- Disclaimer -->
-                                                                   <div class="form-check mb-3">
-                                                                       <input type="checkbox" class="form-check-input"
-                                                                           id="termsCheck">
-                                                                       <label class="form-check-label" for="termsCheck">
-                                                                           By registering, you agree to the terms and
-                                                                           conditions that apply.
-                                                                       </label>
-                                                                   </div>
-
-                                                                   <div class="form-text mb-3">Check again and make
-                                                                       sure the form is completely filled out</div> --}}
-
-                                                                   <!-- Submit Button -->
-                                                                   <button type="submit" class="btn btn-dark w-100"
-                                                                       onclick="showAlertUpdate()">Update</button>
-                                                               </form>
-                                                           </div>
-                                                       </div>
-                                                   </div>
-                                               </div>
-
-                                               {{-- <script>
-                                                   // Assuming you have edit buttons with class "edit-btn" and data attributes for the client
-                                                   document.querySelectorAll('.edit-btn').forEach(button => {
-                                                       button.addEventListener('click', function() {
-                                                           const clientId = this.getAttribute('data-id');
-                                                           const clientName = this.getAttribute('data-client-name');
-                                                           const companyName = this.getAttribute('data-company-name');
-                                                           const pic_name = this.getAttribute('data-pic-name');
-                                                           const category = this.getAttribute('data-product-category');
-                                                           const email = this.getAttribute('data-email');
-                                                           const phone = this.getAttribute('data-phone');
-                                                           const address = this.getAttribute('data-address');
-
-                                                           // Populate the modal fields
-                                                           document.getElementById('edit_client_id').value = clientId;
-                                                           document.getElementById('edit_project_name').value = clientName;
-                                                           document.getElementById('edit_company_name').value = companyName;
-                                                           document.getElementById('edit_pic_name').value = pic_name;
-                                                           document.getElementById('edit_product_category').value = category;
-                                                           document.getElementById('edit_email').value = email;
-                                                           document.getElementById('edit_phone').value = phone;
-                                                           document.getElementById('edit_address').value = address;
-
-                                                           // Update the form action to point to the correct client update route
-                                                           const formAction = document.getElementById('editClientForm').action.replace(':id',
-                                                               clientId);
-                                                           document.getElementById('editClientForm').action = formAction;
-
-                                                           // Show the modal
-                                                           $('#editProjectModal').modal('show');
-                                                       });
-                                                   });
-                                               </script> --}}
+                                               @include('components.completed.edit-completed')
 
                                            </div>
                                        </td>
                                    </tr>
-                                   {{-- <tr class="collapse-row" style="display: none;">
-                                       <td></td>
-                                       <td colspan="2">
-                                           <div class="collapse-content"
-                                               style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                                               <span>{{ $client->company_name }}</span>
-                       <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                           onclick="copyText('{{ $client->company_name }}')"></i>
-           </div>
-           </td>
-           <td colspan="6">
-               <div class="collapse-content1"
-                   style="overflow: hidden; height: 0; transition: height 0.5s ease;">
-                   <span>{{ $client->address }}</span>
-                   <i class="fa-regular fa-copy" style="margin-left: 90px;"
-                       onclick="copyText('{{ $client->address }}')"></i>
-               </div>
-           </td>
-           </tr> --}}
                                @endforeach
                            </tbody>
                        </table>
