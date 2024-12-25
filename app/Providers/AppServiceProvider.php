@@ -36,8 +36,10 @@ class AppServiceProvider extends ServiceProvider
         $selesaiCount = Project::where('status', 'selesai')->count();
         View::share('totalSelesai', $selesaiCount);
         // Count Total Project
-        $projectOnProgressCount = Project::where('category', '!=', 'Maintenance')->count();
+        $projectOnProgressCount = Project::where('category', '!=', 'Maintenance')->where('status', '!=', 'Maintenance')->where('status', '!=', 'Selesai')->count();
+
         View::share('totalProjects', $projectOnProgressCount);
+
         // Count Maintenance
         $maintenanceProjectsCount = Project::where('category', 'Maintenance')->orWhere('status', 'Maintenance')->count();
         View::share('totalMaintenanceProjects', $maintenanceProjectsCount);

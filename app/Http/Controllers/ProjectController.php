@@ -175,6 +175,8 @@ class ProjectController extends Controller
             return redirect()->route('project.onprogress')->with('success', 'Data berhasil diupdate.');
         } elseif ($request->input('from') === 'projectcompleted') {
             return redirect()->route('project.completed')->with('success', 'Data berhasil diupdate.');
+        } elseif ($request->input('from') === 'maintenance') {
+            return redirect()->route('project.Maintenance')->with('success', 'Data berhasil diupdate.');
         } else {
             return redirect()->route('dashboard')->with('success', 'Data berhasil diupdate.');
         }

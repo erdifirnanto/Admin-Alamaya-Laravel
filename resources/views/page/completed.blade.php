@@ -53,10 +53,10 @@
                                                    .then(response => response.json())
                                                    .then(data => {
                                                        if (data.success) {
-                                                           alert("Client deleted successfully!");
+                                                           alert("Peoject deleted successfully!");
                                                            location.reload(); // Refresh halaman atau update DOM
                                                        } else {
-                                                           alert("Failed to delete client.");
+                                                           alert("Failed to delete Project.");
                                                        }
                                                    })
                                            });
@@ -241,18 +241,22 @@
                                            {{ $project->project_name }}
                                        </td>
                                        <td style="align-content: center" data-key="product-category">
-                                           {{ $project->category }}
-                                           {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span> --}}
+                                           @if ($project->category === 'new_project')
+                                               New Project
+                                           @else
+                                               {{ $project->category }}
+                                           @endif
                                        </td>
 
                                        <td style="align-content: center;">
                                            <div class="btn rounded-5 align-top d-flex justify-content-center align-items-center"
                                                style="height: 4vh; width: 100px; background-color: #f8e2f7; border: 2px solid #f8e2f7;">
                                                <p style="margin: 0; color: rgb(10, 100, 58); font-size:14px;">
-                                                   {{ $project->status }}
+                                                   @if ($project->status === 'Selesai')
+                                                       Done
+                                                   @else
+                                                       {{ $project->category }}
+                                                   @endif
                                                </p>
                                            </div>
                                        </td>
