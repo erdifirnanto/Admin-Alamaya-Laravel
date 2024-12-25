@@ -36,7 +36,7 @@ class AdminSeeder extends Seeder
 
         User::create([
             'name' => 'Erdi Vernanto',
-            'email' => 'erdi@gmail.com',
+            'email' => 'erdivernanto@gmail.com',
             'password' => Hash::make('password'),
             'role' => 'staff',
             'profile_photo_path' => null, // Tambahkan ini
