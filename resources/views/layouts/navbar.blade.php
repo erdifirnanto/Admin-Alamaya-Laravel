@@ -212,15 +212,26 @@
                             </li>
 
                             <li>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <button type="submit" class="dropdown-item text-danger">
-                                        <i class="bi bi-box-arrow-right" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault(); sessionStorage.removeItem('hasAnimated'); document.getElementById('logout-form').submit();"></i>
-                                        Log out
-                                    </button>
+                                <form method="POST" action="{{ route('logout') }}" id="logout-form">
+                                @csrf
+                                <button type="submit" class="dropdown-item text-danger" onclick="return confirmLogout(event);">
+                                <i class="bi bi-box-arrow-right"></i>
+                                Log out
+                                </button>
                                 </form>
                             </li>
+                            <script>
+    function confirmLogout(event) {
+        event.preventDefault();  // Mencegah form langsung terkirim
+        
+        if (confirm("Apakah Anda yakin ingin meninggalkan halaman ini?")) {
+            // Jika pilih "Ya"
+            sessionStorage.removeItem('hasAnimated');
+            document.getElementById('logout-form').submit();
+        } 
+        // Jika pilih "Tidak", tidak melakukan apa-apa (tetap di halaman)
+    }
+</script>
                         </ul>
                     </div>
                 </div>

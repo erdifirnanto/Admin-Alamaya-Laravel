@@ -1,7 +1,8 @@
 <!-- Search Input -->
-<div class="search-box">
-    <form action=>
-        <input id="searchInput" style="width: 400px;" type="text" name="search" placeholder="Search">
-        <span class="icon-search"><i class="fas fa-search"></i></span>
-    </form>
-</div>
+<div class=" col-sm-4 search-box">
+                               <form action="{{ route('hosting.search') }}" method="GET">
+                                   <input id="searchInput" style="width: 240px;" type="text" name="search"
+                                       placeholder="Search">
+                                   <span class="icon-search"><i class="fas fa-search"></i></span>
+                               </form>
+                           </div>

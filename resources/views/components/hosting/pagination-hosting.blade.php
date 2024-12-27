@@ -1,6 +1,6 @@
 <!-- Custom Pagination -->
 <nav aria-label="Page navigation">
-    <ul class="pagination justify-content-end" style="align-items: center;">
+    <ul class="pagination justify-content-end py-5" style="align-items: center;">
         <!-- Tombol Previous -->
         @if ($hostings->onFirstPage())
             <li class="page-item disabled">

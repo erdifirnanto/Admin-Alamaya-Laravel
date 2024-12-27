@@ -18,23 +18,17 @@
            <div class="container">
                <div class="row">
                    <div class="col-12 col-md-12">
-                       <div class="search-add-sort-container">
-                           <!-- Search Input -->
-                           <div class="search-box">
-                               <form action="{{ route('domain.search') }}" method="GET">
-                                   <input id="searchInput" style="width: 400px;" type="text" name="search"
-                                       placeholder="Search">
-                                   <span class="icon-search"><i class="fas fa-search"></i></span>
-                               </form>
-                           </div>
+                       <div class="search-add-sort-container d-flex justify-content-between align-items-center flex-wrap">
+                           {{-- Seacrh --}}
+                           @include('components.domain.search-domain')
 
                            <!-- Buttons Section -->
-                           <div class="button-container">
+                           <div class="d-flex gap-2 mt-2 mt-md-0">
                                <!-- Sort by Dropdown -->
                                <div class="dropdown">
                                    <button class="btn btn-dropdown srtby delete-btn delete-selected" type="button"
                                        aria-expanded="false">
-                                       <a style="color: red;" href="#"><i class="fa fa-trash"
+                                       <a style="color: rgb(255, 0, 0);" href="#"><i class="fa fa-trash"
                                                aria-hidden="true"></i></a>
                                    </button>
 
@@ -88,8 +82,10 @@
                            </div>
                        </div>
 
-                       <table class="table table-hover table-sm">
-                           <thead>
+                       <div class="table-responsive">
+                           <table class="table table-hover table-sm">
+                               <table class="table table-hover table-sm">
+                                   <thead>
                                <tr style="height: 50px;">
                                    <th scope="col">
                                        <!-- Checkbox Select All -->
@@ -288,6 +284,8 @@
                                @endforelse
                            </tbody>
                        </table>
+                    </table>
+                </div>
 
                        @include('components.domain.pagination-domain')
 

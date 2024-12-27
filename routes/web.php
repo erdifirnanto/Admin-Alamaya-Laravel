@@ -90,7 +90,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/search', [ProjectController::class, 'search'])->name('project.search');
         Route::get('/search4', [ProjectController::class, 'search4'])->name('search.maintenance');
         Route::get('/search5', [ProjectController::class, 'search5'])->name('search.onprogress');
-
+        Route::get('/search6', [ProjectController::class, 'search6'])->name('search.completed');
 
         // route data domain
         Route::resource('domain', DomainController::class);

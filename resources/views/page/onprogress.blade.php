@@ -96,15 +96,16 @@
                            </div>
                        </div>
 
-                       <table class="table table-hover table-sm">
-                           <thead>
-                               <tr style="height: 50px;">
-                                   <th scope="col">
-                                       <!-- Checkbox Select All -->
-                                       <div>
-                                           <input type="checkbox" id="select-all">
-                                           <label style="margin-left: 10px; margin-right: 0px;" for="select-all">All</label>
-
+                        <div class="table-responsive">
+                           <table class="table table-hover table-sm">
+                               <table class="table table-hover table-sm">
+                                   <thead>
+                                       <div style="height: 40px;">
+                                           <th scope="col" style="width: 50px">
+                                           <input style="cursor: pointer" type="checkbox" id="select-all"
+                                                       for="select-all">
+                                           <label for="select-all">All</label>
+                                           
                                            <script>
                                                // Pilih semua checkbox saat 'select-all' dicentang
                                                document.getElementById('select-all').addEventListener('change', function() {
@@ -153,9 +154,11 @@
                                                    }
 
                                                });
-                                           </script>
-                                       </div>
-                                   </th>
+                                           </script> 
+                                           </div>
+                                    </th>
+                                       
+                                   
                                    <th>
                                        <span style="display: inline-flex; align-items: center;">
                                            No.
@@ -216,7 +219,8 @@
                                        </span>
                                    </th>
                                    <th>Action</th>
-                               </tr>
+                                   </tr>
+                                   </thead>
 
                                <script>
                                    document.querySelectorAll('.sort-button').forEach(button => {
@@ -249,9 +253,9 @@
                                    });
                                </script>
                            </thead>
-                           <tbody>
+                           
                                <!-- Main Row -->
-
+                            <tbody>
                                @forelse ($projects as $key => $project)
                                    <tr style="height: 80px;">
                                        <td style="align-content: center; cursor: pointer;"><input type="checkbox"
@@ -315,6 +319,8 @@
                                @endforelse
                            </tbody>
                        </table>
+                       </table>
+                        </div>
 
                        {{-- Pagination --}}
                        @include('components.onprogress.pagination-onprogress')

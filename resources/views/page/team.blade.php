@@ -18,15 +18,9 @@
            <div class="container">
                <div class="row">
                    <div class="col-12 col-md-12">
-                       <div class="search-add-sort-container">
+                       <div class="search-add-sort-container d-flex justify-content-between align-items-center flex-wrap">
                            <!-- Search Input -->
-                           <div class="search-box">
-                               <form action="{{ route('team.search') }}" method="GET">
-                                   <input id="searchInput" style="width: 400px;" type="text" name="search"
-                                       placeholder="Search">
-                                   <span class="icon-search"><i class="fas fa-search"></i></span>
-                               </form>
-                           </div>
+                           @include('components.team.search-team')
                            <!-- Buttons Section -->
                            <div class="button-container">
                                <!-- Sort by Dropdown -->
@@ -215,31 +209,35 @@
                                    });
                                </script>
                            </thead>
-                           <tbody>
-                               @foreach ($teams as $team)
-                                   <tr style="height: 80px;">
-                                       <td style="align-content: center"><input type="checkbox" class="client-checkbox"
-                                               value="{{ $team->id }}">
-                                       </td>
-                                       <td style="align-content: center">{{ $team->id }}</td>
-                                       <td style="align-content: center" data-key="client-name">
-                                           {{ $team->personil_name }}</td>
-                                       <td style="align-content: center" data-key="product-team">
-                                           {{ $team->division }}
-                                           {{-- <span class="sort-icons toggle-chevron" aria-expanded="false"
-                                               style="display: flex; flex-direction: column; align-items: center; margin-left: 5px; cursor: pointer;">
-                                               <span class="fas fa-chevron-down" style="font-size: 10px;"></span>
-                                           </span> --}}
-                                       </td>
-                                       <td style="align-content: center" data-key="project-handle">
-                                           {{ $team->project_handle }}
-                                       </td>
-                                       <td style="align-content: center; text-align: start;">
-                                           {{-- Edit Modal --}}
-                                           @include('components.team.edit-team')</td>
-                                   </tr>
-                               @endforeach
-                           </tbody>
+                          
+    @forelse ($teams as $team)
+        <tr style="height: 80px;">
+            <td style="align-content: center">
+                <input type="checkbox" class="client-checkbox" value="{{ $team->id }}">
+            </td>
+            <td style="align-content: center">{{ $team->id }}</td>
+            <td style="align-content: center" data-key="client-name">
+                {{ $team->personil_name }}
+            </td>
+            <td style="align-content: center" data-key="product-team">
+                {{ $team->division }}
+            </td>
+            <td style="align-content: center" data-key="project-handle">
+                {{ $team->project_handle }}
+            </td>
+            <td style="align-content: center; text-align: start;">
+                @include('components.team.edit-team')
+            </td>
+        </tr>
+    @empty
+        <tr>
+            <td colspan="6" class="text-center" style="height: 80px; align-content: center;">
+                Tidak ada data yang ditemukan
+            </td>
+        </tr>
+    @endforelse
+</tbody>
+
                        </table>
 
                        {{-- Pagination --}}

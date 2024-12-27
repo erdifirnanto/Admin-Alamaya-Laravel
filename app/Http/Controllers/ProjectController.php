@@ -288,4 +288,25 @@ class ProjectController extends Controller
         // Tampilkan data pada view
         return view('page.onprogress', compact('projects'));
     }
+
+    public function search6(Request $request)
+    {
+        // Deteksi apakah search berasal dari form
+        if (!$request->has('search')) {
+            // Jika tidak ada parameter `search`, redirect ke /
+            return redirect('/');
+        }
+
+        // Ambil query pencarian
+        $searchQuery = $request->input('search', '');
+
+        // Query untuk mencari data
+        $projects = Project::where('project_name', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('category', 'LIKE', "%{$searchQuery}%")
+            ->orWhere('status', 'LIKE', "%{$searchQuery}%")
+            ->paginate(50);
+
+        // Tampilkan data pada view
+        return view('page.completed', compact('projects'));
+    }
 }

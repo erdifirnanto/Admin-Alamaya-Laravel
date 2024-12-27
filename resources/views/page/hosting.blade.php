@@ -18,18 +18,12 @@
            <div class="container">
                <div class="row">
                    <div class="col-12 col-md-12">
-                       <div class="search-add-sort-container">
+                       <div class="search-add-sort-container d-flex justify-content-between align-items-center flex-wrap">
                            <!-- Search Input -->
-                           <div class="search-box">
-                               <form action="{{ route('hosting.search') }}" method="GET">
-                                   <input id="searchInput" style="width: 400px;" type="text" name="search"
-                                       placeholder="Search">
-                                   <span class="icon-search"><i class="fas fa-search"></i></span>
-                               </form>
-                           </div>
+                           @include('components.hosting.search-hosting')
 
                            <!-- Buttons Section -->
-                           <div class="button-container">
+                           <div class="button-container mb-3">
                                <!-- Sort by Dropdown -->
                                <div class="dropdown">
                                    <button class="btn btn-dropdown srtby delete-btn delete-selected" type="button"
@@ -88,6 +82,7 @@
                            </div>
                        </div>
 
+                       <div class="table-responsive">
                        <table class="table table-hover table-sm">
                            <thead>
                                <tr style="height: 50px;">
@@ -299,6 +294,7 @@
                                @endforelse
                            </tbody>
                        </table>
+                       </div>
 
                        @include('components.hosting.pagination-hosting')
 
