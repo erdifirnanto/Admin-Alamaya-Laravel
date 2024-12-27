@@ -41,7 +41,13 @@ class AppServiceProvider extends ServiceProvider
         View::share('totalProjects', $projectOnProgressCount);
 
         // Count Maintenance
-        $maintenanceProjectsCount = Project::where('category', 'Maintenance')->orWhere('status', 'Maintenance')->count();
+        $maintenanceProjectsCount = Project::where('category', 'Maintenance')
+            ->where('status', '!=', 'Selesai') // Tambahkan kondisi untuk mengecualikan status "Selesai"
+            ->orWhere(function ($query) {
+                $query->where('status', 'Maintenance')->where('status', '!=', 'Selesai'); // Pastikan status "Selesai" juga dikecualikan di sini
+            })
+            ->count();
+
         View::share('totalMaintenanceProjects', $maintenanceProjectsCount);
 
         // Data Team

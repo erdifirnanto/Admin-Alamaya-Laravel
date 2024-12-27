@@ -1,54 +1,62 @@
 <style>
-/* Responsif untuk Navbar pada ukuran layar iPad Air */
-@media (min-width: 768px) and (max-width: 1024px) {
-    .navbar {
-        padding: 10px 15px; /* Menambah jarak padding pada navbar */
-    }
+    /* Responsif untuk Navbar pada ukuran layar iPad Air */
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .navbar {
+            padding: 10px 15px;
+            /* Menambah jarak padding pada navbar */
+        }
 
-    .navbar-brand img {
-        height: 25px; /* Menyesuaikan ukuran logo */
-    }
+        .navbar-brand img {
+            height: 25px;
+            /* Menyesuaikan ukuran logo */
+        }
 
-    .navbar-toggler {
-        margin-top: 10px; /* Menambahkan jarak antara toggler dan navbar */
-    }
+        .navbar-toggler {
+            margin-top: 10px;
+            /* Menambahkan jarak antara toggler dan navbar */
+        }
 
-    .navbar-nav {
-        margin-left: 0; /* Menghilangkan margin kiri pada navbar */
-    }
+        .navbar-nav {
+            margin-left: 0;
+            /* Menghilangkan margin kiri pada navbar */
+        }
 
-    .navbar-nav .nav-item {
-        margin-right: 10px; /* Memberi jarak antar item navbar */
-    }
+        .navbar-nav .nav-item {
+            margin-right: 10px;
+            /* Memberi jarak antar item navbar */
+        }
 
-    .nav-link {
-        font-size: 14px; /* Menyesuaikan ukuran font untuk tampilan di layar lebih kecil */
-    }
+        .nav-link {
+            font-size: 14px;
+            /* Menyesuaikan ukuran font untuk tampilan di layar lebih kecil */
+        }
 
-    .user-icon {
-        width: 35px;
-        height: 35px;
-    }
+        .user-icon {
+            width: 35px;
+            height: 35px;
+        }
 
-    .user-photo {
-        width: 30px;
-        height: 30px;
-    }
+        .user-photo {
+            width: 30px;
+            height: 30px;
+        }
 
-    /* Menyesuaikan tampilan dropdown menu */
-    .dropdown-menu {
-        top: 50px; /* Sesuaikan dengan posisi dropdown pada perangkat */
-    }
+        /* Menyesuaikan tampilan dropdown menu */
+        .dropdown-menu {
+            top: 50px;
+            /* Sesuaikan dengan posisi dropdown pada perangkat */
+        }
 
-    .notif-badge {
-        font-size: 9px;
-        padding: 3px 5px;
-    }
+        .notif-badge {
+            font-size: 9px;
+            padding: 3px 5px;
+        }
 
-    .clock {
-        font-size: 16px; /* Ukuran font jam pada navbar */
+        .clock {
+            font-size: 16px;
+            /* Ukuran font jam pada navbar */
+        }
     }
-}
 </style>
 
 <section class="main-page" id="main-page">
@@ -193,8 +201,7 @@
                                 <h6>{{ Auth::user()->name }}</h6> {{-- Nama user --}}
                                 <p class="email">{{ Auth::user()->email }}</p> {{-- Email user --}}
                                 <span class="badge bg-secondary">{{ Auth::user()->role ?? 'User' }}</span>
-                                {{-- Role
-                                user --}}
+                                {{-- Role user --}}
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
@@ -205,6 +212,8 @@
                                             class="bi bi-person"></i>Account</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.add-account-form') }}"><i
                                             class="bi bi-person-plus"></i> Add Account</a></li>
+                                <li><a class="dropdown-item" href="{{ route('export.excel') }}"><i
+                                            class="bi bi-file-earmark-excel"></i> Download Excel</a></li>
                             @endif
 
                             <li>
@@ -213,27 +222,29 @@
 
                             <li>
                                 <form method="POST" action="{{ route('logout') }}" id="logout-form">
-                                @csrf
-                                <button type="submit" class="dropdown-item text-danger" onclick="return confirmLogout(event);">
-                                <i class="bi bi-box-arrow-right"></i>
-                                Log out
-                                </button>
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger"
+                                        onclick="return confirmLogout(event);">
+                                        <i class="bi bi-box-arrow-right"></i>
+                                        Log out
+                                    </button>
                                 </form>
                             </li>
                             <script>
-    function confirmLogout(event) {
-        event.preventDefault();  // Mencegah form langsung terkirim
-        
-        if (confirm("Apakah Anda yakin ingin meninggalkan halaman ini?")) {
-            // Jika pilih "Ya"
-            sessionStorage.removeItem('hasAnimated');
-            document.getElementById('logout-form').submit();
-        } 
-        // Jika pilih "Tidak", tidak melakukan apa-apa (tetap di halaman)
-    }
-</script>
+                                function confirmLogout(event) {
+                                    event.preventDefault(); // Mencegah form langsung terkirim
+
+                                    if (confirm("Apakah Anda yakin ingin meninggalkan halaman ini?")) {
+                                        // Jika pilih "Ya"
+                                        sessionStorage.removeItem('hasAnimated');
+                                        document.getElementById('logout-form').submit();
+                                    }
+                                    // Jika pilih "Tidak", tidak melakukan apa-apa (tetap di halaman)
+                                }
+                            </script>
                         </ul>
                     </div>
+
                 </div>
             </div>
         </nav>

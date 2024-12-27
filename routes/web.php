@@ -8,6 +8,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\DomainController;
 use App\Http\Controllers\HostingController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\ExportController;
 use App\Models\Domain;
 use App\Models\Project;
 use App\Models\User;
@@ -39,6 +40,13 @@ Route::middleware([
 
     // Route utama dashboard
     Route::get('/dashboard', [RoleController::class, 'Dashboard'])->name('dashboard');
+
+
+    // Route Export Data
+
+    Route::get('/export/excel', [ExportController::class, 'exportExcel'])->name('export.excel');
+    // Route::get('/export/pdf', [ExportController::class, 'exportPDF'])->name('export.pdf');
+
 
     // route khusus admin
     Route::middleware('role:admin')->group(function () {

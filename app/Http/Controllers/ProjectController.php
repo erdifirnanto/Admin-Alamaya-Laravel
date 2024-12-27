@@ -57,14 +57,29 @@ class ProjectController extends Controller
     public function ViewMaintenance()
     {
         if (Auth::user()->role === 'admin') {
-            // Ambil data klien untuk admin
+            // Ambil data proyek untuk admin
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('category', '=', 'Maintenance')->orWhere('status', '=', 'Maintenance')->orderBy('id', $sort)->paginate(10);
+            $projects = Project::where(function ($query) {
+                $query->where('category', '=', 'Maintenance')->where('status', '!=', 'Selesai'); // Eksklusikan status "Selesai"
+            })
+                ->orWhere(function ($query) {
+                    $query->where('status', '=', 'Maintenance')->where('status', '!=', 'Selesai'); // Eksklusikan status "Selesai"
+                })
+                ->orderBy('id', $sort)
+                ->paginate(10);
 
             return view('page.maintenance', compact('projects'));
         } elseif (Auth::user()->role === 'staff') {
+            // Ambil data proyek untuk staff
             $sort = request('sort', 'desc'); // Default ke 'desc' jika tidak ada parameter sort
-            $projects = Project::where('category', '=', 'Maintenance')->orWhere('status', '=', 'Maintenance')->orderBy('id', $sort)->paginate(10);
+            $projects = Project::where(function ($query) {
+                $query->where('category', '=', 'Maintenance')->where('status', '!=', 'Selesai'); // Eksklusikan status "Selesai"
+            })
+                ->orWhere(function ($query) {
+                    $query->where('status', '=', 'Maintenance')->where('status', '!=', 'Selesai'); // Eksklusikan status "Selesai"
+                })
+                ->orderBy('id', $sort)
+                ->paginate(10);
 
             return view('page.maintenance', compact('projects'));
         }
