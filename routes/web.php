@@ -44,7 +44,9 @@ Route::middleware([
 
     // Route Export Data
 
-    Route::get('/export/excel', [ExportController::class, 'exportExcel'])->name('export.excel');
+    Route::get('/export/project', [ExportController::class, 'exportProject'])->name('export.project');
+    Route::get('/export/domain', [ExportController::class, 'exportDomain'])->name('export.domain');
+    Route::get('/export/hosting', [ExportController::class, 'exportHosting'])->name('export.hosting');
     // Route::get('/export/pdf', [ExportController::class, 'exportPDF'])->name('export.pdf');
 
 

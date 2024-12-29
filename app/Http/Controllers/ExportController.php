@@ -12,12 +12,26 @@ use Barryvdh\DomPDF\Facade\Pdf;
 class ExportController extends Controller
 {
     // Export ke Excel
-    public function exportExcel()
+    public function exportProject()
     {
         $projects = Project::all();
-        $hostings = Hosting::all();
+
+        return Excel::download(new \App\Exports\ProjectExport($projects), 'projects.xlsx');
+    }
+
+    // Export ke Excel
+    public function exportDomain()
+    {
         $domains = Domain::all();
 
-        return Excel::download(new \App\Exports\ProjectExport($projects, $hostings, $domains), 'projects.xlsx');
+        return Excel::download(new \App\Exports\DomainExport($domains), 'Domains.xlsx');
+    }
+
+    // Export ke Excel
+    public function exportHosting()
+    {
+        $hostings = Hosting::all();
+
+        return Excel::download(new \App\Exports\HostingExport($hostings), 'Hostings.xlsx');
     }
 }

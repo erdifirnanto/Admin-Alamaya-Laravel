@@ -11,15 +11,10 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 class ProjectExport implements FromCollection, WithHeadings
 {
     protected $projects;
-    protected $hostings;
-    protected $domains;
 
-    public function __construct($projects, $hostings, $domains)
+    public function __construct($projects)
     {
         $this->projects = $projects;
-        $this->hostings = $hostings;
-        $this->domains = $domains;
-        // dd($projects, $hostings, $domains);
     }
 
     public function collection()
@@ -45,26 +40,6 @@ class ProjectExport implements FromCollection, WithHeadings
             ];
         }
 
-        // Gabungkan data hostings
-        foreach ($this->hostings as $hosting) {
-            $data[] = [
-                'Hosting Name' => $hosting->name,
-                'Hosting Description' => $hosting->description,
-                // Tambahkan kolom lain yang relevan dengan Hosting
-            ];
-        }
-
-        // Gabungkan data domains
-        foreach ($this->domains as $domain) {
-            $data[] = [
-                'Type' => 'Domain',
-                'Project Name' => $domain->project_name,
-                'Status' => $domain->status,
-                'Tanggal Masuk' => $domain->join_date,
-                'Deadline' => $domain->expired,
-            ];
-        }
-
         return collect($data);
     }
 
@@ -83,13 +58,6 @@ class ProjectExport implements FromCollection, WithHeadings
             'Email',
             'Phone',
             'Address',
-            'Spasi',
-            'Type',
-            'Project Name',
-            'Status',
-            'Tanggal Masuk',
-            'Expired',
-
         ];
     }
 }

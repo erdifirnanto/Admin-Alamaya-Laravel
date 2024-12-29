@@ -182,9 +182,8 @@
                         </li>
                     </ul>
 
-                    <!-- User Dropdown Option -->
                     <div class="dropdown">
-                        <button class="user-icon" id="dropdownMenuButton" data-bs-toggle="dropdown"
+                        <button class="user-icon" id="dropdownMenuButton" data-bs-toggle="dropdown" role="button"
                             aria-expanded="false" style="border: none; background: none; padding: 0;">
                             <li class="d-flex justify-content-center align-items-center user-icon"
                                 style="width: 40px; height: 40px; border: solid 1px; color: white; list-style: none;">
@@ -193,57 +192,60 @@
                                     style="cursor: pointer;">
                             </li>
                         </button>
-                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton"
-                            style="top: 150%;">
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
                             <li class="user-info text-center">
                                 <img src="{{ asset('storage/' . Auth::user()->profile_photo_path) }}"
                                     alt="{{ Auth::user()->name }}" class="profile-picture">
-                                <h6>{{ Auth::user()->name }}</h6> {{-- Nama user --}}
-                                <p class="email">{{ Auth::user()->email }}</p> {{-- Email user --}}
+                                <h6>{{ Auth::user()->name }}</h6>
+                                <p class="email">{{ Auth::user()->email }}</p>
                                 <span class="badge bg-secondary">{{ Auth::user()->role ?? 'User' }}</span>
-                                {{-- Role user --}}
                             </li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-
                             @if (Auth::user()->role === 'admin')
                                 <li><a class="dropdown-item" href="{{ route('account.management') }}"><i
-                                            class="bi bi-person"></i>Account</a></li>
+                                            class="bi bi-person"></i> Account</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.add-account-form') }}"><i
                                             class="bi bi-person-plus"></i> Add Account</a></li>
-                                <li><a class="dropdown-item" href="{{ route('export.excel') }}"><i
-                                            class="bi bi-file-earmark-excel"></i> Download Excel</a></li>
+                                <li><a class="dropdown-item" href="#" role="button" aria-expanded="false"><i
+                                            class="bi bi-file-earmark-excel"></i> Export Options</a></li>
+                                <ul aria-labelledby="exportDropdown">
+                                    <li style="list-style: none"><a class="dropdown-item"
+                                            href="{{ route('export.project') }}">Download
+                                            Project</a></li>
+                                    <li style="list-style: none"><a class="dropdown-item"
+                                            href="{{ route('export.domain') }}">Download
+                                            Domain</a></li>
+                                    <li style="list-style: none"><a class="dropdown-item"
+                                            href="{{ route('export.hosting') }}">Download
+                                            Hosting</a></li>
+                                </ul>
                             @endif
-
                             <li>
                                 <hr class="dropdown-divider">
                             </li>
-
                             <li>
                                 <form method="POST" action="{{ route('logout') }}" id="logout-form">
                                     @csrf
                                     <button type="submit" class="dropdown-item text-danger"
                                         onclick="return confirmLogout(event);">
-                                        <i class="bi bi-box-arrow-right"></i>
-                                        Log out
+                                        <i class="bi bi-box-arrow-right"></i> Log out
                                     </button>
                                 </form>
                             </li>
-                            <script>
-                                function confirmLogout(event) {
-                                    event.preventDefault(); // Mencegah form langsung terkirim
-
-                                    if (confirm("Apakah Anda yakin ingin meninggalkan halaman ini?")) {
-                                        // Jika pilih "Ya"
-                                        sessionStorage.removeItem('hasAnimated');
-                                        document.getElementById('logout-form').submit();
-                                    }
-                                    // Jika pilih "Tidak", tidak melakukan apa-apa (tetap di halaman)
-                                }
-                            </script>
                         </ul>
                     </div>
+                    <script>
+                        function confirmLogout(event) {
+                            event.preventDefault();
+                            if (confirm("Apakah Anda yakin ingin meninggalkan halaman ini?")) {
+                                sessionStorage.removeItem('hasAnimated');
+                                document.getElementById('logout-form').submit();
+                            }
+                        }
+                    </script>
+
 
                 </div>
             </div>
