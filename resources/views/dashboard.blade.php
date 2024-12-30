@@ -33,6 +33,9 @@
                         </a>
                     </button>
 
+                    {{-- Download --}}
+                    @include('components.dashboard.download-project')
+
                     <!-- Add Project Button -->
                     @include('components.dashboard.add-project')
 

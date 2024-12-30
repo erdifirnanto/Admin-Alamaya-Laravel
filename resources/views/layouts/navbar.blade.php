@@ -208,19 +208,6 @@
                                             class="bi bi-person"></i> Account</a></li>
                                 <li><a class="dropdown-item" href="{{ route('admin.add-account-form') }}"><i
                                             class="bi bi-person-plus"></i> Add Account</a></li>
-                                <li><a class="dropdown-item" href="#" role="button" aria-expanded="false"><i
-                                            class="bi bi-file-earmark-excel"></i> Export Options</a></li>
-                                <ul aria-labelledby="exportDropdown">
-                                    <li style="list-style: none"><a class="dropdown-item"
-                                            href="{{ route('export.project') }}">Download
-                                            Project</a></li>
-                                    <li style="list-style: none"><a class="dropdown-item"
-                                            href="{{ route('export.domain') }}">Download
-                                            Domain</a></li>
-                                    <li style="list-style: none"><a class="dropdown-item"
-                                            href="{{ route('export.hosting') }}">Download
-                                            Hosting</a></li>
-                                </ul>
                             @endif
                             <li>
                                 <hr class="dropdown-divider">

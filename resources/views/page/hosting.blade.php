@@ -60,6 +60,9 @@
                                        });
                                    </script>
 
+                                   {{-- Download --}}
+                                    @include('components.hosting.download-hosting')
+
                                    {{-- Add Domain --}}
                                    @include('components.hosting.add-hosting')
 
