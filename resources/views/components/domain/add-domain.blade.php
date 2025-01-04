@@ -1,6 +1,6 @@
  <!-- Add Domain Button -->
- <button class="btn btn-add-project btn1hvr" data-bs-toggle="modal" data-bs-target="#addDomainModal">Add
-     Domain <i class="fa fa-plus"></i>
+ <button class="btn btn-add-project btn1hvr" data-bs-toggle="modal" data-bs-target="#addDomainModal"><i class="fa fa-plus" style="margin-right: 8px"></i>Add
+     Domain 
  </button>
 
  <!-- Add Domain Modal -->

@@ -23,15 +23,14 @@
                            @include('components.domain.search-domain')
 
                            <!-- Buttons Section -->
-                           <div class="d-flex gap-2 mt-2 mt-md-0">
-                               <!-- Sort by Dropdown -->
-                               <div class="dropdown">
-                                   <button class="btn btn-dropdown srtby delete-btn delete-selected" type="button"
-                                       aria-expanded="false">
-                                       <a style="color: rgb(255, 0, 0);" href="#"><i class="fa fa-trash"
-                                               aria-hidden="true"></i></a>
-                                   </button>
-
+                           <div class="d-flex gap-2">
+    <!-- Sort by Dropdown -->
+    <div class="dropdown">
+        <button class="btn btn-dropdown srtby delete-btn delete-selected" type="button" aria-expanded="false">
+            <a style="color: rgb(255, 0, 0);" href="#">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+            </a>
+        </button>
                                    <script>
                                        document.querySelectorAll('.delete-btn').forEach(button => {
                                            button.addEventListener('click', function(event) {
@@ -60,6 +59,9 @@
                                        });
                                    </script>
 
+                                   {{-- Download --}}
+                                    @include('components.domain.download-domain')
+
                                    {{-- Add Domain --}}
                                    @include('components.domain.add-domain')
 
@@ -81,6 +83,7 @@
                                </div>
                            </div>
                        </div>
+                       
 
                        <div class="table-responsive">
                            <table class="table table-hover table-sm">

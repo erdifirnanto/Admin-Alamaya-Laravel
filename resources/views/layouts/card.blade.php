@@ -14,20 +14,7 @@
                                             <div class="d-flex justify-content-center align-items-center user-icon1">
                                                 <div class="fa fa-user text-light" aria-hidden="true"></div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6 col-6 d-flex justify-content-end align-items-center">
-                                            <div class="btn-group dropup">
-                                                <div class="border-white text-light btn rounded-5 align-top d-flex justify-content-center align-items-center mt-2"
-                                                    style="height: 4vh; width: 60px; display: flex; align-items: center; justify-content: center;"
-                                                    data-bs-toggle="dropdown">
-
-                                                    <span class="fas fa-chevron-up text-light"
-                                                        style="font-size: 13px; margin-right: 5px;"></span>
-                                                    <p class="text-light" style="margin: 0;">+3</p>
-                                                </div>
-
-                                            </div>
-                                        </div>
+                                        </div>                                     
                                     </div>
                                 </div>
                                 <div class="container">
@@ -60,21 +47,7 @@
                                             <div class="fa-solid fa-layer-group text-light" aria-hidden="true">
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-6 col-6 d-flex justify-content-end align-items-center">
-
-                                        <div class="btn-group dropup">
-                                            <div class="border-white text-light btn rounded-5 align-top d-flex justify-content-center align-items-center mt-2"
-                                                style="height: 4vh; width: 60px; display: flex; align-items: center; justify-content: center;"
-                                                data-bs-toggle="dropdown">
-
-                                                <span class="fas fa-chevron-up text-light"
-                                                    style="font-size: 13px; margin-right: 5px;"></span>
-                                                <p class="text-light" style="margin: 0;">+2</p>
-                                            </div>
-
-                                        </div>
-                                    </div>
+                                    </div>                                   
                                 </div>
                             </div>
                             <div class="container">
