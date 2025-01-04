@@ -324,4 +324,14 @@ class ProjectController extends Controller
         // Tampilkan data pada view
         return view('page.completed', compact('projects'));
     }
+    public function checkEmail(Request $request)
+    {
+        $emailExists = Project::where('email', $request->email)->exists();
+
+        if ($emailExists) {
+            return response()->json(['message' => 'Email sudah digunakan.'], 409);
+        }
+
+        return response()->json(['message' => 'Email tersedia.'], 200);
+    }
 }

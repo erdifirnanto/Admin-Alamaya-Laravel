@@ -123,13 +123,48 @@
                                 style="font-size: 0.7em; font-weight: bold;">EMAIL</label>
                             <input type="email" name="email"
                                 class="form-control @error('email') is-invalid @enderror" id="email"
-                                name="email" for="email" placeholder="Enter email" value="{{ old('email') }}"
-                                required autofocus>
+                                placeholder="Enter email" value="{{ old('email') }}" required autofocus>
+                            <div id="emailHelp" class="form-text"></div>
                             @error('email')
-                                <div id="emailHelp" class="form-text text-danger">
-                                    {{ $message }}</div>
+                                <div class="form-text text-danger">
+                                    {{ $message }}
+                                </div>
                             @enderror
                         </div>
+
+                        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                        <script>
+                            $(document).ready(function() {
+                                $('#email').on('keyup', function() {
+                                    let email = $(this).val();
+                                    let emailHelp = $('#emailHelp');
+
+                                    if (email !== '') {
+                                        $.ajax({
+                                            url: '{{ route('check.email') }}',
+                                            method: 'POST',
+                                            data: {
+                                                email: email,
+                                                _token: '{{ csrf_token() }}'
+                                            },
+                                            success: function(response) {
+                                                emailHelp.text(response.message).removeClass('text-danger')
+                                                    .addClass('text-success');
+                                            },
+                                            error: function(xhr) {
+                                                if (xhr.status === 409) {
+                                                    emailHelp.text(xhr.responseJSON.message).removeClass(
+                                                        'text-success').addClass('text-danger');
+                                                }
+                                            }
+                                        });
+                                    } else {
+                                        emailHelp.text('');
+                                    }
+                                });
+                            });
+                        </script>
+
                         <div class="col">
                             <label for="deadline" class="form-label"
                                 style="font-size: 0.7em; font-weight: bold;">DEADLINE</label>
