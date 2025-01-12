@@ -13,8 +13,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ route('team.store') }}" id="addTeamForm" class="needs-validation"
-                    novalidate>
+                <form method="POST" action="{{ route('team.store') }}" id="addTeamForm" class="needs-validation">
                     @csrf
 
                     <div class="row mb-3">

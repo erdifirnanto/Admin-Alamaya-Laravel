@@ -70,15 +70,6 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::get('/account-management', [AdminAccountController::class, 'index'])->name('account.management');
         Route::delete('/account-management/{user}', [AdminAccountController::class, 'destroy'])->name('account.destroy');
 
-        // route data clients
-        Route::resource('clients', ClientController::class);
-        Route::post('/clients/store', [ClientController::class, 'Cstore'])->name('clients.store');
-        Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
-        Route::post('/clients/delete-multiple', [ClientController::class, 'deleteMultiple'])->name('clients.deleteMultiple');
-        Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
-        Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update');
-        Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
-
         // route data project
         Route::resource('project', ProjectController::class);
         Route::get('/project', [ProjectController::class, 'View'])->name('project.view');
@@ -136,4 +127,14 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified']
         Route::put('/team/{id}', [TeamController::class, 'update'])->name('team.update');
         Route::put('/team/{team}', [TeamController::class, 'update'])->name('team.update');
         Route::get('/search3', [TeamController::class, 'search'])->name('team.search');
+
+
+        // route data clients
+        Route::resource('clients', ClientController::class);
+        Route::post('/clients/store', [ClientController::class, 'Cstore'])->name('clients.store');
+        Route::delete('/clients/{id}', [ClientController::class, 'destroy'])->name('clients.destroy');
+        Route::post('/clients/delete-multiple', [ClientController::class, 'deleteMultiple'])->name('clients.deleteMultiple');
+        Route::get('/clients/{id}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+        Route::put('/clients/{id}', [ClientController::class, 'update'])->name('clients.update');
+        Route::put('/clients/{client}', [ClientController::class, 'update'])->name('clients.update');
     });

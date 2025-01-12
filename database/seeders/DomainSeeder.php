@@ -28,9 +28,6 @@ class DomainSeeder extends Seeder
                 'expired' => $faker->dateTimeBetween('now', '+1 month')->format('Y-m-d'),
                 'status' => $faker->randomElement(['active', 'in_active', 'expired', 'redemtion']),
                 'join_date' => $expiredDate->format('Y-m-d'),
-                // 'expired' => $expiredDate->toDateString()
-                // 'expired' => $faker->date('Y-m-d', '+1 year'),
-                // 'expired' => Carbon::instance($faker->dateTimeBetween('now', '+1 year')), // Menggunakan Carbon untuk tanggal kedaluwarsa
             ]);
         }
     }
